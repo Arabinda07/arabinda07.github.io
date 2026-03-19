@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arabinda Saha</title>
+  <meta name="description" content="Arabinda Saha — Data Consultant at Lakshmikumaran & Sridharan. Mathematician. Program Strategist." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Calibre:wght@400;500;600&family=SF+Mono:wght@400;500&family=Fira+Code:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ── MOBILE NAV ── -->
+  <header class="mobile-header" id="mobile-header">
+    <a href="#hero" class="mobile-logo">AS</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="mobile-nav" id="mobile-nav">
+      <ol>
+        <li><a href="#about" onclick="closeMobileNav()"><span>01.</span> About</a></li>
+        <li><a href="#experience" onclick="closeMobileNav()"><span>02.</span> Experience</a></li>
+        <li><a href="#work" onclick="closeMobileNav()"><span>03.</span> Work</a></li>
+        <li><a href="#skills" onclick="closeMobileNav()"><span>04.</span> Skills</a></li>
+        <li><a href="#contact" onclick="closeMobileNav()"><span>05.</span> Contact</a></li>
+      </ol>
+      <a href="assets/resume.pdf" target="_blank" class="btn-resume">Resume</a>
+    </nav>
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay" onclick="closeMobileNav()"></div>
+  </header>
+
+  <!-- ── LAYOUT WRAPPER ── -->
+  <div class="layout">
+
+    <!-- ════ LEFT PANEL ════ -->
+    <aside class="left-panel">
+      <div class="left-panel__inner">
+
+        <!-- Top: identity -->
+        <div class="lp-top">
+          <p class="lp-greeting">Hi, my name is</p>
+          <h1 class="lp-name">Arabinda Saha.</h1>
+          <h2 class="lp-title">I connect logic to scale.</h2>
+          <p class="lp-bio">Data Consultant at <a href="https://www.lakshmisri.com" target="_blank" class="link-inline">Lakshmikumaran &amp; Sridharan</a>. Mathematician. Former Program Head scaling EdTech across India.</p>
+
+          <!-- Nav -->
+          <nav class="lp-nav" aria-label="Main navigation">
+            <ol>
+              <li class="nav-item" data-section="about">
+                <a href="#about">
+                  <span class="nav-line"></span>
+                  <span class="nav-num">01.</span>
+                  <span class="nav-label">About</span>
+                </a>
+              </li>
+              <li class="nav-item" data-section="experience">
+                <a href="#experience">
+                  <span class="nav-line"></span>
+                  <span class="nav-num">02.</span>
+                  <span class="nav-label">Experience</span>
+                </a>
+              </li>
+              <li class="nav-item" data-section="work">
+                <a href="#work">
+                  <span class="nav-line"></span>
+                  <span class="nav-num">03.</span>
+                  <span class="nav-label">Work</span>
+                </a>
+              </li>
+              <li class="nav-item" data-section="skills">
+                <a href="#skills">
+                  <span class="nav-line"></span>
+                  <span class="nav-num">04.</span>
+                  <span class="nav-label">Skills</span>
+                </a>
+              </li>
+              <li class="nav-item" data-section="contact">
+                <a href="#contact">
+                  <span class="nav-line"></span>
+                  <span class="nav-num">05.</span>
+                  <span class="nav-label">Contact</span>
+                </a>
+              </li>
+            </ol>
+          </nav>
+        </div>
+
+        <!-- Bottom: socials -->
+        <div class="lp-socials">
+          <!-- GitHub -->
+          <a href="https://github.com/Arabinda07" target="_blank" aria-label="GitHub" class="social-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </a>
+          <!-- LinkedIn -->
+          <a href="https://linkedin.com/in/robin0607saha" target="_blank" aria-label="LinkedIn" class="social-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <!-- WhatsApp -->
+          <a href="https://wa.me/917031584487" target="_blank" aria-label="WhatsApp" class="social-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </a>
+          <!-- Email -->
+          <a href="mailto:robinsaha434@gmail.com" aria-label="Email" class="social-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+
+          <a href="assets/resume.pdf" target="_blank" class="lp-resume-btn">Resume ↗</a>
+        </div>
+
+      </div>
+    </aside>
+
+    <!-- ════ RIGHT PANEL ════ -->
+    <main class="right-panel" id="content">
+
+      <!-- ── HERO (mobile only full-screen, desktop hidden) ── -->
+      <section class="section hero-section" id="hero">
+        <p class="hero-greeting">Hi, my name is</p>
+        <h1 class="hero-name">Arabinda Saha.</h1>
+        <h2 class="hero-sub">I connect logic to scale.</h2>
+        <p class="hero-bio">Data Consultant at <a href="https://www.lakshmisri.com" target="_blank" class="link-inline">Lakshmikumaran &amp; Sridharan</a>. Mathematician. Former Program Head who scaled EdTech across India.</p>
+        <a href="#about" class="btn-primary">See my work</a>
+      </section>
+
+      <!-- ── 01 ABOUT ── -->
+      <section class="section" id="about">
+        <h2 class="section-heading"><span class="section-num">01.</span> About Me</h2>
+
+        <div class="about-grid">
+          <div class="about-text">
+            <p>I'm a mathematician and program strategist who crossed into data — and found that rigorous thinking transfers perfectly. Currently I'm a <strong>Data Consultant at Lakshmikumaran &amp; Sridharan (LKS)</strong> in New Delhi, one of India's leading full-service law firms, where I build internal dashboards and tools, and work on <strong>Digital Personal Data Protection (DPDP) Act, 2023</strong> compliance frameworks.</p>
+
+            <p>Before LKS, I spent three years at Edudigm as Program Head — building multi-school programs from scratch, designing government-aligned initiatives across Kendriya Vidyalayas, and scaling a national quiz competition to <strong>600+ schools across 6 states</strong>. My work was featured at CBSE Sahodaya 2024.</p>
+
+            <p>I hold an <strong>M.Sc. in Mathematics from Jadavpur University</strong> (Graph Theory, Number Theory). That training is the backbone of how I approach every data and systems problem.</p>
+
+            <p>Here are a few things I'm currently working with:</p>
+
+            <ul class="skills-list">
+              <li>Python</li>
+              <li>SQL</li>
+              <li>Dashboard Design</li>
+              <li>DPDP Act, 2023</li>
+              <li>Data Governance</li>
+              <li>Compliance Mapping</li>
+            </ul>
+          </div>
+
+          <div class="about-photo">
+            <div class="photo-wrapper">
+              <img src="https://i.postimg.cc/nrLNWDZX/Untitled-design.png" alt="Arabinda Saha" class="photo-img" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── 02 EXPERIENCE ── -->
+      <section class="section" id="experience">
+        <h2 class="section-heading"><span class="section-num">02.</span> Where I've Worked</h2>
+
+        <div class="exp-tabs">
+          <div class="tab-list" role="tablist">
+            <button class="tab-btn active" data-tab="lks" role="tab">LKS</button>
+            <button class="tab-btn" data-tab="edudigm-ph" role="tab">Edudigm (PH)</button>
+            <button class="tab-btn" data-tab="edudigm-sme" role="tab">Edudigm (SME)</button>
+          </div>
+
+          <div class="tab-panels">
+
+            <div class="tab-panel active" id="tab-lks">
+              <h3 class="exp-role">Data Consultant <span class="exp-company">@ <a href="https://www.lakshmisri.com" target="_blank">Lakshmikumaran &amp; Sridharan</a></span></h3>
+              <p class="exp-period">Feb 2026 – Present</p>
+              <p class="exp-context">LKS is a full-service Indian law firm with 400+ professionals across 14 offices, advising Fortune 500 companies on taxation, IP, corporate and data law.</p>
+              <ul class="exp-bullets">
+                <li>Building <strong>internal dashboards and data tools</strong> to support legal and operational workflows across practice groups.</li>
+                <li>Supporting <strong>DPDP Act, 2023</strong> compliance work — translating legislative requirements into structured data governance frameworks for enterprise clients.</li>
+              </ul>
+            </div>
+
+            <div class="tab-panel" id="tab-edudigm-ph">
+              <h3 class="exp-role">Program Head – School Programs <span class="exp-company">@ <a href="#" target="_blank">Edudigm</a></span></h3>
+              <p class="exp-period">Dec 2023 – Jan 2026</p>
+              <ul class="exp-bullets">
+                <li>Led structured delivery across <strong>5+ partner schools</strong> — 1,500+ students, 60+ teachers, with defined timelines and governance.</li>
+                <li>Owned full <strong>PM SHRI execution</strong> across Kendriya Vidyalayas: Science &amp; Maths Circles, cyber safety, career assessment, and 21st-century skills workshops.</li>
+                <li>Conceived and scaled <strong>Stellar Space Quiz</strong> (ISRO merchandise-partnered) — 600+ schools across 6 states; finals at Gyan Manch, Kolkata (2024) and IIT Kharagpur Research Park (2025).</li>
+                <li>Designed <strong>Competitive Edge</strong> — a student diagnostic system using LOTS-HOTS and Bloom's Taxonomy — deployed across 600 students in 3 schools; featured at <strong>CBSE Sahodaya 2024</strong>.</li>
+                <li>Expanded programs into <strong>Kalpana STEM Labs</strong>, robotics, and AI-enabled modules for Classes 6–10; also featured at CBSE Sahodaya 2024.</li>
+                <li>Managed full course lifecycle on <strong>WiseApp LMS</strong> — from content creation to year-long multi-school deployment.</li>
+              </ul>
+            </div>
+
+            <div class="tab-panel" id="tab-edudigm-sme">
+              <h3 class="exp-role">Subject Matter Expert – Mathematics <span class="exp-company">@ <a href="#" target="_blank">Edudigm</a></span></h3>
+              <p class="exp-period">Jun 2022 – Nov 2023</p>
+              <ul class="exp-bullets">
+                <li>Delivered CBSE Boards and JEE-aligned Mathematics for Classes 9–12.</li>
+                <li>Designed chapter-wise assessments, practice sets, and revision modules aligned with board expectations.</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
+        <a href="assets/resume.pdf" target="_blank" class="resume-link">
+          View Full Résumé <span>↗</span>
+        </a>
+      </section>
+
+      <!-- ── 03 WORK ── -->
+      <section class="section" id="work">
+        <h2 class="section-heading"><span class="section-num">03.</span> Things I've Built</h2>
+
+        <div class="projects-grid">
+
+          <div class="project-card featured">
+            <div class="project-top">
+              <div class="project-folder">
+                <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="40" height="40"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+              </div>
+              <div class="project-links">
+              </div>
+            </div>
+            <h3 class="project-title">Stellar Space Quiz</h3>
+            <p class="project-tag">National · ISRO Partnership · 2024–25</p>
+            <p class="project-desc">Conceived and scaled a national school competition on National Space Day. ISRO merchandise-partnered. Grew to 600+ schools across 6 states in year one. Inter-school finals at Gyan Manch, Kolkata (2024) and IIT Kharagpur Research Park (2025).</p>
+            <ul class="project-tech">
+              <li>600+ Schools</li>
+              <li>6 States</li>
+              <li>ISRO Partnership</li>
+              <li>IIT Kharagpur Finals</li>
+            </ul>
+          </div>
+
+          <div class="project-card featured">
+            <div class="project-top">
+              <div class="project-folder">
+                <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="40" height="40"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+              </div>
+            </div>
+            <h3 class="project-title">Competitive Edge</h3>
+            <p class="project-tag">Assessment Design · CBSE Sahodaya 2024</p>
+            <p class="project-desc">A structured student diagnostic system built on LOTS-HOTS frameworks and Bloom's Taxonomy. Deployed across 600 students in 3 schools. Selected and featured as a model practice at CBSE Sahodaya 2024.</p>
+            <ul class="project-tech">
+              <li>600 Students</li>
+              <li>3 Schools</li>
+              <li>Bloom's Taxonomy</li>
+              <li>CBSE Sahodaya 2024</li>
+            </ul>
+          </div>
+
+          <div class="project-card featured">
+            <div class="project-top">
+              <div class="project-folder">
+                <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="40" height="40"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+              </div>
+            </div>
+            <h3 class="project-title">PM SHRI Program Execution</h3>
+            <p class="project-tag">Government · NEP · Kendriya Vidyalayas</p>
+            <p class="project-desc">End-to-end delivery of PM SHRI-aligned programs across Kendriya Vidyalayas — Science &amp; Maths Circles, cyber safety, career assessments, and 21st-century skills workshops. Full budget and documentation ownership for 600+ students.</p>
+            <ul class="project-tech">
+              <li>600+ Students</li>
+              <li>Kendriya Vidyalayas</li>
+              <li>Budget Ownership</li>
+              <li>NEP 2020</li>
+            </ul>
+          </div>
+
+          <div class="project-card featured">
+            <div class="project-top">
+              <div class="project-folder">
+                <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="40" height="40"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+              </div>
+            </div>
+            <h3 class="project-title">LKS Internal Dashboards</h3>
+            <p class="project-tag">Data Tools · LKS · 2026</p>
+            <p class="project-desc">Designing and building internal data dashboards and tooling for one of India's largest full-service law firms. Translating legal and operational data into structured decision-support systems across practice groups.</p>
+            <ul class="project-tech">
+              <li>Python</li>
+              <li>SQL</li>
+              <li>Dashboard Design</li>
+              <li>Legal Operations</li>
+            </ul>
+          </div>
+
+          <div class="project-card featured">
+            <div class="project-top">
+              <div class="project-folder">
+                <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="40" height="40"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+              </div>
+            </div>
+            <h3 class="project-title">DPDP Act Compliance Frameworks</h3>
+            <p class="project-tag">Compliance · Data Privacy · 2026</p>
+            <p class="project-desc">Working within India's Digital Personal Data Protection Act, 2023 — structuring compliance requirements into actionable data governance formats for legal and enterprise contexts at LKS.</p>
+            <ul class="project-tech">
+              <li>DPDP Act, 2023</li>
+              <li>Data Governance</li>
+              <li>Compliance Mapping</li>
+            </ul>
+          </div>
+
+          <div class="project-card featured">
+            <div class="project-top">
+              <div class="project-folder">
+                <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="40" height="40"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+              </div>
+            </div>
+            <h3 class="project-title">Kalpana STEM Labs &amp; AI Modules</h3>
+            <p class="project-tag">STEM · AI in Education · CBSE Sahodaya 2024</p>
+            <p class="project-desc">Expanded Edudigm's academic offerings into robotics, Kalpana STEM Labs, and AI-enabled learning modules for Classes 6–10. Interdisciplinary programs bridging traditional STEM with emerging technology — featured at CBSE Sahodaya 2024.</p>
+            <ul class="project-tech">
+              <li>Classes 6–10</li>
+              <li>Robotics</li>
+              <li>AI Learning Modules</li>
+              <li>CBSE Sahodaya 2024</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ── 04 SKILLS ── -->
+      <section class="section" id="skills">
+        <h2 class="section-heading"><span class="section-num">04.</span> Skills &amp; Certifications</h2>
+
+        <div class="skills-section">
+          <div class="skill-group">
+            <h3 class="skill-group-title">Data &amp; Technical</h3>
+            <ul class="skill-tags">
+              <li>Python</li>
+              <li>SQL</li>
+              <li>Dashboard Design</li>
+              <li>Data Analysis</li>
+              <li>Data Visualisation</li>
+              <li>Machine Learning</li>
+              <li>Generative AI</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3 class="skill-group-title">Legal &amp; Compliance</h3>
+            <ul class="skill-tags">
+              <li>DPDP Act, 2023</li>
+              <li>Data Privacy</li>
+              <li>Data Governance</li>
+              <li>Compliance Mapping</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3 class="skill-group-title">Education &amp; Programs</h3>
+            <ul class="skill-tags">
+              <li>Curriculum Design</li>
+              <li>NEP 2020 / PM SHRI</li>
+              <li>Bloom's Taxonomy</li>
+              <li>LOTS-HOTS Frameworks</li>
+              <li>LMS Deployment</li>
+              <li>CBSE / JEE Content</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3 class="skill-group-title">Mathematics</h3>
+            <ul class="skill-tags">
+              <li>Graph Theory</li>
+              <li>Number Theory</li>
+              <li>M.Sc. Jadavpur University</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="certs-section">
+          <h3 class="skill-group-title">Certifications</h3>
+          <div class="cert-list">
+            <div class="cert-item">
+              <span class="cert-dot">▹</span>
+              <span class="cert-org">Google</span>
+              <span class="cert-name">AI Essentials</span>
+            </div>
+            <div class="cert-item">
+              <span class="cert-dot">▹</span>
+              <span class="cert-org">IBM</span>
+              <span class="cert-name">Data Science Fundamentals with Python and SQL</span>
+            </div>
+            <div class="cert-item">
+              <span class="cert-dot">▹</span>
+              <span class="cert-org">Microsoft &amp; LinkedIn</span>
+              <span class="cert-name">Career Essentials in Data Analysis</span>
+            </div>
+            <div class="cert-item">
+              <span class="cert-dot">▹</span>
+              <span class="cert-org">Microsoft &amp; LinkedIn</span>
+              <span class="cert-name">Career Essentials in Project Management</span>
+            </div>
+            <div class="cert-item">
+              <span class="cert-dot">▹</span>
+              <span class="cert-org">Microsoft &amp; LinkedIn</span>
+              <span class="cert-name">Career Essentials in System Administration</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Seminars -->
+        <div class="seminars-section">
+          <h3 class="skill-group-title">Speaking</h3>
+          <div class="cert-list">
+            <div class="cert-item seminar-item">
+              <span class="cert-dot">▹</span>
+              <div>
+                <p class="seminar-title">Experiential Learning and INSPIRE MANAK Programme — Orientation for Science Teachers</p>
+                <p class="seminar-org">Vivekananda Vijnan Mission · INSPIRE MANAK · IEM–UEM</p>
+              </div>
+            </div>
+            <div class="cert-item seminar-item">
+              <span class="cert-dot">▹</span>
+              <div>
+                <p class="seminar-title">Powering the Future of Business through Digital Transformation with Analytics, ML, GenAI, and Agentic AI</p>
+                <p class="seminar-org">IIT Kharagpur Research Park</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── 05 CONTACT ── -->
+      <section class="section contact-section" id="contact">
+        <p class="contact-overline"><span class="section-num">05.</span> What's Next?</p>
+        <h2 class="contact-heading">Get In Touch</h2>
+        <p class="contact-body">I'm currently open to conversations about data consulting, program strategy, and EdTech leadership. Whether you have an opportunity, a question, or just want to connect — my inbox is open.</p>
+
+        <div class="contact-links">
+          <a href="mailto:robinsaha434@gmail.com" class="btn-primary">Say Hello ✉</a>
+        </div>
+
+        <div class="contact-details">
+          <a href="https://wa.me/917031584487" target="_blank" class="contact-detail-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            +91 7031584487
+          </a>
+          <a href="https://linkedin.com/in/robin0607saha" target="_blank" class="contact-detail-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            linkedin.com/in/robin0607saha
+          </a>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p>Designed &amp; Built by Arabinda Saha</p>
+        <p class="footer-inspired">Inspired by <a href="https://brittanychiang.com" target="_blank">Brittany Chiang</a></p>
+      </footer>
+
+    </main><!-- /right-panel -->
+
+  </div><!-- /layout -->
+
+  <script>
+    // ── Tab switching ──
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tab = btn.dataset.tab;
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('tab-' + tab).classList.add('active');
+      });
+    });
+
+    // ── Active nav on scroll ──
+    const sections = document.querySelectorAll('section[id]');
+    const navItems = document.querySelectorAll('.nav-item');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          navItems.forEach(item => {
+            item.classList.toggle('active', item.dataset.section === id);
+          });
+        }
+      });
+    }, { threshold: 0.4 });
+
+    sections.forEach(s => observer.observe(s));
+
+    // ── Scroll reveal ──
+    const revealEls = document.querySelectorAll('.section, .project-card, .cert-item');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('revealed');
+          revealObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    // ── Mobile nav ──
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    const overlay   = document.getElementById('mobile-nav-overlay');
+
+    hamburger.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('is-open');
+      hamburger.classList.toggle('is-open', open);
+      overlay.classList.toggle('is-open', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+
+    function closeMobileNav() {
+      mobileNav.classList.remove('is-open');
+      hamburger.classList.remove('is-open');
+      overlay.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    // ── Mobile header scroll shadow ──
+    window.addEventListener('scroll', () => {
+      document.getElementById('mobile-header').classList.toggle('scrolled', window.scrollY > 20);
+    });
+  </script>
+</body>
+</html>
