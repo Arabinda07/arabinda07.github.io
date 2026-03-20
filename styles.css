@@ -5,6 +5,7 @@
 ══════════════════════════════════════════════════ */
 
 :root {
+  color-scheme: dark;
   --navy:        #0a192f;
   --navy-light:  #112240;
   --navy-shadow: #0d1b36;
@@ -48,18 +49,36 @@ body {
 }
 a { color: var(--teal); text-decoration: none; transition: var(--transition); }
 a:hover { color: var(--teal); }
+a:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+button:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 3px;
+}
 ul, ol { list-style: none; padding: 0; }
 strong { color: var(--slate-light); font-weight: 500; }
 
-/* ── Scroll reveal base ── */
-.section, .project-card, .cert-item {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  z-index: 10000;
+  padding: 0.65rem 1.1rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--navy);
+  background: var(--teal);
+  border-radius: 4px;
+  transition: top 0.2s var(--ease);
 }
-.section.revealed, .project-card.revealed, .cert-item.revealed {
-  opacity: 1;
-  transform: translateY(0);
+.skip-link:focus {
+  top: 1rem;
+  outline: 2px solid var(--white);
+  outline-offset: 3px;
 }
 
 /* ─────────────────────────────────────────
@@ -284,8 +303,6 @@ strong { color: var(--slate-light); font-weight: 500; }
 }
 
 /* ── ABOUT ── */
-
-/* ── ABOUT ── */
 .about-header {
   display: flex;
   align-items: center;
@@ -465,6 +482,11 @@ strong { color: var(--slate-light); font-weight: 500; }
 .tab-btn:hover { color: var(--teal); background: var(--teal-tint); }
 /* Active: teal text + tint bg — border handled by .tab-indicator */
 .tab-btn.active { color: var(--teal); background: var(--teal-tint); }
+.tab-btn:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+  z-index: 3;
+}
 
 /* ── Tab panel fade transition ── */
 .tab-panels {
@@ -587,6 +609,18 @@ strong { color: var(--slate-light); font-weight: 500; }
   max-width: 680px;
 }
 
+/* Alternate alignment (was unused class) */
+.featured-project.fp-reverse {
+  margin-left: auto;
+}
+.featured-project.fp-reverse .fp-content {
+  text-align: right;
+}
+.featured-project.fp-reverse .system-flow,
+.featured-project.fp-reverse .fp-tech {
+  justify-content: flex-end;
+}
+
 .fp-overline {
   font-family: var(--font-mono);
   font-size: 0.75rem;
@@ -617,7 +651,7 @@ strong { color: var(--slate-light); font-weight: 500; }
   color: var(--slate);
   line-height: 1.8;
 }
-.fp-desc-box p + p { margin-top: 0.5rem; }
+.fp-desc-box p + p { margin-top: 0.6rem; }
 
 .fp-tech {
   display: flex;
@@ -887,22 +921,10 @@ strong { color: var(--slate-light); font-weight: 500; }
   transform: translateY(-3px);
   box-shadow: 0 10px 30px rgba(100, 255, 218, 0.08);
 }
-
-/* ── FOOTER ── */
-.footer {
-  padding: 2rem 0 4rem;
-  text-align: center;
-  border-top: 1px solid var(--navy-light);
-  margin-top: 2rem;
+.btn-primary:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 3px;
 }
-.footer p {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--slate-dark);
-  line-height: 1.8;
-}
-.footer a { color: var(--teal); }
-.footer a:hover { color: var(--teal); opacity: 0.8; }
 
 /* ════════════════════════════════
    RESPONSIVE — Tablet
@@ -925,6 +947,10 @@ strong { color: var(--slate-light); font-weight: 500; }
 @media (max-width: 768px) {
 
   /* Show mobile header */
+  html {
+    scroll-padding-top: calc(70px + env(safe-area-inset-top, 0px));
+  }
+
   .mobile-header {
     display: flex;
     align-items: center;
@@ -932,10 +958,13 @@ strong { color: var(--slate-light); font-weight: 500; }
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 200;
-    height: 70px;
-    padding: 0 1.5rem;
-    background: rgba(10, 25, 47, 0.9);
+    min-height: 70px;
+    padding: max(0.75rem, env(safe-area-inset-top)) 1.5rem 0.75rem;
+    padding-left: max(1.5rem, env(safe-area-inset-left));
+    padding-right: max(1.5rem, env(safe-area-inset-right));
+    background: rgba(10, 25, 47, 0.92);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     transition: box-shadow 0.3s ease;
   }
   .mobile-header.scrolled { box-shadow: 0 10px 30px rgba(2, 12, 27, 0.7); }
@@ -954,11 +983,21 @@ strong { color: var(--slate-light); font-weight: 500; }
     flex-direction: column;
     justify-content: center;
     gap: 5px;
-    width: 36px; height: 36px;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
     background: none;
     border: none;
     cursor: pointer;
     z-index: 201;
+    border-radius: 4px;
+    color: inherit;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .hamburger:focus-visible {
+    outline: 2px solid var(--teal);
+    outline-offset: 2px;
   }
   .hamburger span {
     display: block;
@@ -976,7 +1015,8 @@ strong { color: var(--slate-light); font-weight: 500; }
   .mobile-nav {
     position: fixed;
     top: 0; right: 0;
-    height: 100vh;
+    height: 100dvh;
+    max-height: -webkit-fill-available;
     width: min(75vw, 320px);
     background: var(--navy-light);
     z-index: 199;
@@ -988,6 +1028,8 @@ strong { color: var(--slate-light); font-weight: 500; }
     transform: translateX(100%);
     transition: transform 0.4s var(--ease);
     padding: 2rem;
+    padding-top: max(2rem, env(safe-area-inset-top));
+    padding-bottom: max(2rem, env(safe-area-inset-bottom));
   }
   .mobile-nav.is-open { transform: translateX(0); }
   .mobile-nav ol { display: flex; flex-direction: column; gap: 1.5rem; text-align: center; }
@@ -1035,9 +1077,9 @@ strong { color: var(--slate-light); font-weight: 500; }
   /* Right panel full width */
   .right-panel {
     margin-left: 0;
-    padding: 0 1.5rem;
+    padding: 0 max(1.25rem, env(safe-area-inset-left)) 0 max(1.25rem, env(safe-area-inset-right));
     max-width: 100%;
-    padding-top: 70px;
+    padding-top: calc(70px + env(safe-area-inset-top, 0px));
   }
 
   /* Show hero on mobile */
@@ -1074,7 +1116,12 @@ strong { color: var(--slate-light); font-weight: 500; }
     color: var(--slate);
     line-height: 1.7;
     max-width: 480px;
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-stats {
+    max-width: 100%;
+    margin-bottom: 1.75rem;
   }
 
   /* ── Consistent section spacing — every section identical ── */
@@ -1087,6 +1134,7 @@ strong { color: var(--slate-light); font-weight: 500; }
   .hero-section .btn-primary {
     align-self: flex-start;
     max-width: 260px;
+    width: auto;
   }
 
   /* ── About: mobile layout ── */
@@ -1136,12 +1184,6 @@ strong { color: var(--slate-light); font-weight: 500; }
   .tab-btn.active { border-bottom-color: var(--teal); border-left: none; }
   .tab-indicator { display: none; }
 
-  /* Resume button — don't stretch full width */
-  .hero-section .btn-primary {
-    align-self: flex-start;
-    max-width: 260px;
-  }
-
   /* Tighter section heading margin on mobile */
   .section-heading { margin-bottom: 1.75rem; }
 
@@ -1154,35 +1196,17 @@ strong { color: var(--slate-light); font-weight: 500; }
   .contact-section { text-align: left; align-items: flex-start; }
   .form-row { grid-template-columns: 1fr; }
   .form-footer { flex-direction: column; align-items: flex-start; }
-}
 
-/* ════════════════════════════════════════
-   FIXED SIDE BARS (change 2 & 3)
-   Exact bchiang7/v4 implementation:
-   — Left: social icons, vertical column
-   — Right: email address, rotated vertical
-   Both have a line extending to the bottom
-════════════════════════════════════════ */
-
-.side-bar {
-  position: fixed;
-  bottom: 0;
-  z-index: 20;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0;
-  /* fade-in animation on load */
-  animation: sideBarFadeIn 0.5s ease 1s both;
-}
-@keyframes sideBarFadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* ── Hide side bars on smaller screens ── */
-@media (max-width: 1080px) {
-  .side-bar { display: none; }
+  .featured-project.fp-reverse {
+    margin-left: 0;
+  }
+  .featured-project.fp-reverse .fp-content {
+    text-align: left;
+  }
+  .featured-project.fp-reverse .system-flow,
+  .featured-project.fp-reverse .fp-tech {
+    justify-content: flex-start;
+  }
 }
 
 /* ── Entrance animations ── */
@@ -1207,8 +1231,7 @@ strong { color: var(--slate-light); font-weight: 500; }
   }
 }
 
-/* ── Scroll-reveal sections: smoother, tighter ── */
-/* Override the previous base state */
+/* ── Scroll-reveal (sections, cards, list rows) ── */
 .section:not(.hero-section),
 .project-card,
 .cert-item {
@@ -1243,10 +1266,6 @@ strong { color: var(--slate-light); font-weight: 500; }
     opacity: 1;
     transform: none;
     transition: none;
-  }
-  .side-bar {
-    animation: none;
-    opacity: 1;
   }
   .tab-indicator { transition: none; }
   .section-heading, .section-heading::after { transition: none; }
@@ -1327,9 +1346,6 @@ strong { color: var(--slate-light); font-weight: 500; }
   color: var(--teal);
   font-style: italic;
   margin-top: 0.75rem;
-}
-.fp-desc-box p + p {
-  margin-top: 0.6rem;
 }
 
 /* ════════════════════════════════════════
@@ -1436,4 +1452,3 @@ strong { color: var(--slate-light); font-weight: 500; }
   letter-spacing: 0.04em;
 }
 
-/* Loader CSS kept but hidden — HTML element removed */

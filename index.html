@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Arabinda Saha | Data Consultant</title>
   <meta name="theme-color" content="#0a192f" />
   <meta name="description" content="Arabinda Saha — Data Consultant at Lakshmikumaran & Sridharan. Mathematician. Program Strategist." />
@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <a href="#content" class="skip-link">Skip to content</a>
 
   <!-- ── SCROLL PROGRESS BAR ── -->
   <div id="scroll-progress" class="scroll-progress" aria-hidden="true"></div>
@@ -21,20 +22,20 @@
   <!-- ── MOBILE NAV ── -->
   <header class="mobile-header" id="mobile-header">
     <a href="#hero" class="mobile-logo">AS</a>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
+    <button type="button" class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
       <span></span><span></span><span></span>
     </button>
-    <nav class="mobile-nav" id="mobile-nav">
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
       <ol>
-        <li><a href="#about" onclick="closeMobileNav()"><span>01.</span> My Journey</a></li>
-        <li><a href="#experience" onclick="closeMobileNav()"><span>02.</span> Experience</a></li>
-        <li><a href="#work" onclick="closeMobileNav()"><span>03.</span> Work</a></li>
-        <li><a href="#skills" onclick="closeMobileNav()"><span>04.</span> Capabilities</a></li>
-        <li><a href="#contact" onclick="closeMobileNav()"><span>05.</span> Contact</a></li>
+        <li><a href="#about"><span>01.</span> My Journey</a></li>
+        <li><a href="#experience"><span>02.</span> Experience</a></li>
+        <li><a href="#work"><span>03.</span> Work</a></li>
+        <li><a href="#skills"><span>04.</span> Capabilities</a></li>
+        <li><a href="#contact"><span>05.</span> Contact</a></li>
       </ol>
-      <a href="assets/resume.pdf" target="_blank" class="btn-resume">Resume</a>
+      <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="btn-resume">Resume</a>
     </nav>
-    <div class="mobile-nav-overlay" id="mobile-nav-overlay" onclick="closeMobileNav()"></div>
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay" aria-hidden="true"></div>
   </header>
 
   <!-- ── LAYOUT WRAPPER ── -->
@@ -109,23 +110,23 @@
         <!-- Bottom: socials -->
         <div class="lp-socials anim-slide" style="--delay:650ms">
           <!-- GitHub -->
-          <a href="https://github.com/Arabinda07" target="_blank" aria-label="GitHub" class="social-icon">
+          <a href="https://github.com/Arabinda07" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-icon">
             <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
           </a>
           <!-- LinkedIn -->
-          <a href="https://linkedin.com/in/robin0607saha" target="_blank" aria-label="LinkedIn" class="social-icon">
+          <a href="https://www.linkedin.com/in/robin0607saha" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-icon">
             <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
           </a>
           <!-- WhatsApp -->
-          <a href="https://wa.me/917031584487" target="_blank" aria-label="WhatsApp" class="social-icon">
+          <a href="https://wa.me/917031584487" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="social-icon">
             <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
           </a>
           <!-- Email -->
-          <a href="/cdn-cgi/l/email-protection#077568656e6974666f6633343347606a666e6b2964686a" aria-label="Email" class="social-icon">
+          <a href="mailto:robinsaha434@gmail.com" aria-label="Email" class="social-icon">
             <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           </a>
 
-          <a href="assets/resume.pdf" target="_blank" class="lp-resume-btn">Resume ↗</a>
+          <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="lp-resume-btn">Resume ↗</a>
         </div>
 
       </div>
@@ -139,7 +140,7 @@
         <p class="hero-greeting anim-slide" style="--delay:100ms">Hi, my name is</p>
         <h1 class="hero-name anim-slide" style="--delay:200ms">Arabinda Saha.</h1>
         <h2 class="hero-sub anim-slide" style="--delay:300ms">I build and scale systems using data.</h2>
-        <p class="hero-bio anim-slide" style="--delay:400ms">Data Consultant at <a href="https://www.lakshmisri.com" target="_blank" class="link-inline">Lakshmikumaran &amp; Sridharan</a>. Mathematician turned program operator — now working at the intersection of data, education, and real-world systems.</p>
+        <p class="hero-bio anim-slide" style="--delay:400ms">Data Consultant at <a href="https://www.lakshmisri.com" target="_blank" rel="noopener noreferrer" class="link-inline">Lakshmikumaran &amp; Sridharan</a>. Mathematician turned program operator — now working at the intersection of data, education, and real-world systems.</p>
         <div class="hero-stats anim-slide" style="--delay:450ms">
           <div class="lp-metric">
             <span class="lp-metric__num">600+</span>
@@ -154,7 +155,7 @@
             <span class="lp-metric__label">states</span>
           </div>
         </div>
-        <a href="assets/resume.pdf" target="_blank" class="btn-primary anim-slide" style="--delay:500ms">Download Resume ↗</a>
+        <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="btn-primary anim-slide" style="--delay:500ms">Download Resume ↗</a>
       </section>
 
       <!-- ── 01 ABOUT ── -->
@@ -163,7 +164,7 @@
         <!-- Mobile photo — sits above heading on mobile, hidden on desktop -->
         <div class="about-photo-mobile">
           <div class="photo-wrapper photo-wrapper--circle">
-            <img src="https://i.postimg.cc/nrLNWDZX/Untitled-design.png" alt="Arabinda Saha" class="photo-img" />
+            <img src="https://i.postimg.cc/nrLNWDZX/Untitled-design.png" alt="Arabinda Saha" class="photo-img" width="100" height="100" loading="lazy" decoding="async" />
           </div>
         </div>
 
@@ -203,7 +204,7 @@
           <!-- Desktop photo — hidden on mobile -->
           <div class="about-photo">
             <div class="photo-wrapper">
-              <img src="https://i.postimg.cc/nrLNWDZX/Untitled-design.png" alt="Arabinda Saha" class="photo-img" />
+              <img src="https://i.postimg.cc/nrLNWDZX/Untitled-design.png" alt="Arabinda Saha" class="photo-img" width="300" height="300" loading="lazy" decoding="async" />
             </div>
           </div>
         </div>
@@ -214,17 +215,17 @@
         <h2 class="section-heading"><span class="section-num">02.</span> Where I've Operated</h2>
 
         <div class="exp-tabs">
-          <div class="tab-list" role="tablist">
+          <div class="tab-list" role="tablist" aria-label="Work history">
             <div class="tab-indicator" id="tab-indicator" aria-hidden="true"></div>
-            <button class="tab-btn active" data-tab="lks" role="tab">LKS</button>
-            <button class="tab-btn" data-tab="edudigm-ph" role="tab">Edudigm (PH)</button>
-            <button class="tab-btn" data-tab="edudigm-sme" role="tab">Edudigm (SME)</button>
+            <button type="button" class="tab-btn active" id="tab-btn-lks" data-tab="lks" role="tab" aria-selected="true" aria-controls="tab-lks">LKS</button>
+            <button type="button" class="tab-btn" id="tab-btn-edudigm-ph" data-tab="edudigm-ph" role="tab" aria-selected="false" aria-controls="tab-edudigm-ph">Edudigm (PH)</button>
+            <button type="button" class="tab-btn" id="tab-btn-edudigm-sme" data-tab="edudigm-sme" role="tab" aria-selected="false" aria-controls="tab-edudigm-sme">Edudigm (SME)</button>
           </div>
 
-          <div class="tab-panels">
+          <div class="tab-panels" role="presentation">
 
-            <div class="tab-panel active" id="tab-lks">
-              <h3 class="exp-role">Data Consultant <span class="exp-company">@ <a href="https://www.lakshmisri.com" target="_blank">Lakshmikumaran &amp; Sridharan</a></span></h3>
+            <div class="tab-panel active" id="tab-lks" role="tabpanel" aria-labelledby="tab-btn-lks">
+              <h3 class="exp-role">Data Consultant <span class="exp-company">@ <a href="https://www.lakshmisri.com" target="_blank" rel="noopener noreferrer">Lakshmikumaran &amp; Sridharan</a></span></h3>
               <p class="exp-period">Feb 2026 – Present</p>
               <ul class="exp-bullets">
                 <li>Built <strong>internal dashboards</strong> for legal workflows and operational decision-making.</li>
@@ -234,7 +235,7 @@
               <p class="exp-note">Expanding from education systems into broader real-world data environments.</p>
             </div>
 
-            <div class="tab-panel" id="tab-edudigm-ph">
+            <div class="tab-panel" id="tab-edudigm-ph" role="tabpanel" aria-labelledby="tab-btn-edudigm-ph">
               <h3 class="exp-role">Program Head – School Programs <span class="exp-company">@ Edudigm</span></h3>
               <p class="exp-period">Dec 2023 – Jan 2026</p>
               <ul class="exp-bullets">
@@ -247,7 +248,7 @@
               <p class="exp-note">Execution at scale — turning ideas into operating systems across institutions.</p>
             </div>
 
-            <div class="tab-panel" id="tab-edudigm-sme">
+            <div class="tab-panel" id="tab-edudigm-sme" role="tabpanel" aria-labelledby="tab-btn-edudigm-sme">
               <h3 class="exp-role">Subject Matter Expert – Mathematics <span class="exp-company">@ Edudigm</span></h3>
               <p class="exp-period">Jun 2022 – Nov 2023</p>
               <ul class="exp-bullets">
@@ -261,7 +262,7 @@
           </div>
         </div>
 
-        <a href="assets/resume.pdf" target="_blank" class="resume-link">
+        <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="resume-link">
           View Full Résumé <span>↗</span>
         </a>
       </section>
@@ -549,7 +550,7 @@
           <a href="https://github.com/Arabinda07" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="footer__social">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
           </a>
-          <a href="https://linkedin.com/in/robin0607saha" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="footer__social">
+          <a href="https://www.linkedin.com/in/robin0607saha" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="footer__social">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
           </a>
           <a href="https://wa.me/917031584487" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="footer__social">
@@ -568,35 +569,35 @@
 
   </div><!-- /layout -->
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-    // ── Change I: Tab indicator — initialise position on load ──
+  <script>
     function moveTabIndicator(btn) {
       const indicator = document.getElementById('tab-indicator');
       if (!indicator || !btn) return;
-      indicator.style.top    = btn.offsetTop + 'px';
+      indicator.style.top = btn.offsetTop + 'px';
       indicator.style.height = btn.offsetHeight + 'px';
     }
 
-    // Set indicator on first active tab immediately
-    const firstActiveTab = document.querySelector('.tab-btn.active');
-    // Defer until layout is ready
-    requestAnimationFrame(() => moveTabIndicator(firstActiveTab));
+    function setTabAriaSelected(activeBtn) {
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        b.setAttribute('aria-selected', b === activeBtn ? 'true' : 'false');
+      });
+    }
 
-    // ── Change 11: Tab switching with fade transition + I: sliding indicator ──
+    const firstActiveTab = document.querySelector('.tab-btn.active');
+    requestAnimationFrame(() => moveTabIndicator(firstActiveTab));
+    if (firstActiveTab) setTabAriaSelected(firstActiveTab);
+
     document.querySelectorAll('.tab-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const tab = btn.dataset.tab;
         const targetPanel = document.getElementById('tab-' + tab);
         if (!targetPanel || btn.classList.contains('active')) return;
 
-        // Move indicator to clicked button
         moveTabIndicator(btn);
-
-        // Deactivate all buttons
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
+        setTabAriaSelected(btn);
 
-        // Fade out current panel, then swap
         const currentPanel = document.querySelector('.tab-panel.active');
         if (currentPanel) {
           currentPanel.classList.add('tab-panel--leaving');
@@ -615,27 +616,31 @@
       });
     });
 
-    // ── Change F: Scroll progress bar ──
+    window.addEventListener('resize', () => {
+      const active = document.querySelector('.tab-btn.active');
+      if (active) moveTabIndicator(active);
+    });
+
     const progressBar = document.getElementById('scroll-progress');
     function updateScrollProgress() {
-      const scrollTop  = window.scrollY;
-      const docHeight  = document.documentElement.scrollHeight - window.innerHeight;
-      const pct        = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
       if (progressBar) progressBar.style.width = pct + '%';
     }
     window.addEventListener('scroll', updateScrollProgress, { passive: true });
     updateScrollProgress();
 
-    // ── Change 8: Active nav — scroll-based, no flicker ──
     const sections = document.querySelectorAll('section[id]');
     const navItems = document.querySelectorAll('.nav-item');
+    const navOffset = () => (window.matchMedia('(max-width: 768px)').matches ? 88 : 120);
 
     function updateActiveNav() {
       let current = '';
       const scrollY = window.scrollY;
+      const off = navOffset();
       sections.forEach(section => {
-        // Section is "active" once its top is 120px above the viewport top
-        if (scrollY >= section.offsetTop - 120) {
+        if (scrollY >= section.offsetTop - off) {
           current = section.getAttribute('id');
         }
       });
@@ -644,16 +649,13 @@
       });
     }
 
-    // Fire immediately on load + on every scroll
     window.addEventListener('scroll', updateActiveNav, { passive: true });
     updateActiveNav();
 
-    // ── Entrance animations — start immediately (no loader) ──
     document.querySelectorAll('.anim-slide').forEach(el => {
       el.style.animationPlayState = 'running';
     });
 
-    // ── Scroll reveal for right-panel sections ──
     const revealEls = document.querySelectorAll('.section:not(.hero-section), .project-card, .cert-item, .seminar-item');
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(e => {
@@ -665,51 +667,67 @@
     }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
     revealEls.forEach(el => revealObserver.observe(el));
 
-    // ── Project cards stagger on reveal ──
     document.querySelectorAll('.project-card').forEach((card, i) => {
       card.style.transitionDelay = (i % 3) * 80 + 'ms';
     });
 
-    // ── Cert items stagger ──
     document.querySelectorAll('.cert-item').forEach((item, i) => {
       item.style.transitionDelay = i * 50 + 'ms';
     });
 
-    // ── Mobile nav ──
     const hamburger = document.getElementById('hamburger');
     const mobileNav = document.getElementById('mobile-nav');
-    const overlay   = document.getElementById('mobile-nav-overlay');
+    const overlay = document.getElementById('mobile-nav-overlay');
+    const mobileHeader = document.getElementById('mobile-header');
 
-    hamburger.addEventListener('click', () => {
-      const open = mobileNav.classList.toggle('is-open');
+    function setMobileNavOpen(open) {
+      if (!mobileNav || !hamburger || !overlay) return;
+      mobileNav.classList.toggle('is-open', open);
       hamburger.classList.toggle('is-open', open);
       overlay.classList.toggle('is-open', open);
+      overlay.setAttribute('aria-hidden', open ? 'false' : 'true');
+      hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      hamburger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
       document.body.style.overflow = open ? 'hidden' : '';
-    });
-
-    function closeMobileNav() {
-      mobileNav.classList.remove('is-open');
-      hamburger.classList.remove('is-open');
-      overlay.classList.remove('is-open');
-      document.body.style.overflow = '';
     }
 
-    // ── Change D: EmailJS contact form ──
-    emailjs.init('D3gJkKMx_DbElRpth');
+    function closeMobileNav() {
+      setMobileNavOpen(false);
+    }
+
+    if (hamburger && mobileNav && overlay) {
+      hamburger.addEventListener('click', () => {
+        setMobileNavOpen(!mobileNav.classList.contains('is-open'));
+      });
+      overlay.addEventListener('click', closeMobileNav);
+      mobileNav.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', closeMobileNav);
+      });
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileNav && mobileNav.classList.contains('is-open')) {
+        closeMobileNav();
+        if (hamburger) hamburger.focus();
+      }
+    });
+
+    if (typeof emailjs !== 'undefined') {
+      emailjs.init('D3gJkKMx_DbElRpth');
+    }
 
     const contactForm = document.getElementById('contact-form');
-    const formSubmit  = document.getElementById('form-submit');
-    const formStatus  = document.getElementById('form-status');
-    const submitLabel   = formSubmit ? formSubmit.querySelector('.submit-label') : null;
+    const formSubmit = document.getElementById('form-submit');
+    const formStatus = document.getElementById('form-status');
+    const submitLabel = formSubmit ? formSubmit.querySelector('.submit-label') : null;
     const submitSending = formSubmit ? formSubmit.querySelector('.submit-sending') : null;
 
-    if (contactForm) {
-      contactForm.addEventListener('submit', function(e) {
+    if (contactForm && typeof emailjs !== 'undefined') {
+      contactForm.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        // Basic client-side validation
-        const name    = contactForm.from_name.value.trim();
-        const email   = contactForm.reply_to.value.trim();
+        const name = contactForm.from_name.value.trim();
+        const email = contactForm.reply_to.value.trim();
         const message = contactForm.message.value.trim();
 
         if (!name || !email || !message) {
@@ -718,9 +736,15 @@
           return;
         }
 
-        // Loading state
+        const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        if (!emailOk) {
+          formStatus.textContent = 'Please enter a valid email address.';
+          formStatus.className = 'form-status form-status--error';
+          return;
+        }
+
         formSubmit.disabled = true;
-        if (submitLabel)   submitLabel.style.display   = 'none';
+        if (submitLabel) submitLabel.style.display = 'none';
         if (submitSending) submitSending.style.display = 'inline';
         formStatus.textContent = '';
         formStatus.className = 'form-status';
@@ -738,13 +762,20 @@
           })
           .finally(() => {
             formSubmit.disabled = false;
-            if (submitLabel)   submitLabel.style.display   = 'inline';
+            if (submitLabel) submitLabel.style.display = 'inline';
             if (submitSending) submitSending.style.display = 'none';
           });
       });
+    } else if (contactForm && typeof emailjs === 'undefined' && formStatus) {
+      formStatus.textContent = 'Contact form is unavailable. Please email robinsaha434@gmail.com.';
+      formStatus.className = 'form-status form-status--error';
+      if (formSubmit) formSubmit.disabled = true;
     }
+
     window.addEventListener('scroll', () => {
-      document.getElementById('mobile-header').classList.toggle('scrolled', window.scrollY > 20);
+      if (mobileHeader) {
+        mobileHeader.classList.toggle('scrolled', window.scrollY > 20);
+      }
     });
   </script>
 </body>
