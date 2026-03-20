@@ -340,12 +340,16 @@ strong { color: var(--slate-light); font-weight: 500; }
   color: var(--teal);
 }
 
-/* Desktop: photo in right column */
+/* Desktop: photo in right column — DOM order reversed, visual order corrected */
 .about-photo {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   padding-top: 0.25rem;
+  order: 2; /* appear after text on desktop */
+}
+.about-text {
+  order: 1;
 }
 .photo-wrapper {
   position: relative;
@@ -1104,25 +1108,31 @@ strong { color: var(--slate-light); font-weight: 500; }
   }
 
   /* Section adjustments */
-  .section { padding: 5rem 0; min-height: auto; }
+  .section { padding: 4rem 0; min-height: auto; }
+  /* Hero is much shorter on mobile — just the intro */
+  .hero-section { padding-top: 2rem; padding-bottom: 1rem; min-height: auto; }
   .section-heading { font-size: 1.4rem; }
   .section-heading::after { width: 80px; }
 
-  .about-grid { grid-template-columns: 1fr; gap: 0; }
-
-  /* On mobile: float photo to top-right of text, beside heading area */
+  /* About: collapse to single column, photo floats top-right */
+  .about-grid {
+    display: block; /* block instead of grid so float works */
+  }
+  .about-text { order: unset; }
   .about-photo {
+    order: unset;
     float: right;
-    margin: 0 0 1rem 1.5rem;
-    padding-top: 0;
     display: block;
+    padding-top: 0;
+    margin: 0 0 1rem 1.25rem;
+    justify-content: unset;
+    align-items: unset;
   }
   .about-photo .photo-wrapper {
     width: 110px;
     height: 110px;
     border-radius: 50%;
   }
-  /* Round border on small photo */
   .about-photo .photo-wrapper::after {
     border-radius: 50%;
     transform: translate(6px, 6px);
@@ -1130,14 +1140,16 @@ strong { color: var(--slate-light); font-weight: 500; }
   .about-photo .photo-wrapper:hover::after {
     transform: translate(4px, 4px);
   }
-  /* Clear float after text */
+  /* Clearfix */
   .about-grid::after {
     content: '';
     display: table;
     clear: both;
   }
 
+  /* Experience: more breathing room between tabs and panel content */
   .exp-tabs { flex-direction: column; gap: 0; }
+  .tab-panels { padding-top: 1.25rem; min-height: unset; }
   .tab-list {
     flex-direction: row;
     border-left: none;
@@ -1156,8 +1168,17 @@ strong { color: var(--slate-light); font-weight: 500; }
   .tab-btn.active { border-bottom-color: var(--teal); border-left: none; }
   .tab-indicator { display: none; }
 
+  /* Resume button — don't stretch full width */
+  .hero-section .btn-primary {
+    align-self: flex-start;
+    max-width: 260px;
+  }
+
+  /* Tighter section heading margin on mobile */
+  .section-heading { margin-bottom: 1.75rem; }
+
   .projects-grid { grid-template-columns: 1fr; }
-  .featured-projects { gap: 4rem; }
+  .featured-projects { gap: 2.5rem; }
   .featured-project { grid-template-columns: 1fr; gap: 1rem; }
   .fp-reverse { direction: ltr; }
   .fp-number { display: none; }
