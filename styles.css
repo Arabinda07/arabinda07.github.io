@@ -322,14 +322,24 @@ strong { color: var(--slate-light); font-weight: 500; }
   flex-shrink: 0;
 }
 
-/* Mobile header photo — small clean thumbnail, no mask */
+/* Mobile header photo — small thumbnail, no inherited effects */
 .photo-wrapper--circle {
-  width: 72px;
-  height: 72px;
+  width: 100px;
+  height: 100px;
   border-radius: 6px;
   overflow: hidden;
   flex-shrink: 0;
   border: 1px solid var(--slate-dark);
+}
+/* Kill the inherited ::after teal offset box */
+.photo-wrapper--circle::after {
+  display: none;
+  content: none;
+}
+/* Kill the inherited ::before teal overlay */
+.photo-wrapper--circle::before {
+  display: none;
+  content: none;
 }
 .photo-wrapper--circle .photo-img {
   width: 100%;
@@ -338,7 +348,6 @@ strong { color: var(--slate-light); font-weight: 500; }
   object-position: center 10%;
   display: block;
   filter: none;
-  border-radius: 0;
 }
 
 .about-grid {
