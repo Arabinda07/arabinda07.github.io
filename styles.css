@@ -324,25 +324,32 @@ strong { color: var(--slate-light); font-weight: 500; }
 
 /* Circle variant for mobile header */
 .photo-wrapper--circle {
-  width: 140px;
-  height: 140px;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
   overflow: hidden;
   flex-shrink: 0;
   position: relative;
-}
-.photo-wrapper--circle::after {
-  content: '';
-  position: absolute;
-  inset: 0;
   border: 2px solid var(--teal);
-  border-radius: 50%;
-  transform: translate(6px, 6px);
-  z-index: -1;
-  transition: transform 0.3s var(--ease);
+  /* Offset shadow instead of ::after pseudo-element — more reliable on mobile */
+  box-shadow: 5px 5px 0 0 var(--teal);
+  transition: box-shadow 0.3s var(--ease);
 }
-.photo-wrapper--circle:hover::after {
-  transform: translate(4px, 4px);
+.photo-wrapper--circle:hover {
+  box-shadow: 3px 3px 0 0 var(--teal);
+}
+.photo-wrapper--circle .photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  border-radius: 50%;
+  filter: grayscale(40%) contrast(1.05);
+  transition: filter 0.3s ease;
+}
+.photo-wrapper--circle:hover .photo-img {
+  filter: none;
 }
 
 .about-grid {
@@ -1158,10 +1165,10 @@ strong { color: var(--slate-light); font-weight: 500; }
   }
 
   /* ── About: mobile layout ── */
-  /* Show mobile photo in heading row */
-  .about-photo-mobile { display: flex; }
-  /* Hide desktop photo column entirely */
-  .about-photo { display: none; }
+  /* Show mobile photo in heading row — force override */
+  .about-photo-mobile { display: flex !important; }
+  /* Hide desktop photo column entirely — force override */
+  .about-photo { display: none !important; }
   /* Heading row: heading left, photo right */
   .about-header {
     align-items: center;
@@ -1169,11 +1176,10 @@ strong { color: var(--slate-light); font-weight: 500; }
   }
   .about-header .section-heading {
     margin-bottom: 0;
-    /* Remove the decorative line in the heading row — too cramped */
     white-space: normal;
   }
   .about-header .section-heading::after { display: none; }
-  /* Grid becomes single full-width column for text */
+  /* Grid becomes single full-width column for text only */
   .about-grid {
     display: block;
     margin-top: 0;
