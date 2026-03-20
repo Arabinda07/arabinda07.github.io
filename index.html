@@ -14,13 +14,42 @@
 <body>
   <a href="#content" class="skip-link">Skip to content</a>
 
-  <!-- Initial load (v4-style gate; respects reduced motion) -->
+  <!-- v4-style hex loader -->
   <div id="page-loader" class="page-loader" aria-busy="true" aria-label="Loading portfolio">
     <div class="page-loader__inner">
-      <div class="page-loader__mark" aria-hidden="true">AS</div>
-      <div class="page-loader__track"><div class="page-loader__fill"></div></div>
+      <svg class="page-loader__hex" viewBox="0 0 100 100" width="84" height="96" aria-hidden="true">
+        <polygon class="page-loader__hex-outline" points="50 5 89 27.5 89 72.5 50 95 11 72.5 11 27.5" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <text class="page-loader__hex-letter" x="50" y="53" text-anchor="middle" dominant-baseline="central" fill="currentColor">A</text>
+      </svg>
     </div>
   </div>
+  <script>
+    (function () {
+      var loader = document.getElementById('page-loader');
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var dismissed = false;
+      document.body.classList.add('is-loading');
+      function hideLoader() {
+        if (dismissed) return;
+        dismissed = true;
+        if (!loader) { document.body.classList.remove('is-loading'); return; }
+        loader.classList.add('page-loader--done');
+        loader.setAttribute('aria-busy', 'false');
+        setTimeout(function () {
+          loader.setAttribute('hidden', '');
+          document.body.classList.remove('is-loading');
+        }, 400);
+      }
+      if (reduced) {
+        if (loader) { loader.setAttribute('hidden', ''); loader.setAttribute('aria-busy', 'false'); }
+        document.body.classList.remove('is-loading');
+        dismissed = true; return;
+      }
+      if (!loader) { document.body.classList.remove('is-loading'); dismissed = true; return; }
+      setTimeout(hideLoader, 2400);
+      setTimeout(function () { if (!dismissed) hideLoader(); }, 4000);
+    })();
+  </script>
 
   <!-- ── SCROLL PROGRESS BAR ── -->
   <div id="scroll-progress" class="scroll-progress" aria-hidden="true"></div>
@@ -282,9 +311,6 @@
         <div class="featured-projects">
 
           <div class="featured-project">
-            <div class="featured-project__visual featured-project__visual--space" aria-hidden="true">
-              <span class="featured-project__visual-tag">National scale</span>
-            </div>
             <div class="fp-content">
               <p class="fp-overline">National · ISRO Partnership · 2024–25</p>
               <h3 class="fp-title">Stellar Space Quiz</h3>
@@ -307,9 +333,6 @@
           </div>
 
           <div class="featured-project fp-reverse">
-            <div class="featured-project__visual featured-project__visual--assess" aria-hidden="true">
-              <span class="featured-project__visual-tag">Assessment</span>
-            </div>
             <div class="fp-content">
               <p class="fp-overline">Assessment Design · CBSE Sahodaya 2024</p>
               <h3 class="fp-title">Competitive Edge</h3>
@@ -332,9 +355,6 @@
           </div>
 
           <div class="featured-project">
-            <div class="featured-project__visual featured-project__visual--policy" aria-hidden="true">
-              <span class="featured-project__visual-tag">Policy → field</span>
-            </div>
             <div class="fp-content">
               <p class="fp-overline">Government · NEP · Kendriya Vidyalayas</p>
               <h3 class="fp-title">PM SHRI Program Execution</h3>
@@ -506,7 +526,7 @@
 
       <!-- ── 05 CONTACT ── -->
       <section class="section contact-section" id="contact">
-        <h2 class="section-heading"><span class="section-num">05.</span> Let's build something meaningful</h2>
+        <h2 class="section-heading"><span class="section-num">05.</span> Get In Touch</h2>
         <p class="contact-body">I'm exploring opportunities at the intersection of data, systems, and execution. If that's where you're building — let's talk.</p>
 
         <!-- EmailJS contact form -->
@@ -621,67 +641,8 @@
     <a href="mailto:robinsaha434@gmail.com" class="side-rail__email">robinsaha434@gmail.com</a>
   </aside>
 
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script id="emailjs-sdk" async src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script>
-    (function () {
-      var loader = document.getElementById('page-loader');
-      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var dismissed = false;
-      document.body.classList.add('is-loading');
-
-      function hideLoader() {
-        if (dismissed) return;
-        dismissed = true;
-        if (!loader) {
-          document.body.classList.remove('is-loading');
-          return;
-        }
-        loader.classList.add('page-loader--done');
-        loader.setAttribute('aria-busy', 'false');
-        setTimeout(function () {
-          loader.setAttribute('hidden', '');
-          document.body.classList.remove('is-loading');
-        }, 480);
-      }
-
-      if (reduced) {
-        if (loader) {
-          loader.setAttribute('hidden', '');
-          loader.setAttribute('aria-busy', 'false');
-        }
-        document.body.classList.remove('is-loading');
-        dismissed = true;
-        return;
-      }
-
-      if (!loader) {
-        document.body.classList.remove('is-loading');
-        dismissed = true;
-        return;
-      }
-
-      var t0 = Date.now();
-      var minMs = 520;
-
-      function finish() {
-        if (dismissed) return;
-        var wait = Math.max(0, minMs - (Date.now() - t0));
-        setTimeout(hideLoader, wait);
-      }
-
-      /* DOM ready — do not wait for window.load (fonts/images can hang the loader) */
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', finish);
-      } else {
-        finish();
-      }
-
-      /* Hard fallback so the site never sticks behind the gate */
-      setTimeout(function () {
-        if (!dismissed) hideLoader();
-      }, 2400);
-    })();
-
     function moveTabIndicator(btn) {
       const indicator = document.getElementById('tab-indicator');
       if (!indicator || !btn) return;
@@ -824,64 +785,68 @@
       }
     });
 
-    if (typeof emailjs !== 'undefined') {
+    var contactForm = document.getElementById('contact-form');
+    var formSubmit = document.getElementById('form-submit');
+    var formStatus = document.getElementById('form-status');
+    var submitLabel = formSubmit ? formSubmit.querySelector('.submit-label') : null;
+    var submitSending = formSubmit ? formSubmit.querySelector('.submit-sending') : null;
+
+    function initContactForm() {
+      if (!contactForm || typeof emailjs === 'undefined') return;
       emailjs.init('D3gJkKMx_DbElRpth');
-    }
-
-    const contactForm = document.getElementById('contact-form');
-    const formSubmit = document.getElementById('form-submit');
-    const formStatus = document.getElementById('form-status');
-    const submitLabel = formSubmit ? formSubmit.querySelector('.submit-label') : null;
-    const submitSending = formSubmit ? formSubmit.querySelector('.submit-sending') : null;
-
-    if (contactForm && typeof emailjs !== 'undefined') {
       contactForm.addEventListener('submit', function (e) {
         e.preventDefault();
-
-        const name = contactForm.from_name.value.trim();
-        const email = contactForm.reply_to.value.trim();
-        const message = contactForm.message.value.trim();
-
+        var name = contactForm.from_name.value.trim();
+        var email = contactForm.reply_to.value.trim();
+        var message = contactForm.message.value.trim();
         if (!name || !email || !message) {
           formStatus.textContent = 'Please fill in all fields.';
           formStatus.className = 'form-status form-status--error';
           return;
         }
-
-        const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-        if (!emailOk) {
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
           formStatus.textContent = 'Please enter a valid email address.';
           formStatus.className = 'form-status form-status--error';
           return;
         }
-
         formSubmit.disabled = true;
         if (submitLabel) submitLabel.style.display = 'none';
         if (submitSending) submitSending.style.display = 'inline';
         formStatus.textContent = '';
         formStatus.className = 'form-status';
-
         emailjs.sendForm('service_2q1jfj9', 'template_j5q4hjj', contactForm)
-          .then(() => {
+          .then(function () {
             formStatus.textContent = '✓ Message sent — I\'ll be in touch shortly.';
             formStatus.className = 'form-status form-status--success';
             contactForm.reset();
           })
-          .catch((err) => {
+          .catch(function (err) {
             console.error('EmailJS error:', err);
             formStatus.textContent = 'Something went wrong. Please try emailing directly.';
             formStatus.className = 'form-status form-status--error';
           })
-          .finally(() => {
+          .finally(function () {
             formSubmit.disabled = false;
             if (submitLabel) submitLabel.style.display = 'inline';
             if (submitSending) submitSending.style.display = 'none';
           });
       });
-    } else if (contactForm && typeof emailjs === 'undefined' && formStatus) {
-      formStatus.textContent = 'Contact form is unavailable. Please email robinsaha434@gmail.com.';
-      formStatus.className = 'form-status form-status--error';
-      if (formSubmit) formSubmit.disabled = true;
+    }
+
+    if (typeof emailjs !== 'undefined') {
+      initContactForm();
+    } else {
+      var ejsEl = document.getElementById('emailjs-sdk');
+      if (ejsEl) {
+        ejsEl.addEventListener('load', initContactForm);
+        ejsEl.addEventListener('error', function () {
+          if (formStatus) {
+            formStatus.textContent = 'Contact form unavailable. Email robinsaha434@gmail.com directly.';
+            formStatus.className = 'form-status form-status--error';
+          }
+          if (formSubmit) formSubmit.disabled = true;
+        });
+      }
     }
 
     window.addEventListener('scroll', () => {
