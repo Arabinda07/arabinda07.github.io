@@ -147,7 +147,17 @@
 
       <!-- ── 01 ABOUT ── -->
       <section class="section" id="about">
-        <h2 class="section-heading"><span class="section-num">01.</span> About Me</h2>
+
+        <!-- Header row: heading + photo thumbnail (mobile) / heading only (desktop) -->
+        <div class="about-header">
+          <h2 class="section-heading"><span class="section-num">01.</span> About Me</h2>
+          <!-- Mobile-only photo beside heading -->
+          <div class="about-photo-inline">
+            <div class="photo-wrapper photo-wrapper--sm">
+              <img src="https://i.postimg.cc/nrLNWDZX/Untitled-design.png" alt="Arabinda Saha" class="photo-img" />
+            </div>
+          </div>
+        </div>
 
         <div class="about-grid">
           <div class="about-text">
@@ -169,7 +179,8 @@
             </ul>
           </div>
 
-          <div class="about-photo">
+          <!-- Desktop-only photo beside text -->
+          <div class="about-photo about-photo--desktop">
             <div class="photo-wrapper">
               <img src="https://i.postimg.cc/nrLNWDZX/Untitled-design.png" alt="Arabinda Saha" class="photo-img" />
             </div>
