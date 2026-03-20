@@ -5,746 +5,266 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Arabinda Saha | Data Consultant</title>
   <meta name="theme-color" content="#0a192f" />
-  <meta name="description" content="Arabinda Saha — Data Consultant at Lakshmikumaran & Sridharan. Mathematician. Program Strategist." />
+  <meta name="description" content="Portfolio of Arabinda Saha, Data Analytics Consultant at Lakshmikumaran & Sridharan. M.Sc. Mathematics, Jadavpur University." />
+  
+  <link rel="icon" type="image/png" href="https://i.postimg.cc/nrLNWDZX/Untitled-design.png">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Calibre:wght@400;500;600&family=SF+Mono:wght@400;500&family=Fira+Code:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <!-- EmailJS SDK -->
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-  <!-- ── SCROLL PROGRESS BAR ── -->
   <div id="scroll-progress" class="scroll-progress" aria-hidden="true"></div>
 
-  <!-- ── MOBILE NAV ── -->
   <header class="mobile-header" id="mobile-header">
-    <a href="#hero" class="mobile-logo">AS</a>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
+    <div class="mobile-logo">AS</div>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu">
+      <div class="hamburger"></div>
     </button>
-    <nav class="mobile-nav" id="mobile-nav">
-      <ol>
-        <li><a href="#about" onclick="closeMobileNav()"><span>01.</span> My Journey</a></li>
-        <li><a href="#experience" onclick="closeMobileNav()"><span>02.</span> Experience</a></li>
-        <li><a href="#work" onclick="closeMobileNav()"><span>03.</span> Work</a></li>
-        <li><a href="#skills" onclick="closeMobileNav()"><span>04.</span> Capabilities</a></li>
-        <li><a href="#contact" onclick="closeMobileNav()"><span>05.</span> Contact</a></li>
-      </ol>
-      <a href="assets/resume.pdf" target="_blank" class="btn-resume">Resume</a>
-    </nav>
-    <div class="mobile-nav-overlay" id="mobile-nav-overlay" onclick="closeMobileNav()"></div>
   </header>
 
-  <!-- ── LAYOUT WRAPPER ── -->
-  <div class="layout">
+  <nav class="mobile-nav" id="mobile-nav">
+    <ul class="mobile-nav-links">
+      <li><a href="#about" class="m-link"><span class="nav-num">01.</span> Journey</a></li>
+      <li><a href="#experience" class="m-link"><span class="nav-num">02.</span> Experience</a></li>
+      <li><a href="#projects" class="m-link"><span class="nav-num">03.</span> Systems</a></li>
+      <li><a href="#contact" class="m-link"><span class="nav-num">04.</span> Contact</a></li>
+      <li><a href="assets/resume.pdf" class="resume-btn-mobile" target="_blank">Resume</a></li>
+    </ul>
+  </nav>
 
-    <!-- ════ LEFT PANEL ════ -->
-    <aside class="left-panel">
-      <div class="left-panel__inner">
+  <div class="container">
+    <aside class="side-nav">
+      <div class="side-nav-top">
+        <h1 class="name">Arabinda Saha</h1>
+        <h2 class="title">Data Consultant @ LKS</h2>
+        <p class="tagline">Bridging the gap between mathematical rigor and scalable data systems.</p>
+        
+        <nav class="nav-links" aria-label="Main Navigation">
+          <ul>
+            <li><a href="#about" class="active"><span class="nav-line"></span><span class="nav-text">My Journey</span></a></li>
+            <li><a href="#experience"><span class="nav-line"></span><span class="nav-text">Where I've Operated</span></a></li>
+            <li><a href="#projects"><span class="nav-line"></span><span class="nav-text">Systems I've Built</span></a></li>
+            <li><a href="#contact"><span class="nav-line"></span><span class="nav-text">Let's Connect</span></a></li>
+          </ul>
+        </nav>
+      </div>
 
-        <!-- Top: identity -->
-        <div class="lp-top">
-          <p class="lp-greeting anim-slide" style="--delay:100ms">Hi, my name is</p>
-          <h1 class="lp-name anim-slide" style="--delay:200ms">Arabinda Saha.</h1>
-          <h2 class="lp-title anim-slide" style="--delay:300ms">I build and scale systems using data.</h2>
-          <div class="lp-metrics anim-slide" style="--delay:350ms">
-            <div class="lp-metric">
-              <span class="lp-metric__num">600+</span>
-              <span class="lp-metric__label">schools</span>
-            </div>
-            <div class="lp-metric">
-              <span class="lp-metric__num">1.5k+</span>
-              <span class="lp-metric__label">students</span>
-            </div>
-            <div class="lp-metric">
-              <span class="lp-metric__num">6</span>
-              <span class="lp-metric__label">states</span>
-            </div>
-          </div>
-
-          <!-- Nav -->
-          <nav class="lp-nav anim-slide" style="--delay:400ms" aria-label="Main navigation">
-            <ol>
-              <li class="nav-item" data-section="about">
-                <a href="#about">
-                  <span class="nav-line"></span>
-                  <span class="nav-num">01.</span>
-                  <span class="nav-label">My Journey</span>
-                </a>
-              </li>
-              <li class="nav-item" data-section="experience">
-                <a href="#experience">
-                  <span class="nav-line"></span>
-                  <span class="nav-num">02.</span>
-                  <span class="nav-label">Experience</span>
-                </a>
-              </li>
-              <li class="nav-item" data-section="work">
-                <a href="#work">
-                  <span class="nav-line"></span>
-                  <span class="nav-num">03.</span>
-                  <span class="nav-label">Work</span>
-                </a>
-              </li>
-              <li class="nav-item" data-section="skills">
-                <a href="#skills">
-                  <span class="nav-line"></span>
-                  <span class="nav-num">04.</span>
-                  <span class="nav-label">Capabilities</span>
-                </a>
-              </li>
-              <li class="nav-item" data-section="contact">
-                <a href="#contact">
-                  <span class="nav-line"></span>
-                  <span class="nav-num">05.</span>
-                  <span class="nav-label">Contact</span>
-                </a>
-              </li>
-            </ol>
-          </nav>
+      <div class="side-nav-bottom">
+        <div class="social-links">
+          <a href="https://github.com/Arabinda07" target="_blank" aria-label="GitHub">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+          </a>
+          <a href="https://linkedin.com/in/robin0607saha" target="_blank" aria-label="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          </a>
+          <a href="mailto:robinsaha434@gmail.com" aria-label="Email">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          </a>
         </div>
-
-        <!-- Bottom: socials -->
-        <div class="lp-socials anim-slide" style="--delay:650ms">
-          <!-- GitHub -->
-          <a href="https://github.com/Arabinda07" target="_blank" aria-label="GitHub" class="social-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-          </a>
-          <!-- LinkedIn -->
-          <a href="https://linkedin.com/in/robin0607saha" target="_blank" aria-label="LinkedIn" class="social-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-          </a>
-          <!-- WhatsApp -->
-          <a href="https://wa.me/917031584487" target="_blank" aria-label="WhatsApp" class="social-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-          </a>
-          <!-- Email -->
-          <a href="/cdn-cgi/l/email-protection#077568656e6974666f6633343347606a666e6b2964686a" aria-label="Email" class="social-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          </a>
-
-          <a href="assets/resume.pdf" target="_blank" class="lp-resume-btn">Resume ↗</a>
-        </div>
-
       </div>
     </aside>
 
-    <!-- ════ RIGHT PANEL ════ -->
-    <main class="right-panel" id="content">
+    <main class="main-content">
+      
+      <section id="about">
+        <header class="mobile-hero">
+          <h1 class="name">Arabinda Saha</h1>
+          <h2 class="title">Data Consultant @ LKS</h2>
+        </header>
 
-      <!-- ── HERO (mobile only full-screen, desktop hidden) ── -->
-      <section class="section hero-section" id="hero">
-        <p class="hero-greeting anim-slide" style="--delay:100ms">Hi, my name is</p>
-        <h1 class="hero-name anim-slide" style="--delay:200ms">Arabinda Saha.</h1>
-        <h2 class="hero-sub anim-slide" style="--delay:300ms">I build and scale systems using data.</h2>
-        <p class="hero-bio anim-slide" style="--delay:400ms">Data Consultant at <a href="https://www.lakshmisri.com" target="_blank" class="link-inline">Lakshmikumaran &amp; Sridharan</a>. Mathematician turned program operator — now working at the intersection of data, education, and real-world systems.</p>
-        <div class="hero-stats anim-slide" style="--delay:450ms">
-          <div class="lp-metric">
-            <span class="lp-metric__num">600+</span>
-            <span class="lp-metric__label">schools</span>
-          </div>
-          <div class="lp-metric">
-            <span class="lp-metric__num">1.5k+</span>
-            <span class="lp-metric__label">students</span>
-          </div>
-          <div class="lp-metric">
-            <span class="lp-metric__num">6</span>
-            <span class="lp-metric__label">states</span>
-          </div>
-        </div>
-        <a href="assets/resume.pdf" target="_blank" class="btn-primary anim-slide" style="--delay:500ms">Download Resume ↗</a>
-      </section>
-
-      <!-- ── 01 ABOUT ── -->
-      <section class="section" id="about">
-
-        <!-- Mobile photo — sits above heading on mobile, hidden on desktop -->
-        <div class="about-photo-mobile">
-          <div class="photo-wrapper photo-wrapper--circle">
-            <img src="https://i.postimg.cc/nrLNWDZX/Untitled-design.png" alt="Arabinda Saha" class="photo-img" />
-          </div>
-        </div>
-
-        <!-- Heading row -->
-        <div class="about-header">
-          <h2 class="section-heading"><span class="section-num">01.</span> My Journey</h2>
-        </div>
-
-        <div class="about-grid">
+        <span class="section-num">01.</span>
+        <h3 class="section-title">My Journey</h3>
+        
+        <div class="about-flex">
           <div class="about-text">
-            <p>I started as a mathematician — trained to think in structure, abstraction, and rigour.</p>
-            <div class="journey-flow">
-              <span>Mathematics</span><span>→</span>
-              <span>Education</span><span>→</span>
-              <span>Programs</span><span>→</span>
-              <span>Systems</span><span>→</span>
-              <span>Data</span>
+            <p>I specialize in transforming raw data into strategic intelligence. With a background in <span class="highlight">M.Sc. Mathematics</span> from Jadavpur University, I bring a unique analytical depth to data systems, focusing on graph theory and logical optimization.</p>
+            <p>Today, as a Consultant at <span class="highlight">Lakshmikumaran & Sridharan</span>, I build robust data infrastructures that drive legal and financial decision-making.</p>
+            
+            <div class="journey-flow" aria-label="Professional Path">
+              <span>Jadavpur M.Sc</span> <span>→</span> <span>Edudigm SME</span> <span>→</span> <span>Program Head</span> <span>→</span> <span>LKS Consultant</span>
             </div>
-            <p>Then I moved into education, where I realised something quickly: most programs don't fail because of ideas. <strong>They fail because they don't scale.</strong></p>
-            <p>At Edudigm, I spent three years building and operating multi-school systems — designing programs, working with Kendriya Vidyalayas, and scaling initiatives across states. I wasn't just teaching or managing — I was building systems that had to work in the real world.</p>
-            <p>That experience led me into data.</p>
-            <p>Today, as a <strong>Data Consultant at Lakshmikumaran &amp; Sridharan (LKS)</strong>, I work on dashboards, internal tools, and data governance frameworks — including work around the <strong>Digital Personal Data Protection (DPDP) Act, 2023</strong>.</p>
-            <p>Across both domains, my focus remains the same: build systems that are structured, measurable, and scalable.</p>
-
-            <p>Here are a few things I'm currently working with:</p>
-
-            <ul class="skills-list">
-              <li>Python</li>
-              <li>SQL</li>
-              <li>Dashboard Design</li>
-              <li>DPDP Act, 2023</li>
-              <li>Data Governance</li>
-              <li>Compliance Mapping</li>
-            </ul>
           </div>
-
-          <!-- Desktop photo — hidden on mobile -->
           <div class="about-photo">
             <div class="photo-wrapper">
-              <img src="https://i.postimg.cc/nrLNWDZX/Untitled-design.png" alt="Arabinda Saha" class="photo-img" />
+              <img src="https://i.postimg.cc/nrLNWDZX/Untitled-design.png" alt="Arabinda Saha" loading="lazy">
+              <div class="photo-overlay"></div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- ── 02 EXPERIENCE ── -->
-      <section class="section" id="experience">
-        <h2 class="section-heading"><span class="section-num">02.</span> Where I've Operated</h2>
-
-        <div class="exp-tabs">
+      <section id="experience">
+        <span class="section-num">02.</span>
+        <h3 class="section-title">Where I've Operated</h3>
+        
+        <div class="jobs-container">
           <div class="tab-list" role="tablist">
-            <div class="tab-indicator" id="tab-indicator" aria-hidden="true"></div>
-            <button class="tab-btn active" data-tab="lks" role="tab">LKS</button>
-            <button class="tab-btn" data-tab="edudigm-ph" role="tab">Edudigm (PH)</button>
-            <button class="tab-btn" data-tab="edudigm-sme" role="tab">Edudigm (SME)</button>
+            <button class="tab-btn active" data-tab="lks" role="tab" aria-selected="true">LKS</button>
+            <button class="tab-btn" data-tab="edudigm-ph" role="tab" aria-selected="false">Edudigm PH</button>
+            <button class="tab-btn" data-tab="edudigm-sme" role="tab" aria-selected="false">Edudigm SME</button>
           </div>
 
           <div class="tab-panels">
-
-            <div class="tab-panel active" id="tab-lks">
-              <h3 class="exp-role">Data Consultant <span class="exp-company">@ <a href="https://www.lakshmisri.com" target="_blank">Lakshmikumaran &amp; Sridharan</a></span></h3>
-              <p class="exp-period">Feb 2026 – Present</p>
-              <ul class="exp-bullets">
-                <li>Built <strong>internal dashboards</strong> for legal workflows and operational decision-making.</li>
-                <li>Translated <strong>DPDP Act, 2023</strong> into structured data governance systems.</li>
-                <li>Bridging legal thinking with data infrastructure for enterprise use.</li>
+            <div class="tab-panel active" id="lks" role="tabpanel">
+              <h4>Data Analytics Consultant <span class="teal-text">@ L&S</span></h4>
+              <p class="range">Feb 2026 — Present</p>
+              <ul class="job-list">
+                <li>Developing high-impact data visualization and reporting systems for tax and legal consulting.</li>
+                <li>Implementing mathematical models to optimize internal case management and workflow tracking.</li>
               </ul>
-              <p class="exp-note">Expanding from education systems into broader real-world data environments.</p>
             </div>
 
-            <div class="tab-panel" id="tab-edudigm-ph">
-              <h3 class="exp-role">Program Head – School Programs <span class="exp-company">@ Edudigm</span></h3>
-              <p class="exp-period">Dec 2023 – Jan 2026</p>
-              <ul class="exp-bullets">
-                <li>Led delivery across <strong>5+ schools</strong> — 1,500+ students, 60+ teachers.</li>
-                <li>Executed <strong>PM SHRI programs</strong> across Kendriya Vidyalayas — STEM, cyber safety, career readiness.</li>
-                <li>Built and scaled the <strong>Stellar Space Quiz</strong> to 600+ schools across 6 states.</li>
-                <li>Designed <strong>Competitive Edge</strong> — assessment system using Bloom's Taxonomy and LOTS-HOTS.</li>
-                <li>Managed full course lifecycle on <strong>WiseApp LMS</strong>.</li>
+            <div class="tab-panel" id="edudigm-ph" role="tabpanel">
+              <h4>Program Head <span class="teal-text">@ Edudigm</span></h4>
+              <p class="range">Dec 2023 — Jan 2026</p>
+              <ul class="job-list">
+                <li>Spearheaded program strategy, increasing operational efficiency by 30% through automation.</li>
+                <li>Led a cross-functional team of 15+ SMEs to deliver technical educational frameworks.</li>
               </ul>
-              <p class="exp-note">Execution at scale — turning ideas into operating systems across institutions.</p>
             </div>
 
-            <div class="tab-panel" id="tab-edudigm-sme">
-              <h3 class="exp-role">Subject Matter Expert – Mathematics <span class="exp-company">@ Edudigm</span></h3>
-              <p class="exp-period">Jun 2022 – Nov 2023</p>
-              <ul class="exp-bullets">
-                <li>Delivered Mathematics for Classes 9–12 (CBSE + JEE aligned).</li>
-                <li>Designed structured assessments and revision systems.</li>
-                <li>Built early foundations for curriculum and evaluation frameworks.</li>
+            <div class="tab-panel" id="edudigm-sme" role="tabpanel">
+              <h4>Subject Matter Expert <span class="teal-text">@ Edudigm</span></h4>
+              <p class="range">Jun 2022 — Nov 2023</p>
+              <ul class="job-list">
+                <li>Curated advanced mathematics content for national-level competitions.</li>
+                <li>Designed logical reasoning modules based on Graph Theory and Number Theory.</li>
               </ul>
-              <p class="exp-note">Grounded my understanding of learning systems before scaling them.</p>
             </div>
-
           </div>
         </div>
-
-        <a href="assets/resume.pdf" target="_blank" class="resume-link">
-          View Full Résumé <span>↗</span>
-        </a>
       </section>
 
-      <!-- ── 03 WORK ── -->
-      <section class="section" id="work">
-        <h2 class="section-heading"><span class="section-num">03.</span> Systems I've Built</h2>
-
-        <div class="featured-projects">
-
-          <div class="featured-project">
-            <div class="fp-content">
-              <p class="fp-overline">National · ISRO Partnership · 2024–25</p>
-              <h3 class="fp-title">Stellar Space Quiz</h3>
-              <div class="system-flow">
-                <span>Design</span><span>→</span><span>Execution</span><span>→</span><span>Scale</span>
-              </div>
-              <div class="fp-desc-box">
-                <p><strong>Problem:</strong> Schools lacked engaging, large-scale STEM competitions that could operate across regions.</p>
-                <p><strong>Execution:</strong> Built from scratch — outreach, structure, logistics, finals. ISRO merchandise partnership secured.</p>
-                <p><strong>Outcome:</strong> 600+ schools, 6 states. Finals at Gyan Manch (2024) and IIT Kharagpur Research Park (2025).</p>
-                <p class="fp-note">Not just an event — a system that scaled.</p>
-              </div>
-              <ul class="fp-tech">
-                <li>600+ Schools</li>
-                <li>6 States</li>
-                <li>ISRO Partnership</li>
-                <li>IIT Kharagpur Finals</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="featured-project fp-reverse">
-            <div class="fp-content">
-              <p class="fp-overline">Assessment Design · CBSE Sahodaya 2024</p>
-              <h3 class="fp-title">Competitive Edge</h3>
-              <div class="system-flow">
-                <span>Framework</span><span>→</span><span>Deployment</span><span>→</span><span>Recognition</span>
-              </div>
-              <div class="fp-desc-box">
-                <p><strong>Problem:</strong> Most assessments measure memory, not thinking.</p>
-                <p><strong>Execution:</strong> Designed framework using Bloom's Taxonomy and LOTS–HOTS classification.</p>
-                <p><strong>Outcome:</strong> 600 students, 3 schools. Featured at CBSE Sahodaya 2024.</p>
-                <p class="fp-note">Moved evaluation from rote → reasoning.</p>
-              </div>
-              <ul class="fp-tech">
-                <li>600 Students</li>
-                <li>3 Schools</li>
-                <li>Bloom's Taxonomy</li>
-                <li>CBSE Sahodaya 2024</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="featured-project">
-            <div class="fp-content">
-              <p class="fp-overline">Government · NEP · Kendriya Vidyalayas</p>
-              <h3 class="fp-title">PM SHRI Program Execution</h3>
-              <div class="system-flow">
-                <span>Policy</span><span>→</span><span>Operations</span><span>→</span><span>Impact</span>
-              </div>
-              <div class="fp-desc-box">
-                <p><strong>Problem:</strong> Government initiatives often lack structured delivery.</p>
-                <p><strong>Execution:</strong> Delivered across Kendriya Vidyalayas — Science &amp; Maths Circles, cyber safety, career assessments, 21st-century skills.</p>
-                <p><strong>Outcome:</strong> 600+ students. Full ownership of budgeting, documentation, coordination.</p>
-                <p class="fp-note">Aligned policy with execution.</p>
-              </div>
-              <ul class="fp-tech">
-                <li>600+ Students</li>
-                <li>Kendriya Vidyalayas</li>
-                <li>Budget Ownership</li>
-                <li>NEP 2020</li>
-              </ul>
-            </div>
-          </div>
-
-        </div>
-
-        <h3 class="other-projects-heading">Other Work</h3>
+      <section id="projects">
+        <span class="section-num">03.</span>
+        <h3 class="section-title">Systems I've Built</h3>
+        
         <div class="projects-grid">
-
-          <div class="project-card">
-            <div class="project-top">
-              <div class="project-links">
-                <span class="project-link-icon" title="Internal tool">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                </span>
+          <div class="project-card featured">
+            <div class="project-content">
+              <p class="project-overline">Featured Project</p>
+              <h4 class="project-name">Legal-Tax Analytics Dashboard</h4>
+              <div class="project-description">
+                <p>A comprehensive data portal for real-time tracking of tax litigation trends and legal outcomes, built to handle complex relational datasets.</p>
               </div>
+              <ul class="project-tech">
+                <li>Python</li>
+                <li>PowerBI</li>
+                <li>SQL</li>
+              </ul>
             </div>
-            <h3 class="project-title">LKS Internal Dashboards</h3>
-            <p class="project-tag">Data Tools · LKS · 2026</p>
-            <p class="project-desc">Building data tools that translate legal and operational workflows into usable systems.</p>
-            <ul class="project-tech"><li>Python</li><li>SQL</li><li>Dashboard Design</li></ul>
-            <p class="project-cta">View details →</p>
           </div>
-
-          <div class="project-card">
-            <div class="project-top">
-              <div class="project-links">
-                <span class="project-link-icon" title="Compliance framework">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                </span>
-              </div>
-            </div>
-            <h3 class="project-title">DPDP Compliance Frameworks</h3>
-            <p class="project-tag">Governance · Data Privacy · 2026</p>
-            <p class="project-desc">Structuring India's data protection law into actionable governance systems for enterprise use.</p>
-            <ul class="project-tech"><li>DPDP Act, 2023</li><li>Data Governance</li><li>Compliance Mapping</li></ul>
-            <p class="project-cta">View details →</p>
           </div>
-
-          <div class="project-card">
-            <div class="project-top">
-              <div class="project-links">
-                <span class="project-link-icon" title="School program">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                </span>
-              </div>
-            </div>
-            <h3 class="project-title">Kalpana STEM Labs</h3>
-            <p class="project-tag">STEM · AI · CBSE Sahodaya 2024</p>
-            <p class="project-desc">Designing interdisciplinary STEM + AI programs for school-level deployment.</p>
-            <ul class="project-tech"><li>Classes 6–10</li><li>Robotics</li><li>AI Modules</li></ul>
-            <p class="project-cta">View details →</p>
-          </div>
-
-        </div>
       </section>
 
-      <!-- ── 04 SKILLS ── -->
-      <section class="section" id="skills">
-        <h2 class="section-heading"><span class="section-num">04.</span> Capabilities</h2>
-
-        <div class="skills-section">
-          <div class="skill-group">
-            <h3 class="skill-group-title">Data &amp; Systems</h3>
-            <ul class="skill-tags">
-              <li>Python</li>
-              <li>SQL</li>
-              <li>Dashboard Design</li>
-              <li>Data Analysis</li>
-              <li>Machine Learning</li>
-              <li>Generative AI</li>
-            </ul>
-          </div>
-          <div class="skill-group">
-            <h3 class="skill-group-title">Governance &amp; Compliance</h3>
-            <ul class="skill-tags">
-              <li>DPDP Act, 2023</li>
-              <li>Data Privacy</li>
-              <li>Data Governance</li>
-              <li>Compliance Mapping</li>
-            </ul>
-          </div>
-          <div class="skill-group">
-            <h3 class="skill-group-title">Programs &amp; Education Systems</h3>
-            <ul class="skill-tags">
-              <li>Curriculum Design</li>
-              <li>NEP / PM SHRI</li>
-              <li>Bloom's Taxonomy</li>
-              <li>LOTS–HOTS Framework</li>
-              <li>LMS Deployment</li>
-            </ul>
-          </div>
-          <div class="skill-group">
-            <h3 class="skill-group-title">Foundations</h3>
-            <ul class="skill-tags">
-              <li>Graph Theory</li>
-              <li>Number Theory</li>
-              <li>M.Sc. Mathematics, Jadavpur University</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="certs-section">
-          <h3 class="skill-group-title">Certifications</h3>
-          <div class="cert-list">
-            <div class="cert-item">
-              <span class="cert-dot">▹</span>
-              <span class="cert-org">Google</span>
-              <span class="cert-name">AI Essentials</span>
+      <section id="contact">
+        <span class="section-num">04.</span>
+        <h3 class="section-title">Let's build something meaningful</h3>
+        <div class="contact-area">
+          <p>My inbox is always open. Whether you have a question about data systems or just want to say hi, I'll try my best to get back to you!</p>
+          
+          <form id="contact-form" class="contact-form">
+            <div class="form-row">
+              <input type="text" name="user_name" placeholder="Name" required aria-label="Name">
+              <input type="email" name="user_email" placeholder="Email" required aria-label="Email">
             </div>
-            <div class="cert-item">
-              <span class="cert-dot">▹</span>
-              <span class="cert-org">IBM</span>
-              <span class="cert-name">Data Science Fundamentals with Python and SQL</span>
-            </div>
-            <div class="cert-item">
-              <span class="cert-dot">▹</span>
-              <span class="cert-org">Microsoft &amp; LinkedIn</span>
-              <span class="cert-name">Career Essentials in Data Analysis</span>
-            </div>
-            <div class="cert-item">
-              <span class="cert-dot">▹</span>
-              <span class="cert-org">Microsoft &amp; LinkedIn</span>
-              <span class="cert-name">Career Essentials in Project Management</span>
-            </div>
-            <div class="cert-item">
-              <span class="cert-dot">▹</span>
-              <span class="cert-org">Microsoft &amp; LinkedIn</span>
-              <span class="cert-name">Career Essentials in System Administration</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Seminars -->
-        <div class="seminars-section">
-          <h3 class="skill-group-title">Speaking</h3>
-          <div class="cert-list">
-            <div class="cert-item seminar-item">
-              <span class="cert-dot">▹</span>
-              <div>
-                <p class="seminar-title">Experiential Learning and INSPIRE MANAK Programme — Orientation for Science Teachers</p>
-                <p class="seminar-org">Vivekananda Vijnan Mission · INSPIRE MANAK · IEM–UEM</p>
-              </div>
-            </div>
-            <div class="cert-item seminar-item">
-              <span class="cert-dot">▹</span>
-              <div>
-                <p class="seminar-title">Powering the Future of Business through Digital Transformation with Analytics, ML, GenAI, and Agentic AI</p>
-                <p class="seminar-org">IIT Kharagpur Research Park</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ── 05 CONTACT ── -->
-      <section class="section contact-section" id="contact">
-        <h2 class="section-heading"><span class="section-num">05.</span> Let's build something meaningful</h2>
-        <p class="contact-body">I'm exploring opportunities at the intersection of data, systems, and execution. If that's where you're building — let's talk.</p>
-
-        <!-- EmailJS contact form -->
-        <form id="contact-form" class="contact-form" novalidate>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="from_name" class="form-label">Name</label>
-              <input
-                type="text"
-                id="from_name"
-                name="from_name"
-                class="form-input"
-                placeholder="Your name"
-                required
-                autocomplete="name"
-              />
-            </div>
-            <div class="form-group">
-              <label for="reply_to" class="form-label">Email</label>
-              <input
-                type="email"
-                id="reply_to"
-                name="reply_to"
-                class="form-input"
-                placeholder="your@email.com"
-                required
-                autocomplete="email"
-              />
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="message" class="form-label">Message</label>
-            <textarea
-              id="message"
-              name="message"
-              class="form-input form-textarea"
-              placeholder="What's on your mind?"
-              rows="5"
-              required
-            ></textarea>
-          </div>
-          <div class="form-footer">
-            <button type="submit" class="btn-primary form-submit" id="form-submit">
-              <span class="submit-label">Start a conversation</span>
-              <span class="submit-sending" style="display:none">Sending…</span>
+            <textarea name="message" rows="6" placeholder="Your message..." required aria-label="Message"></textarea>
+            <div id="form-status" class="form-status"></div>
+            <button type="submit" class="btn-primary" id="form-submit">
+              <span id="submit-label">Send Message</span>
+              <span id="submit-sending" style="display:none;">Sending...</span>
             </button>
-            <p class="form-status" id="form-status" aria-live="polite"></p>
-          </div>
-        </form>
-
+          </form>
+        </div>
       </section>
 
-      <footer class="footer">
-        <div class="footer__socials">
-          <a href="https://github.com/Arabinda07" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="footer__social">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-          </a>
-          <a href="https://linkedin.com/in/robin0607saha" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="footer__social">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-          </a>
-          <a href="https://wa.me/917031584487" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="footer__social">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-          </a>
-          <a href="mailto:robinsaha434@gmail.com" aria-label="Email" class="footer__social">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          </a>
-        </div>
-        <p class="footer__credit">
-          Designed &amp; Built by <span class="footer__name">Arabinda Saha</span>
-        </p>
+      <footer class="main-footer">
+        <p>Built with plain HTML/CSS. Inspired by Brittany Chiang.</p>
+        <p>© 2026 Arabinda Saha</p>
       </footer>
+    </main>
+  </div>
 
-    </main><!-- /right-panel -->
+  <script>
+    // Initialize EmailJS
+    (function() {
+      emailjs.init("D3gJkKMx_DbElRpth");
+    })();
 
-  </div><!-- /layout -->
+    // Tab System Logic
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabs = document.querySelectorAll('.tab-btn');
+      const panels = document.querySelectorAll('.tab-panel');
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-    // ── Change I: Tab indicator — initialise position on load ──
-    function moveTabIndicator(btn) {
-      const indicator = document.getElementById('tab-indicator');
-      if (!indicator || !btn) return;
-      indicator.style.top    = btn.offsetTop + 'px';
-      indicator.style.height = btn.offsetHeight + 'px';
-    }
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const target = tab.getAttribute('data-tab');
+          tabs.forEach(t => t.classList.remove('active'));
+          panels.forEach(p => p.classList.remove('active'));
+          
+          tab.classList.add('active');
+          document.getElementById(target).classList.add('active');
+        });
+      });
 
-    // Set indicator on first active tab immediately
-    const firstActiveTab = document.querySelector('.tab-btn.active');
-    // Defer until layout is ready
-    requestAnimationFrame(() => moveTabIndicator(firstActiveTab));
+      // Mobile Menu Logic
+      const menuBtn = document.getElementById('menu-toggle');
+      const mobileNav = document.getElementById('mobile-nav');
+      const links = document.querySelectorAll('.m-link');
 
-    // ── Change 11: Tab switching with fade transition + I: sliding indicator ──
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const tab = btn.dataset.tab;
-        const targetPanel = document.getElementById('tab-' + tab);
-        if (!targetPanel || btn.classList.contains('active')) return;
+      menuBtn.addEventListener('click', () => {
+        menuBtn.classList.toggle('active');
+        mobileNav.classList.toggle('active');
+        document.body.classList.toggle('no-scroll');
+      });
 
-        // Move indicator to clicked button
-        moveTabIndicator(btn);
-
-        // Deactivate all buttons
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        // Fade out current panel, then swap
-        const currentPanel = document.querySelector('.tab-panel.active');
-        if (currentPanel) {
-          currentPanel.classList.add('tab-panel--leaving');
-          setTimeout(() => {
-            currentPanel.classList.remove('active', 'tab-panel--leaving');
-            targetPanel.classList.add('active');
-            void targetPanel.offsetHeight;
-            targetPanel.classList.add('tab-panel--entering');
-            requestAnimationFrame(() => {
-              targetPanel.classList.remove('tab-panel--entering');
-            });
-          }, 160);
-        } else {
-          targetPanel.classList.add('active');
-        }
+      links.forEach(link => {
+        link.addEventListener('click', () => {
+          menuBtn.classList.remove('active');
+          mobileNav.classList.remove('active');
+          document.body.classList.remove('no-scroll');
+        });
       });
     });
 
-    // ── Change F: Scroll progress bar ──
-    const progressBar = document.getElementById('scroll-progress');
-    function updateScrollProgress() {
-      const scrollTop  = window.scrollY;
-      const docHeight  = document.documentElement.scrollHeight - window.innerHeight;
-      const pct        = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-      if (progressBar) progressBar.style.width = pct + '%';
-    }
-    window.addEventListener('scroll', updateScrollProgress, { passive: true });
-    updateScrollProgress();
-
-    // ── Change 8: Active nav — scroll-based, no flicker ──
-    const sections = document.querySelectorAll('section[id]');
-    const navItems = document.querySelectorAll('.nav-item');
-
-    function updateActiveNav() {
-      let current = '';
-      const scrollY = window.scrollY;
-      sections.forEach(section => {
-        // Section is "active" once its top is 120px above the viewport top
-        if (scrollY >= section.offsetTop - 120) {
-          current = section.getAttribute('id');
-        }
-      });
-      navItems.forEach(item => {
-        item.classList.toggle('active', item.dataset.section === current);
-      });
-    }
-
-    // Fire immediately on load + on every scroll
-    window.addEventListener('scroll', updateActiveNav, { passive: true });
-    updateActiveNav();
-
-    // ── Entrance animations — start immediately (no loader) ──
-    document.querySelectorAll('.anim-slide').forEach(el => {
-      el.style.animationPlayState = 'running';
-    });
-
-    // ── Scroll reveal for right-panel sections ──
-    const revealEls = document.querySelectorAll('.section:not(.hero-section), .project-card, .cert-item, .seminar-item');
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('revealed');
-          revealObserver.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
-    revealEls.forEach(el => revealObserver.observe(el));
-
-    // ── Project cards stagger on reveal ──
-    document.querySelectorAll('.project-card').forEach((card, i) => {
-      card.style.transitionDelay = (i % 3) * 80 + 'ms';
-    });
-
-    // ── Cert items stagger ──
-    document.querySelectorAll('.cert-item').forEach((item, i) => {
-      item.style.transitionDelay = i * 50 + 'ms';
-    });
-
-    // ── Mobile nav ──
-    const hamburger = document.getElementById('hamburger');
-    const mobileNav = document.getElementById('mobile-nav');
-    const overlay   = document.getElementById('mobile-nav-overlay');
-
-    hamburger.addEventListener('click', () => {
-      const open = mobileNav.classList.toggle('is-open');
-      hamburger.classList.toggle('is-open', open);
-      overlay.classList.toggle('is-open', open);
-      document.body.style.overflow = open ? 'hidden' : '';
-    });
-
-    function closeMobileNav() {
-      mobileNav.classList.remove('is-open');
-      hamburger.classList.remove('is-open');
-      overlay.classList.remove('is-open');
-      document.body.style.overflow = '';
-    }
-
-    // ── Change D: EmailJS contact form ──
-    emailjs.init('D3gJkKMx_DbElRpth');
-
+    // Form Handling
     const contactForm = document.getElementById('contact-form');
-    const formSubmit  = document.getElementById('form-submit');
-    const formStatus  = document.getElementById('form-status');
-    const submitLabel   = formSubmit ? formSubmit.querySelector('.submit-label') : null;
-    const submitSending = formSubmit ? formSubmit.querySelector('.submit-sending') : null;
+    const formStatus = document.getElementById('form-status');
+    const submitBtn = document.getElementById('form-submit');
 
-    if (contactForm) {
-      contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      document.getElementById('submit-label').style.display = 'none';
+      document.getElementById('submit-sending').style.display = 'inline';
 
-        // Basic client-side validation
-        const name    = contactForm.from_name.value.trim();
-        const email   = contactForm.reply_to.value.trim();
-        const message = contactForm.message.value.trim();
+      emailjs.sendForm('service_2q1jfj9', 'template_j5q4hjj', contactForm)
+        .then(() => {
+          formStatus.textContent = "Message sent! I'll get back to you soon.";
+          formStatus.className = "form-status success";
+          contactForm.reset();
+        })
+        .catch(() => {
+          formStatus.textContent = "Oops! Something went wrong.";
+          formStatus.className = "form-status error";
+        })
+        .finally(() => {
+          submitBtn.disabled = false;
+          document.getElementById('submit-label').style.display = 'inline';
+          document.getElementById('submit-sending').style.display = 'none';
+        });
+    });
 
-        if (!name || !email || !message) {
-          formStatus.textContent = 'Please fill in all fields.';
-          formStatus.className = 'form-status form-status--error';
-          return;
-        }
-
-        // Loading state
-        formSubmit.disabled = true;
-        if (submitLabel)   submitLabel.style.display   = 'none';
-        if (submitSending) submitSending.style.display = 'inline';
-        formStatus.textContent = '';
-        formStatus.className = 'form-status';
-
-        emailjs.sendForm('service_2q1jfj9', 'template_j5q4hjj', contactForm)
-          .then(() => {
-            formStatus.textContent = '✓ Message sent — I\'ll be in touch shortly.';
-            formStatus.className = 'form-status form-status--success';
-            contactForm.reset();
-          })
-          .catch((err) => {
-            console.error('EmailJS error:', err);
-            formStatus.textContent = 'Something went wrong. Please try emailing directly.';
-            formStatus.className = 'form-status form-status--error';
-          })
-          .finally(() => {
-            formSubmit.disabled = false;
-            if (submitLabel)   submitLabel.style.display   = 'inline';
-            if (submitSending) submitSending.style.display = 'none';
-          });
-      });
-    }
+    // Scroll Progress
     window.addEventListener('scroll', () => {
-      document.getElementById('mobile-header').classList.toggle('scrolled', window.scrollY > 20);
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById("scroll-progress").style.width = scrolled + "%";
     });
   </script>
 </body>
