@@ -609,6 +609,7 @@ strong { color: var(--slate-light); font-weight: 500; }
 }
 .photo-wrapper {
   position: relative;
+  isolation: isolate;        /* scoped stacking context — keeps z:-1 from escaping */
   width: 100%;
   max-width: 300px;
   aspect-ratio: 1;
@@ -623,11 +624,10 @@ strong { color: var(--slate-light); font-weight: 500; }
   border: 2px solid var(--teal);
   border-radius: 4px;
   transform: translate(14px, 14px);
-  z-index: 0;
+  z-index: -1;               /* behind img within isolated context */
   transition: transform 0.3s var(--ease);
   pointer-events: none;
 }
-.about-photo { isolation: isolate; }
 .photo-wrapper:hover::after { transform: translate(8px, 8px); }
 
 /* Teal colour overlay — disappears on hover */
@@ -639,7 +639,7 @@ strong { color: var(--slate-light); font-weight: 500; }
   mix-blend-mode: multiply;
   opacity: 0.25;
   border-radius: 4px;
-  z-index: 1;
+  z-index: 1;                /* in front of img */
   transition: opacity 0.3s ease;
   pointer-events: none;
 }
@@ -652,6 +652,8 @@ strong { color: var(--slate-light); font-weight: 500; }
   object-position: center top;
   border-radius: 4px;
   display: block;
+  position: relative;        /* participates in stacking — sits above z:-1 ::after */
+  z-index: 0;
   filter: grayscale(60%) contrast(1.1);
   transition: filter 0.3s ease;
 }
