@@ -1138,6 +1138,12 @@ strong { color: var(--slate-light); font-weight: 500; }
   font-size: 0.72rem;
   color: var(--slate-dark);
 }
+.seminar-year {
+  color: var(--teal);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+}
 
 /* ── CONTACT ── */
 .contact-section {
@@ -1542,8 +1548,8 @@ strong { color: var(--slate-light); font-weight: 500; }
 
   /* ── Consistent section spacing — every section identical ── */
   .section { padding: 4rem 0; min-height: auto; }
-  .hero-section { padding-top: 2.5rem; padding-bottom: 2.5rem; min-height: auto; }
-  .section-heading { font-size: 1.4rem; margin-bottom: 1.5rem; }
+  .hero-section { padding-top: 2.5rem; padding-bottom: 3rem; min-height: 85svh; }
+  .section-heading { font-size: 1.4rem; margin-bottom: 1.5rem; white-space: normal; }
   .section-heading::after { width: 80px; }
 
   /* Resume button — compact, not full-width */
