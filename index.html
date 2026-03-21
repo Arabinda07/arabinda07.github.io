@@ -481,32 +481,42 @@
           <div class="cert-list">
             <a href="https://www.coursera.org/account/accomplishments/professional-cert/certificate/1BHIJ775TO8Y" target="_blank" rel="noopener noreferrer" class="cert-item cert-item--link fade-up">
               <span class="cert-dot">▹</span>
-              <span class="cert-org">Google</span>
-              <span class="cert-name">AI Essentials</span>
+              <span class="cert-body">
+                <span class="cert-org">Google</span>
+                <span class="cert-name">AI Essentials</span>
+              </span>
               <span class="cert-arrow" aria-hidden="true">↗</span>
             </a>
             <a href="https://www.coursera.org/account/accomplishments/specialization/certificate/URC391V1C53R" target="_blank" rel="noopener noreferrer" class="cert-item cert-item--link fade-up">
               <span class="cert-dot">▹</span>
-              <span class="cert-org">IBM</span>
-              <span class="cert-name">Data Science Fundamentals with Python and SQL</span>
+              <span class="cert-body">
+                <span class="cert-org">IBM</span>
+                <span class="cert-name">Data Science Fundamentals with Python and SQL</span>
+              </span>
               <span class="cert-arrow" aria-hidden="true">↗</span>
             </a>
             <a href="https://www.linkedin.com/learning/certificates/8bf61b77d1be82f5eb88ced6a68d51c7deb6b348b060c7fdffefba19f94bd9df" target="_blank" rel="noopener noreferrer" class="cert-item cert-item--link fade-up">
               <span class="cert-dot">▹</span>
-              <span class="cert-org">Microsoft &amp; LinkedIn</span>
-              <span class="cert-name">Career Essentials in Data Analysis</span>
+              <span class="cert-body">
+                <span class="cert-org">Microsoft &amp; LinkedIn</span>
+                <span class="cert-name">Career Essentials in Data Analysis</span>
+              </span>
               <span class="cert-arrow" aria-hidden="true">↗</span>
             </a>
             <a href="https://www.linkedin.com/learning/certificates/8bf61b77d1be82f5eb88ced6a68d51c7deb6b348b060c7fdffefba19f94bd9df?trk=share_certificate" target="_blank" rel="noopener noreferrer" class="cert-item cert-item--link fade-up">
               <span class="cert-dot">▹</span>
-              <span class="cert-org">Microsoft &amp; LinkedIn</span>
-              <span class="cert-name">Career Essentials in Project Management</span>
+              <span class="cert-body">
+                <span class="cert-org">Microsoft &amp; LinkedIn</span>
+                <span class="cert-name">Career Essentials in Project Management</span>
+              </span>
               <span class="cert-arrow" aria-hidden="true">↗</span>
             </a>
             <a href="https://www.linkedin.com/learning/certificates/2e0a3b2943d3703cd794244445587ba04721c6c57fb1c7ca364a7a1219abdfdf" target="_blank" rel="noopener noreferrer" class="cert-item cert-item--link fade-up">
               <span class="cert-dot">▹</span>
-              <span class="cert-org">Microsoft &amp; LinkedIn</span>
-              <span class="cert-name">Career Essentials in System Administration</span>
+              <span class="cert-body">
+                <span class="cert-org">Microsoft &amp; LinkedIn</span>
+                <span class="cert-name">Career Essentials in System Administration</span>
+              </span>
               <span class="cert-arrow" aria-hidden="true">↗</span>
             </a>
           </div>
@@ -743,7 +753,7 @@
       var sections = document.querySelectorAll('section[id]');
       var navItems = document.querySelectorAll('.nav-item');
       var navOffset = function () {
-        return window.matchMedia('(max-width: 768px)').matches ? 100 : 120;
+        return window.matchMedia('(max-width: 900px)').matches ? 100 : 120;
       };
 
       function updateActiveNav() {
@@ -872,7 +882,7 @@
 
       // ── Cursor spotlight (desktop / pointer devices only) ──
       var spot = document.getElementById('spotlight');
-      if (spot && window.matchMedia('(hover: hover) and (min-width: 769px)').matches) {
+      if (spot && window.matchMedia('(hover: hover) and (min-width: 901px)').matches) {
         document.addEventListener('mousemove', function (e) {
           spot.style.setProperty('--spot-x', e.clientX + 'px');
           spot.style.setProperty('--spot-y', e.clientY + 'px');
