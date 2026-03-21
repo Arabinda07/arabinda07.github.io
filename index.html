@@ -14,18 +14,18 @@
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Arabinda Saha | Data Consultant" />
   <meta property="og:description" content="Data Consultant at Lakshmikumaran & Sridharan. Mathematician turned program operator — building systems at the intersection of data, education, and scale." />
-  <meta property="og:image" content="https://i.postimg.cc/nrLNWDZX/Untitled-design.png" />
+  <meta property="og:image" content="https://arabinda07.github.io/assets/photo.png" />
   <meta property="og:url" content="https://arabinda07.github.io/" />
 
   <!-- Twitter / WhatsApp -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Arabinda Saha | Data Consultant" />
   <meta name="twitter:description" content="Data Consultant at Lakshmikumaran & Sridharan. Building systems at the intersection of data, education, and scale." />
-  <meta name="twitter:image" content="https://i.postimg.cc/nrLNWDZX/Untitled-design.png" />
+  <meta name="twitter:image" content="https://arabinda07.github.io/assets/photo.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Calibre:wght@400;500;600&family=SF+Mono:wght@400;500&family=Fira+Code:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body class="is-loading">
@@ -193,7 +193,7 @@
         <!-- Mobile photo — sits above heading on mobile, hidden on desktop -->
         <div class="about-photo-mobile">
           <div class="photo-wrapper photo-wrapper--circle">
-            <img src="https://i.postimg.cc/nrLNWDZX/Untitled-design.png" alt="Arabinda Saha" class="photo-img" width="280" height="280" loading="lazy" decoding="async" />
+            <img src="assets/photo.png" alt="Arabinda Saha" class="photo-img" width="280" height="280" loading="lazy" decoding="async" />
           </div>
         </div>
 
@@ -234,7 +234,7 @@
           <!-- Desktop photo — hidden on mobile -->
           <div class="about-photo">
             <div class="photo-wrapper">
-              <img src="https://i.postimg.cc/nrLNWDZX/Untitled-design.png" alt="Arabinda Saha" class="photo-img" width="300" height="300" loading="lazy" decoding="async" />
+              <img src="assets/photo.png" alt="Arabinda Saha" class="photo-img" width="300" height="300" loading="eager" decoding="async" />
             </div>
           </div>
         </div>
@@ -479,31 +479,36 @@
         <div class="certs-section">
           <h3 class="skill-group-title">Certifications</h3>
           <div class="cert-list">
-            <div class="cert-item fade-up">
+            <a href="https://www.coursera.org/account/accomplishments/professional-cert/certificate/1BHIJ775TO8Y" target="_blank" rel="noopener noreferrer" class="cert-item cert-item--link fade-up">
               <span class="cert-dot">▹</span>
               <span class="cert-org">Google</span>
               <span class="cert-name">AI Essentials</span>
-            </div>
-            <div class="cert-item fade-up">
+              <span class="cert-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a href="https://www.coursera.org/account/accomplishments/specialization/certificate/URC391V1C53R" target="_blank" rel="noopener noreferrer" class="cert-item cert-item--link fade-up">
               <span class="cert-dot">▹</span>
               <span class="cert-org">IBM</span>
               <span class="cert-name">Data Science Fundamentals with Python and SQL</span>
-            </div>
-            <div class="cert-item fade-up">
+              <span class="cert-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a href="https://www.linkedin.com/learning/certificates/8bf61b77d1be82f5eb88ced6a68d51c7deb6b348b060c7fdffefba19f94bd9df" target="_blank" rel="noopener noreferrer" class="cert-item cert-item--link fade-up">
               <span class="cert-dot">▹</span>
               <span class="cert-org">Microsoft &amp; LinkedIn</span>
               <span class="cert-name">Career Essentials in Data Analysis</span>
-            </div>
-            <div class="cert-item fade-up">
+              <span class="cert-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a href="https://www.linkedin.com/learning/certificates/8bf61b77d1be82f5eb88ced6a68d51c7deb6b348b060c7fdffefba19f94bd9df?trk=share_certificate" target="_blank" rel="noopener noreferrer" class="cert-item cert-item--link fade-up">
               <span class="cert-dot">▹</span>
               <span class="cert-org">Microsoft &amp; LinkedIn</span>
               <span class="cert-name">Career Essentials in Project Management</span>
-            </div>
-            <div class="cert-item fade-up">
+              <span class="cert-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a href="https://www.linkedin.com/learning/certificates/2e0a3b2943d3703cd794244445587ba04721c6c57fb1c7ca364a7a1219abdfdf" target="_blank" rel="noopener noreferrer" class="cert-item cert-item--link fade-up">
               <span class="cert-dot">▹</span>
               <span class="cert-org">Microsoft &amp; LinkedIn</span>
               <span class="cert-name">Career Essentials in System Administration</span>
-            </div>
+              <span class="cert-arrow" aria-hidden="true">↗</span>
+            </a>
           </div>
         </div>
 
@@ -738,7 +743,7 @@
       var sections = document.querySelectorAll('section[id]');
       var navItems = document.querySelectorAll('.nav-item');
       var navOffset = function () {
-        return window.matchMedia('(max-width: 900px)').matches ? 100 : 120;
+        return window.matchMedia('(max-width: 768px)').matches ? 100 : 120;
       };
 
       function updateActiveNav() {
@@ -867,7 +872,7 @@
 
       // ── Cursor spotlight (desktop / pointer devices only) ──
       var spot = document.getElementById('spotlight');
-      if (spot && window.matchMedia('(hover: hover) and (min-width: 901px)').matches) {
+      if (spot && window.matchMedia('(hover: hover) and (min-width: 769px)').matches) {
         document.addEventListener('mousemove', function (e) {
           spot.style.setProperty('--spot-x', e.clientX + 'px');
           spot.style.setProperty('--spot-y', e.clientY + 'px');
