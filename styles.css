@@ -104,7 +104,7 @@ body.is-loading .scroll-progress {
     transparent 60%
   );
 }
-@media (hover: hover) and (min-width: 769px) {
+@media (hover: hover) and (min-width: 901px) {
   .spotlight { opacity: 1; }
 }
 
@@ -118,7 +118,7 @@ html {
 section[id] {
   scroll-margin-top: 3rem;
 }
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   section[id] {
     scroll-margin-top: var(--mobile-header-h, 4.75rem);
   }
@@ -286,6 +286,7 @@ strong { color: var(--slate-light); font-weight: 500; }
   display: flex;
   align-items: center;
   z-index: 10;
+  overflow: hidden;          /* prevent children ever painting into right-panel space */
   left: calc((100vw - 1600px) / 2);
 }
 @media (max-width: 1600px) {
@@ -1253,11 +1254,14 @@ strong { color: var(--slate-light); font-weight: 500; }
 }
 
 /* ════════════════════════════════
-   RESPONSIVE — Mobile (≤ 768px)
+   RESPONSIVE — Mobile (≤ 900px)
+   Covers: all portrait phones, AND
+   landscape phones (iPhone 14 = 844px,
+   Samsung S23 = 915px landscape).
    Layout collapses: left panel hides,
-   mobile header appears, hero shown
+   mobile header appears, hero shown.
 ════════════════════════════════ */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   /* One value for bar height: drawer starts below header (fixes top clip under z-stacked header) */
   :root {
     /* Drawer + scroll-padding: clears fixed header (bar ≈ safe area + ~70px content) */

@@ -738,7 +738,7 @@
       var sections = document.querySelectorAll('section[id]');
       var navItems = document.querySelectorAll('.nav-item');
       var navOffset = function () {
-        return window.matchMedia('(max-width: 768px)').matches ? 100 : 120;
+        return window.matchMedia('(max-width: 900px)').matches ? 100 : 120;
       };
 
       function updateActiveNav() {
@@ -867,7 +867,7 @@
 
       // ── Cursor spotlight (desktop / pointer devices only) ──
       var spot = document.getElementById('spotlight');
-      if (spot && window.matchMedia('(hover: hover) and (min-width: 769px)').matches) {
+      if (spot && window.matchMedia('(hover: hover) and (min-width: 901px)').matches) {
         document.addEventListener('mousemove', function (e) {
           spot.style.setProperty('--spot-x', e.clientX + 'px');
           spot.style.setProperty('--spot-y', e.clientY + 'px');
