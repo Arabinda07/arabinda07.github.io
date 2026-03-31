@@ -635,13 +635,19 @@
       // ── Page loader — fade out after hex animation completes ──
       var loader = document.getElementById('page-loader');
       var LOADER_DURATION = 1600;
+      var pageRevealed = false;
+      var loaderTimeoutId;
 
       function revealPage() {
+        if (pageRevealed) return;
+        pageRevealed = true;
+        if (loaderTimeoutId) clearTimeout(loaderTimeoutId);
+
         if (loader) {
           loader.classList.add('loader--done');
           loader.addEventListener('transitionend', function () {
             loader.remove();
-          });
+          }, { once: true });
         }
         document.body.classList.remove('is-loading');
 
@@ -684,7 +690,15 @@
         });
       }
 
-      setTimeout(revealPage, LOADER_DURATION);
+      loaderTimeoutId = setTimeout(revealPage, LOADER_DURATION);
+      if (document.readyState === 'complete') {
+        requestAnimationFrame(revealPage);
+      } else {
+        window.addEventListener('load', revealPage, { once: true });
+      }
+      document.addEventListener('visibilitychange', function () {
+        if (document.visibilityState === 'visible') revealPage();
+      });
 
       // ── Tab switching ──
       function moveTabIndicator(btn) {
