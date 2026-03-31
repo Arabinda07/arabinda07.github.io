@@ -1,5 +1,5 @@
 /* ══════════════════════════════════════════════════
-   ARABINDA SAHA — bchiang7-inspired portfolio
+   ARABINDA SAHA — bchiang-inspired portfolio
    Palette: Navy #0a192f · Teal #64ffda · Slate #8892b0
    Font: Calibre (display) · Fira Code (mono)
 ══════════════════════════════════════════════════ */
@@ -585,13 +585,13 @@ strong { color: var(--slate-light); font-weight: 500; }
   flex-shrink: 0;
 }
 
-/* Mobile header photo — fully reset inherited .photo-wrapper styles */
+/* Mobile header photo — true circular crop with reset inherited styles */
 .photo-wrapper.photo-wrapper--circle {
   width: min(280px, 72vw);
   height: min(280px, 72vw);
   max-width: 280px;
   aspect-ratio: 1;
-  border-radius: 8px;
+  border-radius: 50%;
   overflow: hidden;
   flex-shrink: 0;
   border: 1px solid var(--slate-dark);

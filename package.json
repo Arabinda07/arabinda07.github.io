@@ -1,0 +1,12 @@
+{
+  "name": "arabinda07-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Smoke tests for static portfolio interactions",
+  "scripts": {
+    "test:smoke": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.53.0"
+  }
+}
