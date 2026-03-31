@@ -585,34 +585,7 @@ strong { color: var(--slate-light); font-weight: 500; }
   flex-shrink: 0;
 }
 
-/* Mobile header photo — rounded rectangle mask (matches original look) */
-.photo-wrapper.photo-wrapper--circle {
-  width: min(280px, 72vw);
-  height: min(280px, 72vw);
-  max-width: 280px;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  overflow: hidden;
-  flex-shrink: 0;
-  border: 1px solid var(--slate-dark);
-}
-.photo-wrapper.photo-wrapper--circle::after {
-  display: none;
-  content: none;
-}
-.photo-wrapper.photo-wrapper--circle::before {
-  display: none;
-  content: none;
-}
-.photo-wrapper.photo-wrapper--circle .photo-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 25%;
-  border-radius: 8px;
-  display: block;
-  filter: none;
-}
+/* Mobile about photo now uses the same rectangular frame treatment as desktop. */
 
 .about-grid {
   display: grid;
