@@ -585,7 +585,7 @@ strong { color: var(--slate-light); font-weight: 500; }
   flex-shrink: 0;
 }
 
-/* Mobile header photo — true circular crop with reset inherited styles */
+/* Mobile header photo — rounded rectangle mask (matches original look) */
 .photo-wrapper.photo-wrapper--circle {
   width: min(280px, 72vw);
   height: min(280px, 72vw);
@@ -609,6 +609,7 @@ strong { color: var(--slate-light); font-weight: 500; }
   height: 100%;
   object-fit: cover;
   object-position: center 25%;
+  border-radius: 8px;
   display: block;
   filter: none;
 }
