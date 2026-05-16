@@ -517,7 +517,7 @@ strong { color: var(--slate-light); font-weight: 500; }
 /* ── RIGHT PANEL ── */
 .right-panel {
   margin-left: var(--panel-w);
-  padding: 0 3rem;
+  padding: 0 5.5rem 0 3rem; /* asymmetric padding: extra space on right for side-rail */
   max-width: var(--content-max);
   width: 100%;
 }
