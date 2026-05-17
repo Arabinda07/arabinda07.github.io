@@ -349,8 +349,9 @@ section[id] {
 
 .lp-name {
   margin-bottom: 1.05rem;
-  font-size: clamp(3rem, 5vw, 4.8rem);
+  font-size: clamp(2.6rem, 4.2vw, 3.6rem);
   line-height: 0.95;
+  overflow-wrap: break-word;
 }
 
 .lp-bio {
@@ -1840,6 +1841,13 @@ html[data-theme="dark"] .theme-toggle__icon {
   transition: opacity 0.78s var(--ease), transform 0.78s var(--ease);
   transition-delay: var(--delay, 0ms);
   will-change: opacity, transform;
+}
+
+/* LCP element must be visible immediately — no render-delay from JS */
+.hero-name.fade-up,
+.lp-name.fade-up {
+  opacity: 1;
+  transform: none;
 }
 
 .fade-up.is-visible {
