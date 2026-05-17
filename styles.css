@@ -354,7 +354,7 @@ section[id] {
 
 .lp-name {
   margin-bottom: 1.05rem;
-  font-size: clamp(2.8rem, 4.8vw, 4.2rem);
+  font-size: clamp(2.9rem, 4.9vw, 4.6rem);
   line-height: 0.95;
   overflow-wrap: break-word;
 }
