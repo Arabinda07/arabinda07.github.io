@@ -136,6 +136,11 @@ body.is-loading .scroll-progress {
   visibility: hidden;
 }
 
+/* Let the mobile LCP element paint behind the loader — eliminates 3s render delay */
+body.is-loading .hero-section {
+  visibility: visible;
+}
+
 ::selection {
   color: var(--color-surface);
   background: var(--color-accent);
@@ -228,12 +233,12 @@ section[id] {
 .loader-hex__shape {
   stroke-dasharray: 320;
   stroke-dashoffset: 320;
-  animation: hexDraw 1s var(--ease) 0.2s forwards;
+  animation: hexDraw 0.5s var(--ease) 0.05s forwards;
 }
 
 .loader-hex__text {
   opacity: 0;
-  animation: loaderFadeIn 0.45s ease 0.85s forwards;
+  animation: loaderFadeIn 0.25s ease 0.2s forwards;
 }
 
 @keyframes hexDraw {
@@ -349,7 +354,7 @@ section[id] {
 
 .lp-name {
   margin-bottom: 1.05rem;
-  font-size: clamp(2.6rem, 4.2vw, 3.6rem);
+  font-size: clamp(2.8rem, 4.8vw, 4.2rem);
   line-height: 0.95;
   overflow-wrap: break-word;
 }
