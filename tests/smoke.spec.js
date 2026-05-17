@@ -53,6 +53,26 @@ test('mobile nav toggles aria-expanded correctly', async ({ page }) => {
   await expect(hamburger).toHaveAttribute('aria-expanded', 'false');
 });
 
+test('hero copy removes trailing period and old institutional subtitle', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 980 });
+  await page.goto(pageUrl);
+  await expect(page.locator('.lp-name')).toHaveText('Arabinda Saha');
+  await expect(page.locator('.left-panel .lp-title')).toHaveCount(0);
+  await expect(page.locator('.lp-bio')).toHaveText('I turn complex institutional work into clear, usable systems.');
+  let visibleText = await page.locator('body').innerText();
+  expect(visibleText).not.toContain('Arabinda Saha.');
+  expect(visibleText).not.toContain('Data, governance, and programme systems for institutions that need to work at scale.');
+  expect(visibleText).not.toContain('My work spans school programmes, assessment design, data workflows, and governance operations.');
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto(pageUrl);
+  await expect(page.locator('.hero-name')).toHaveText('Arabinda Saha');
+  await expect(page.locator('.hero-sub')).toHaveText('I turn complex institutional work into clear, usable systems.');
+  visibleText = await page.locator('body').innerText();
+  expect(visibleText).not.toContain('Arabinda Saha.');
+  expect(visibleText).not.toContain('Data, governance, and programme systems for institutions.');
+});
+
 test('theme toggle updates data-theme, aria state, and persists selection', async ({ page }) => {
   await page.goto(pageUrl);
   const toggle = page.locator('[data-theme-toggle]:visible').first();
@@ -76,6 +96,20 @@ test('visible resume links stay on one line', async ({ page }) => {
   await page.click('#hamburger');
   await expect(page.locator('.mobile-nav')).toHaveClass(/is-open/);
   await expect(page.locator('.btn-resume')).toBeVisible();
+  await expect(page.locator('.mobile-nav .btn-resume')).toHaveCSS('border-radius', '0px');
+
+  const mobileResumeMetrics = await page.locator('.mobile-nav .btn-resume').evaluate((link) => {
+    const rect = link.getBoundingClientRect();
+    const style = window.getComputedStyle(link);
+    return {
+      width: rect.width,
+      minHeight: parseFloat(style.minHeight),
+      justifyContent: style.justifyContent,
+    };
+  });
+  expect(mobileResumeMetrics.width).toBeGreaterThan(300);
+  expect(mobileResumeMetrics.minHeight).toBeGreaterThanOrEqual(44);
+  expect(mobileResumeMetrics.justifyContent).toBe('space-between');
 
   await page.setViewportSize({ width: 1440, height: 720 });
   await page.goto(pageUrl);
