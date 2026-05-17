@@ -1282,17 +1282,48 @@ html[data-theme="dark"] .theme-toggle__icon {
 }
 
 .form-status {
+  display: inline-flex;
+  min-height: 1.4rem;
+  align-items: center;
+  gap: 0.45rem;
   color: var(--color-text-muted);
   font-family: var(--font-mono);
   font-size: 0.78rem;
+}
+
+.form-status::before {
+  content: "";
+  display: none;
+  width: 0.64rem;
+  height: 0.36rem;
+  border-bottom: 2px solid currentColor;
+  border-left: 2px solid currentColor;
+  transform: rotate(-45deg) translateY(-1px);
 }
 
 .form-status--success {
   color: var(--color-success);
 }
 
+.form-status--success::before {
+  display: block;
+  animation: statusCheck 0.32s var(--ease) both;
+}
+
 .form-status--error {
   color: var(--color-error);
+}
+
+@keyframes statusCheck {
+  from {
+    opacity: 0;
+    transform: rotate(-45deg) translate(3px, -4px) scale(0.82);
+  }
+
+  to {
+    opacity: 1;
+    transform: rotate(-45deg) translateY(-1px) scale(1);
+  }
 }
 
 .footer {
