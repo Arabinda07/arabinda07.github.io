@@ -21,6 +21,27 @@ test('tab switch updates selected button and active panel', async ({ page }) => 
   await expect(page.locator('#tab-edudigm-ph')).toHaveClass(/active/);
 });
 
+test('experience tabs support keyboard navigation', async ({ page }) => {
+  await page.goto(pageUrl);
+  await page.waitForFunction(() => !document.body.classList.contains('is-loading'));
+  await page.locator('#tab-btn-lks').focus();
+  await page.keyboard.press('ArrowRight');
+  await expect(page.locator('#tab-btn-edudigm-ph')).toHaveAttribute('aria-selected', 'true');
+  await expect(page.locator('#tab-edudigm-ph')).toHaveClass(/active/);
+
+  await page.keyboard.press('End');
+  await expect(page.locator('#tab-btn-edudigm-sme')).toHaveAttribute('aria-selected', 'true');
+  await expect(page.locator('#tab-edudigm-sme')).toHaveClass(/active/);
+
+  await page.keyboard.press('Home');
+  await expect(page.locator('#tab-btn-lks')).toHaveAttribute('aria-selected', 'true');
+  await expect(page.locator('#tab-lks')).toHaveClass(/active/);
+
+  await page.locator('#tab-btn-edudigm-ph').focus();
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#tab-btn-edudigm-ph')).toHaveAttribute('aria-selected', 'true');
+});
+
 test('mobile nav toggles aria-expanded correctly', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(pageUrl);
@@ -47,6 +68,30 @@ test('theme toggle updates data-theme, aria state, and persists selection', asyn
   await expect(toggle).toHaveAttribute('aria-checked', changedTheme === 'dark' ? 'true' : 'false');
   await page.reload();
   await expect(page.locator('html')).toHaveAttribute('data-theme', changedTheme);
+});
+
+test('visible resume links stay on one line', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto(pageUrl);
+  await page.click('#hamburger');
+  await expect(page.locator('.mobile-nav')).toHaveClass(/is-open/);
+  await expect(page.locator('.btn-resume')).toBeVisible();
+
+  await page.setViewportSize({ width: 1440, height: 720 });
+  await page.goto(pageUrl);
+  await expect(page.locator('.lp-resume-btn')).toBeVisible();
+
+  const wrappingIssues = await page.evaluate(() => {
+    return Array.from(document.querySelectorAll('.lp-resume-btn, .btn-resume'))
+      .filter((link) => {
+        const style = window.getComputedStyle(link);
+        const rect = link.getBoundingClientRect();
+        return rect.width > 0 && rect.height > 0 && (style.whiteSpace !== 'nowrap' || rect.height > 52);
+      })
+      .map((link) => link.className);
+  });
+
+  expect(wrappingIssues).toEqual([]);
 });
 
 test('head exposes canonical, social cards, manifest, and parseable structured data', async ({ page }) => {
@@ -96,6 +141,13 @@ test('planned web assets and SEO files exist', async () => {
       'assets/android-chrome-512x512.png',
     ])
   );
+});
+
+test('warm accent system has no retired blue CSS tokens', async () => {
+  const css = fs.readFileSync(path.join(rootDir, 'styles.css'), 'utf8');
+  expect(css).not.toMatch(/--color-blue/);
+  expect(css).toMatch(/--color-secondary/);
+  expect(css).toMatch(/--color-secondary-tint/);
 });
 
 for (const viewport of [
