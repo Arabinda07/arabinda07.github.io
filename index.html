@@ -60,7 +60,7 @@
         "@id": "https://arabinda07.github.io/#person",
         "name": "Arabinda Saha",
         "url": "https://arabinda07.github.io/",
-        "image": "https://arabinda07.github.io/assets/photo.png",
+        "image": "https://arabinda07.github.io/assets/photo.webp",
         "jobTitle": "Data Consultant",
         "worksFor": {
           "@type": "Organization",
@@ -94,11 +94,15 @@
   }
   </script>
 
-  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@700,600,500,400&f[]=supreme@700,600,500,400&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@700,600,500,400&f[]=supreme@700,600,500,400&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@700,600,500,400&f[]=supreme@700,600,500,400&display=swap" /></noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" /></noscript>
 </head>
 <body class="is-loading">
 
@@ -241,7 +245,7 @@
         <!-- Mobile photo — sits above heading on mobile, hidden on desktop -->
         <div class="about-photo-mobile">
           <div class="photo-wrapper photo-wrapper--circle">
-            <img src="assets/photo.png" alt="Arabinda Saha" class="photo-img" width="280" height="280" loading="lazy" decoding="async" />
+            <img src="assets/photo.webp" alt="Arabinda Saha" class="photo-img" width="280" height="280" loading="lazy" decoding="async" />
           </div>
         </div>
 
@@ -267,7 +271,7 @@
           <!-- Desktop photo — hidden on mobile -->
           <div class="about-photo">
             <div class="photo-wrapper">
-              <img src="assets/photo.png" alt="Arabinda Saha" class="photo-img" width="300" height="300" loading="eager" decoding="async" />
+              <img src="assets/photo.webp" alt="Arabinda Saha" class="photo-img" width="300" height="300" loading="eager" decoding="async" />
             </div>
           </div>
         </div>
@@ -788,8 +792,13 @@
       function moveTabIndicator(btn) {
         var indicator = document.getElementById('tab-indicator');
         if (!indicator || !btn) return;
-        indicator.style.top = btn.offsetTop + 'px';
-        indicator.style.height = btn.offsetHeight + 'px';
+        // Batch read then write to avoid forced reflow
+        var top = btn.offsetTop;
+        var height = btn.offsetHeight;
+        requestAnimationFrame(function () {
+          indicator.style.top = top + 'px';
+          indicator.style.height = height + 'px';
+        });
       }
 
       function setTabAriaSelected(activeBtn) {
@@ -800,8 +809,10 @@
       }
 
       var firstActiveTab = document.querySelector('.tab-btn.active');
-      requestAnimationFrame(function () { moveTabIndicator(firstActiveTab); });
-      if (firstActiveTab) setTabAriaSelected(firstActiveTab);
+      if (firstActiveTab) {
+        moveTabIndicator(firstActiveTab);
+        setTabAriaSelected(firstActiveTab);
+      }
 
       function activateTab(btn) {
         var tab = btn ? btn.dataset.tab : null;
@@ -819,10 +830,12 @@
           setTimeout(function () {
             currentPanel.classList.remove('active', 'tab-panel--leaving');
             targetPanel.classList.add('active');
-            void targetPanel.offsetHeight;
-            targetPanel.classList.add('tab-panel--entering');
+            // Double-rAF avoids forced reflow from offsetHeight read
             requestAnimationFrame(function () {
-              targetPanel.classList.remove('tab-panel--entering');
+              targetPanel.classList.add('tab-panel--entering');
+              requestAnimationFrame(function () {
+                targetPanel.classList.remove('tab-panel--entering');
+              });
             });
           }, 160);
         } else {
@@ -861,44 +874,70 @@
         });
       });
 
+      var resizeRafPending = false;
       window.addEventListener('resize', function () {
-        var active = document.querySelector('.tab-btn.active');
-        if (active) moveTabIndicator(active);
+        if (resizeRafPending) return;
+        resizeRafPending = true;
+        requestAnimationFrame(function () {
+          resizeRafPending = false;
+          var active = document.querySelector('.tab-btn.active');
+          if (active) moveTabIndicator(active);
+        });
       });
 
-      // ── Scroll progress ──
+      // ── Scroll progress + active nav (combined, rAF-throttled) ──
       var progressBar = document.getElementById('scroll-progress');
-      function updateScrollProgress() {
-        var scrollTop = window.scrollY;
-        var docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        var pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-        if (progressBar) progressBar.style.width = pct + '%';
-      }
-      window.addEventListener('scroll', updateScrollProgress, { passive: true });
-      updateScrollProgress();
-
-      // ── Active nav (scroll-based) ──
       var sections = document.querySelectorAll('section[id]');
       var navItems = document.querySelectorAll('.nav-item');
-      var navOffset = function () {
-        return window.matchMedia('(max-width: 900px)').matches ? 100 : 120;
-      };
+      var isMobile = window.matchMedia('(max-width: 900px)');
+      var scrollRafPending = false;
 
-      function updateActiveNav() {
-        var current = '';
-        var scrollY = window.scrollY;
-        var off = navOffset();
-        sections.forEach(function (section) {
-          if (scrollY >= section.offsetTop - off) {
-            current = section.getAttribute('id');
-          }
-        });
-        navItems.forEach(function (item) {
-          item.classList.toggle('active', item.dataset.section === current);
+      // Cache section offsets; refresh on resize
+      var sectionCache = [];
+      function cacheSectionOffsets() {
+        sectionCache = [];
+        sections.forEach(function (s) {
+          sectionCache.push({ id: s.getAttribute('id'), top: s.offsetTop });
         });
       }
-      window.addEventListener('scroll', updateActiveNav, { passive: true });
-      updateActiveNav();
+      cacheSectionOffsets();
+      window.addEventListener('resize', function () {
+        requestAnimationFrame(cacheSectionOffsets);
+      });
+
+      function onScroll() {
+        if (scrollRafPending) return;
+        scrollRafPending = true;
+        requestAnimationFrame(function () {
+          scrollRafPending = false;
+          var scrollY = window.scrollY;
+
+          // Progress bar
+          var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+          if (progressBar && docHeight > 0) {
+            progressBar.style.width = ((scrollY / docHeight) * 100) + '%';
+          }
+
+          // Active nav — uses cached offsets, no forced reflow
+          var off = isMobile.matches ? 100 : 120;
+          var current = '';
+          for (var i = 0; i < sectionCache.length; i++) {
+            if (scrollY >= sectionCache[i].top - off) {
+              current = sectionCache[i].id;
+            }
+          }
+          navItems.forEach(function (item) {
+            item.classList.toggle('active', item.dataset.section === current);
+          });
+
+          // Mobile header scroll shadow
+          if (mobileHeader) {
+            mobileHeader.classList.toggle('scrolled', scrollY > 20);
+          }
+        });
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
 
       // ── Mobile nav ──
       var hamburger = document.getElementById('hamburger');
@@ -1018,12 +1057,7 @@
         }
       }
 
-      // ── Mobile header scroll shadow ──
-      window.addEventListener('scroll', function () {
-        if (mobileHeader) {
-          mobileHeader.classList.toggle('scrolled', window.scrollY > 20);
-        }
-      }, { passive: true });
+      // Mobile header scroll shadow is handled in the unified onScroll handler above.
 
       // ── Email links — built at runtime to prevent Cloudflare obfuscation ──
       // Cloudflare scans HTML for raw email addresses and rewrites them.

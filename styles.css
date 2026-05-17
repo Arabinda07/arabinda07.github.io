@@ -1,5 +1,22 @@
 /* Arabinda Saha portfolio: warm systems refresh */
 
+/* Ensure text renders immediately while custom fonts load asynchronously */
+@font-face {
+  font-family: 'General Sans';
+  font-display: swap;
+  src: local('General Sans');
+}
+@font-face {
+  font-family: 'Supreme';
+  font-display: swap;
+  src: local('Supreme');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-display: swap;
+  src: local('JetBrains Mono');
+}
+
 :root,
 html[data-theme="light"] {
   color-scheme: light;
@@ -236,6 +253,8 @@ section[id] {
   height: 3px;
   background: linear-gradient(90deg, var(--color-accent), var(--color-secondary));
   pointer-events: none;
+  will-change: width;
+  contain: layout style;
 }
 
 .spotlight {
@@ -329,7 +348,6 @@ section[id] {
 }
 
 .lp-name {
-  max-width: 8ch;
   margin-bottom: 1.05rem;
   font-size: clamp(3rem, 5vw, 4.8rem);
   line-height: 0.95;
