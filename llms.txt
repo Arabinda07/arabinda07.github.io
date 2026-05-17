@@ -1,0 +1,25 @@
+# Arabinda Saha | Data Systems Consultant
+
+> I turn complex institutional work into clear, usable systems.
+
+Arabinda Saha builds data systems, school program infrastructure, assessment tools, and governance workflows across education and legal operations.
+
+## Focus Areas
+- **Data and workflows**: Shape dashboards, governance structures, and operational flows so teams can see what matters and act on it.
+- **Programs at scale**: Design school initiatives that can move across classrooms, coordinators, and institutions without losing quality.
+- **Assessment systems**: Build evaluation structures students and schools can understand and use.
+
+## Experience
+- **Data Consultant @ Lakshmikumaran & Sridharan** (Feb 2026 – Present): Contributing to internal dashboards, governance structures, and operational workflows. Working on DPDPA-related compliance and systems questions.
+- **Program Head – School Programs @ Edudigm** (Dec 2023 – Jan 2026): Led delivery across 5+ schools, reaching 1,500+ students and 60+ teachers. Built and scaled the Stellar Space Quiz to 600+ schools across 6 states.
+- **Subject Matter Expert – Mathematics @ Edudigm** (Jun 2022 – Nov 2023): Designed structured assessments, revision systems, and student-facing academic material for Classes 9-12.
+
+## Selected Projects
+- **Career Assessment Tool**: Designed a career assessment initiative for students in Classes 9-12 within a broader school program. Piloted with ~500 students in a Kendriya Vidyalaya.
+- **Stellar Space Quiz**: Scaled quiz to 600+ schools across 6 states with finals hosted at IIT Kharagpur Research Park in 2025.
+- **School Programs and STEM Camps**: Delivered hands-on demonstrations to teach maths and science concepts.
+
+## Contact & Links
+- Email: robinsaha434@gmail.com
+- GitHub: https://github.com/Arabinda07
+- LinkedIn: https://www.linkedin.com/in/robin0607saha
