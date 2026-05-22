@@ -96,11 +96,9 @@
 
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@700,600,500,400&f[]=supreme@700,600,500,400&display=swap" media="print" onload="this.media='all'" />
-  <noscript><link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@700,600,500,400&f[]=supreme@700,600,500,400&display=swap" /></noscript>
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@700&f[]=supreme@700,600,500,400&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@700&f[]=supreme@700,600,500,400&display=swap" /></noscript>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'" />
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" /></noscript>
 </head>
@@ -245,7 +243,18 @@
         <!-- Mobile photo — sits above heading on mobile, hidden on desktop -->
         <div class="about-photo-mobile">
           <div class="photo-wrapper photo-wrapper--circle">
-            <img src="assets/photo.webp" alt="Arabinda Saha" class="photo-img" width="280" height="280" sizes="(max-width: 420px) 84vw, 320px" loading="lazy" decoding="async" />
+            <img
+              src="assets/photo.webp"
+              srcset="assets/photo-320.webp 320w, assets/photo-480.webp 480w, assets/photo.webp 800w"
+              alt="Arabinda Saha"
+              class="photo-img"
+              width="280"
+              height="280"
+              sizes="(max-width: 420px) 300px, 320px"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+            />
           </div>
         </div>
 
@@ -271,7 +280,18 @@
           <!-- Desktop photo — hidden on mobile -->
           <div class="about-photo">
             <div class="photo-wrapper">
-              <img src="assets/photo.webp" alt="Arabinda Saha" class="photo-img" width="300" height="300" loading="eager" decoding="async" />
+              <img
+                src="assets/photo.webp"
+                srcset="assets/photo-320.webp 320w, assets/photo-480.webp 480w, assets/photo.webp 800w"
+                alt="Arabinda Saha"
+                class="photo-img"
+                width="300"
+                height="300"
+                sizes="(min-width: 1081px) 380px, 320px"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
+              />
             </div>
           </div>
         </div>
@@ -894,21 +914,44 @@
       var progressBar = document.getElementById('scroll-progress');
       var sections = document.querySelectorAll('section[id]');
       var navItems = document.querySelectorAll('.nav-item');
-      var isMobile = window.matchMedia('(max-width: 900px)');
       var scrollRafPending = false;
+      var scrollableHeight = 1;
 
-      // Cache section offsets; refresh on resize
-      var sectionCache = [];
-      function cacheSectionOffsets() {
-        sectionCache = [];
-        sections.forEach(function (s) {
-          sectionCache.push({ id: s.getAttribute('id'), top: s.offsetTop });
+      function setActiveNav(id) {
+        navItems.forEach(function (item) {
+          item.classList.toggle('active', item.dataset.section === id);
         });
       }
-      // Defer initial cache + scroll read to after layout is stable
-      requestAnimationFrame(cacheSectionOffsets);
+
+      if ('IntersectionObserver' in window && sections.length) {
+        var visibleSections = [];
+        var activeSectionObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            var sectionIndex = Array.prototype.indexOf.call(sections, entry.target);
+            if (sectionIndex < 0) return;
+            visibleSections[sectionIndex] = entry.isIntersecting ? entry.target.getAttribute('id') : '';
+          });
+
+          for (var i = 0; i < visibleSections.length; i++) {
+            if (visibleSections[i]) {
+              setActiveNav(visibleSections[i]);
+              break;
+            }
+          }
+        }, { rootMargin: '-30% 0px -55% 0px', threshold: 0 });
+
+        sections.forEach(function (section) {
+          activeSectionObserver.observe(section);
+        });
+      }
+
+      function updateScrollMetrics() {
+        scrollableHeight = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      }
+
+      requestAnimationFrame(updateScrollMetrics);
       window.addEventListener('resize', function () {
-        requestAnimationFrame(cacheSectionOffsets);
+        requestAnimationFrame(updateScrollMetrics);
       });
 
       function onScroll() {
@@ -919,22 +962,10 @@
           var scrollY = window.scrollY;
 
           // Progress bar
-          var docHeight = document.documentElement.scrollHeight - window.innerHeight;
-          if (progressBar && docHeight > 0) {
-            progressBar.style.width = ((scrollY / docHeight) * 100) + '%';
+          if (progressBar) {
+            var progress = Math.min(1, Math.max(0, scrollY / scrollableHeight));
+            progressBar.style.transform = 'scaleX(' + progress + ')';
           }
-
-          // Active nav — uses cached offsets, no forced reflow
-          var off = isMobile.matches ? 100 : 120;
-          var current = '';
-          for (var i = 0; i < sectionCache.length; i++) {
-            if (scrollY >= sectionCache[i].top - off) {
-              current = sectionCache[i].id;
-            }
-          }
-          navItems.forEach(function (item) {
-            item.classList.toggle('active', item.dataset.section === current);
-          });
 
           // Mobile header scroll shadow
           if (mobileHeader) {

@@ -158,6 +158,8 @@ test('planned web assets and SEO files exist', async () => {
     'assets/apple-touch-icon.png',
     'assets/android-chrome-192x192.png',
     'assets/android-chrome-512x512.png',
+    'assets/photo-320.webp',
+    'assets/photo-480.webp',
     'assets/og-image.png',
     'assets/twitter-image.png',
   ];
