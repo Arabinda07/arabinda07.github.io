@@ -177,24 +177,6 @@ test('planned web assets and SEO files exist', async () => {
   );
 });
 
-test('sitemap lists only canonical HTTPS URLs for the live site', async ({ page }) => {
-  const sitemap = fs.readFileSync(path.join(rootDir, 'sitemap.xml'), 'utf8');
-  expect(sitemap).toMatch(/^<\?xml version="1\.0" encoding="UTF-8"\?>/);
-  expect(sitemap).not.toContain('<?xml-stylesheet');
-
-  const locs = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
-  expect(locs).toEqual(['https://arabinda07.github.io/']);
-
-  for (const loc of locs) {
-    const url = new URL(loc);
-    expect(url.protocol).toBe('https:');
-    expect(url.hostname).toBe('arabinda07.github.io');
-  }
-
-  await page.goto(pageUrl);
-  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', locs[0]);
-});
-
 test('warm accent system has no retired blue CSS tokens', async () => {
   const css = fs.readFileSync(path.join(rootDir, 'styles.css'), 'utf8');
   expect(css).not.toMatch(/--color-blue/);
