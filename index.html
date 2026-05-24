@@ -879,10 +879,10 @@
         if (!indicator || !btn) return;
         // Batch read then write to avoid forced reflow
         var top = btn.offsetTop;
-        var height = btn.offsetHeight;
+        var height = Math.max(1, btn.offsetHeight);
         requestAnimationFrame(function () {
-          indicator.style.top = top + 'px';
-          indicator.style.height = height + 'px';
+          indicator.style.setProperty('--tab-indicator-y', top + 'px');
+          indicator.style.setProperty('--tab-indicator-scale-y', height);
         });
       }
 
@@ -984,7 +984,15 @@
 
       function setActiveNav(id) {
         navItems.forEach(function (item) {
-          item.classList.toggle('active', item.dataset.section === id);
+          var isActive = item.dataset.section === id;
+          var link = item.querySelector('a');
+          item.classList.toggle('active', isActive);
+          if (!link) return;
+          if (isActive) {
+            link.setAttribute('aria-current', 'true');
+          } else {
+            link.removeAttribute('aria-current');
+          }
         });
       }
 

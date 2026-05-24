@@ -27,7 +27,7 @@ html[data-theme="light"] {
   --color-surface-raised: oklch(0.982 0.012 78);
   --color-text-primary: oklch(0.205 0.024 68);
   --color-text-secondary: oklch(0.43 0.028 66);
-  --color-text-muted: oklch(0.56 0.026 70);
+  --color-text-muted: oklch(0.535 0.026 70);
   --color-border: oklch(0.82 0.028 76);
   --color-border-strong: oklch(0.66 0.046 70);
   --color-accent: oklch(0.54 0.105 62);
@@ -791,10 +791,12 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   top: 0;
   z-index: 1;
   width: 2px;
-  height: 42px;
+  height: 1px;
   border-radius: 999px;
   background: var(--color-accent);
-  transition: top var(--duration-base) var(--ease), height var(--duration-base) var(--ease), opacity var(--duration-base) ease;
+  transform: translateY(var(--tab-indicator-y, 0px)) scaleY(var(--tab-indicator-scale-y, 42));
+  transform-origin: top center;
+  transition: transform var(--duration-base) var(--ease), opacity var(--duration-base) ease;
 }
 
 .tab-btn {
@@ -1561,6 +1563,10 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   }
 
   .side-rail__email {
+    display: inline-flex;
+    min-width: 44px;
+    align-items: center;
+    justify-content: flex-end;
     writing-mode: vertical-rl;
     pointer-events: auto;
     padding-bottom: max(1.2rem, env(safe-area-inset-bottom));
@@ -1649,6 +1655,12 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   }
 
   .mobile-logo {
+    display: inline-flex;
+    width: 44px;
+    min-width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
     color: var(--color-text-primary);
     font-family: var(--font-display);
     font-size: 1.35rem;

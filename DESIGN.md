@@ -8,7 +8,7 @@ colors:
   surface-raised: "oklch(0.982 0.012 78)"
   text-primary: "oklch(0.205 0.024 68)"
   text-secondary: "oklch(0.43 0.028 66)"
-  text-muted: "oklch(0.56 0.026 70)"
+  text-muted: "oklch(0.535 0.026 70)"
   border: "oklch(0.82 0.028 76)"
   border-strong: "oklch(0.66 0.046 70)"
   accent: "oklch(0.54 0.105 62)"

@@ -5,6 +5,54 @@ const path = require('path');
 const pageUrl = `file://${path.resolve(__dirname, '../index.html')}`;
 const rootDir = path.resolve(__dirname, '..');
 
+function parseOklch(value) {
+  const match = value.match(/oklch\(\s*([0-9.]+)\s+([0-9.]+)\s+([0-9.]+)/);
+  if (!match) throw new Error(`Expected OKLCH color, got ${value}`);
+  return {
+    l: Number.parseFloat(match[1]),
+    c: Number.parseFloat(match[2]),
+    h: Number.parseFloat(match[3]),
+  };
+}
+
+function oklchToSrgb(value) {
+  const { l, c, h } = parseOklch(value);
+  const hue = h * Math.PI / 180;
+  const a = c * Math.cos(hue);
+  const b = c * Math.sin(hue);
+
+  let lmsL = l + 0.3963377774 * a + 0.2158037573 * b;
+  let lmsM = l - 0.1055613458 * a - 0.0638541728 * b;
+  let lmsS = l - 0.0894841775 * a - 1.2914855480 * b;
+
+  lmsL = lmsL ** 3;
+  lmsM = lmsM ** 3;
+  lmsS = lmsS ** 3;
+
+  const linear = [
+    4.0767416621 * lmsL - 3.3077115913 * lmsM + 0.2309699292 * lmsS,
+    -1.2684380046 * lmsL + 2.6097574011 * lmsM - 0.3413193965 * lmsS,
+    -0.0041960863 * lmsL - 0.7034186147 * lmsM + 1.7076147010 * lmsS,
+  ].map((channel) => Math.min(1, Math.max(0, channel)));
+
+  return linear.map((channel) =>
+    channel <= 0.0031308 ? 12.92 * channel : 1.055 * (channel ** (1 / 2.4)) - 0.055
+  );
+}
+
+function relativeLuminance(rgb) {
+  const linear = rgb.map((channel) =>
+    channel <= 0.03928 ? channel / 12.92 : ((channel + 0.055) / 1.055) ** 2.4
+  );
+  return 0.2126 * linear[0] + 0.7152 * linear[1] + 0.0722 * linear[2];
+}
+
+function contrastRatio(foreground, background) {
+  const fg = relativeLuminance(oklchToSrgb(foreground));
+  const bg = relativeLuminance(oklchToSrgb(background));
+  return (Math.max(fg, bg) + 0.05) / (Math.min(fg, bg) + 0.05);
+}
+
 function readPngSize(filePath) {
   const buffer = fs.readFileSync(filePath);
   return {
@@ -75,6 +123,54 @@ test('mobile icon controls meet touch target size', async ({ page }) => {
     expect(box).not.toBeNull();
     expect(box.width).toBeGreaterThanOrEqual(44);
     expect(box.height).toBeGreaterThanOrEqual(44);
+  }
+});
+
+test('standalone navigation affordances meet target size', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto(pageUrl);
+
+  const mobileLogo = await page.locator('.mobile-logo').boundingBox();
+  expect(mobileLogo).not.toBeNull();
+  expect(mobileLogo.width).toBeGreaterThanOrEqual(44);
+  expect(mobileLogo.height).toBeGreaterThanOrEqual(44);
+
+  await page.setViewportSize({ width: 1440, height: 980 });
+  await page.goto(pageUrl);
+  const sideRailEmail = await page.locator('.side-rail__email').boundingBox();
+  expect(sideRailEmail).not.toBeNull();
+  expect(Math.min(sideRailEmail.width, sideRailEmail.height)).toBeGreaterThanOrEqual(44);
+});
+
+test('desktop active navigation exposes aria-current', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 980 });
+  await page.goto(pageUrl);
+  await page.waitForFunction(() => !document.body.classList.contains('is-loading'));
+
+  await page.locator('#work').scrollIntoViewIfNeeded();
+  await expect(page.locator('.nav-item[data-section="work"] a')).toHaveAttribute('aria-current', 'true');
+  await expect(page.locator('.nav-item[data-section="about"] a')).not.toHaveAttribute('aria-current', 'true');
+});
+
+test('tab indicator motion is transform based', async () => {
+  const css = fs.readFileSync(path.join(rootDir, 'styles.css'), 'utf8');
+  const tabIndicatorBlock = css.match(/\.tab-indicator\s*\{[^}]+\}/)?.[0] || '';
+
+  expect(tabIndicatorBlock).toContain('transform:');
+  expect(tabIndicatorBlock).not.toMatch(/transition:[^;]*(\btop\b|\bheight\b)/);
+});
+
+test('light muted text token meets AA contrast on core surfaces', async () => {
+  const css = fs.readFileSync(path.join(rootDir, 'styles.css'), 'utf8');
+  const token = (name) => {
+    const match = css.match(new RegExp(`${name}:\\s*(oklch\\([^)]+\\))`));
+    if (!match) throw new Error(`Missing token ${name}`);
+    return match[1];
+  };
+
+  const muted = token('--color-text-muted');
+  for (const surface of ['--color-canvas', '--color-surface', '--color-surface-raised']) {
+    expect(contrastRatio(muted, token(surface))).toBeGreaterThanOrEqual(4.5);
   }
 });
 
@@ -414,6 +510,19 @@ test('design system document exists with required sections', async () => {
     expect(position, `${requiredHeadings[index]} should exist`).toBeGreaterThanOrEqual(0);
     if (index > 0) expect(position).toBeGreaterThan(positions[index - 1]);
   });
+});
+
+test('product context document exists for design work', async () => {
+  const productPath = path.join(rootDir, 'PRODUCT.md');
+  expect(fs.existsSync(productPath), 'PRODUCT.md should exist').toBe(true);
+
+  const productDoc = fs.readFileSync(productPath, 'utf8');
+  expect(productDoc).toContain('register: brand');
+  expect(productDoc).toContain('## Users');
+  expect(productDoc).toContain('## Product Purpose');
+  expect(productDoc).toContain('## Brand Personality');
+  expect(productDoc).toContain('## Anti-References');
+  expect(productDoc).not.toMatch(/Tableau|Looker Studio|DAX|Power Query|freelance/i);
 });
 
 for (const viewport of [
