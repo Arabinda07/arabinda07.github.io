@@ -20,13 +20,13 @@ colors:
   error: "oklch(0.52 0.16 27)"
 typography:
   display:
-    fontFamily: "General Sans, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
+    fontFamily: "Cabinet Grotesk, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
     fontSize: "clamp(3rem, 12.8vw, 4.1rem)"
     fontWeight: 700
     lineHeight: 0.98
     letterSpacing: "0"
   headline:
-    fontFamily: "General Sans, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
+    fontFamily: "Cabinet Grotesk, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
     fontSize: "clamp(1.45rem, 3vw, 2rem)"
     fontWeight: 700
     lineHeight: 1.12
@@ -127,7 +127,7 @@ The palette is a warm analytical system: softened institutional neutrals, one am
 
 ## Typography
 
-**Display Font:** General Sans, with system sans fallback.
+**Display Font:** Cabinet Grotesk, with system sans fallback.
 
 **Body Font:** Supreme, with system sans fallback.
 

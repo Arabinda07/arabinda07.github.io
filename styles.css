@@ -2,9 +2,9 @@
 
 /* Ensure text renders immediately while custom fonts load asynchronously */
 @font-face {
-  font-family: 'General Sans';
+  font-family: 'Cabinet Grotesk';
   font-display: swap;
-  src: local('General Sans');
+  src: local('Cabinet Grotesk');
 }
 @font-face {
   font-family: 'Supreme';
@@ -41,7 +41,7 @@ html[data-theme="light"] {
   --shadow-tight: 0 10px 30px oklch(0.34 0.04 70 / 0.1);
 
   --font-sans: 'Supreme', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-display: 'General Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'Cabinet Grotesk', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
   --panel-w: clamp(320px, 30vw, 390px);
   --content-max: 1380px;
@@ -130,6 +130,13 @@ body.is-loading .scroll-progress {
 /* Let the mobile LCP element paint behind the loader — eliminates 3s render delay */
 body.is-loading .hero-section {
   visibility: visible;
+}
+
+.icon-sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
 }
 
 ::selection {
@@ -378,9 +385,10 @@ section[id] {
 }
 
 .nav-item a {
-  display: flex;
+  display: grid;
+  grid-template-columns: 3.9rem 2.2rem minmax(0, 1fr);
   align-items: center;
-  gap: 0.8rem;
+  column-gap: 0.72rem;
   padding: 0.45rem 0;
   color: var(--color-text-muted);
   font-family: var(--font-mono);
@@ -393,18 +401,18 @@ section[id] {
 
 .nav-line {
   display: block;
-  width: 2.2rem;
+  width: 1.38rem;
+  max-width: 3.9rem;
   height: 1px;
   flex-shrink: 0;
   background: var(--color-border-strong);
-  transform: scaleX(0.62);
-  transform-origin: left center;
-  transition: transform var(--duration-base) var(--ease), background var(--duration-base) ease;
+  transition: width var(--duration-base) var(--ease), background var(--duration-base) ease;
 }
 
 .nav-num {
   color: var(--color-accent-strong);
   font-size: 0.68rem;
+  white-space: nowrap;
 }
 
 .nav-item a:hover,
@@ -416,7 +424,7 @@ section[id] {
 .nav-item a:hover .nav-line,
 .nav-item.active a .nav-line {
   background: var(--color-accent);
-  transform: scaleX(1.9);
+  width: 3.9rem;
 }
 
 .lp-socials {
@@ -462,6 +470,18 @@ section[id] {
   transform: translateY(-2px);
 }
 
+.ph-icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+}
+
+.ph-icon--footer {
+  width: 18px;
+  height: 18px;
+}
+
 .theme-toggle {
   position: relative;
   display: inline-grid;
@@ -489,21 +509,30 @@ section[id] {
 }
 
 .theme-toggle__icon {
-  width: 18px;
-  height: 18px;
-  border: 2px solid var(--color-surface);
-  border-color: currentColor;
-  border-radius: 50%;
-  transition: var(--transition);
+  grid-area: 1 / 1;
+  width: 22px;
+  height: 22px;
+  transition: opacity var(--duration-base) ease, transform var(--duration-base) var(--ease);
 }
 
-html[data-theme="dark"] .theme-toggle__icon {
-  width: 17px;
-  height: 17px;
-  border: 0;
-  border-radius: 50%;
-  box-shadow: -6px 0 0 0 currentColor;
-  transform: translateX(4px);
+.theme-toggle__icon--sun {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+.theme-toggle__icon--moon {
+  opacity: 0;
+  transform: rotate(-24deg) scale(0.72);
+}
+
+html[data-theme="dark"] .theme-toggle__icon--sun {
+  opacity: 0;
+  transform: rotate(26deg) scale(0.72);
+}
+
+html[data-theme="dark"] .theme-toggle__icon--moon {
+  opacity: 1;
+  transform: rotate(0deg) scale(0.92);
 }
 
 .lp-resume-btn,
@@ -697,9 +726,9 @@ html[data-theme="dark"] .theme-toggle__icon {
 
 .focus-grid {
   display: grid;
-  grid-template-columns: 1.08fr 0.96fr 1fr;
-  gap: clamp(0.9rem, 2vw, 1.3rem);
-  align-items: start;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.35rem);
+  align-items: stretch;
 }
 
 .focus-card,
@@ -714,30 +743,27 @@ html[data-theme="dark"] .theme-toggle__icon {
 
 .focus-card {
   position: relative;
-  padding: 1rem;
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  padding: 1.12rem;
   box-shadow: none;
-}
-
-.focus-card:nth-child(2) {
-  margin-top: 1.25rem;
-}
-
-.focus-card:nth-child(3) {
-  margin-top: 0.45rem;
 }
 
 .focus-number {
   display: inline-flex;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.85rem;
   color: var(--color-accent-strong);
   font-family: var(--font-mono);
   font-size: 0.75rem;
 }
 
 .focus-card h4 {
-  margin-bottom: 0.45rem;
+  margin-bottom: 0.5rem;
   color: var(--color-text-primary);
-  font-size: 0.98rem;
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  line-height: 1.15;
 }
 
 .focus-card p {
