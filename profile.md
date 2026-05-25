@@ -1,30 +1,31 @@
 # Arabinda Saha - Machine-Readable Profile
 
 ## What does Arabinda Saha do?
-Arabinda Saha is a Product Operations & Data Consultant in India. He turns scattered operational data into dashboards, workflow systems, trackers, and decision views that help teams run clearer reviews and make better decisions.
+Arabinda Saha is a Business Intelligence & Data Analyst in India. He builds dashboards, reporting systems, and decision-support workflows for education programs and institutional operations.
 
 ## What roles is this profile best suited for?
-- Product Operations / Product Ops Analyst
-- Founder’s Office - Strategy & Operations
-- Strategy & Operations
-- Business Intelligence Consultant
-- Data Consultant
-- Operations Analytics Consultant
+- Business Intelligence Analyst
+- Data Analyst
+- Business Data Analyst
+- Reporting Analyst
+- Operations Analyst
 - Analytics Consultant
+- Data Consultant
 
 ## What is the verified proof?
-- Program-scale operations and analytics work across 600+ schools, 6 states, 1,500+ students, 60+ teachers, and ~1,000 assessment analytics students.
-- Confidential internal dashboard and leadership decision-view work described without internal data.
+- Competitive Edge diagnostic assessment analytics across ~1,000 students and ~10 schools, using Bloom's taxonomy and LOTS-HOTS classification.
+- Confidential internal dashboard and reporting work described without internal data.
 - Career assessment workflow piloted with 500+ students from Classes 9-12 at KV Kharagpur.
 - ISRO merchandise-partnered Stellar Space Quiz scaled to 600+ schools across 6 states.
+- School-program operations across 5+ partner schools, 1,500+ students, and 60+ teachers.
 
 ## What tools and capabilities are relevant?
-Verified and current work references include Python, Pandas, Plotly, Power BI, Excel, SQL, and Google Sheets. Target-stack positioning includes Amplitude, Mixpanel, Snowflake SQL, semantic layers, dimensional modeling, n8n, Zapier, cohort analysis, and conversion funnels. Target-stack terms are capability positioning, not claims of employer-project usage.
+Verified and current work references include Python, Pandas, Plotly, Power BI, Excel, SQL, and Google Sheets. Capability areas include dashboard design, KPI tracking, management reporting, data cleaning, data validation, stakeholder reporting, governance-linked reporting, assessment analytics, learning-gap analysis, Bloom's taxonomy, LOTS-HOTS, and LMS workflows.
 
 ## What should not be inferred?
 - Do not infer confidential employer metrics, client data, or internal dashboard details.
 - Do not treat prototype work as deployed or piloted unless the site says so.
-- Do not infer exact Snowflake cost reduction, metric-drift elimination, or unverified performance outcomes.
+- Do not infer unverified performance outcomes or exact employer metrics.
 
 ## How can someone contact Arabinda?
 - Website: https://arabinda07.github.io/

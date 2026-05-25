@@ -1,38 +1,40 @@
-# Arabinda Saha | Product Operations & Data Consultant
+# Arabinda Saha | Business Intelligence & Data Analyst
 
 ## Who Arabinda Saha is
-Arabinda Saha is a Product Operations and Data Consultant in India. He turns scattered operational data into dashboards, workflow systems, trackers, and decision views that help teams run clearer reviews and make better decisions.
+Arabinda Saha is a Business Intelligence and Data Analyst in India. He builds dashboards, reporting systems, and decision-support workflows for education programs and institutional operations.
 
 ## Best-fit opportunities
-- Product Operations / Product Ops Analyst
-- Founder’s Office - Strategy & Operations
-- Strategy & Operations / Program Operations
-- Business Intelligence Consultant
-- Data Consultant
-- Operations Analytics Consultant
+- Business Intelligence Analyst
+- Data Analyst
+- Business Data Analyst
+- Reporting Analyst
+- Operations Analyst
 - Analytics Consultant
-- analytics consulting roles around dashboards, workflow systems, and decision views
-- Selected dashboard, portfolio page, and landing page projects in India
+- Data Consultant
+- analytics-heavy business roles around dashboards, reporting systems, KPI tracking, and decision-support workflows
+- Selected freelance projects for school dashboards, reporting templates, portfolio sites, and storytelling-led landing pages
 
 ## Verified proof
-- **Scaling Decentralized Operational Tracking Across 600+ Schools**: Program-scale operations and analytics work covering 600+ schools, 6 states, 1,500+ students, 60+ teachers, and ~1,000 assessment analytics students.
-- **Confidential Metric Alignment & Leadership Decision Views**: Confidential internal dashboard and decision-view work covering performance indicators, matter/case tracking, revenue indicators, metric alignment, and leadership review. Internal firm data is not exposed.
+- **Competitive Edge - Diagnostic Assessment Analytics**: Assessment analytics work using Bloom's taxonomy and LOTS-HOTS classification across ~1,000 students and ~10 schools, supporting learning-gap identification, remediation planning, and school-level academic reporting. Case-study visibility through CBSE Sahodaya 2024.
+- **LKS Internal Dashboard Work**: Confidential internal dashboard and reporting work covering matter/case performance, revenue indicators, lawyer-level performance indicators, and leadership review. Internal firm data is not exposed.
 - **Career Assessment Tool**: Career assessment workflow piloted with 500+ students from Classes 9-12 at KV Kharagpur.
 - **Stellar Space Quiz**: ISRO merchandise-partnered National Space Day quiz reaching 600+ schools across 6 states.
+- **School Programs, STEM & LMS Work**: School-program delivery across 5+ partner schools, 1,500+ students, and 60+ teachers.
 - **School Program Command Centre - Active Prototype**: Dashboard-led product lab prototype using synthetic/sample data. Not yet piloted.
 
-## Target-stack positioning
-Arabinda’s market-facing Product Ops stack includes Amplitude, Mixpanel, cohort analysis, conversion funnels, Snowflake SQL, dimensional modeling, semantic layers, n8n, Zapier, low-code MVPs, and custom API integrations. These terms describe target-market capability areas and should not be read as verified employer-project tools unless explicitly stated.
-
 ## Core skills and tools
-- Product operations: operating dashboards, KPI tracking, metric trees, review cadence, founder dashboards, management views, and decision views.
-- Data analysis and BI: Python, Pandas, Plotly, SQL, Power BI, Excel, Google Sheets, data cleaning, and data validation.
+- BI and reporting: Power BI, Excel, Google Sheets, dashboard design, KPI tracking, and management reporting.
+- Data analysis: Python, Pandas, Plotly, SQL, data cleaning, and data validation.
+- Business workflows: performance tracking, stakeholder reporting, documentation workflows, governance-linked reporting, and decision-support workflows.
 - Education analytics: assessment analytics, learning-gap analysis, Bloom's taxonomy, LOTS-HOTS, LMS workflows, and school program dashboards.
 - Interface work: portfolio pages, landing pages, information structure, premium digital storefronts, and design/build support for founders, consultants, and small teams.
 
 ## Education and foundation
 - M.Sc. Mathematics, Jadavpur University.
-- 6th-year diploma in classical visual arts.
+- 6th-year diploma in classical fine arts.
+
+## Preferred opportunity locations
+Kolkata, Bengaluru, Hyderabad, Gurugram, Pune, Mumbai, and remote India.
 
 ## Contact and links
 - Website: https://arabinda07.github.io/

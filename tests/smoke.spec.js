@@ -105,7 +105,7 @@ test('mobile nav toggles aria-expanded correctly', async ({ page }) => {
   await expect(hamburger).toHaveAttribute('aria-expanded', 'false');
   await hamburger.click();
   await expect(hamburger).toHaveAttribute('aria-expanded', 'true');
-  await expect(page.locator('.mobile-nav .btn-primary')).toHaveText('Talk Through a Problem');
+  await expect(page.locator('.mobile-nav .btn-primary')).toHaveText('Discuss BI Roles');
   await expect(page.locator('.mobile-nav .btn-primary')).toBeVisible();
   const mobileCtaContrast = await page.locator('.mobile-nav .btn-primary').evaluate((link) => {
     const style = window.getComputedStyle(link);
@@ -228,9 +228,9 @@ test('hero copy supports BI/data positioning without needy CTA language', async 
   await page.waitForFunction(() => !document.body.classList.contains('is-loading'));
   await expect(page.locator('.lp-name')).toHaveText('Arabinda Saha');
   await expect(page.locator('.left-panel .lp-title')).toHaveCount(0);
-  const corePromise = 'I turn scattered operational data into dashboards, workflow systems, and decision views that help teams run clearer reviews and make better decisions.';
+  const corePromise = 'I build dashboards, reporting systems, and decision-support workflows for education programs and institutional operations.';
   await expect(page.locator('.lp-bio')).toHaveText(corePromise);
-  await expect(page.locator('.left-panel')).toContainText('Talk Through a Problem');
+  await expect(page.locator('.left-panel')).toContainText('Discuss BI Roles');
   let visibleText = await page.locator('body').innerText();
   expect(visibleText).not.toContain('Arabinda Saha.');
   expect(visibleText).not.toContain('Data, governance, and programme systems for institutions that need to work at scale.');
@@ -249,17 +249,18 @@ test('hero copy supports BI/data positioning without needy CTA language', async 
   expect(visibleText).not.toContain('Verified outcomes stay separate from target-stack positioning');
   expect(visibleText).not.toContain('Tools and models I am positioning around');
   expect(visibleText).not.toContain('This matrix separates');
-  expect(visibleText).toMatch(/Product Ops Stack/i);
+  expect(visibleText).toContain('Business Intelligence Analyst');
+  expect(visibleText).not.toMatch(/Product Ops Stack/i);
   expect(visibleText).not.toContain('Target Product Ops Stack');
-  expect(visibleText).not.toContain('Business Intelligence & Data Analyst');
+  expect(visibleText).not.toContain('Product Operations & Data Consultant');
   expect(visibleText).not.toContain('BI & Data Consultant');
 
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(pageUrl);
-  await expect(page.locator('.mobile-logo')).toHaveText('Product Ops & Data Consultant');
+  await expect(page.locator('.mobile-logo')).toHaveText('BI & Data Analyst');
   await expect(page.locator('.hero-name')).toHaveText('Arabinda Saha');
   await expect(page.locator('.hero-sub')).toHaveText(corePromise);
-  await expect(page.locator('.hero-actions')).toContainText('Talk Through a Problem');
+  await expect(page.locator('.hero-actions')).toContainText('Discuss BI Roles');
   await expect(page.locator('.hero-actions a')).toHaveCount(2);
   await expect(page.locator('.hero-actions')).toContainText('Download Resume');
   await expect(page.locator('.hero-actions')).not.toContainText('Review Enterprise Systems');
@@ -296,9 +297,12 @@ test('work section prioritizes analytics proof and keeps product lab distinct', 
   await page.waitForFunction(() => !document.body.classList.contains('is-loading'));
   const visibleText = await page.locator('body').innerText();
 
-  expect(visibleText).toContain('Analytics & Decision Systems Work');
-  expect(visibleText).toContain('Scaling Decentralized Operational Tracking Across 600+ Schools');
-  expect(visibleText).toContain('Confidential Metric Alignment & Leadership Decision Views');
+  expect(visibleText).toContain('Analytics Work');
+  expect(visibleText).toContain('Competitive Edge — Diagnostic Assessment Analytics');
+  expect(visibleText).toContain('LKS Internal Dashboard Work');
+  expect(visibleText).toContain('CBSE Sahodaya 2024');
+  expect(visibleText).toContain('remediation planning');
+  expect(visibleText).toContain('school-level academic reporting');
   expect(visibleText).toContain('Confidential work; details described without internal data.');
   expect(visibleText).not.toContain('Anonymized summary');
   expect(visibleText).not.toContain('Verified proof');
@@ -306,13 +310,13 @@ test('work section prioritizes analytics proof and keeps product lab distinct', 
   expect(visibleText).toContain('synthetic/sample school-program data and has not yet been piloted');
   expect(visibleText).toContain('Reflections');
   expect(visibleText).toContain('Parichay');
-  expect(visibleText).toContain('Amplitude');
-  expect(visibleText).toContain('Mixpanel');
-  expect(visibleText).toContain('Snowflake SQL');
-  expect(visibleText).toContain('n8n');
-  expect(visibleText).toContain('Zapier');
-  await expect(page.locator('.proof-artifact--operations')).toContainText('Regional program tracker');
-  await expect(page.locator('.proof-artifact--operations')).toContainText('600+ schools');
+  expect(visibleText).not.toContain('Amplitude');
+  expect(visibleText).not.toContain('Mixpanel');
+  expect(visibleText).not.toContain('Snowflake SQL');
+  expect(visibleText).not.toContain('n8n');
+  expect(visibleText).not.toContain('Zapier');
+  await expect(page.locator('.proof-artifact--operations')).toContainText('Diagnostic assessment analytics');
+  await expect(page.locator('.proof-artifact--operations')).toContainText('CBSE Sahodaya 2024');
   await expect(page.locator('.proof-artifact--leadership')).toContainText('Confidential leadership view');
   await expect(page.locator('.proof-artifact--leadership')).toContainText('No internal data shown');
   await expect(page.locator('.proof-artifact--career')).toContainText('Career assessment workflow');
@@ -320,8 +324,9 @@ test('work section prioritizes analytics proof and keeps product lab distinct', 
   await expect(page.locator('.featured-project .fp-image-placeholder')).toHaveCount(0);
   expect(visibleText).not.toContain('reducing cloud infrastructure compute overhead by an estimated 20%');
   expect(visibleText).not.toContain('Eliminated reporting discrepancies across business units');
-  expect(visibleText).not.toContain('Confidential Work');
   expect(visibleText).not.toContain('LKS Internal Dashboard Work — Confidential / Anonymized');
+  expect(visibleText).not.toContain('Scaling Decentralized Operational Tracking Across 600+ Schools');
+  expect(visibleText).not.toContain('Confidential Metric Alignment & Leadership Decision Views');
   expect(visibleText).not.toContain('function level only');
   expect(visibleText).not.toContain('Selected Website / Storytelling Work');
   expect(visibleText).not.toContain('Freelance Services');
@@ -332,7 +337,7 @@ test('work section prioritizes analytics proof and keeps product lab distinct', 
   const order = await page.evaluate(() => {
     const text = document.body.innerText;
     return {
-      competitiveEdge: text.indexOf('Scaling Decentralized Operational Tracking Across 600+ Schools'),
+      competitiveEdge: text.indexOf('Competitive Edge — Diagnostic Assessment Analytics'),
       commandCentre: text.indexOf('School Program Command Centre — Active Prototype'),
       productLab: text.indexOf('Product Lab'),
     };
@@ -343,23 +348,24 @@ test('work section prioritizes analytics proof and keeps product lab distinct', 
   expect(order.productLab).toBeGreaterThan(order.competitiveEdge);
 });
 
-test('visible copy keeps reporting language restrained', async ({ page }) => {
+test('visible contact copy targets BI/data opportunities directly', async ({ page }) => {
   await page.goto(pageUrl);
   await page.waitForFunction(() => !document.body.classList.contains('is-loading'));
   const visibleText = await page.locator('body').innerText();
-  const reportingMatches = visibleText.match(/\breporting\b/gi) || [];
 
-  expect(reportingMatches.length).toBeLessThanOrEqual(2);
   expect(visibleText).toMatch(/my philosophy/i);
   expect(visibleText).toContain('Making work easier to see.');
-  expect(visibleText).toContain('If you’re sitting with scattered data, a stuck workflow, or a website that isn’t saying things clearly, I’m happy to help you think it through.');
+  expect(visibleText).toContain('Hiring for BI/Data roles, analytics-heavy business roles, or institutional reporting work?');
+  expect(visibleText).toContain('Business Intelligence Analyst');
+  expect(visibleText).toContain('Reporting Analyst');
+  expect(visibleText).toContain('Kolkata, Bengaluru, Hyderabad, Gurugram, Pune, Mumbai, and remote India');
+  expect(visibleText).toContain('selected freelance projects for school dashboards, reporting templates, portfolio sites, and storytelling-led landing pages');
   await expect(page.locator('.contact-split')).toHaveCount(0);
   await expect(page.locator('.contact-card')).toHaveCount(0);
   expect(visibleText).not.toContain('Recruiters & Founders');
   expect(visibleText).not.toContain('Creative Clients');
   expect(visibleText).not.toContain('Download BI Resume');
   expect(visibleText).not.toContain('Book Design Consultation');
-  expect(visibleText).not.toContain('The same way of working fits BI/reporting analyst conversations');
 });
 
 test('about section keeps photo with intro and removes metric strip', async ({ page }) => {
@@ -376,8 +382,9 @@ test('about section keeps photo with intro and removes metric strip', async ({ p
   await expect(about).toContainText('Why');
   await expect(about).toContainText('How');
   await expect(about).toContainText('What');
-  await expect(about).toContainText('I work where operations, data, and decision-making meet: internal reviews, school programs, assessments, stakeholder updates, and the tables teams depend on.');
-  await expect(about).toContainText('Most of my work turns that material into dashboards, trackers, workflow views, and clearer review systems.');
+  await expect(about).toContainText('I work at the intersection of data, reporting, and institutional operations.');
+  await expect(about).toContainText('My current focus is simple: turn that complexity into dashboards, trackers, and decision-support systems people can actually use.');
+  await expect(about).toContainText('6th-year diploma in classical fine arts.');
 
   const aboutText = await about.innerText();
   expect(aboutText).not.toContain('600+ schools reached');
@@ -389,7 +396,7 @@ test('about section keeps photo with intro and removes metric strip', async ({ p
   const desktopOrder = await about.evaluate((section) => {
     const text = section.innerText;
     return {
-      aboutContext: text.indexOf('I work where operations, data, and decision-making meet'),
+      aboutContext: text.indexOf('I work at the intersection of data, reporting, and institutional operations.'),
       philosophy: text.indexOf('Making work easier to see.'),
     };
   });
@@ -461,12 +468,12 @@ test('head exposes canonical, social cards, manifest, and parseable structured d
   await page.goto(pageUrl);
 
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://arabinda07.github.io/');
-  await expect(page).toHaveTitle('Arabinda Saha — Product Operations & Data Consultant');
+  await expect(page).toHaveTitle('Arabinda Saha — Business Intelligence & Data Analyst');
   const metaDescription = await page.locator('meta[name="description"]').getAttribute('content');
-  expect(metaDescription).toMatch(/Product Operations & Data Consultant/);
+  expect(metaDescription).toMatch(/Business Intelligence & Data Analyst/);
   expect(metaDescription).toMatch(/India/);
   expect(metaDescription).toMatch(/dashboards/);
-  expect(metaDescription).toMatch(/workflow systems/);
+  expect(metaDescription).toMatch(/reporting systems/);
   expect(metaDescription).toMatch(/education analytics/);
   expect(metaDescription).toMatch(/Power BI/);
   expect(metaDescription).toMatch(/SQL/);
@@ -490,22 +497,22 @@ test('head exposes canonical, social cards, manifest, and parseable structured d
   expect(graph['@context']).toBe('https://schema.org');
   const person = graph['@graph'].find((item) => item['@type'] === 'Person' && item.name === 'Arabinda Saha');
   expect(person).toBeTruthy();
-  expect(person.jobTitle).toBe('Product Operations & Data Consultant');
-  expect(person.description).toContain('Product Operations and Data Consultant in India');
+  expect(person.jobTitle).toBe('Business Intelligence & Data Analyst');
+  expect(person.description).toContain('Business Intelligence and Data Analyst in India');
   expect(person.alumniOf).toEqual(expect.arrayContaining([
     expect.objectContaining({ name: 'Jadavpur University' }),
   ]));
   expect(person.hasOccupation).toEqual(expect.objectContaining({
-    name: 'Product Operations & Data Consultant',
+    name: 'Business Intelligence & Data Analyst',
   }));
-  expect(person.knowsAbout).toEqual(expect.arrayContaining(['Plotly', 'Google Sheets', 'Decision views', 'Product operations', 'Founder’s Office']));
+  expect(person.knowsAbout).toEqual(expect.arrayContaining(['Plotly', 'Google Sheets', 'Reporting systems', 'Business data analysis', 'KPI tracking']));
   expect(graph['@graph'].some((item) => item['@type'] === 'WebSite' && item.url === 'https://arabinda07.github.io/')).toBe(true);
   expect(graph['@graph'].some((item) => item['@type'] === 'ProfilePage' && item.mainEntity && item.mainEntity['@id'] === 'https://arabinda07.github.io/#person')).toBe(true);
   const workExamples = graph['@graph'].find((item) => item['@type'] === 'ItemList' && item.name === 'Selected work examples');
   expect(workExamples).toBeTruthy();
   expect(workExamples.itemListElement.map((item) => item.name)).toEqual(expect.arrayContaining([
-    'Scaling Decentralized Operational Tracking Across 600+ Schools',
-    'Confidential Metric Alignment & Leadership Decision Views',
+    'Competitive Edge - Diagnostic Assessment Analytics',
+    'LKS Internal Dashboard Work',
     'Career Assessment Tool',
   ]));
 });
@@ -558,7 +565,7 @@ test('planned web assets and SEO files exist', async () => {
       'assets/android-chrome-512x512.png',
     ])
   );
-  expect(manifest.description).toContain('Product Operations and Data Consultant in India');
+  expect(manifest.description).toContain('Business Intelligence and Data Analyst in India');
 
   const expectedDimensions = {
     'assets/favicon-16x16.png': [16, 16],
@@ -579,22 +586,26 @@ test('planned web assets and SEO files exist', async () => {
 
 test('AI-readable and sitemap files match current SEO positioning', async () => {
   const llmsText = fs.readFileSync(path.join(rootDir, 'llms.txt'), 'utf8');
-  expect(llmsText).toContain('Product Operations & Data Consultant');
+  expect(llmsText).toContain('Business Intelligence & Data Analyst');
   expect(llmsText).toContain('Best-fit opportunities');
   expect(llmsText).toContain('Who Arabinda Saha is');
   expect(llmsText).toContain('Verified proof');
-  expect(llmsText).toContain('Target-stack positioning');
-  expect(llmsText).toContain('Founder’s Office - Strategy & Operations');
-  expect(llmsText).toContain('analytics consulting');
-  expect(llmsText).toContain('Confidential Metric Alignment & Leadership Decision Views');
+  expect(llmsText).toContain('Core skills and tools');
+  expect(llmsText).toContain('Business Intelligence Analyst');
+  expect(llmsText).toContain('Kolkata, Bengaluru, Hyderabad, Gurugram, Pune, Mumbai, and remote India');
+  expect(llmsText).toContain('LKS Internal Dashboard Work');
+  expect(llmsText).toContain('classical fine arts');
   expect(llmsText).not.toContain('LKS Internal Dashboard Work - Confidential / Anonymized');
   expect(llmsText).not.toContain('LKS Internal Dashboard Work — Confidential / Anonymized');
+  expect(llmsText).not.toContain('Product Operations & Data Consultant');
+  expect(llmsText).not.toContain('Target-stack positioning');
 
   const profileText = fs.readFileSync(path.join(rootDir, 'profile.md'), 'utf8');
   expect(profileText).toContain('What does Arabinda Saha do?');
-  expect(profileText).toContain('Product Operations & Data Consultant');
-  expect(profileText).toContain('Founder’s Office');
+  expect(profileText).toContain('Business Intelligence & Data Analyst');
+  expect(profileText).toContain('Reporting Analyst');
   expect(profileText).toContain('verified proof');
+  expect(profileText).toContain('Bloom');
   expect(profileText).not.toContain('reducing cloud infrastructure compute overhead by an estimated 20%');
   expect(profileText).not.toContain('Eliminated reporting discrepancies across business units');
 
