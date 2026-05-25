@@ -1,39 +1,42 @@
-# Arabinda Saha | Business Intelligence & Data Analyst
+# Arabinda Saha | Product Operations & Data Consultant
 
-> Dashboards, trackers, education analytics, assessment analytics, and decision views for institutional teams in India.
-
-Arabinda Saha is a Business Intelligence and Data Analyst working on internal dashboards, performance indicators, education analytics, assessment analytics, and decision-support views. His work connects data analysis with institutional operations, school-program context, and clear page/storytelling structure for selected projects.
+## Who Arabinda Saha is
+Arabinda Saha is a Product Operations and Data Consultant in India. He turns scattered operational data into dashboards, workflow systems, trackers, and decision views that help teams run clearer reviews and make better decisions.
 
 ## Best-fit opportunities
-- Business Intelligence Analyst
-- Data Analyst
-- Business Data Analyst
-- Reporting Analyst
-- Operations Analyst
+- Product Operations / Product Ops Analyst
+- Founder’s Office - Strategy & Operations
+- Strategy & Operations / Program Operations
+- Business Intelligence Consultant
+- Data Consultant
+- Operations Analytics Consultant
 - Analytics Consultant
+- analytics consulting roles around dashboards, workflow systems, and decision views
 - Selected dashboard, portfolio page, and landing page projects in India
 
-## Focus areas
-- **Business intelligence and decision systems**: Power BI, Excel, Google Sheets, KPI tracking, dashboard design, management views, and decision views.
-- **Data analysis**: Python, Pandas, Plotly, SQL, data cleaning, and data validation.
-- **Institutional workflows**: performance tracking, stakeholder communication, documentation workflows, governance-linked workflows, and decision-support systems.
-- **Education analytics**: assessment analytics, learning-gap analysis, Bloom's taxonomy, LOTS-HOTS, LMS workflows, and school program dashboards.
-- **Selected page work**: portfolio pages, landing pages, proof-led storytelling, information structure, and design/build support for founders, consultants, and small teams.
-
-## Experience
-- **Data Consultant @ Lakshmikumaran & Sridharan** (Feb 2026 - Present): Anonymized summary of internal dashboard views, performance indicators, matter/case performance, revenue indicators, lawyer-level performance indicators, leadership review, and decision-support logic. Internal firm data and dashboard details are not exposed.
-- **Program Head - School Programs @ Edudigm** (Dec 2023 - Jan 2026): Led program delivery and coordination across 5+ partner schools, covering 1,500+ students and 60+ teachers. Built Competitive Edge across ~1,000 students and ~10 schools. Scaled Stellar Space Quiz to 600+ schools across 6 states.
-- **Subject Matter Expert - Mathematics @ Edudigm** (Jun 2022 - Nov 2023): Delivered Mathematics content for Classes 9-12 and contributed to curriculum and assessment systems later used in school-program delivery.
-
-## Selected work
-- **Competitive Edge - Diagnostic Assessment Analytics**: Assessment analytics framework using Bloom's taxonomy and LOTS-HOTS, scaled across ~1,000 students and ~10 schools.
-- **LKS Dashboard & Performance Analytics**: Anonymized internal dashboard and decision-view work covering performance, revenue indicators, matter/case tracking, and leadership review.
+## Verified proof
+- **Scaling Decentralized Operational Tracking Across 600+ Schools**: Program-scale operations and analytics work covering 600+ schools, 6 states, 1,500+ students, 60+ teachers, and ~1,000 assessment analytics students.
+- **Confidential Metric Alignment & Leadership Decision Views**: Confidential internal dashboard and decision-view work covering performance indicators, matter/case tracking, revenue indicators, metric alignment, and leadership review. Internal firm data is not exposed.
 - **Career Assessment Tool**: Career assessment workflow piloted with 500+ students from Classes 9-12 at KV Kharagpur.
 - **Stellar Space Quiz**: ISRO merchandise-partnered National Space Day quiz reaching 600+ schools across 6 states.
 - **School Program Command Centre - Active Prototype**: Dashboard-led product lab prototype using synthetic/sample data. Not yet piloted.
-- **Reflections and Parichay**: Product lab work around storytelling interfaces, identity pages, and clear page composition.
+
+## Target-stack positioning
+Arabinda’s market-facing Product Ops stack includes Amplitude, Mixpanel, cohort analysis, conversion funnels, Snowflake SQL, dimensional modeling, semantic layers, n8n, Zapier, low-code MVPs, and custom API integrations. These terms describe target-market capability areas and should not be read as verified employer-project tools unless explicitly stated.
+
+## Core skills and tools
+- Product operations: operating dashboards, KPI tracking, metric trees, review cadence, founder dashboards, management views, and decision views.
+- Data analysis and BI: Python, Pandas, Plotly, SQL, Power BI, Excel, Google Sheets, data cleaning, and data validation.
+- Education analytics: assessment analytics, learning-gap analysis, Bloom's taxonomy, LOTS-HOTS, LMS workflows, and school program dashboards.
+- Interface work: portfolio pages, landing pages, information structure, premium digital storefronts, and design/build support for founders, consultants, and small teams.
+
+## Education and foundation
+- M.Sc. Mathematics, Jadavpur University.
+- 6th-year diploma in classical visual arts.
 
 ## Contact and links
+- Website: https://arabinda07.github.io/
+- Machine-readable profile: https://arabinda07.github.io/profile.md
 - Email: robinsaha434@gmail.com
 - GitHub: https://github.com/Arabinda07
 - LinkedIn: https://www.linkedin.com/in/robin0607saha

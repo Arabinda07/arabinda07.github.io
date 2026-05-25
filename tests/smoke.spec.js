@@ -105,6 +105,16 @@ test('mobile nav toggles aria-expanded correctly', async ({ page }) => {
   await expect(hamburger).toHaveAttribute('aria-expanded', 'false');
   await hamburger.click();
   await expect(hamburger).toHaveAttribute('aria-expanded', 'true');
+  await expect(page.locator('.mobile-nav .btn-primary')).toHaveText('Talk Through a Problem');
+  await expect(page.locator('.mobile-nav .btn-primary')).toBeVisible();
+  const mobileCtaContrast = await page.locator('.mobile-nav .btn-primary').evaluate((link) => {
+    const style = window.getComputedStyle(link);
+    return {
+      color: style.color,
+      background: style.backgroundColor,
+    };
+  });
+  expect(mobileCtaContrast.color).not.toBe(mobileCtaContrast.background);
   await hamburger.click();
   await expect(hamburger).toHaveAttribute('aria-expanded', 'false');
 });
@@ -215,9 +225,11 @@ test('keyboard focus keeps a visible focus ring', async ({ page }) => {
 test('hero copy supports BI/data positioning without needy CTA language', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 980 });
   await page.goto(pageUrl);
+  await page.waitForFunction(() => !document.body.classList.contains('is-loading'));
   await expect(page.locator('.lp-name')).toHaveText('Arabinda Saha');
   await expect(page.locator('.left-panel .lp-title')).toHaveCount(0);
-  await expect(page.locator('.lp-bio')).toHaveText('BI & Data Analyst building dashboards, trackers, and review views for education programs and institutional teams.');
+  const corePromise = 'I turn scattered operational data into dashboards, workflow systems, and decision views that help teams run clearer reviews and make better decisions.';
+  await expect(page.locator('.lp-bio')).toHaveText(corePromise);
   await expect(page.locator('.left-panel')).toContainText('Talk Through a Problem');
   let visibleText = await page.locator('body').innerText();
   expect(visibleText).not.toContain('Arabinda Saha.');
@@ -227,17 +239,56 @@ test('hero copy supports BI/data positioning without needy CTA language', async 
   expect(visibleText).not.toContain('Book now');
   expect(visibleText).not.toContain('Looking for work');
   expect(visibleText).not.toContain('Available for freelance');
-  expect(visibleText).not.toContain('Selected Website / Storytelling Work');
-  expect(visibleText).not.toContain('Freelance Services');
+  await expect(page.locator('#gateway')).toHaveCount(0);
+  expect(visibleText).not.toContain('Choose the evidence path');
+  expect(visibleText).not.toContain('One operating brain, two conversion paths');
+  expect(visibleText).not.toContain('strongest proof');
+  expect(visibleText).not.toContain('proof is taste plus execution');
+  expect(visibleText).not.toContain('Use this path');
+  expect(visibleText).not.toContain('conversion paths');
+  expect(visibleText).not.toContain('Verified outcomes stay separate from target-stack positioning');
+  expect(visibleText).not.toContain('Tools and models I am positioning around');
+  expect(visibleText).not.toContain('This matrix separates');
+  expect(visibleText).toMatch(/Product Ops Stack/i);
+  expect(visibleText).not.toContain('Target Product Ops Stack');
+  expect(visibleText).not.toContain('Business Intelligence & Data Analyst');
+  expect(visibleText).not.toContain('BI & Data Consultant');
 
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(pageUrl);
-  await expect(page.locator('.hero-name')).toHaveText('BI & Data Analyst');
-  await expect(page.locator('.hero-sub')).toHaveText('I turn scattered program and business data into dashboards, trackers, and review views teams can use in real decisions.');
+  await expect(page.locator('.mobile-logo')).toHaveText('Product Ops & Data Consultant');
+  await expect(page.locator('.hero-name')).toHaveText('Arabinda Saha');
+  await expect(page.locator('.hero-sub')).toHaveText(corePromise);
   await expect(page.locator('.hero-actions')).toContainText('Talk Through a Problem');
+  await expect(page.locator('.hero-actions a')).toHaveCount(2);
+  await expect(page.locator('.hero-actions')).toContainText('Download Resume');
+  await expect(page.locator('.hero-actions')).not.toContainText('Review Enterprise Systems');
+  await expect(page.locator('.hero-actions')).not.toContainText('View Creative Web Projects');
   visibleText = await page.locator('body').innerText();
   expect(visibleText).not.toContain('Arabinda Saha.');
   expect(visibleText).not.toContain('Data, governance, and programme systems for institutions.');
+});
+
+test('mobile about leads with portrait before body copy', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto(pageUrl);
+
+  const order = await page.evaluate(() => {
+    const about = document.querySelector('#about');
+    const heading = about.querySelector('.section-heading');
+    const photo = about.querySelector('.about-photo');
+    const intro = about.querySelector('.section-intro');
+    const body = about.querySelector('.about-text');
+    return {
+      afterHeading: Boolean(heading.compareDocumentPosition(photo) & Node.DOCUMENT_POSITION_FOLLOWING),
+      beforeIntro: Boolean(photo.compareDocumentPosition(intro) & Node.DOCUMENT_POSITION_FOLLOWING),
+      beforeBody: Boolean(photo.compareDocumentPosition(body) & Node.DOCUMENT_POSITION_FOLLOWING),
+    };
+  });
+
+  expect(order.afterHeading).toBe(true);
+  expect(order.beforeIntro).toBe(true);
+  expect(order.beforeBody).toBe(true);
 });
 
 test('work section prioritizes analytics proof and keeps product lab distinct', async ({ page }) => {
@@ -246,13 +297,29 @@ test('work section prioritizes analytics proof and keeps product lab distinct', 
   const visibleText = await page.locator('body').innerText();
 
   expect(visibleText).toContain('Analytics & Decision Systems Work');
-  expect(visibleText).toContain('Competitive Edge — Diagnostic Assessment Analytics');
-  expect(visibleText).toContain('LKS Dashboard & Performance Analytics');
-  expect(visibleText).toContain('Anonymized summary');
+  expect(visibleText).toContain('Scaling Decentralized Operational Tracking Across 600+ Schools');
+  expect(visibleText).toContain('Confidential Metric Alignment & Leadership Decision Views');
+  expect(visibleText).toContain('Confidential work; details described without internal data.');
+  expect(visibleText).not.toContain('Anonymized summary');
+  expect(visibleText).not.toContain('Verified proof');
   expect(visibleText).toContain('School Program Command Centre — Active Prototype');
   expect(visibleText).toContain('synthetic/sample school-program data and has not yet been piloted');
   expect(visibleText).toContain('Reflections');
   expect(visibleText).toContain('Parichay');
+  expect(visibleText).toContain('Amplitude');
+  expect(visibleText).toContain('Mixpanel');
+  expect(visibleText).toContain('Snowflake SQL');
+  expect(visibleText).toContain('n8n');
+  expect(visibleText).toContain('Zapier');
+  await expect(page.locator('.proof-artifact--operations')).toContainText('Regional program tracker');
+  await expect(page.locator('.proof-artifact--operations')).toContainText('600+ schools');
+  await expect(page.locator('.proof-artifact--leadership')).toContainText('Confidential leadership view');
+  await expect(page.locator('.proof-artifact--leadership')).toContainText('No internal data shown');
+  await expect(page.locator('.proof-artifact--career')).toContainText('Career assessment workflow');
+  await expect(page.locator('.proof-artifact--career')).toContainText('500+ students');
+  await expect(page.locator('.featured-project .fp-image-placeholder')).toHaveCount(0);
+  expect(visibleText).not.toContain('reducing cloud infrastructure compute overhead by an estimated 20%');
+  expect(visibleText).not.toContain('Eliminated reporting discrepancies across business units');
   expect(visibleText).not.toContain('Confidential Work');
   expect(visibleText).not.toContain('LKS Internal Dashboard Work — Confidential / Anonymized');
   expect(visibleText).not.toContain('function level only');
@@ -265,7 +332,7 @@ test('work section prioritizes analytics proof and keeps product lab distinct', 
   const order = await page.evaluate(() => {
     const text = document.body.innerText;
     return {
-      competitiveEdge: text.indexOf('Competitive Edge — Diagnostic Assessment Analytics'),
+      competitiveEdge: text.indexOf('Scaling Decentralized Operational Tracking Across 600+ Schools'),
       commandCentre: text.indexOf('School Program Command Centre — Active Prototype'),
       productLab: text.indexOf('Product Lab'),
     };
@@ -285,7 +352,13 @@ test('visible copy keeps reporting language restrained', async ({ page }) => {
   expect(reportingMatches.length).toBeLessThanOrEqual(2);
   expect(visibleText).toMatch(/my philosophy/i);
   expect(visibleText).toContain('Making work easier to see.');
-  expect(visibleText).toContain('If your team is trying to make sense of a dashboard, data set, program, or page, I’m happy to talk through the problem.');
+  expect(visibleText).toContain('If you’re sitting with scattered data, a stuck workflow, or a website that isn’t saying things clearly, I’m happy to help you think it through.');
+  await expect(page.locator('.contact-split')).toHaveCount(0);
+  await expect(page.locator('.contact-card')).toHaveCount(0);
+  expect(visibleText).not.toContain('Recruiters & Founders');
+  expect(visibleText).not.toContain('Creative Clients');
+  expect(visibleText).not.toContain('Download BI Resume');
+  expect(visibleText).not.toContain('Book Design Consultation');
   expect(visibleText).not.toContain('The same way of working fits BI/reporting analyst conversations');
 });
 
@@ -297,11 +370,14 @@ test('about section keeps photo with intro and removes metric strip', async ({ p
   const about = page.locator('#about');
   await expect(about.locator('.proof-strip')).toHaveCount(0);
   await expect(about.locator('.about-photo-mobile')).toHaveCount(0);
-  await expect(about.locator('.about-photo img[alt="Arabinda Saha"]')).toBeVisible();
+  await expect(about.locator('.about-photo--desktop img[alt="Arabinda Saha"]')).toBeVisible();
+  await expect(about.locator('.about-photo--mobile img[alt="Arabinda Saha"]')).toHaveCount(1);
   await expect(about).toContainText('My Philosophy');
   await expect(about).toContainText('Why');
   await expect(about).toContainText('How');
   await expect(about).toContainText('What');
+  await expect(about).toContainText('I work where operations, data, and decision-making meet: internal reviews, school programs, assessments, stakeholder updates, and the tables teams depend on.');
+  await expect(about).toContainText('Most of my work turns that material into dashboards, trackers, workflow views, and clearer review systems.');
 
   const aboutText = await about.innerText();
   expect(aboutText).not.toContain('600+ schools reached');
@@ -313,7 +389,7 @@ test('about section keeps photo with intro and removes metric strip', async ({ p
   const desktopOrder = await about.evaluate((section) => {
     const text = section.innerText;
     return {
-      aboutContext: text.indexOf('I work at the intersection'),
+      aboutContext: text.indexOf('I work where operations, data, and decision-making meet'),
       philosophy: text.indexOf('Making work easier to see.'),
     };
   });
@@ -323,7 +399,7 @@ test('about section keeps photo with intro and removes metric strip', async ({ p
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(pageUrl);
   await page.waitForFunction(() => !document.body.classList.contains('is-loading'));
-  await expect(page.locator('#about .about-photo img[alt="Arabinda Saha"]')).toBeVisible();
+  await expect(page.locator('#about .about-photo--mobile img[alt="Arabinda Saha"]')).toBeVisible();
 });
 
 test('theme toggle updates data-theme, aria state, and persists selection', async ({ page }) => {
@@ -385,11 +461,17 @@ test('head exposes canonical, social cards, manifest, and parseable structured d
   await page.goto(pageUrl);
 
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://arabinda07.github.io/');
-  await expect(page).toHaveTitle('Arabinda Saha — Business Intelligence & Data Analyst');
-  await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', /Business Intelligence & Data Analyst/);
-  await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', /dashboards/);
-  await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', /education analytics/);
-  await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', /India/);
+  await expect(page).toHaveTitle('Arabinda Saha — Product Operations & Data Consultant');
+  const metaDescription = await page.locator('meta[name="description"]').getAttribute('content');
+  expect(metaDescription).toMatch(/Product Operations & Data Consultant/);
+  expect(metaDescription).toMatch(/India/);
+  expect(metaDescription).toMatch(/dashboards/);
+  expect(metaDescription).toMatch(/workflow systems/);
+  expect(metaDescription).toMatch(/education analytics/);
+  expect(metaDescription).toMatch(/Power BI/);
+  expect(metaDescription).toMatch(/SQL/);
+  expect(metaDescription.length).toBeGreaterThanOrEqual(140);
+  expect(metaDescription.length).toBeLessThanOrEqual(165);
   await expect(page.locator('link[rel="manifest"]')).toHaveAttribute('href', 'site.webmanifest');
   await expect(page.locator('link[rel="apple-touch-icon"]')).toHaveAttribute('href', 'assets/apple-touch-icon.png');
   await expect(page.locator('meta[property="og:url"]')).toHaveAttribute('content', 'https://arabinda07.github.io/');
@@ -408,10 +490,39 @@ test('head exposes canonical, social cards, manifest, and parseable structured d
   expect(graph['@context']).toBe('https://schema.org');
   const person = graph['@graph'].find((item) => item['@type'] === 'Person' && item.name === 'Arabinda Saha');
   expect(person).toBeTruthy();
-  expect(person.jobTitle).toBe('Business Intelligence & Data Analyst');
-  expect(person.description).toContain('Business Intelligence and Data Analyst in India');
-  expect(person.knowsAbout).toEqual(expect.arrayContaining(['Plotly', 'Google Sheets', 'Decision views']));
+  expect(person.jobTitle).toBe('Product Operations & Data Consultant');
+  expect(person.description).toContain('Product Operations and Data Consultant in India');
+  expect(person.alumniOf).toEqual(expect.arrayContaining([
+    expect.objectContaining({ name: 'Jadavpur University' }),
+  ]));
+  expect(person.hasOccupation).toEqual(expect.objectContaining({
+    name: 'Product Operations & Data Consultant',
+  }));
+  expect(person.knowsAbout).toEqual(expect.arrayContaining(['Plotly', 'Google Sheets', 'Decision views', 'Product operations', 'Founder’s Office']));
   expect(graph['@graph'].some((item) => item['@type'] === 'WebSite' && item.url === 'https://arabinda07.github.io/')).toBe(true);
+  expect(graph['@graph'].some((item) => item['@type'] === 'ProfilePage' && item.mainEntity && item.mainEntity['@id'] === 'https://arabinda07.github.io/#person')).toBe(true);
+  const workExamples = graph['@graph'].find((item) => item['@type'] === 'ItemList' && item.name === 'Selected work examples');
+  expect(workExamples).toBeTruthy();
+  expect(workExamples.itemListElement.map((item) => item.name)).toEqual(expect.arrayContaining([
+    'Scaling Decentralized Operational Tracking Across 600+ Schools',
+    'Confidential Metric Alignment & Leadership Decision Views',
+    'Career Assessment Tool',
+  ]));
+});
+
+test('page exposes one semantic h1 and no blocking loader', async ({ page }) => {
+  await page.goto(pageUrl);
+
+  await expect(page.locator('#page-loader')).toHaveCount(0);
+  await expect(page.locator('body')).not.toHaveClass(/is-loading/);
+  await expect(page.locator('h1')).toHaveCount(1);
+  await expect(page.locator('h1')).toHaveText('Arabinda Saha');
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto(pageUrl);
+  await expect(page.locator('h1')).toHaveCount(1);
+  await expect(page.locator('.hero-name')).toHaveText('Arabinda Saha');
+  await expect(page.locator('.hero-name')).toHaveJSProperty('tagName', 'P');
 });
 
 test('planned web assets and SEO files exist', async () => {
@@ -420,6 +531,7 @@ test('planned web assets and SEO files exist', async () => {
     'site.webmanifest',
     'robots.txt',
     'sitemap.xml',
+    'profile.md',
     'assets/favicon-16x16.png',
     'assets/favicon-32x32.png',
     'assets/favicon-96x96.png',
@@ -446,7 +558,7 @@ test('planned web assets and SEO files exist', async () => {
       'assets/android-chrome-512x512.png',
     ])
   );
-  expect(manifest.description).toContain('Business Intelligence and Data Analyst in India');
+  expect(manifest.description).toContain('Product Operations and Data Consultant in India');
 
   const expectedDimensions = {
     'assets/favicon-16x16.png': [16, 16],
@@ -467,14 +579,28 @@ test('planned web assets and SEO files exist', async () => {
 
 test('AI-readable and sitemap files match current SEO positioning', async () => {
   const llmsText = fs.readFileSync(path.join(rootDir, 'llms.txt'), 'utf8');
-  expect(llmsText).toContain('Business Intelligence & Data Analyst');
+  expect(llmsText).toContain('Product Operations & Data Consultant');
   expect(llmsText).toContain('Best-fit opportunities');
-  expect(llmsText).toContain('LKS Dashboard & Performance Analytics');
+  expect(llmsText).toContain('Who Arabinda Saha is');
+  expect(llmsText).toContain('Verified proof');
+  expect(llmsText).toContain('Target-stack positioning');
+  expect(llmsText).toContain('Founder’s Office - Strategy & Operations');
+  expect(llmsText).toContain('analytics consulting');
+  expect(llmsText).toContain('Confidential Metric Alignment & Leadership Decision Views');
   expect(llmsText).not.toContain('LKS Internal Dashboard Work - Confidential / Anonymized');
   expect(llmsText).not.toContain('LKS Internal Dashboard Work — Confidential / Anonymized');
 
+  const profileText = fs.readFileSync(path.join(rootDir, 'profile.md'), 'utf8');
+  expect(profileText).toContain('What does Arabinda Saha do?');
+  expect(profileText).toContain('Product Operations & Data Consultant');
+  expect(profileText).toContain('Founder’s Office');
+  expect(profileText).toContain('verified proof');
+  expect(profileText).not.toContain('reducing cloud infrastructure compute overhead by an estimated 20%');
+  expect(profileText).not.toContain('Eliminated reporting discrepancies across business units');
+
   const sitemap = fs.readFileSync(path.join(rootDir, 'sitemap.xml'), 'utf8');
   expect(sitemap).toContain('<lastmod>2026-05-24</lastmod>');
+  expect(sitemap).toContain('<loc>https://arabinda07.github.io/profile.md</loc>');
 });
 
 test('warm accent system has no retired blue or legacy alias CSS tokens', async () => {
@@ -527,6 +653,7 @@ test('product context document exists for design work', async () => {
 
 for (const viewport of [
   { name: 'mobile', width: 390, height: 844 },
+  { name: 'tablet', width: 900, height: 1100 },
   { name: 'desktop', width: 1440, height: 980 },
 ]) {
   test(`layout has no horizontal overflow at ${viewport.name}`, async ({ page }) => {
@@ -541,3 +668,70 @@ for (const viewport of [
     expect(width.scrollWidth).toBeLessThanOrEqual(width.clientWidth + 1);
   });
 }
+
+test('featured proof layout adapts from desktop columns to tablet and mobile stack', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 980 });
+  await page.goto(pageUrl);
+  await page.locator('#work').scrollIntoViewIfNeeded();
+
+  const desktopLayout = await page.locator('.featured-project').first().evaluate((project) => {
+    const artifact = project.querySelector('.fp-image').getBoundingClientRect();
+    const content = project.querySelector('.fp-content').getBoundingClientRect();
+    return {
+      sideBySide: artifact.right <= content.left || content.right <= artifact.left,
+      artifactWidth: artifact.width,
+      contentWidth: content.width,
+    };
+  });
+
+  expect(desktopLayout.sideBySide).toBe(true);
+  expect(desktopLayout.artifactWidth / (desktopLayout.artifactWidth + desktopLayout.contentWidth)).toBeGreaterThan(0.32);
+  expect(desktopLayout.artifactWidth / (desktopLayout.artifactWidth + desktopLayout.contentWidth)).toBeLessThan(0.41);
+
+  for (const viewport of [
+    { width: 900, height: 1100 },
+    { width: 390, height: 844 },
+  ]) {
+    await page.setViewportSize(viewport);
+    await page.goto(pageUrl);
+    await page.locator('#work').scrollIntoViewIfNeeded();
+
+    const stacked = await page.locator('.featured-project').first().evaluate((project) => {
+      const artifact = project.querySelector('.fp-image').getBoundingClientRect();
+      const content = project.querySelector('.fp-content').getBoundingClientRect();
+      return {
+        artifactBeforeContent: artifact.bottom <= content.top + 2,
+        nearlyFullWidth: artifact.width >= content.width - 2,
+      };
+    });
+
+    expect(stacked.artifactBeforeContent).toBe(true);
+    expect(stacked.nearlyFullWidth).toBe(true);
+  }
+});
+
+test('proof artifact internals stay inside their containers', async ({ page }) => {
+  for (const viewport of [
+    { width: 390, height: 844 },
+    { width: 900, height: 1100 },
+    { width: 1440, height: 980 },
+  ]) {
+    await page.setViewportSize(viewport);
+    await page.goto(pageUrl);
+    await page.locator('#work').scrollIntoViewIfNeeded();
+
+    const overflow = await page.evaluate(() => {
+      return Array.from(document.querySelectorAll('.proof-artifact')).flatMap((artifact) => {
+        const parent = artifact.getBoundingClientRect();
+        return Array.from(artifact.querySelectorAll('.artifact-bar span, .artifact-grid span, .artifact-flow span, .artifact-panel, p'))
+          .filter((child) => {
+            const rect = child.getBoundingClientRect();
+            return rect.left < parent.left - 1 || rect.right > parent.right + 1;
+          })
+          .map((child) => child.textContent.trim());
+      });
+    });
+
+    expect(overflow).toEqual([]);
+  }
+});

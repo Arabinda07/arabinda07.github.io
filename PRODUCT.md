@@ -1,22 +1,22 @@
 ---
 name: Arabinda Saha Portfolio
 register: brand
-description: Portfolio for BI, data, dashboard, education analytics, and selected page work.
+description: Portfolio for product operations, data consulting, dashboard systems, education analytics, and selected interface work.
 ---
 
 # Product Context: Arabinda Saha Portfolio
 
 ## Users
 
-This site is for recruiters, hiring managers, founders, institutional teams, and collaborators who need to understand Arabinda Saha's business intelligence, dashboard, analytics, education program, and page-clarity work quickly.
+This site is for recruiters, hiring managers, founders, GCC teams, institutional teams, and collaborators who need to understand Arabinda Saha's product operations, data consulting, dashboard, analytics, education program, and interface-clarity work quickly.
 
 They are usually scanning for proof of judgment: what kind of work he does, what tools and contexts he knows, what outcomes he can support, and whether the portfolio feels credible enough to start a conversation.
 
 ## Product Purpose
 
-The portfolio should position Arabinda as a BI and Data Analyst who turns scattered program, business, assessment, and operational data into dashboards, trackers, review views, and decision-support pages.
+The portfolio should position Arabinda as a Product Operations and Data Consultant who turns scattered program, business, assessment, and operational data into dashboards, workflow systems, review views, and decision-support pages.
 
-The site should make the work legible without exposing confidential employer details or overstating prototype status. It should invite a practical conversation around a real dashboard, data set, program, or page problem.
+The site should make the work legible without exposing confidential employer details, overstating prototype status, or implying unverified tool ownership. It should invite a practical conversation around a real operating dashboard, data set, workflow, program, or page problem.
 
 ## Brand Personality
 
@@ -40,7 +40,7 @@ Light and dark themes should both preserve readability, calm, and contrast. Mobi
 
 Avoid generic analyst-course portfolios, inflated agency language, fake metrics, fake screenshots, stock team imagery, neon tech gradients, glassy SaaS surfaces, needy call-to-action language, and decorative dashboard motifs that do not clarify the work.
 
-Do not present prototype work as deployed, add unverified tools, or shift the site into a pure product management, teaching, or service-sales website.
+Do not present prototype work as deployed or shift the site into a pure product management, teaching, or service-sales website. Target-market tools such as Amplitude, Mixpanel, Snowflake SQL, n8n, and Zapier may appear as positioning keywords only when clearly separated from verified employer-tool claims.
 
 ## Accessibility Expectations
 
@@ -48,7 +48,7 @@ The site should target WCAG AA readability for normal text, visible keyboard foc
 
 ## Design Principles
 
-- Lead with concrete work nouns: dashboards, trackers, assessment analytics, decision views, program health, evidence, and pages.
+- Lead with concrete work nouns: product operations, dashboards, workflow systems, trackers, assessment analytics, decision views, program health, evidence, and pages.
 - Use color to clarify hierarchy and state, not as decoration.
 - Keep mono labels short and useful; do not use mono as a costume for technical credibility.
 - Preserve confidentiality boundaries around employer work.
