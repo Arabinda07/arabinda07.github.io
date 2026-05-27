@@ -787,66 +787,56 @@
       <!-- ── 05 CONTACT ── -->
       <section class="section contact-section fade-up" id="contact">
         <h2 class="section-heading"><span class="section-num">05.</span> Contact</h2>
-        <div class="contact-intro">
-          <p class="contact-kicker">Business Intelligence Analyst · Data Analyst · Dashboard and reporting workflows</p>
-          <p class="contact-body">If you’re hiring for BI, data, dashboard, reporting, or analytics-heavy operations work, I’d be glad to talk.</p>
-          <p class="contact-note">Also open to selected dashboard, reporting template, and portfolio/page clarity projects.</p>
-        </div>
-        <div class="contact-actions" aria-label="Contact actions">
-          <div class="contact-links">
-            <a href="#" data-email="robinsaha434" data-domain="gmail.com" class="btn-primary email-link">Email Me</a>
-            <a href="https://www.linkedin.com/in/robin0607saha" target="_blank" rel="noopener noreferrer" class="lp-resume-btn">Connect on LinkedIn <span aria-hidden="true">↗</span></a>
-            <a href="assets/resume.pdf" download="Arabinda_Saha_Resume.pdf" target="_blank" rel="noopener noreferrer" class="lp-resume-btn">Download Resume <span aria-hidden="true">↗</span></a>
-          </div>
-        </div>
-
-        <!-- EmailJS contact form -->
-        <form id="contact-form" class="contact-form" novalidate>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="from_name" class="form-label">Name</label>
-              <input
-                type="text"
-                id="from_name"
-                name="from_name"
-                class="form-input"
-                placeholder="Your name"
-                required
-                autocomplete="name"
-              />
+        <div class="contact-form-panel">
+          <h3 class="contact-form-title">Write a few lines</h3>
+          <!-- EmailJS contact form -->
+          <form id="contact-form" class="contact-form" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="from_name" class="form-label">Name</label>
+                <input
+                  type="text"
+                  id="from_name"
+                  name="from_name"
+                  class="form-input"
+                  placeholder="Your name"
+                  required
+                  autocomplete="name"
+                />
+              </div>
+              <div class="form-group">
+                <label for="reply_to" class="form-label">Email</label>
+                <input
+                  type="email"
+                  id="reply_to"
+                  name="reply_to"
+                  class="form-input"
+                  placeholder="your@email.com"
+                  required
+                  autocomplete="email"
+                />
+              </div>
             </div>
             <div class="form-group">
-              <label for="reply_to" class="form-label">Email</label>
-              <input
-                type="email"
-                id="reply_to"
-                name="reply_to"
-                class="form-input"
-                placeholder="your@email.com"
+              <label for="message" class="form-label">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                class="form-input form-textarea"
+                placeholder="What are you trying to understand or improve?"
+                rows="4"
                 required
-                autocomplete="email"
-              />
+              ></textarea>
             </div>
-          </div>
-          <div class="form-group">
-            <label for="message" class="form-label">Message</label>
-            <textarea
-              id="message"
-              name="message"
-              class="form-input form-textarea"
-              placeholder="Tell me what you want to understand, track, or improve."
-              rows="5"
-              required
-            ></textarea>
-          </div>
-          <div class="form-footer">
-            <button type="submit" class="btn-primary form-submit" id="form-submit">
-              <span class="submit-label">Send Message</span>
-              <span class="submit-sending" style="display:none">Sending…</span>
-            </button>
-            <p class="form-status" id="form-status" aria-live="polite"></p>
-          </div>
-        </form>
+            <div class="form-footer">
+              <button type="submit" class="btn-primary form-submit" id="form-submit">
+                <span class="submit-label">Send Message</span>
+                <span class="submit-sending" style="display:none">Sending…</span>
+              </button>
+              <p class="form-status" id="form-status" aria-live="polite"></p>
+            </div>
+          </form>
+        </div>
 
       </section>
 
