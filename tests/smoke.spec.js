@@ -105,7 +105,7 @@ test('mobile nav toggles aria-expanded correctly', async ({ page }) => {
   await expect(hamburger).toHaveAttribute('aria-expanded', 'false');
   await hamburger.click();
   await expect(hamburger).toHaveAttribute('aria-expanded', 'true');
-  await expect(page.locator('.mobile-nav .btn-primary')).toHaveText('Discuss BI Roles');
+  await expect(page.locator('.mobile-nav .btn-primary')).toHaveText('Start a Conversation');
   await expect(page.locator('.mobile-nav .btn-primary')).toBeVisible();
   const mobileCtaContrast = await page.locator('.mobile-nav .btn-primary').evaluate((link) => {
     const style = window.getComputedStyle(link);
@@ -230,7 +230,8 @@ test('hero copy supports BI/data positioning without needy CTA language', async 
   await expect(page.locator('.left-panel .lp-title')).toHaveCount(0);
   const corePromise = 'I build dashboards, reporting systems, and decision-support workflows for education programs and institutional operations.';
   await expect(page.locator('.lp-bio')).toHaveText(corePromise);
-  await expect(page.locator('.left-panel')).toContainText('Discuss BI Roles');
+  await expect(page.locator('.left-panel')).toContainText('Start a Conversation');
+  await expect(page.locator('.left-panel')).not.toContainText('Discuss BI Roles');
   let visibleText = await page.locator('body').innerText();
   expect(visibleText).not.toContain('Arabinda Saha.');
   expect(visibleText).not.toContain('Data, governance, and programme systems for institutions that need to work at scale.');
@@ -260,7 +261,8 @@ test('hero copy supports BI/data positioning without needy CTA language', async 
   await expect(page.locator('.mobile-logo')).toHaveText('BI & Data Analyst');
   await expect(page.locator('.hero-name')).toHaveText('Arabinda Saha');
   await expect(page.locator('.hero-sub')).toHaveText(corePromise);
-  await expect(page.locator('.hero-actions')).toContainText('Discuss BI Roles');
+  await expect(page.locator('.hero-actions')).toContainText('Start a Conversation');
+  await expect(page.locator('.hero-actions')).not.toContainText('Discuss BI Roles');
   await expect(page.locator('.hero-actions a')).toHaveCount(2);
   await expect(page.locator('.hero-actions')).toContainText('Download Resume');
   await expect(page.locator('.hero-actions')).not.toContainText('Review Enterprise Systems');
@@ -355,11 +357,15 @@ test('visible contact copy targets BI/data opportunities directly', async ({ pag
 
   expect(visibleText).toMatch(/my philosophy/i);
   expect(visibleText).toContain('Making work easier to see.');
-  expect(visibleText).toContain('Hiring for BI/Data roles, analytics-heavy business roles, or institutional reporting work?');
+  expect(visibleText).toContain('If you’re hiring for BI, data, dashboard, reporting, or analytics-heavy operations work, I’d be glad to talk.');
+  expect(visibleText).toContain('Also open to selected dashboard, reporting template, and portfolio/page clarity projects.');
   expect(visibleText).toContain('Business Intelligence Analyst');
-  expect(visibleText).toContain('Reporting Analyst');
-  expect(visibleText).toContain('Kolkata, Bengaluru, Hyderabad, Gurugram, Pune, Mumbai, and remote India');
-  expect(visibleText).toContain('selected freelance projects for school dashboards, reporting templates, portfolio sites, and storytelling-led landing pages');
+  expect(visibleText).toMatch(/start a conversation/i);
+  expect(visibleText).not.toContain('Hiring for BI/Data roles, analytics-heavy business roles, or institutional reporting work?');
+  expect(visibleText).not.toContain('Kolkata, Bengaluru, Hyderabad, Gurugram, Pune, Mumbai, and remote India');
+  expect(visibleText).not.toContain('selected freelance projects for school dashboards, reporting templates, portfolio sites, and storytelling-led landing pages');
+  await expect(page.locator('.contact-intro')).toHaveCount(1);
+  await expect(page.locator('.contact-actions')).toHaveCount(1);
   await expect(page.locator('.contact-split')).toHaveCount(0);
   await expect(page.locator('.contact-card')).toHaveCount(0);
   expect(visibleText).not.toContain('Recruiters & Founders');
@@ -737,7 +743,10 @@ test('proof artifact internals stay inside their containers', async ({ page }) =
         return Array.from(artifact.querySelectorAll('.artifact-bar span, .artifact-grid span, .artifact-flow span, .artifact-panel, p'))
           .filter((child) => {
             const rect = child.getBoundingClientRect();
-            return rect.left < parent.left - 1 || rect.right > parent.right + 1;
+            return rect.left < parent.left - 1 ||
+              rect.right > parent.right + 1 ||
+              rect.top < parent.top - 1 ||
+              rect.bottom > parent.bottom + 1;
           })
           .map((child) => child.textContent.trim());
       });
