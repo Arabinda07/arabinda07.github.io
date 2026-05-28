@@ -65,9 +65,19 @@ test('invalid email shows validation error', async ({ page }) => {
   await page.goto(pageUrl);
   await page.fill('#from_name', 'Test User');
   await page.fill('#reply_to', 'not-an-email');
+  await page.getByLabel('Analytics, dashboards, or workflow support').check();
   await page.fill('#message', 'Hello from smoke test');
   await page.click('#form-submit');
   await expect(page.locator('#form-status')).toContainText('Please enter a valid email address.');
+});
+
+test('contact form requires a conversation intent', async ({ page }) => {
+  await page.goto(pageUrl);
+  await page.fill('#from_name', 'Test User');
+  await page.fill('#reply_to', 'test@example.com');
+  await page.fill('#message', 'Hello from smoke test');
+  await page.click('#form-submit');
+  await expect(page.locator('#form-status')).toContainText('Please fill in all fields to start the conversation.');
 });
 
 test('tab switch updates selected button and active panel', async ({ page }) => {
@@ -105,7 +115,7 @@ test('mobile nav toggles aria-expanded correctly', async ({ page }) => {
   await expect(hamburger).toHaveAttribute('aria-expanded', 'false');
   await hamburger.click();
   await expect(hamburger).toHaveAttribute('aria-expanded', 'true');
-  await expect(page.locator('.mobile-nav .btn-primary')).toHaveText('Start a Conversation');
+  await expect(page.locator('.mobile-nav .btn-primary')).toHaveText('Start a conversation');
   await expect(page.locator('.mobile-nav .btn-primary')).toBeVisible();
   const mobileCtaContrast = await page.locator('.mobile-nav .btn-primary').evaluate((link) => {
     const style = window.getComputedStyle(link);
@@ -170,6 +180,13 @@ test('tab indicator motion is transform based', async () => {
   expect(tabIndicatorBlock).not.toMatch(/transition:[^;]*(\btop\b|\bheight\b)/);
 });
 
+test('contact router uses modern local JavaScript patterns', async () => {
+  const html = fs.readFileSync(path.join(rootDir, 'index.html'), 'utf8');
+  expect(html).toContain('Array.from(document.querySelectorAll(\'.tab-btn\'))');
+  expect(html).not.toContain('Array.prototype.slice.call(document.querySelectorAll(\'.tab-btn\'))');
+  expect(html).toContain('const intent = contactForm.collaboration_intent.value;');
+});
+
 test('light muted text token meets AA contrast on core surfaces', async () => {
   const css = fs.readFileSync(path.join(rootDir, 'styles.css'), 'utf8');
   const token = (name) => {
@@ -222,15 +239,15 @@ test('keyboard focus keeps a visible focus ring', async ({ page }) => {
   expect(focusRing.outlineWidth).toBeGreaterThanOrEqual(2);
 });
 
-test('hero copy supports BI/data positioning without needy CTA language', async ({ page }) => {
+test('hero copy supports consultant and interface architect positioning without needy CTA language', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 980 });
   await page.goto(pageUrl);
   await page.waitForFunction(() => !document.body.classList.contains('is-loading'));
   await expect(page.locator('.lp-name')).toHaveText('Arabinda Saha');
   await expect(page.locator('.left-panel .lp-title')).toHaveCount(0);
-  const corePromise = 'I build dashboards, reporting systems, and decision-support workflows for education programs and institutional operations.';
+  const corePromise = 'I build business intelligence systems, dashboard workflows, and clean web products for teams that need clearer decisions.';
   await expect(page.locator('.lp-bio')).toHaveText(corePromise);
-  await expect(page.locator('.left-panel')).toContainText('Start a Conversation');
+  await expect(page.locator('.left-panel')).toContainText('Start a conversation');
   await expect(page.locator('.left-panel')).not.toContainText('Discuss BI Roles');
   let visibleText = await page.locator('body').innerText();
   expect(visibleText).not.toContain('Arabinda Saha.');
@@ -250,7 +267,7 @@ test('hero copy supports BI/data positioning without needy CTA language', async 
   expect(visibleText).not.toContain('Verified outcomes stay separate from target-stack positioning');
   expect(visibleText).not.toContain('Tools and models I am positioning around');
   expect(visibleText).not.toContain('This matrix separates');
-  expect(visibleText).toContain('Business intelligence, reporting workflows, education analytics, program-scale operations, and selected product lab work.');
+  expect(visibleText).toContain('Business intelligence systems, dashboard workflows, education analytics, program operations, and selected web work.');
   expect(visibleText).not.toMatch(/Product Ops Stack/i);
   expect(visibleText).not.toContain('Target Product Ops Stack');
   expect(visibleText).not.toContain('Product Operations & Data Consultant');
@@ -258,10 +275,10 @@ test('hero copy supports BI/data positioning without needy CTA language', async 
 
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(pageUrl);
-  await expect(page.locator('.mobile-logo')).toHaveText('BI & Data Analyst');
+  await expect(page.locator('.mobile-logo')).toHaveText('Business Intelligence & Interface Architect');
   await expect(page.locator('.hero-name')).toHaveText('Arabinda Saha');
   await expect(page.locator('.hero-sub')).toHaveText(corePromise);
-  await expect(page.locator('.hero-actions')).toContainText('Start a Conversation');
+  await expect(page.locator('.hero-actions')).toContainText('Start a conversation');
   await expect(page.locator('.hero-actions')).not.toContainText('Discuss BI Roles');
   await expect(page.locator('.hero-actions a')).toHaveCount(2);
   await expect(page.locator('.hero-actions')).toContainText('Download Resume');
@@ -270,6 +287,7 @@ test('hero copy supports BI/data positioning without needy CTA language', async 
   visibleText = await page.locator('body').innerText();
   expect(visibleText).not.toContain('Arabinda Saha.');
   expect(visibleText).not.toContain('Data, governance, and programme systems for institutions.');
+  expect(visibleText).not.toContain('I turn scattered data into dashboards, reports, and decision views for education programs and institutional teams.');
 });
 
 test('mobile about leads with portrait before body copy', async ({ page }) => {
@@ -294,33 +312,39 @@ test('mobile about leads with portrait before body copy', async ({ page }) => {
   expect(order.beforeBody).toBe(true);
 });
 
-test('work section prioritizes analytics proof and keeps product lab distinct', async ({ page }) => {
+test('work section prioritizes analytics proof and keeps web showcases distinct', async ({ page }) => {
   await page.goto(pageUrl);
   await page.waitForFunction(() => !document.body.classList.contains('is-loading'));
   const visibleText = await page.locator('body').innerText();
 
-  expect(visibleText).toContain('Analytics Work');
+  expect(visibleText).toContain('Business Intelligence & Analytics');
   expect(visibleText).toContain('Competitive Edge — Diagnostic Assessment Analytics');
-  expect(visibleText).toContain('LKS Internal Dashboard Work');
+  expect(visibleText).toContain('LKS Internal Performance Dashboard Work');
   expect(visibleText).toContain('CBSE Sahodaya 2024');
   expect(visibleText).toContain('remediation planning');
-  expect(visibleText).toContain('school-level academic reporting');
-  expect(visibleText).toContain('Confidential work; details described without internal data.');
+  expect(visibleText).toContain('school-level academic feedback');
+  expect(visibleText).toContain('Described at a functional level, focused on dashboard structure and metric logic.');
+  expect(visibleText).not.toContain('Confidential');
+  expect(visibleText).not.toContain('confidential');
+  expect(visibleText).not.toContain('No internal data shown');
   expect(visibleText).not.toContain('Anonymized summary');
   expect(visibleText).not.toContain('Verified proof');
   expect(visibleText).toContain('School Program Command Centre — Active Prototype');
   expect(visibleText).toContain('synthetic/sample school-program data and has not yet been piloted');
   expect(visibleText).toContain('Reflections');
   expect(visibleText).toContain('Parichay');
+  expect(visibleText).toContain('Web & Product Showcases');
+  expect(visibleText).not.toMatch(/\breporting\b/i);
   expect(visibleText).not.toContain('Amplitude');
   expect(visibleText).not.toContain('Mixpanel');
   expect(visibleText).not.toContain('Snowflake SQL');
-  expect(visibleText).not.toContain('n8n');
-  expect(visibleText).not.toContain('Zapier');
   await expect(page.locator('.proof-artifact--operations')).toContainText('Diagnostic assessment analytics');
   await expect(page.locator('.proof-artifact--operations')).toContainText('CBSE Sahodaya 2024');
-  await expect(page.locator('.proof-artifact--leadership')).toContainText('Confidential leadership view');
-  await expect(page.locator('.proof-artifact--leadership')).toContainText('No internal data shown');
+  await expect(page.locator('.proof-artifact--operations')).toContainText('~1,000 students');
+  await expect(page.locator('.proof-artifact--operations')).toContainText('~10 schools');
+  await expect(page.locator('.proof-artifact--operations')).not.toContainText('1,500+ students');
+  await expect(page.locator('.proof-artifact--leadership')).toContainText('Leadership review dashboard');
+  await expect(page.locator('.proof-artifact--leadership')).toContainText('Functional structure shown');
   await expect(page.locator('.proof-artifact--career')).toContainText('Career assessment workflow');
   await expect(page.locator('.proof-artifact--career')).toContainText('500+ students');
   await expect(page.locator('.featured-project .fp-image-placeholder')).toHaveCount(0);
@@ -341,7 +365,7 @@ test('work section prioritizes analytics proof and keeps product lab distinct', 
     return {
       competitiveEdge: text.indexOf('Competitive Edge — Diagnostic Assessment Analytics'),
       commandCentre: text.indexOf('School Program Command Centre — Active Prototype'),
-      productLab: text.indexOf('Product Lab'),
+      productLab: text.indexOf('Web & Product Showcases'),
     };
   });
 
@@ -350,14 +374,20 @@ test('work section prioritizes analytics proof and keeps product lab distinct', 
   expect(order.productLab).toBeGreaterThan(order.competitiveEdge);
 });
 
-test('visible contact copy targets BI/data opportunities directly', async ({ page }) => {
+test('visible contact copy keeps the conversation router direct', async ({ page }) => {
   await page.goto(pageUrl);
   await page.waitForFunction(() => !document.body.classList.contains('is-loading'));
   const visibleText = await page.locator('body').innerText();
 
   expect(visibleText).toMatch(/my philosophy/i);
-  expect(visibleText).toContain('Making work easier to see.');
-  expect(visibleText).toContain('Write a few lines');
+  expect(visibleText).toContain('Make the work easier to see.');
+  expect(visibleText).toContain("Let's talk about the problem");
+  expect(visibleText).toMatch(/i want to discuss/i);
+  expect(visibleText).toContain('Full-time BI, analytics, or operations role');
+  expect(visibleText).toContain('Custom landing page, portfolio, or UI/UX project');
+  expect(visibleText).toContain('Analytics, dashboards, or workflow support');
+  expect(visibleText).toContain('Something else entirely');
+  expect(visibleText).toMatch(/what challenge should we tackle\?/i);
   expect(visibleText).toMatch(/start a conversation/i);
   expect(visibleText).not.toMatch(/no polished brief needed\./i);
   expect(visibleText).not.toContain('Send the rough version.');
@@ -382,6 +412,11 @@ test('visible contact copy targets BI/data opportunities directly', async ({ pag
   await expect(page.locator('.contact-direct')).toHaveCount(0);
   await expect(page.locator('.contact-form-panel')).toHaveCount(1);
   await expect(page.locator('#contact-form')).toHaveCount(1);
+  await expect(page.locator('input[name="from_name"]')).toHaveCount(1);
+  await expect(page.locator('input[name="reply_to"]')).toHaveCount(1);
+  await expect(page.locator('input[name="collaboration_intent"]')).toHaveCount(4);
+  await expect(page.locator('textarea[name="message"]')).toHaveCount(1);
+  await expect(page.locator('input[name="collaboration_intent"]').first()).toHaveAttribute('required', '');
   await expect(page.locator('.contact-actions')).toHaveCount(0);
   await expect(page.locator('.contact-direct .email-link')).toHaveCount(0);
   await expect(page.locator('.contact-split')).toHaveCount(0);
@@ -390,6 +425,53 @@ test('visible contact copy targets BI/data opportunities directly', async ({ pag
   expect(visibleText).not.toContain('Creative Clients');
   expect(visibleText).not.toContain('Download BI Resume');
   expect(visibleText).not.toContain('Book Design Consultation');
+  expect(visibleText).not.toContain('[cite: 1]');
+  expect(visibleText).not.toContain('classical fine arts');
+  expect(visibleText).not.toContain('Eliminated reporting discrepancies across business units');
+});
+
+test('capabilities section is tool first and market aligned', async ({ page }) => {
+  await page.goto(pageUrl);
+  await page.waitForFunction(() => !document.body.classList.contains('is-loading'));
+
+  const skills = page.locator('#skills');
+  await expect(skills).toContainText('Business Intelligence & Dashboards');
+  await expect(skills).toContainText('Data Analysis');
+  await expect(skills).toContainText('Business Workflows');
+  await expect(skills).toContainText('Databases & Data Handling');
+  await expect(skills).toContainText('Web & Product Build');
+
+  for (const tool of [
+    'Power BI',
+    'DAX',
+    'Power Query',
+    'Tableau',
+    'Looker Studio',
+    'SQL',
+    'Python',
+    'Pandas',
+    'NumPy',
+    'Jupyter Notebook',
+    'Power Automate',
+    'Airtable',
+    'PostgreSQL',
+    'BigQuery',
+    'React',
+    'Tailwind CSS',
+    'Vercel',
+  ]) {
+    await expect(skills).toContainText(tool);
+  }
+
+  const skillsText = await skills.innerText();
+  expect(skillsText).not.toContain('Dashboard Design');
+  expect(skillsText).not.toContain('Decision Views');
+  expect(skillsText).not.toContain('Metric Logic');
+  expect(skillsText).not.toContain('Information Structure');
+  expect(skillsText).not.toContain('CORE STACK');
+
+  const css = fs.readFileSync(path.join(rootDir, 'styles.css'), 'utf8');
+  expect(css).not.toContain('skill-group--primary::after');
 });
 
 test('about section keeps photo with intro and removes metric strip', async ({ page }) => {
@@ -403,12 +485,12 @@ test('about section keeps photo with intro and removes metric strip', async ({ p
   await expect(about.locator('.about-photo--desktop img[alt="Arabinda Saha"]')).toBeVisible();
   await expect(about.locator('.about-photo--mobile img[alt="Arabinda Saha"]')).toHaveCount(1);
   await expect(about).toContainText('My Philosophy');
-  await expect(about).toContainText('Why');
-  await expect(about).toContainText('How');
-  await expect(about).toContainText('What');
-  await expect(about).toContainText('I work at the intersection of data, reporting, and institutional operations.');
-  await expect(about).toContainText('My current focus is simple: turn that complexity into dashboards, trackers, and decision-support systems people can actually use.');
-  await expect(about).toContainText('6th-year diploma in classical fine arts.');
+  await expect(about).toContainText('The problem');
+  await expect(about).toContainText('The method');
+  await expect(about).toContainText('The result');
+  await expect(about).toContainText('I work across business intelligence, operational analytics, and web/product builds.');
+  await expect(about).toContainText('business intelligence systems, dashboards, and trackers');
+  await expect(about).toContainText('6th-year diploma in Fine Arts.');
 
   const aboutText = await about.innerText();
   expect(aboutText).not.toContain('600+ schools reached');
@@ -420,8 +502,8 @@ test('about section keeps photo with intro and removes metric strip', async ({ p
   const desktopOrder = await about.evaluate((section) => {
     const text = section.innerText;
     return {
-      aboutContext: text.indexOf('I work at the intersection of data, reporting, and institutional operations.'),
-      philosophy: text.indexOf('Making work easier to see.'),
+      aboutContext: text.indexOf('I work across business intelligence, operational analytics, and web/product builds.'),
+      philosophy: text.indexOf('Make the work easier to see.'),
     };
   });
   expect(desktopOrder.aboutContext).toBeGreaterThanOrEqual(0);
@@ -492,19 +574,21 @@ test('head exposes canonical, social cards, manifest, and parseable structured d
   await page.goto(pageUrl);
 
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://arabinda07.github.io/');
-  await expect(page).toHaveTitle('Arabinda Saha — Business Intelligence & Data Analyst');
+  await expect(page).toHaveTitle('Arabinda Saha — Business Intelligence & Interface Architect');
   const metaDescription = await page.locator('meta[name="description"]').getAttribute('content');
-  expect(metaDescription).toMatch(/Business Intelligence & Data Analyst/);
+  expect(metaDescription).toMatch(/Business Intelligence & Interface Architect/);
   expect(metaDescription).toMatch(/India/);
+  expect(metaDescription).toMatch(/dashboard workflows/);
+  expect(metaDescription).toMatch(/data models/);
   expect(metaDescription).toMatch(/dashboards/);
-  expect(metaDescription).toMatch(/reporting systems/);
-  expect(metaDescription).toMatch(/education analytics/);
-  expect(metaDescription).toMatch(/Power BI/);
-  expect(metaDescription).toMatch(/SQL/);
+  expect(metaDescription).toMatch(/web products/);
   expect(metaDescription.length).toBeGreaterThanOrEqual(140);
   expect(metaDescription.length).toBeLessThanOrEqual(165);
   await expect(page.locator('link[rel="manifest"]')).toHaveAttribute('href', 'site.webmanifest');
   await expect(page.locator('link[rel="apple-touch-icon"]')).toHaveAttribute('href', 'assets/apple-touch-icon.png');
+  await expect(page.locator('link[rel="preload"][as="style"][href*="fontshare"]')).toHaveCount(1);
+  await expect(page.locator('link[rel="preload"][as="style"][href*="fonts.googleapis"]')).toHaveCount(1);
+  await expect(page.locator('link[media="print"][onload*="this.media"]')).toHaveCount(0);
   await expect(page.locator('meta[property="og:url"]')).toHaveAttribute('content', 'https://arabinda07.github.io/');
   await expect(page.locator('meta[property="og:image"]')).toHaveAttribute('content', 'https://arabinda07.github.io/assets/og-image.png');
   await expect(page.locator('meta[property="og:image:alt"]')).toHaveAttribute('content', /Portfolio of Arabinda Saha/);
@@ -521,22 +605,22 @@ test('head exposes canonical, social cards, manifest, and parseable structured d
   expect(graph['@context']).toBe('https://schema.org');
   const person = graph['@graph'].find((item) => item['@type'] === 'Person' && item.name === 'Arabinda Saha');
   expect(person).toBeTruthy();
-  expect(person.jobTitle).toBe('Business Intelligence & Data Analyst');
-  expect(person.description).toContain('Business Intelligence and Data Analyst in India');
+  expect(person.jobTitle).toBe('Business Intelligence & Interface Architect');
+  expect(person.description).toContain('Business Intelligence and Interface Architect in India');
   expect(person.alumniOf).toEqual(expect.arrayContaining([
     expect.objectContaining({ name: 'Jadavpur University' }),
   ]));
   expect(person.hasOccupation).toEqual(expect.objectContaining({
-    name: 'Business Intelligence & Data Analyst',
+    name: 'Business Intelligence & Interface Architect',
   }));
-  expect(person.knowsAbout).toEqual(expect.arrayContaining(['Plotly', 'Google Sheets', 'Reporting systems', 'Business data analysis', 'KPI tracking']));
+  expect(person.knowsAbout).toEqual(expect.arrayContaining(['Plotly', 'Google Sheets', 'Dashboard workflows', 'Business intelligence consulting', 'Tableau', 'Power Query', 'React']));
   expect(graph['@graph'].some((item) => item['@type'] === 'WebSite' && item.url === 'https://arabinda07.github.io/')).toBe(true);
   expect(graph['@graph'].some((item) => item['@type'] === 'ProfilePage' && item.mainEntity && item.mainEntity['@id'] === 'https://arabinda07.github.io/#person')).toBe(true);
   const workExamples = graph['@graph'].find((item) => item['@type'] === 'ItemList' && item.name === 'Selected work examples');
   expect(workExamples).toBeTruthy();
   expect(workExamples.itemListElement.map((item) => item.name)).toEqual(expect.arrayContaining([
     'Competitive Edge - Diagnostic Assessment Analytics',
-    'LKS Internal Dashboard Work',
+    'LKS Internal Performance Dashboard Work',
     'Career Assessment Tool',
   ]));
 });
@@ -589,7 +673,7 @@ test('planned web assets and SEO files exist', async () => {
       'assets/android-chrome-512x512.png',
     ])
   );
-  expect(manifest.description).toContain('Business Intelligence and Data Analyst in India');
+  expect(manifest.description).toContain('Business Intelligence and Interface Architect in India');
 
   const expectedDimensions = {
     'assets/favicon-16x16.png': [16, 16],
@@ -610,15 +694,18 @@ test('planned web assets and SEO files exist', async () => {
 
 test('AI-readable and sitemap files match current SEO positioning', async () => {
   const llmsText = fs.readFileSync(path.join(rootDir, 'llms.txt'), 'utf8');
-  expect(llmsText).toContain('Business Intelligence & Data Analyst');
+  expect(llmsText).toContain('Business Intelligence & Interface Architect');
   expect(llmsText).toContain('Best-fit opportunities');
   expect(llmsText).toContain('Who Arabinda Saha is');
   expect(llmsText).toContain('Verified proof');
   expect(llmsText).toContain('Core skills and tools');
-  expect(llmsText).toContain('Business Intelligence Analyst');
+  expect(llmsText).toContain('Business Intelligence Consultant');
+  expect(llmsText).toContain('Interface Architect');
   expect(llmsText).toContain('Kolkata, Bengaluru, Hyderabad, Gurugram, Pune, Mumbai, and remote India');
-  expect(llmsText).toContain('LKS Internal Dashboard Work');
-  expect(llmsText).toContain('classical fine arts');
+  expect(llmsText).toContain('LKS Internal Performance Dashboard Work');
+  expect(llmsText).toContain('Fine Arts');
+  expect(llmsText).not.toContain('confidential');
+  expect(llmsText).not.toContain('Confidential');
   expect(llmsText).not.toContain('LKS Internal Dashboard Work - Confidential / Anonymized');
   expect(llmsText).not.toContain('LKS Internal Dashboard Work — Confidential / Anonymized');
   expect(llmsText).not.toContain('Product Operations & Data Consultant');
@@ -626,8 +713,11 @@ test('AI-readable and sitemap files match current SEO positioning', async () => 
 
   const profileText = fs.readFileSync(path.join(rootDir, 'profile.md'), 'utf8');
   expect(profileText).toContain('What does Arabinda Saha do?');
-  expect(profileText).toContain('Business Intelligence & Data Analyst');
-  expect(profileText).toContain('Reporting Analyst');
+  expect(profileText).toContain('Business Intelligence & Interface Architect');
+  expect(profileText).toContain('Interface Architect');
+  expect(profileText).toContain('Tableau');
+  expect(profileText).toContain('Power Query');
+  expect(profileText).toContain('Dashboard Analyst');
   expect(profileText).toContain('verified proof');
   expect(profileText).toContain('Bloom');
   expect(profileText).not.toContain('reducing cloud infrastructure compute overhead by an estimated 20%');
@@ -683,7 +773,7 @@ test('product context document exists for design work', async () => {
   expect(productDoc).toContain('## Product Purpose');
   expect(productDoc).toContain('## Brand Personality');
   expect(productDoc).toContain('## Anti-References');
-  expect(productDoc).not.toMatch(/Tableau|Looker Studio|DAX|Power Query|freelance/i);
+  expect(productDoc).not.toMatch(/freelance/i);
 });
 
 for (const viewport of [

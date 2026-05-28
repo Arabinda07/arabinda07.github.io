@@ -1,6 +1,6 @@
 ---
 name: Arabinda Saha Portfolio
-description: A warm decision-studio portfolio for BI, data, dashboard, and selected page work.
+description: A warm decision-studio portfolio for BI consulting, dashboards, analytics workflows, and selected web work.
 colors:
   canvas: "oklch(0.965 0.018 82)"
   canvas-soft: "oklch(0.935 0.021 78)"
@@ -90,7 +90,7 @@ components:
 
 **Creative North Star: "Decision Studio"**
 
-This portfolio should feel like a calm room where messy work becomes legible. The visitor should understand that Arabinda works with dashboards, assessment data, program evidence, institutional operations, and selected pages, but the experience should not feel clerical or like a generic analyst-course portfolio.
+This portfolio should feel like a calm room where messy work becomes legible. The visitor should understand that Arabinda works with dashboards, assessment data, program evidence, institutional operations, and selected web products, but the experience should not feel clerical or like a generic analyst-course portfolio.
 
 The visual system is warm, analytical, structured, and human. It uses a restrained canvas, precise type, quiet borders, small data-like labels, and enough asymmetry to feel designed. It should become more distinctive over time through proof-led visuals, stronger work artifacts, and project-specific evidence, not by adding decorative spectacle.
 
@@ -98,7 +98,7 @@ The visual system is warm, analytical, structured, and human. It uses a restrain
 - Balanced density: about 5/10. Enough information for recruiters and founders, never cramped.
 - Controlled variance: about 6/10. Left-aligned structure, alternating work layouts, and visible numbering.
 - Restrained motion: about 4/10. Hover feedback and entrance reveals, no choreography for its own sake.
-- Human clarity: plain language, verified numbers, confidentiality notes, and concrete outcomes.
+- Human clarity: plain language, verified numbers, careful employer-work boundaries, and concrete outcomes.
 
 ## Colors
 
@@ -145,7 +145,7 @@ The type system should feel precise without becoming mechanical. Display type gi
 
 **The No-Costume Mono Rule.** Mono type should support evidence and navigation. Do not use it as a lazy way to make the site feel technical.
 
-**The Plain Sentence Rule.** Avoid over-polished marketing language. Use concrete nouns: dashboards, trackers, assessment analytics, decision views, program health, evidence, pages.
+**The Plain Sentence Rule.** Avoid over-polished marketing language. Use concrete nouns: dashboards, trackers, assessment analytics, reports, program health, evidence, pages, and tools.
 
 ## Elevation
 
@@ -187,7 +187,7 @@ The system uses a hybrid of tonal layering, borders, and soft shadows. Surfaces 
 
 - **Style:** Rounded metadata pills with muted green tint, mono text, and compact padding.
 - **Usage:** Tools, metrics, project labels, and proof markers.
-- **Rule:** Keep tags factual. Do not add unconfirmed tools or inflated capability labels.
+- **Rule:** Keep project tags factual. Capability tags may include market-relevant tools when they are presented as skills, not proof of employer usage.
 
 ### Inputs and Forms
 
@@ -211,18 +211,18 @@ The system uses a hybrid of tonal layering, borders, and soft shadows. Surfaces 
 ### Web Assets
 
 - **Favicons and App Icons:** Use the clean AS monogram with one amber-brown border, warm surface fill, and generous padding. Avoid nested frames, corner nodes, tiny dots, and diagram details that collapse at small sizes.
-- **Social Cards:** Lead with "Portfolio of Arabinda Saha", then the Business Intelligence & Data Analyst role and concrete work nouns. Use one subtle dashboard/proof motif only.
+- **Social Cards:** Lead with "Portfolio of Arabinda Saha", then the Business Intelligence & Interface Architect role and concrete work nouns. Use one subtle dashboard/proof motif only.
 - **Rule:** Social cards can carry positioning, but avoid metric clutter and old "data systems" wording.
 
 ## Do's and Don'ts
 
 ### Do:
 
-- **Do** keep the first screen immediately clear: Business Intelligence & Data Analyst, dashboards, reporting systems, decision-support workflows, program work, and evidence.
+- **Do** keep the first screen immediately clear: Business Intelligence & Interface Architect, dashboards, analytics workflows, program work, tools, and selected web work.
 - **Do** use the warm OKLCH palette from the current CSS tokens as the source of truth.
 - **Do** keep Competitive Edge and LKS dashboard work visually strong in the Work section.
-- **Do** preserve confidentiality language for LKS and avoid invented performance metrics.
-- **Do** use verified numbers and organic scale: 600+ schools, 1,500+ students, 60+ teachers, ~1,000 assessment analytics students.
+- **Do** preserve employer-work boundaries for LKS and avoid invented performance metrics.
+- **Do** use numbers by context: ~1,000 students only for Competitive Edge, 1,500+ students only for broader school-program operations, 500+ students only for career assessment, and 600+ schools across 6 states only for Stellar Space Quiz.
 - **Do** keep mobile layouts single-column, readable, and free of horizontal overflow.
 - **Do** use focus states, keyboard-friendly controls, and plain form validation language.
 - **Do** make future visuals more proof-led and less template-like.
@@ -230,9 +230,9 @@ The system uses a hybrid of tonal layering, borders, and soft shadows. Surfaces 
 ### Don't:
 
 - **Don't** use "Hire me", "Book now", "Looking for work", or "Available for freelance" as primary CTA language.
-- **Don't** overuse "reporting" in visible copy. Use decision views, dashboards, trackers, program health, or evidence when those are more accurate.
+- **Don't** make analytics copy feel clerical. Use dashboards, trackers, program health, metric logic, or evidence when those are more accurate.
 - **Don't** present School Program Command Centre as deployed, tested, or proven. It is an active prototype using synthetic/sample data.
-- **Don't** present unverified target-stack tools as verified employer-project tools, and don't imply confidential employer metrics or internal details.
+- **Don't** present market-positioning tools as verified employer-project tools, and don't imply confidential employer metrics or internal details.
 - **Don't** use purple-blue neon gradients, glassmorphism as decoration, gradient text, oversized hero metrics, or generic SaaS-card layouts.
 - **Don't** turn the portfolio into a pure product management, product design, teaching, or freelance website.
 - **Don't** use decorative side-stripe borders, fake screenshots, fake metrics, stock team imagery, or placeholder names.

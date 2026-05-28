@@ -1,37 +1,37 @@
-# Arabinda Saha | Business Intelligence & Data Analyst
+# Arabinda Saha | Business Intelligence & Interface Architect
 
 ## Who Arabinda Saha is
-Arabinda Saha is a Business Intelligence and Data Analyst in India. He builds dashboards, reporting systems, and decision-support workflows for education programs and institutional operations.
+Arabinda Saha is a Business Intelligence and Interface Architect in India. He builds business intelligence systems, dashboard workflows, and clean web products for teams that need clearer decisions.
 
 ## Best-fit opportunities
-- Business Intelligence Analyst
-- Data Analyst
-- Business Data Analyst
-- Reporting Analyst
+- Business Intelligence Consultant
+- Interface Architect
+- Data Consultant
+- Dashboard Analyst
 - Operations Analyst
 - Analytics Consultant
-- Data Consultant
-- analytics-heavy business roles around dashboards, reporting systems, KPI tracking, and decision-support workflows
-- Selected freelance projects for school dashboards, reporting templates, portfolio sites, and storytelling-led landing pages
+- Business Intelligence Analyst
+- analytics-heavy business roles around dashboards, analytics systems, and practical business workflows
+- Selected web projects for dashboards, portfolio sites, and storytelling-led landing pages
 
 ## Verified proof
-- **Competitive Edge - Diagnostic Assessment Analytics**: Assessment analytics work using Bloom's taxonomy and LOTS-HOTS classification across ~1,000 students and ~10 schools, supporting learning-gap identification, remediation planning, and school-level academic reporting. Case-study visibility through CBSE Sahodaya 2024.
-- **LKS Internal Dashboard Work**: Confidential internal dashboard and reporting work covering matter/case performance, revenue indicators, lawyer-level performance indicators, and leadership review. Internal firm data is not exposed.
+- **Competitive Edge - Diagnostic Assessment Analytics**: Assessment analytics work using Bloom's taxonomy and LOTS-HOTS classification across ~1,000 students and ~10 schools, supporting learning-gap identification, remediation planning, and school-level academic feedback. Case-study visibility through CBSE Sahodaya 2024.
+- **LKS Internal Performance Dashboard Work**: Internal dashboard work covering matter/case performance, revenue indicators, lawyer-level performance indicators, and leadership review. Details are kept at a functional level.
 - **Career Assessment Tool**: Career assessment workflow piloted with 500+ students from Classes 9-12 at KV Kharagpur.
 - **Stellar Space Quiz**: ISRO merchandise-partnered National Space Day quiz reaching 600+ schools across 6 states.
 - **School Programs, STEM & LMS Work**: School-program delivery across 5+ partner schools, 1,500+ students, and 60+ teachers.
-- **School Program Command Centre - Active Prototype**: Dashboard-led product lab prototype using synthetic/sample data. Not yet piloted.
+- **School Program Command Centre - Active Prototype**: Dashboard-led web prototype using synthetic/sample data. Not yet piloted.
 
 ## Core skills and tools
-- BI and reporting: Power BI, Excel, Google Sheets, dashboard design, KPI tracking, and management reporting.
-- Data analysis: Python, Pandas, Plotly, SQL, data cleaning, and data validation.
-- Business workflows: performance tracking, stakeholder reporting, documentation workflows, governance-linked reporting, and decision-support workflows.
-- Education analytics: assessment analytics, learning-gap analysis, Bloom's taxonomy, LOTS-HOTS, LMS workflows, and school program dashboards.
-- Interface work: portfolio pages, landing pages, information structure, premium digital storefronts, and design/build support for founders, consultants, and small teams.
+- Business intelligence and dashboards: Power BI, DAX, Power Query, Tableau, Looker Studio, Excel, and Google Sheets.
+- Data analysis: SQL, Python, Pandas, NumPy, Plotly, Matplotlib, and Jupyter Notebook.
+- Business workflows: Power Automate, Airtable, Notion, Trello, Jira, Google Workspace, and Microsoft 365.
+- Databases and data handling: MySQL, PostgreSQL, SQL Server, Supabase, BigQuery, and CSV/Excel pipelines.
+- Web and product build: HTML, CSS, JavaScript, React, Tailwind CSS, Vercel, and GitHub.
 
 ## Education and foundation
 - M.Sc. Mathematics, Jadavpur University.
-- 6th-year diploma in classical fine arts.
+- 6th-year diploma in Fine Arts.
 
 ## Preferred opportunity locations
 Kolkata, Bengaluru, Hyderabad, Gurugram, Pune, Mumbai, and remote India.

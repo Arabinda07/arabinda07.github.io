@@ -1168,9 +1168,6 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
     margin-top: 0.45rem;
   }
 
-  .skills-section .skill-group:nth-child(even) {
-    margin-top: 0.85rem;
-  }
 }
 
 .project-card:hover {
@@ -1307,8 +1304,13 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
 
 .skills-section {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-lg);
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 0;
+  overflow: hidden;
+  background: color-mix(in oklch, var(--color-surface) 74%, transparent);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  box-shadow: var(--shadow-tight);
 }
 
 .target-stack {
@@ -1329,11 +1331,50 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
 }
 
 .skill-group {
-  padding: clamp(1.05rem, 2vw, 1.25rem);
+  position: relative;
+  grid-column: span 4;
+  display: flex;
+  flex-direction: column;
+  min-height: 10rem;
+  padding: clamp(1rem, 2vw, 1.35rem);
+  background: transparent;
+  border: 0;
+  border-top: 1px solid var(--color-border);
+  border-radius: 0;
   box-shadow: none;
+  box-shadow: none;
+  overflow: hidden;
+  transition: background var(--duration-base) ease, transform var(--duration-base) var(--ease);
+}
+
+.skill-group--primary {
+  grid-column: span 7;
+  min-height: 11rem;
+  background:
+    linear-gradient(135deg, color-mix(in oklch, var(--color-accent-tint) 58%, transparent), transparent 62%),
+    color-mix(in oklch, var(--color-surface) 72%, transparent);
+  border-top: 0;
+}
+
+.skill-group:nth-child(2) {
+  grid-column: span 5;
+  border-top: 0;
+  border-left: 1px solid var(--color-border);
+}
+
+.skill-group:nth-child(4),
+.skill-group:nth-child(5) {
+  border-left: 1px solid var(--color-border);
+}
+
+.skill-group:hover {
+  background: color-mix(in oklch, var(--color-surface-raised) 76%, var(--color-secondary-tint));
+  transform: translateY(-1px);
 }
 
 .skill-group-title {
+  position: relative;
+  z-index: 1;
   margin-bottom: 0.9rem;
   color: var(--color-text-primary);
   font-family: var(--font-display);
@@ -1341,16 +1382,26 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   letter-spacing: 0;
 }
 
+.skill-group--primary .skill-group-title {
+  font-size: clamp(1.08rem, 2vw, 1.28rem);
+}
+
+.skill-group .skill-tags {
+  position: relative;
+  z-index: 1;
+  margin-top: auto;
+}
+
 .certs-section,
 .seminars-section {
-  margin-top: var(--space-xl);
-  padding-top: var(--space-lg);
+  margin-top: clamp(1.5rem, 4vw, 2.25rem);
+  padding-top: clamp(1rem, 2vw, 1.25rem);
   border-top: 1px solid var(--color-border);
 }
 
 .cert-list {
   display: grid;
-  gap: 0.65rem;
+  gap: 0.55rem;
 }
 
 .cert-item {
@@ -1358,7 +1409,7 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   align-items: flex-start;
   gap: 0.75rem;
   color: var(--color-text-secondary);
-  font-size: 0.92rem;
+  font-size: 0.88rem;
 }
 
 .cert-item--link {
@@ -1504,8 +1555,10 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
 
 .contact-form-panel {
   width: 100%;
-  padding: clamp(1rem, 2.5vw, 1.35rem);
-  background: color-mix(in oklch, var(--color-surface-raised) 82%, transparent);
+  padding: clamp(1.05rem, 2.8vw, 1.55rem);
+  background:
+    linear-gradient(180deg, color-mix(in oklch, var(--color-surface-raised) 90%, transparent), transparent 72%),
+    color-mix(in oklch, var(--color-surface-raised) 84%, transparent);
   border: 1px solid var(--color-border);
   border-radius: 8px;
   box-shadow: var(--shadow-tight);
@@ -1543,6 +1596,65 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   font-size: 0.72rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+}
+
+.form-intent-group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.intent-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.62rem;
+}
+
+.intent-option {
+  position: relative;
+  display: grid;
+  min-height: 58px;
+  align-items: center;
+  padding: 0.82rem 0.88rem 0.82rem 2.72rem;
+  color: var(--color-text-secondary);
+  background: color-mix(in oklch, var(--color-surface) 92%, transparent);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.intent-option:hover {
+  color: var(--color-text-primary);
+  border-color: var(--color-border-strong);
+  transform: translateY(-1px);
+}
+
+.intent-option input {
+  position: absolute;
+  left: 0.86rem;
+  width: 1.05rem;
+  height: 1.05rem;
+  margin: 0;
+  accent-color: var(--color-accent);
+}
+
+.intent-option span {
+  font-size: 0.92rem;
+  line-height: 1.35;
+}
+
+.intent-option:has(input:checked) {
+  color: var(--color-text-primary);
+  background:
+    linear-gradient(90deg, color-mix(in oklch, var(--color-accent-tint) 70%, transparent), transparent 58%),
+    color-mix(in oklch, var(--color-secondary-tint) 62%, var(--color-surface));
+  border-color: var(--color-accent);
+}
+
+.intent-option:has(input:focus-visible) {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
 }
 
 .form-input {
@@ -2124,9 +2236,33 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   .focus-grid,
   .skills-section,
   .projects-grid,
-  .form-row {
+  .form-row,
+  .intent-options {
     grid-template-columns: 1fr;
     gap: var(--space-md);
+  }
+
+  .skills-section {
+    display: grid;
+    gap: 0;
+  }
+
+  .skills-section .skill-group,
+  .skills-section .skill-group:nth-child(2),
+  .skill-group--primary {
+    grid-column: auto;
+    min-height: 0;
+  }
+
+  .skills-section .skill-group,
+  .skills-section .skill-group:nth-child(2),
+  .skills-section .skill-group:nth-child(4),
+  .skills-section .skill-group:nth-child(5) {
+    border-left: 0;
+  }
+
+  .skills-section .skill-group:first-child {
+    border-top: 0;
   }
 
   .focus-card,
@@ -2189,6 +2325,10 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
 
   .contact-form-panel {
     box-shadow: none;
+  }
+
+  .intent-option {
+    min-height: 64px;
   }
 
   .form-footer {
@@ -2278,6 +2418,25 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   .skill-group,
   .focus-card {
     padding: 1rem;
+  }
+
+  .skill-group {
+    min-height: 0;
+    padding: 1rem;
+  }
+
+  .certs-section,
+  .seminars-section {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+  }
+
+  .cert-list {
+    gap: 0.5rem;
+  }
+
+  .cert-item {
+    font-size: 0.84rem;
   }
 
   .contact-body {

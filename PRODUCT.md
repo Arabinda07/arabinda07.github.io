@@ -1,22 +1,22 @@
 ---
 name: Arabinda Saha Portfolio
 register: brand
-description: Portfolio for business intelligence, data analysis, dashboard systems, education analytics, and selected interface work.
+description: Portfolio for business intelligence consulting, dashboard systems, education analytics, analytics workflows, and selected web work.
 ---
 
 # Product Context: Arabinda Saha Portfolio
 
 ## Users
 
-This site is for recruiters, hiring managers, founders, GCC teams, institutional teams, and collaborators who need to understand Arabinda Saha's business intelligence, data analysis, dashboard, reporting, education program, and interface-clarity work quickly.
+This site is for recruiters, hiring managers, founders, GCC teams, institutional teams, and collaborators who need to understand Arabinda Saha's business intelligence consulting, dashboard, education program, and web/product work quickly.
 
 They are usually scanning for proof of judgment: what kind of work he does, what tools and contexts he knows, what outcomes he can support, and whether the portfolio feels credible enough to start a conversation.
 
 ## Product Purpose
 
-The portfolio should position Arabinda as a Business Intelligence and Data Analyst who turns scattered program, business, assessment, and operational data into dashboards, reporting systems, trackers, and decision-support workflows.
+The portfolio should position Arabinda as a Business Intelligence and Interface Architect who turns scattered program, business, assessment, and operational data into dashboards, analytics workflows, trackers, and useful web products.
 
-The site should make the work legible without exposing confidential employer details, overstating prototype status, or implying unverified tool ownership. It should invite a practical conversation around a real operating dashboard, data set, workflow, program, or page problem.
+The site should make the work legible without exposing confidential employer details or overstating prototype status. It may include market-relevant tools beyond public case studies, as long as the site does not claim those tools were used in employer work without evidence.
 
 ## Brand Personality
 
@@ -40,7 +40,7 @@ Light and dark themes should both preserve readability, calm, and contrast. Mobi
 
 Avoid generic analyst-course portfolios, inflated agency language, fake metrics, fake screenshots, stock team imagery, neon tech gradients, glassy SaaS surfaces, needy call-to-action language, and decorative dashboard motifs that do not clarify the work.
 
-Do not present prototype work as deployed or shift the site into a pure product management, teaching, or service-sales website. Keep BI/Data Analyst positioning primary and avoid implying unverified employer metrics or confidential internal details.
+Do not present prototype work as deployed or shift the site into a pure product management, teaching, or service-sales website. Keep business intelligence consulting and interface architecture primary, and avoid implying unverified employer metrics or confidential internal details.
 
 ## Accessibility Expectations
 
@@ -48,7 +48,7 @@ The site should target WCAG AA readability for normal text, visible keyboard foc
 
 ## Design Principles
 
-- Lead with concrete work nouns: business intelligence, data analysis, dashboards, reporting systems, trackers, assessment analytics, decision-support workflows, program health, evidence, and pages.
+- Lead with concrete work nouns: business intelligence, consulting, dashboards, analytics workflows, trackers, assessment analytics, web products, program health, evidence, and pages.
 - Use color to clarify hierarchy and state, not as decoration.
 - Keep mono labels short and useful; do not use mono as a costume for technical credibility.
 - Preserve confidentiality boundaries around employer work.
