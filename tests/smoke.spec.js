@@ -183,6 +183,44 @@ test('standalone navigation affordances meet target size', async ({ page }) => {
   expect(Math.min(sideRailEmail.width, sideRailEmail.height)).toBeGreaterThanOrEqual(44);
 });
 
+test('philosophy block and left panel use editorial spacing contracts', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 980 });
+  await page.goto(pageUrl);
+  await page.waitForFunction(() => !document.body.classList.contains('is-loading'));
+  await page.locator('#about').scrollIntoViewIfNeeded();
+
+  const focusCardStyle = await page.locator('.focus-card').first().evaluate((element) => {
+    const style = window.getComputedStyle(element);
+    const paragraph = element.querySelector('p');
+    return {
+      backgroundColor: style.backgroundColor,
+      borderLeftWidth: Number.parseFloat(style.borderLeftWidth),
+      borderBottomWidth: Number.parseFloat(style.borderBottomWidth),
+      paragraphWidth: paragraph.getBoundingClientRect().width,
+    };
+  });
+
+  expect(focusCardStyle.backgroundColor).toMatch(/rgba\(0,\s*0,\s*0,\s*0\)|transparent/);
+  expect(focusCardStyle.borderLeftWidth).toBe(0);
+  expect(focusCardStyle.borderBottomWidth).toBeGreaterThanOrEqual(1);
+  expect(focusCardStyle.paragraphWidth).toBeGreaterThanOrEqual(340);
+
+  await page.locator('#work').scrollIntoViewIfNeeded();
+  const navLineWidths = await page.locator('.left-panel .nav-line').evaluateAll((lines) =>
+    lines.map((line) => line.getBoundingClientRect().width)
+  );
+  expect(Math.max(...navLineWidths)).toBeLessThanOrEqual(46);
+
+  const desktopSocialTargets = await page.locator('.left-panel .lp-social-row a, .left-panel .lp-social-row button').evaluateAll((items) =>
+    items.map((item) => {
+      const rect = item.getBoundingClientRect();
+      return { width: rect.width, height: rect.height };
+    })
+  );
+  expect(desktopSocialTargets.length).toBeGreaterThanOrEqual(4);
+  expect(desktopSocialTargets.every((size) => size.width >= 44 && size.height >= 44)).toBeTruthy();
+});
+
 test('desktop active navigation exposes aria-current', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 980 });
   await page.goto(pageUrl);
@@ -418,6 +456,8 @@ test('work section prioritizes analytics proof and keeps web showcases distinct'
   await expect(page.locator('#creative-track + .projects-grid')).toContainText('Active prototype · synthetic data');
   await expect(page.locator('#creative-track + .projects-grid')).toContainText('Focused workspace · live web app');
   await expect(page.locator('#creative-track + .projects-grid')).toContainText('Storefront · story-led page');
+  await expect(page.locator('img[alt="Arabinda Saha"][loading="eager"]')).toHaveCount(1);
+  await expect(page.locator('img[alt="Arabinda Saha"][fetchpriority="high"]')).toHaveCount(1);
   await expect(page.locator('.featured-project .fp-image-placeholder')).toHaveCount(0);
   expect(visibleText).not.toContain('reducing cloud infrastructure compute overhead by an estimated 20%');
   expect(visibleText).not.toContain('Eliminated reporting discrepancies across business units');
@@ -512,6 +552,27 @@ test('visible contact copy keeps the conversation router direct', async ({ page 
   expect(visibleText).not.toContain('[cite: 1]');
   expect(visibleText).not.toContain('classical fine arts');
   expect(visibleText).not.toContain('Eliminated reporting discrepancies across business units');
+});
+
+test('contact polish keeps dark-mode selectors and compact mobile density', async ({ page }) => {
+  const css = fs.readFileSync(path.join(rootDir, 'styles.css'), 'utf8');
+  expect(css).toContain('html[data-theme="dark"] .contact-form-panel');
+  expect(css).toContain('html[data-theme="dark"] .contact-form-intro');
+  expect(css).toContain('html[data-theme="dark"] .form-input');
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto(pageUrl);
+  await page.locator('#contact').scrollIntoViewIfNeeded();
+
+  const intentMinHeight = await page.locator('.intent-option').first().evaluate((element) =>
+    Number.parseFloat(window.getComputedStyle(element).minHeight)
+  );
+  const textareaMinHeight = await page.locator('.form-textarea').evaluate((element) =>
+    Number.parseFloat(window.getComputedStyle(element).minHeight)
+  );
+
+  expect(intentMinHeight).toBeLessThanOrEqual(54);
+  expect(textareaMinHeight).toBeLessThanOrEqual(104);
 });
 
 test('capabilities section is tool first and market aligned', async ({ page }) => {
@@ -774,6 +835,31 @@ test('planned web assets and SEO files exist', async () => {
   for (const [file, [width, height]] of Object.entries(expectedDimensions)) {
     expect(readPngSize(path.join(rootDir, file))).toEqual({ width, height });
   }
+});
+
+test('published work assets only include optimized webp images', async () => {
+  const workRoot = path.join(rootDir, 'assets', 'work photos');
+  const files = [];
+
+  function collectFiles(directory) {
+    for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+      const fullPath = path.join(directory, entry.name);
+      if (entry.isDirectory()) {
+        collectFiles(fullPath);
+      } else {
+        files.push(fullPath);
+      }
+    }
+  }
+
+  collectFiles(workRoot);
+  expect(files.length).toBeGreaterThan(0);
+
+  const unoptimizedFiles = files
+    .filter((file) => !file.includes(`${path.sep}optimized${path.sep}`) || path.extname(file).toLowerCase() !== '.webp')
+    .map((file) => path.relative(rootDir, file));
+
+  expect(unoptimizedFiles).toEqual([]);
 });
 
 test('AI-readable and sitemap files match current SEO positioning', async () => {
