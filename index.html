@@ -327,25 +327,29 @@
 
         <!-- Bottom: socials -->
         <div class="lp-socials fade-up" style="--delay:650ms">
-          <!-- GitHub -->
-          <a href="https://github.com/Arabinda07" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-icon">
-            <svg class="ph-icon" aria-hidden="true"><use href="#ph-github-logo"></use></svg>
-          </a>
-          <!-- LinkedIn -->
-          <a href="https://www.linkedin.com/in/robin0607saha" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-icon">
-            <svg class="ph-icon" aria-hidden="true"><use href="#ph-linkedin-logo"></use></svg>
-          </a>
-          <!-- Email -->
-          <a href="mailto:robinsaha434@gmail.com" data-email="robinsaha434" data-domain="gmail.com" aria-label="Email" class="social-icon email-link">
-            <svg class="ph-icon" aria-hidden="true"><use href="#ph-envelope-simple"></use></svg>
-          </a>
-          <button type="button" class="theme-toggle theme-toggle--panel" data-theme-toggle role="switch" aria-checked="false" aria-label="Switch to dark mode">
-            <svg class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true"><use href="#ph-sun"></use></svg>
-            <svg class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true"><use href="#ph-moon"></use></svg>
-          </button>
+          <div class="lp-social-row" aria-label="Social links and theme">
+            <!-- GitHub -->
+            <a href="https://github.com/Arabinda07" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-icon">
+              <svg class="ph-icon" aria-hidden="true"><use href="#ph-github-logo"></use></svg>
+            </a>
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/in/robin0607saha" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-icon">
+              <svg class="ph-icon" aria-hidden="true"><use href="#ph-linkedin-logo"></use></svg>
+            </a>
+            <!-- Email -->
+            <a href="mailto:robinsaha434@gmail.com" data-email="robinsaha434" data-domain="gmail.com" aria-label="Email" class="social-icon email-link">
+              <svg class="ph-icon" aria-hidden="true"><use href="#ph-envelope-simple"></use></svg>
+            </a>
+            <button type="button" class="theme-toggle theme-toggle--panel" data-theme-toggle role="switch" aria-checked="false" aria-label="Switch to dark mode">
+              <svg class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true"><use href="#ph-sun"></use></svg>
+              <svg class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true"><use href="#ph-moon"></use></svg>
+            </button>
+          </div>
 
-          <a href="#contact" class="btn-primary">Start a conversation</a>
-          <a href="assets/resume.pdf" download="Arabinda_Saha_Resume.pdf" target="_blank" rel="noopener noreferrer" class="lp-resume-btn">Download Resume <span aria-hidden="true">↗</span></a>
+          <div class="lp-action-row">
+            <a href="#contact" class="btn-primary">Start a conversation</a>
+            <a href="assets/resume.pdf" download="Arabinda_Saha_Resume.pdf" target="_blank" rel="noopener noreferrer" class="lp-resume-btn">Download Resume <span aria-hidden="true">↗</span></a>
+          </div>
         </div>
 
       </div>
@@ -387,7 +391,7 @@
             />
           </div>
         </div>
-        <p class="section-intro">I work across business intelligence, operational analytics, and web/product builds.</p>
+        <p class="section-intro about-intro">I work across business intelligence, operational analytics, and web/product builds.</p>
 
         <div class="about-grid">
           <div class="about-text">
@@ -408,8 +412,7 @@
                 width="300"
                 height="300"
                 sizes="(min-width: 1081px) 380px, 320px"
-                loading="eager"
-                fetchpriority="high"
+                loading="lazy"
                 decoding="async"
               />
             </div>
@@ -504,74 +507,12 @@
         <h3 class="other-projects-heading" id="systems-track">Business Intelligence &amp; Analytics</h3>
         <div class="featured-projects">
 
-          <div class="featured-project">
-            <div class="fp-image">
-              <div class="proof-artifact proof-artifact--operations" aria-label="Sanitized regional program tracking artifact">
-                <div class="artifact-bar">
-                  <span>Diagnostic assessment analytics</span>
-                  <span>CBSE Sahodaya 2024</span>
-                </div>
-                <div class="artifact-grid artifact-grid--metrics">
-                  <span><strong>~1,000 </strong><small>students</small></span>
-                  <span><strong>~10 </strong><small>schools</small></span>
-                  <span><strong>CBSE </strong><small>Sahodaya</small></span>
-                  <span><strong>2024 </strong><small>case study</small></span>
-                </div>
-                <div class="artifact-table" aria-hidden="true">
-                  <span></span><span></span><span></span><span></span>
-                  <span></span><span></span><span></span><span></span>
-                  <span></span><span></span><span></span><span></span>
-                </div>
-                <p>Bloom's taxonomy · LOTS-HOTS · school analytics</p>
-              </div>
-            </div>
-            <div class="fp-content">
-              <p class="fp-overline">Multidimensional Data Modeling · Assessment Analytics · School Analytics</p>
-              <h3 class="fp-title">Competitive Edge — Diagnostic Assessment Analytics</h3>
-              <div class="fp-desc-box">
-                <p><strong>Problem:</strong> Schools needed a clearer way to understand student performance beyond marks.</p>
-                <p><strong>Work:</strong> Designed a diagnostic assessment framework using Bloom's taxonomy and LOTS-HOTS classification to analyze performance by class, topic, and cognitive level.</p>
-                <p><strong>Result:</strong> Scaled across ~1,000 students and ~10 schools, supporting learning-gap identification, remediation planning, and school-level academic feedback.</p>
-                <p class="fp-note">Case-study visibility through CBSE Sahodaya 2024.</p>
-              </div>
-              <ul class="fp-tech">
-                <li>~1,000 Students</li>
-                <li>~10 Schools</li>
-                <li>Bloom's Taxonomy</li>
-                <li>LOTS-HOTS</li>
-                <li>Learning-gap Analysis</li>
-                <li>CBSE Sahodaya 2024</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="featured-project fp-reverse">
-            <div class="fp-image">
-              <div class="proof-artifact proof-artifact--leadership" aria-label="Sanitized leadership dashboard artifact">
-                <div class="artifact-bar">
-                  <span>Leadership review dashboard</span>
-                  <span>Functional structure shown</span>
-                </div>
-                <div class="artifact-split">
-                  <div class="artifact-panel">
-                    <span>Matter/case view</span>
-                    <i></i><i></i><i></i>
-                  </div>
-                  <div class="artifact-panel">
-                    <span>Review logic</span>
-                    <i></i><i></i><i></i>
-                  </div>
-                </div>
-                <div class="artifact-line" aria-hidden="true"></div>
-                <p>Performance indicators · metric logic · leadership review</p>
-              </div>
-            </div>
+          <div class="featured-project featured-project--text-only">
             <div class="fp-content">
               <p class="fp-overline">Internal Dashboards · Performance Dashboards · Leadership Views</p>
               <h3 class="fp-title">LKS Internal Performance Dashboard Work</h3>
               <div class="fp-desc-box">
-                <p><strong>Problem:</strong> Internal performance, revenue, and matter/case data need clearer dashboard views and consistent metric logic.</p>
-                <p><strong>Work:</strong> Building dashboard views for matter/case performance, revenue indicators, lawyer-level performance tracking, and leadership review.</p>
+                <p>Building dashboard views for matter/case performance, revenue indicators, lawyer-level performance tracking, and leadership review.</p>
                 <p><strong>Tools:</strong> Work uses Python, Pandas, Plotly, Excel, Google Sheets, and Power BI.</p>
                 <p class="fp-note">Functional view only; internal data protected.</p>
               </div>
@@ -588,31 +529,71 @@
 
           <div class="featured-project">
             <div class="fp-image">
-              <div class="proof-artifact proof-artifact--career" aria-label="Sanitized career assessment workflow artifact">
-                <div class="artifact-bar">
-                  <span>Career assessment workflow</span>
-                  <span>School pilot</span>
+              <div class="work-media work-media--featured" data-gallery aria-label="Competitive Edge assessment program photos">
+                <div class="work-media__track">
+                  <figure class="work-media__slide is-active">
+                    <img src="assets/work%20photos/optimized/competitive-edge/01-competitive-edge-dbsk-june.webp" alt="Competitive Edge diagnostic assessment presentation" loading="lazy" decoding="async" />
+                  </figure>
+                  <figure class="work-media__slide">
+                    <img src="assets/work%20photos/optimized/competitive-edge/02-grade-11a-4.webp" alt="Students participating in Competitive Edge assessment work" loading="lazy" decoding="async" />
+                  </figure>
+                  <figure class="work-media__slide">
+                    <img src="assets/work%20photos/optimized/competitive-edge/03-grade-6a.webp" alt="Classroom assessment session for Competitive Edge" loading="lazy" decoding="async" />
+                  </figure>
                 </div>
-                <div class="artifact-flow" aria-hidden="true">
-                  <span>Input</span>
-                  <span>Scoring</span>
-                  <span>Summary</span>
+                <div class="work-media__controls" aria-label="Competitive Edge photo controls">
+                  <button type="button" class="work-media__arrow" data-gallery-prev aria-label="Previous Competitive Edge photo">‹</button>
+                  <span class="work-media__count" data-gallery-status aria-live="polite">1 / 3</span>
+                  <button type="button" class="work-media__arrow" data-gallery-next aria-label="Next Competitive Edge photo">›</button>
                 </div>
-                <div class="artifact-grid artifact-grid--career">
-                  <span><strong>500+ </strong><small>students</small></span>
-                  <span><strong>9-12 </strong><small>classes</small></span>
-                  <span><strong>KV </strong><small>Kharagpur</small></span>
+              </div>
+            </div>
+            <div class="fp-content">
+              <p class="fp-overline">Multidimensional Data Modeling · Assessment Analytics · School Analytics</p>
+              <h3 class="fp-title">Competitive Edge — Diagnostic Assessment Analytics</h3>
+              <div class="fp-desc-box">
+                <p>Designed a diagnostic assessment framework using Bloom's taxonomy and LOTS-HOTS classification to make student performance easier to compare by class, topic, and cognitive level.</p>
+                <p>Scaled across ~1,000 students and ~10 schools, supporting learning-gap identification, remediation planning, and school-level academic feedback.</p>
+                <p class="fp-note">Case-study visibility through CBSE Sahodaya 2024.</p>
+              </div>
+              <ul class="fp-tech">
+                <li>~1,000 Students</li>
+                <li>~10 Schools</li>
+                <li>Bloom's Taxonomy</li>
+                <li>LOTS-HOTS</li>
+                <li>Learning-gap Analysis</li>
+                <li>CBSE Sahodaya 2024</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="featured-project">
+            <div class="fp-image">
+              <div class="work-media work-media--featured" data-gallery aria-label="Career assessment pilot photos">
+                <div class="work-media__track">
+                  <figure class="work-media__slide is-active">
+                    <img src="assets/work%20photos/optimized/career-assessment/01-img-20250917-wa0023.webp" alt="Career assessment pilot session with students" loading="lazy" decoding="async" />
+                  </figure>
+                  <figure class="work-media__slide">
+                    <img src="assets/work%20photos/optimized/career-assessment/02-img-20250917-wa0025.webp" alt="Students during career assessment workflow pilot" loading="lazy" decoding="async" />
+                  </figure>
+                  <figure class="work-media__slide">
+                    <img src="assets/work%20photos/optimized/career-assessment/03-img-20250917-wa0026.webp" alt="Career assessment guidance activity in school" loading="lazy" decoding="async" />
+                  </figure>
                 </div>
-                <p>Student interests · school summaries · guidance conversations</p>
+                <div class="work-media__controls" aria-label="Career assessment photo controls">
+                  <button type="button" class="work-media__arrow" data-gallery-prev aria-label="Previous career assessment photo">‹</button>
+                  <span class="work-media__count" data-gallery-status aria-live="polite">1 / 3</span>
+                  <button type="button" class="work-media__arrow" data-gallery-next aria-label="Next career assessment photo">›</button>
+                </div>
               </div>
             </div>
             <div class="fp-content">
               <p class="fp-overline">Student Assessment · Career Guidance · School Views</p>
               <h3 class="fp-title">Career Assessment Tool</h3>
               <div class="fp-desc-box">
-                <p><strong>Problem:</strong> Schools needed a structured way to run and discuss career assessment for senior students.</p>
-                <p><strong>Work:</strong> Designed and piloted a career assessment workflow for Classes 9-12.</p>
-                <p><strong>Result:</strong> Piloted with 500+ students at KV Kharagpur, supporting student-interest summaries and school-level guidance conversations.</p>
+                <p>Designed and piloted a structured career assessment workflow for Classes 9-12, turning student-interest data into school-level guidance conversations.</p>
+                <p>Piloted with 500+ students at KV Kharagpur.</p>
                 <p class="fp-note">Built to make student-interest data easier for schools to discuss.</p>
               </div>
               <ul class="fp-tech">
@@ -629,49 +610,83 @@
         <div class="projects-grid projects-grid--wide">
 
           <div class="project-card fade-up">
-            <div class="project-media project-media--assessment" aria-hidden="true"><span></span></div>
+            <div class="work-media work-media--card" data-gallery aria-label="Stellar Space Quiz event photos">
+              <div class="work-media__track">
+                <figure class="work-media__slide is-active">
+                  <img src="assets/work%20photos/optimized/stellar-space-quiz/01-img-5139.webp" alt="Stellar Space Quiz event audience and stage" loading="lazy" decoding="async" />
+                </figure>
+                <figure class="work-media__slide">
+                  <img src="assets/work%20photos/optimized/stellar-space-quiz/02-p1000676.webp" alt="Stellar Space Quiz finals venue activity" loading="lazy" decoding="async" />
+                </figure>
+              </div>
+              <div class="work-media__controls" aria-label="Stellar Space Quiz photo controls">
+                <button type="button" class="work-media__arrow" data-gallery-prev aria-label="Previous Stellar Space Quiz photo">‹</button>
+                <span class="work-media__count" data-gallery-status aria-live="polite">1 / 2</span>
+                <button type="button" class="work-media__arrow" data-gallery-next aria-label="Next Stellar Space Quiz photo">›</button>
+              </div>
+            </div>
             <h3 class="project-title">Stellar Space Quiz</h3>
             <p class="project-tag">Program Operations · Participation Tracking · Academic Events</p>
-            <p class="project-desc"><strong>Problem:</strong> Academic events often struggle to scale beyond local participation. <strong>Work:</strong> Helped build and scale an ISRO merchandise-partnered National Space Day quiz through structure, outreach, coordination, and execution. <strong>Result:</strong> Reached 600+ schools across 6 states, with finals at Gyan Manch, Kolkata and IIT Kharagpur Research Park.</p>
+            <p class="project-desc">Helped build and scale an ISRO merchandise-partnered National Space Day quiz through structure, outreach, coordination, and execution across 600+ schools.</p>
             <ul class="project-tech"><li>600+ Schools</li><li>6 States</li><li>ISRO Merchandise Partner</li><li>Gyan Manch Finals</li><li>IIT Kharagpur Research Park</li></ul>
           </div>
 
           <div class="project-card fade-up">
-            <div class="project-media project-media--program" aria-hidden="true"><span></span></div>
+            <div class="work-media work-media--card" data-gallery aria-label="School programs and STEM photos">
+              <div class="work-media__track">
+                <figure class="work-media__slide is-active">
+                  <img src="assets/work%20photos/optimized/school-programs-stem/01-img20251121094430.webp" alt="School program classroom activity" loading="lazy" decoding="async" />
+                </figure>
+                <figure class="work-media__slide">
+                  <img src="assets/work%20photos/optimized/school-programs-stem/02-pxl-20251121-054916649.webp" alt="STEM and school program learning session" loading="lazy" decoding="async" />
+                </figure>
+                <figure class="work-media__slide">
+                  <img src="assets/work%20photos/optimized/school-programs-stem/03-pxl-20251121-062730569-raw-01-cover.webp" alt="Students taking part in school program work" loading="lazy" decoding="async" />
+                </figure>
+                <figure class="work-media__slide">
+                  <img src="assets/work%20photos/optimized/school-programs-stem/04-worksheet-distribution-and-quiz-class-for-class-10-a-1.webp" alt="Worksheet distribution and quiz class activity" loading="lazy" decoding="async" />
+                </figure>
+              </div>
+              <div class="work-media__controls" aria-label="School programs photo controls">
+                <button type="button" class="work-media__arrow" data-gallery-prev aria-label="Previous school programs photo">‹</button>
+                <span class="work-media__count" data-gallery-status aria-live="polite">1 / 4</span>
+                <button type="button" class="work-media__arrow" data-gallery-next aria-label="Next school programs photo">›</button>
+              </div>
+            </div>
             <h3 class="project-title">School Programs, STEM &amp; LMS Work</h3>
             <p class="project-tag">Program Systems · LMS Workflows · STEM Education</p>
-            <p class="project-desc"><strong>Problem:</strong> School programs needed structured delivery, documentation, and visibility across multiple stakeholders. <strong>Work:</strong> Managed PM SHRI, LMS, STEM, robotics, classroom-learning, and documentation workflows across partner schools. <strong>Result:</strong> Supported program delivery across 5+ schools, 1,500+ students, and 60+ teachers.</p>
+            <p class="project-desc">Managed PM SHRI, LMS, STEM, robotics, classroom-learning, and documentation workflows across partner schools with clearer delivery structure.</p>
             <ul class="project-tech"><li>5+ Partner Schools</li><li>1,500+ Students</li><li>60+ Teachers</li><li>LMS Workflows</li><li>STEM / Robotics</li></ul>
           </div>
 
         </div>
 
         <h3 class="other-projects-heading" id="creative-track">Web &amp; Product Showcases</h3>
-        <div class="projects-grid">
+        <div class="projects-grid projects-grid--showcases">
 
-          <div class="project-card fade-up">
-            <div class="project-media project-media--governance" aria-hidden="true"><span></span></div>
+          <div class="project-card project-card--text-only fade-up">
+            <p class="project-status">Active prototype · synthetic data</p>
             <h3 class="project-title">School Program Command Centre — Active Prototype</h3>
             <p class="project-tag">Web Product · Active Prototype · Education BI</p>
-            <p class="project-desc"><strong>Problem:</strong> School-program evidence, ownership, and health indicators can become scattered across tools. <strong>Work:</strong> Built a dashboard-led prototype for program tracking, assessment summaries, documentation, and teacher ownership. <strong>Status:</strong> Uses synthetic/sample school-program data and has not yet been piloted.</p>
+            <p class="project-desc">Built a dashboard-led prototype for program tracking, assessment summaries, documentation, and teacher ownership using synthetic/sample school-program data and has not yet been piloted.</p>
             <ul class="project-tech"><li>Synthetic Data</li><li>React</li><li>Node.js</li><li>Program Health Views</li><li>Not Yet Piloted</li></ul>
             <a href="https://project-t2dax.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-link">View project <span aria-hidden="true">↗</span></a>
           </div>
 
-          <div class="project-card fade-up">
-            <div class="project-media project-media--assessment" aria-hidden="true"><span></span></div>
+          <div class="project-card project-card--text-only fade-up">
+            <p class="project-status">Focused workspace · live web app</p>
             <h3 class="project-title">Reflections: Focused Workspace</h3>
             <p class="project-tag">Web Product · Creative Workspace · Focused Web App</p>
-            <p class="project-desc"><strong>Problem:</strong> Writing and reflection tools can feel noisy when the goal is sustained focus. <strong>Work:</strong> Shaped a calm storytelling workspace with precise hierarchy, atmospheric texture, Supabase-backed structure, and focus-oriented audio. <strong>Status:</strong> Deployed as a focused web product.</p>
+            <p class="project-desc">Shaped a calm storytelling workspace with precise hierarchy, atmospheric texture, Supabase-backed structure, and focus-oriented audio.</p>
             <ul class="project-tech"><li>React</li><li>Tailwind CSS</li><li>Supabase</li><li>Web Audio API</li></ul>
             <a href="https://www.reflections-sanctuary.space/" target="_blank" rel="noopener noreferrer" class="project-link">Open project <span aria-hidden="true">↗</span></a>
           </div>
 
-          <div class="project-card fade-up">
-            <div class="project-media project-media--program" aria-hidden="true"><span></span></div>
+          <div class="project-card project-card--text-only fade-up">
+            <p class="project-status">Storefront · story-led page</p>
             <h3 class="project-title">Parichay: Story-driven Brand Storefront</h3>
             <p class="project-tag">Web Product · Personal Brand · Conversion Page</p>
-            <p class="project-desc"><strong>Problem:</strong> Personal-brand pages often lose the story before the visitor reaches the CTA. <strong>Work:</strong> Built a narrative-led storefront with fast loading, clean reading hierarchy, and direct action pathways. <strong>Status:</strong> Deployed as a story-driven brand page.</p>
+            <p class="project-desc">Built a narrative-led storefront with fast loading, clean reading hierarchy, and direct action pathways for a personal-brand offer.</p>
             <ul class="project-tech"><li>Vercel Deployment</li><li>Frontend Engineering</li><li>Performance Optimization</li><li>CTA Pathways</li></ul>
             <a href="https://parichay-your-story.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-link">Visit project <span aria-hidden="true">↗</span></a>
           </div>
@@ -818,7 +833,10 @@
       <section class="section contact-section fade-up" id="contact">
         <h2 class="section-heading"><span class="section-num">05.</span> Contact</h2>
         <div class="contact-form-panel">
-          <h3 class="contact-form-title">Let's talk about the problem</h3>
+          <div class="contact-form-head">
+            <h3 class="contact-form-title">Let's talk about the problem</h3>
+            <p class="contact-form-intro">One clear note is enough: what you are trying to understand, build, or improve.</p>
+          </div>
           <!-- EmailJS contact form -->
           <form id="contact-form" class="contact-form" novalidate>
             <div class="form-row">
@@ -1011,6 +1029,40 @@
       }
 
       revealPage();
+
+      function initWorkGalleries() {
+        document.querySelectorAll('[data-gallery]').forEach(function (gallery) {
+          const slides = Array.from(gallery.querySelectorAll('.work-media__slide'));
+          const previous = gallery.querySelector('[data-gallery-prev]');
+          const next = gallery.querySelector('[data-gallery-next]');
+          const status = gallery.querySelector('[data-gallery-status]');
+          if (slides.length < 2 || !previous || !next || !status) return;
+
+          let activeIndex = Math.max(0, slides.findIndex(function (slide) {
+            return slide.classList.contains('is-active');
+          }));
+
+          function showSlide(index) {
+            activeIndex = (index + slides.length) % slides.length;
+            slides.forEach(function (slide, slideIndex) {
+              slide.classList.toggle('is-active', slideIndex === activeIndex);
+            });
+            status.textContent = (activeIndex + 1) + ' / ' + slides.length;
+          }
+
+          previous.addEventListener('click', function () {
+            showSlide(activeIndex - 1);
+          });
+
+          next.addEventListener('click', function () {
+            showSlide(activeIndex + 1);
+          });
+
+          showSlide(activeIndex);
+        });
+      }
+
+      initWorkGalleries();
 
       // ── Tab switching ──
       function moveTabIndicator(btn) {

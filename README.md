@@ -104,17 +104,14 @@ To use your own EmailJS account, replace those three values with your own from t
 
 ## Local Development
 
-No install required. Open directly in a browser:
+Install dependencies once, then start the Vite static server:
 
 ```bash
-# Option 1 — open the file directly
-open index.html
-
-# Option 2 — serve locally (avoids any asset path quirks)
-npx serve .
-# or
-python3 -m http.server 8000
+npm install
+npm run dev
 ```
+
+Vite serves the site at `http://127.0.0.1:5173/`. The site remains plain HTML and CSS; Vite is only used for local hosting.
 
 Note: EmailJS requires an active internet connection to send messages. Form validation runs entirely client-side.
 

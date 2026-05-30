@@ -285,6 +285,10 @@ test('hero copy supports consultant and interface architect positioning without 
   const corePromise = 'I build business intelligence systems, dashboard workflows, and clean web products for teams that need clearer decisions.';
   await expect(page.locator('.lp-bio')).toHaveText(corePromise);
   await expect(page.locator('.left-panel')).toContainText('Start a conversation');
+  await expect(page.locator('.left-panel .lp-social-row')).toHaveCount(1);
+  await expect(page.locator('.left-panel .lp-action-row')).toHaveCount(1);
+  await expect(page.locator('.left-panel .lp-action-row .btn-primary')).toContainText('Start a conversation');
+  await expect(page.locator('.left-panel .lp-action-row .lp-resume-btn')).toContainText('Download Resume');
   await expect(page.locator('.left-panel')).not.toContainText('Discuss BI Roles');
   let visibleText = await page.locator('body').innerText();
   expect(visibleText).not.toContain('Arabinda Saha.');
@@ -309,6 +313,15 @@ test('hero copy supports consultant and interface architect positioning without 
   expect(visibleText).not.toContain('Target Product Ops Stack');
   expect(visibleText).not.toContain('Product Operations & Data Consultant');
   expect(visibleText).not.toContain('BI & Data Consultant');
+  const firstFoldArtifacts = await page.evaluate(() =>
+    Array.from(document.querySelectorAll('.proof-artifact, .work-media, .project-media'))
+      .filter((node) => {
+        const rect = node.getBoundingClientRect();
+        return rect.width > 0 && rect.height > 0 && rect.top < window.innerHeight;
+      })
+      .map((node) => node.className)
+  );
+  expect(firstFoldArtifacts).toEqual([]);
 
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(pageUrl);
@@ -382,15 +395,29 @@ test('work section prioritizes analytics proof and keeps web showcases distinct'
   expect(visibleText).not.toContain('Amplitude');
   expect(visibleText).not.toContain('Mixpanel');
   expect(visibleText).not.toContain('Snowflake SQL');
-  await expect(page.locator('.proof-artifact--operations')).toContainText('Diagnostic assessment analytics');
-  await expect(page.locator('.proof-artifact--operations')).toContainText('CBSE Sahodaya 2024');
-  await expect(page.locator('.proof-artifact--operations')).toContainText('~1,000 students');
-  await expect(page.locator('.proof-artifact--operations')).toContainText('~10 schools');
-  await expect(page.locator('.proof-artifact--operations')).not.toContainText('1,500+ students');
-  await expect(page.locator('.proof-artifact--leadership')).toContainText('Leadership review dashboard');
-  await expect(page.locator('.proof-artifact--leadership')).toContainText('Functional structure shown');
-  await expect(page.locator('.proof-artifact--career')).toContainText('Career assessment workflow');
-  await expect(page.locator('.proof-artifact--career')).toContainText('500+ students');
+  await expect(page.locator('.work-media[aria-label="Competitive Edge assessment program photos"] img')).toHaveCount(3);
+  await expect(page.locator('.work-media[aria-label="Career assessment pilot photos"] img')).toHaveCount(3);
+  await expect(page.locator('.work-media[aria-label="Stellar Space Quiz event photos"] [data-gallery-next]')).toHaveCount(1);
+  await expect(page.locator('.work-media[aria-label="School programs and STEM photos"] [data-gallery-prev]')).toHaveCount(1);
+  const galleryArrowSizes = await page.locator('.work-media__arrow').evaluateAll((buttons) =>
+    buttons.map((button) => {
+      const rect = button.getBoundingClientRect();
+      return { width: rect.width, height: rect.height };
+    })
+  );
+  expect(galleryArrowSizes.every((size) => size.width >= 44 && size.height >= 44)).toBeTruthy();
+  await expect(page.locator('.featured-project--text-only .fp-title')).toContainText('LKS Internal Performance Dashboard Work');
+  await expect(page.locator('.featured-project--text-only .fp-image')).toHaveCount(0);
+  await expect(page.locator('.work-media img').first()).toHaveAttribute('src', /assets\/work%20photos\/optimized\/competitive-edge\/01-competitive-edge-dbsk-june\.webp/);
+  await expect(page.locator('#creative-track + .projects-grid .showcase-media')).toHaveCount(0);
+  await expect(page.locator('#creative-track + .projects-grid img')).toHaveCount(0);
+  await expect(page.locator('#creative-track + .projects-grid [data-gallery-next]')).toHaveCount(0);
+  await expect(page.locator('#creative-track + .projects-grid .project-card--showcase')).toHaveCount(0);
+  await expect(page.locator('#creative-track + .projects-grid .project-card--text-only')).toHaveCount(3);
+  await expect(page.locator('#creative-track + .projects-grid .project-status')).toHaveCount(3);
+  await expect(page.locator('#creative-track + .projects-grid')).toContainText('Active prototype · synthetic data');
+  await expect(page.locator('#creative-track + .projects-grid')).toContainText('Focused workspace · live web app');
+  await expect(page.locator('#creative-track + .projects-grid')).toContainText('Storefront · story-led page');
   await expect(page.locator('.featured-project .fp-image-placeholder')).toHaveCount(0);
   expect(visibleText).not.toContain('reducing cloud infrastructure compute overhead by an estimated 20%');
   expect(visibleText).not.toContain('Eliminated reporting discrepancies across business units');
@@ -407,13 +434,22 @@ test('work section prioritizes analytics proof and keeps web showcases distinct'
   const order = await page.evaluate(() => {
     const text = document.body.innerText;
     return {
+      lks: text.indexOf('LKS Internal Performance Dashboard Work'),
       competitiveEdge: text.indexOf('Competitive Edge — Diagnostic Assessment Analytics'),
+      careerAssessment: text.indexOf('Career Assessment Tool'),
+      stellarSpace: text.indexOf('Stellar Space Quiz'),
+      schoolPrograms: text.indexOf('School Programs, STEM & LMS Work'),
       commandCentre: text.indexOf('School Program Command Centre — Active Prototype'),
       productLab: text.indexOf('Web & Product Showcases'),
     };
   });
 
+  expect(order.lks).toBeGreaterThanOrEqual(0);
   expect(order.competitiveEdge).toBeGreaterThanOrEqual(0);
+  expect(order.competitiveEdge).toBeGreaterThan(order.lks);
+  expect(order.careerAssessment).toBeGreaterThan(order.competitiveEdge);
+  expect(order.stellarSpace).toBeGreaterThan(order.careerAssessment);
+  expect(order.schoolPrograms).toBeGreaterThan(order.stellarSpace);
   expect(order.commandCentre).toBeGreaterThan(order.competitiveEdge);
   expect(order.productLab).toBeGreaterThan(order.competitiveEdge);
 });
@@ -434,6 +470,7 @@ test('visible contact copy keeps the conversation router direct', async ({ page 
   expect(visibleText).toMatch(/message on whatsapp/i);
   expect(visibleText).toMatch(/what challenge should we tackle\?/i);
   expect(visibleText).toMatch(/start a conversation/i);
+  expect(visibleText).toContain('One clear note is enough: what you are trying to understand, build, or improve.');
   expect(visibleText).not.toMatch(/no polished brief needed\./i);
   expect(visibleText).not.toContain('Send the rough version.');
   expect(visibleText).not.toContain('A broken tracker, a confusing report, school data, or a page that is not landing yet. A few lines are fine.');
@@ -456,6 +493,7 @@ test('visible contact copy keeps the conversation router direct', async ({ page 
   await expect(page.locator('.contact-copy')).toHaveCount(0);
   await expect(page.locator('.contact-direct')).toHaveCount(1);
   await expect(page.locator('.contact-form-panel')).toHaveCount(1);
+  await expect(page.locator('.contact-form-intro')).toHaveCount(1);
   await expect(page.locator('#contact-form')).toHaveCount(1);
   await expect(page.locator('input[name="from_name"]')).toHaveCount(1);
   await expect(page.locator('input[name="reply_to"]')).toHaveCount(1);
@@ -858,42 +896,47 @@ test('experience tabs stay inside the narrowest supported mobile viewport', asyn
   expect(overflow).toEqual([]);
 });
 
-test('featured proof layout adapts from desktop and tablet columns to mobile stack', async ({ page }) => {
+test('featured work media layout adapts from desktop evidence cards to mobile stack', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 980 });
   await page.goto(pageUrl);
   await page.locator('#work').scrollIntoViewIfNeeded();
 
-  const desktopLayout = await page.locator('.featured-project').first().evaluate((project) => {
+  const desktopLayout = await page.locator('.featured-project').filter({ has: page.locator('.fp-image') }).first().evaluate((project) => {
     const artifact = project.querySelector('.fp-image').getBoundingClientRect();
     const content = project.querySelector('.fp-content').getBoundingClientRect();
+    const desc = project.querySelector('.fp-desc-box').getBoundingClientRect();
+    const tags = project.querySelector('.fp-tech').getBoundingClientRect();
     return {
-      sideBySide: artifact.right <= content.left || content.right <= artifact.left,
+      artifactBeforeContent: artifact.bottom <= content.top + 2,
+      mediaNearlyFullWidth: artifact.width >= content.width - 2,
+      structuredContent: tags.left >= desc.right - 2,
       artifactWidth: artifact.width,
       contentWidth: content.width,
     };
   });
 
-  expect(desktopLayout.sideBySide).toBe(true);
-  expect(desktopLayout.artifactWidth / (desktopLayout.artifactWidth + desktopLayout.contentWidth)).toBeGreaterThan(0.32);
-  expect(desktopLayout.artifactWidth / (desktopLayout.artifactWidth + desktopLayout.contentWidth)).toBeLessThan(0.41);
+  expect(desktopLayout.artifactBeforeContent).toBe(true);
+  expect(desktopLayout.mediaNearlyFullWidth).toBe(true);
+  expect(desktopLayout.structuredContent).toBe(true);
+  expect(desktopLayout.artifactWidth).toBeGreaterThan(800);
 
   await page.setViewportSize({ width: 900, height: 1100 });
   await page.goto(pageUrl);
   await page.locator('#work').scrollIntoViewIfNeeded();
 
-  const tabletLayout = await page.locator('.featured-project').first().evaluate((project) => {
+  const tabletLayout = await page.locator('.featured-project').filter({ has: page.locator('.fp-image') }).first().evaluate((project) => {
     const artifact = project.querySelector('.fp-image').getBoundingClientRect();
     const content = project.querySelector('.fp-content').getBoundingClientRect();
     return {
-      sideBySide: artifact.right <= content.left || content.right <= artifact.left,
+      artifactBeforeContent: artifact.bottom <= content.top + 2,
+      nearlyFullWidth: artifact.width >= content.width - 2,
       artifactWidth: artifact.width,
       contentWidth: content.width,
     };
   });
 
-  expect(tabletLayout.sideBySide).toBe(true);
-  expect(tabletLayout.artifactWidth / (tabletLayout.artifactWidth + tabletLayout.contentWidth)).toBeGreaterThan(0.34);
-  expect(tabletLayout.artifactWidth / (tabletLayout.artifactWidth + tabletLayout.contentWidth)).toBeLessThan(0.46);
+  expect(tabletLayout.artifactBeforeContent).toBe(true);
+  expect(tabletLayout.nearlyFullWidth).toBe(true);
 
   for (const viewport of [
     { width: 390, height: 844 },
@@ -903,7 +946,7 @@ test('featured proof layout adapts from desktop and tablet columns to mobile sta
     await page.goto(pageUrl);
     await page.locator('#work').scrollIntoViewIfNeeded();
 
-    const stacked = await page.locator('.featured-project').first().evaluate((project) => {
+    const stacked = await page.locator('.featured-project').filter({ has: page.locator('.fp-image') }).first().evaluate((project) => {
       const artifact = project.querySelector('.fp-image').getBoundingClientRect();
       const content = project.querySelector('.fp-content').getBoundingClientRect();
       return {
