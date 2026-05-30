@@ -65,7 +65,7 @@ test('invalid email shows validation error', async ({ page }) => {
   await page.goto(pageUrl);
   await page.fill('#from_name', 'Test User');
   await page.fill('#reply_to', 'not-an-email');
-  await page.getByLabel('Analytics, dashboards, or workflow support').check();
+  await page.getByLabel('BI, analytics, dashboards, or operations support').check();
   await page.fill('#message', 'Hello from smoke test');
   await page.click('#form-submit');
   await expect(page.locator('#form-status')).toContainText('Please enter a valid email address.');
@@ -117,6 +117,10 @@ test('mobile nav toggles aria-expanded correctly', async ({ page }) => {
   await expect(hamburger).toHaveAttribute('aria-expanded', 'true');
   await expect(page.locator('.mobile-nav .btn-primary')).toHaveText('Start a conversation');
   await expect(page.locator('.mobile-nav .btn-primary')).toBeVisible();
+  await expect(page.locator('#mobile-header')).not.toHaveAttribute('aria-hidden', 'true');
+  await expect(page.locator('.left-panel')).toHaveAttribute('aria-hidden', 'true');
+  await expect(page.locator('.hero-section')).not.toHaveAttribute('aria-hidden', 'true');
+  await expect(page.locator('#mobile-nav')).not.toHaveAttribute('aria-hidden', 'true');
   const mobileCtaContrast = await page.locator('.mobile-nav .btn-primary').evaluate((link) => {
     const style = window.getComputedStyle(link);
     return {
@@ -127,6 +131,23 @@ test('mobile nav toggles aria-expanded correctly', async ({ page }) => {
   expect(mobileCtaContrast.color).not.toBe(mobileCtaContrast.background);
   await hamburger.click();
   await expect(hamburger).toHaveAttribute('aria-expanded', 'false');
+  await expect(page.locator('#mobile-nav')).toHaveAttribute('aria-hidden', 'true');
+});
+
+test('desktop and mobile layout regions expose only the active navigation surface', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 980 });
+  await page.goto(pageUrl);
+  await expect(page.locator('#mobile-header')).toHaveAttribute('aria-hidden', 'true');
+  await expect(page.locator('#mobile-nav')).toHaveAttribute('aria-hidden', 'true');
+  await expect(page.locator('.left-panel')).not.toHaveAttribute('aria-hidden', 'true');
+  await expect(page.locator('.hero-section')).toHaveAttribute('aria-hidden', 'true');
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto(pageUrl);
+  await expect(page.locator('#mobile-header')).not.toHaveAttribute('aria-hidden', 'true');
+  await expect(page.locator('#mobile-nav')).toHaveAttribute('aria-hidden', 'true');
+  await expect(page.locator('.left-panel')).toHaveAttribute('aria-hidden', 'true');
+  await expect(page.locator('.hero-section')).not.toHaveAttribute('aria-hidden', 'true');
 });
 
 test('mobile icon controls meet touch target size', async ({ page }) => {
@@ -185,6 +206,22 @@ test('contact router uses modern local JavaScript patterns', async () => {
   expect(html).toContain('Array.from(document.querySelectorAll(\'.tab-btn\'))');
   expect(html).not.toContain('Array.prototype.slice.call(document.querySelectorAll(\'.tab-btn\'))');
   expect(html).toContain('const intent = contactForm.collaboration_intent.value;');
+});
+
+test('social and decorative links avoid placeholder or noisy accessible text', async ({ page }) => {
+  await page.goto(pageUrl);
+
+  await expect(page.locator('a[href="#"]')).toHaveCount(0);
+  await expect(page.locator('.social-icon[aria-label="WhatsApp"]')).toHaveCount(0);
+  await expect(page.locator('.footer__social[aria-label="WhatsApp"]')).toHaveCount(0);
+  await expect(page.locator('.contact-direct-link[href="https://wa.me/917031584487"]')).toHaveCount(1);
+
+  const certDots = page.locator('.cert-dot');
+  const dotCount = await certDots.count();
+  expect(dotCount).toBeGreaterThan(0);
+  for (let index = 0; index < dotCount; index += 1) {
+    await expect(certDots.nth(index)).toHaveAttribute('aria-hidden', 'true');
+  }
 });
 
 test('light muted text token meets AA contrast on core surfaces', async () => {
@@ -323,7 +360,7 @@ test('work section prioritizes analytics proof and keeps web showcases distinct'
   expect(visibleText).toContain('CBSE Sahodaya 2024');
   expect(visibleText).toContain('remediation planning');
   expect(visibleText).toContain('school-level academic feedback');
-  expect(visibleText).toContain('Described at a functional level, focused on dashboard structure and metric logic.');
+  expect(visibleText).toContain('Functional view only; internal data protected.');
   expect(visibleText).not.toContain('Confidential');
   expect(visibleText).not.toContain('confidential');
   expect(visibleText).not.toContain('No internal data shown');
@@ -333,6 +370,13 @@ test('work section prioritizes analytics proof and keeps web showcases distinct'
   expect(visibleText).toContain('synthetic/sample school-program data and has not yet been piloted');
   expect(visibleText).toContain('Reflections');
   expect(visibleText).toContain('Parichay');
+  expect(visibleText).toMatch(/view project/i);
+  expect(visibleText).toMatch(/open project/i);
+  expect(visibleText).toMatch(/visit project/i);
+  expect(visibleText).not.toContain('View live');
+  await expect(page.locator('a[href="https://project-t2dax.vercel.app/"]')).toContainText('View project');
+  await expect(page.locator('a[href="https://www.reflections-sanctuary.space/"]')).toContainText('Open project');
+  await expect(page.locator('a[href="https://parichay-your-story.vercel.app/"]')).toContainText('Visit project');
   expect(visibleText).toContain('Web & Product Showcases');
   expect(visibleText).not.toMatch(/\breporting\b/i);
   expect(visibleText).not.toContain('Amplitude');
@@ -383,10 +427,11 @@ test('visible contact copy keeps the conversation router direct', async ({ page 
   expect(visibleText).toContain('Make the work easier to see.');
   expect(visibleText).toContain("Let's talk about the problem");
   expect(visibleText).toMatch(/i want to discuss/i);
-  expect(visibleText).toContain('Full-time BI, analytics, or operations role');
+  expect(visibleText).toContain('BI, analytics, dashboards, or operations support');
   expect(visibleText).toContain('Custom landing page, portfolio, or UI/UX project');
-  expect(visibleText).toContain('Analytics, dashboards, or workflow support');
+  expect(visibleText).toContain('Academic or research collaboration');
   expect(visibleText).toContain('Something else entirely');
+  expect(visibleText).toMatch(/message on whatsapp/i);
   expect(visibleText).toMatch(/what challenge should we tackle\?/i);
   expect(visibleText).toMatch(/start a conversation/i);
   expect(visibleText).not.toMatch(/no polished brief needed\./i);
@@ -409,7 +454,7 @@ test('visible contact copy keeps the conversation router direct', async ({ page 
   await expect(page.locator('.contact-intro')).toHaveCount(0);
   await expect(page.locator('.contact-layout')).toHaveCount(0);
   await expect(page.locator('.contact-copy')).toHaveCount(0);
-  await expect(page.locator('.contact-direct')).toHaveCount(0);
+  await expect(page.locator('.contact-direct')).toHaveCount(1);
   await expect(page.locator('.contact-form-panel')).toHaveCount(1);
   await expect(page.locator('#contact-form')).toHaveCount(1);
   await expect(page.locator('input[name="from_name"]')).toHaveCount(1);
@@ -419,6 +464,7 @@ test('visible contact copy keeps the conversation router direct', async ({ page 
   await expect(page.locator('input[name="collaboration_intent"]').first()).toHaveAttribute('required', '');
   await expect(page.locator('.contact-actions')).toHaveCount(0);
   await expect(page.locator('.contact-direct .email-link')).toHaveCount(0);
+  await expect(page.locator('.contact-direct-link[href="https://wa.me/917031584487"]')).toHaveText(/Message on WhatsApp/);
   await expect(page.locator('.contact-split')).toHaveCount(0);
   await expect(page.locator('.contact-card')).toHaveCount(0);
   expect(visibleText).not.toContain('Recruiters & Founders');
@@ -777,6 +823,7 @@ test('product context document exists for design work', async () => {
 });
 
 for (const viewport of [
+  { name: 'small mobile', width: 320, height: 740 },
   { name: 'mobile', width: 390, height: 844 },
   { name: 'tablet', width: 900, height: 1100 },
   { name: 'desktop', width: 1440, height: 980 },
@@ -794,7 +841,24 @@ for (const viewport of [
   });
 }
 
-test('featured proof layout adapts from desktop columns to tablet and mobile stack', async ({ page }) => {
+test('experience tabs stay inside the narrowest supported mobile viewport', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 740 });
+  await page.goto(pageUrl);
+  await page.locator('#experience').scrollIntoViewIfNeeded();
+
+  const overflow = await page.evaluate(() => {
+    return Array.from(document.querySelectorAll('.tab-btn'))
+      .filter((button) => {
+        const rect = button.getBoundingClientRect();
+        return rect.left < -1 || rect.right > document.documentElement.clientWidth + 1;
+      })
+      .map((button) => button.textContent.trim());
+  });
+
+  expect(overflow).toEqual([]);
+});
+
+test('featured proof layout adapts from desktop and tablet columns to mobile stack', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 980 });
   await page.goto(pageUrl);
   await page.locator('#work').scrollIntoViewIfNeeded();
@@ -813,9 +877,27 @@ test('featured proof layout adapts from desktop columns to tablet and mobile sta
   expect(desktopLayout.artifactWidth / (desktopLayout.artifactWidth + desktopLayout.contentWidth)).toBeGreaterThan(0.32);
   expect(desktopLayout.artifactWidth / (desktopLayout.artifactWidth + desktopLayout.contentWidth)).toBeLessThan(0.41);
 
+  await page.setViewportSize({ width: 900, height: 1100 });
+  await page.goto(pageUrl);
+  await page.locator('#work').scrollIntoViewIfNeeded();
+
+  const tabletLayout = await page.locator('.featured-project').first().evaluate((project) => {
+    const artifact = project.querySelector('.fp-image').getBoundingClientRect();
+    const content = project.querySelector('.fp-content').getBoundingClientRect();
+    return {
+      sideBySide: artifact.right <= content.left || content.right <= artifact.left,
+      artifactWidth: artifact.width,
+      contentWidth: content.width,
+    };
+  });
+
+  expect(tabletLayout.sideBySide).toBe(true);
+  expect(tabletLayout.artifactWidth / (tabletLayout.artifactWidth + tabletLayout.contentWidth)).toBeGreaterThan(0.34);
+  expect(tabletLayout.artifactWidth / (tabletLayout.artifactWidth + tabletLayout.contentWidth)).toBeLessThan(0.46);
+
   for (const viewport of [
-    { width: 900, height: 1100 },
     { width: 390, height: 844 },
+    { width: 320, height: 740 },
   ]) {
     await page.setViewportSize(viewport);
     await page.goto(pageUrl);

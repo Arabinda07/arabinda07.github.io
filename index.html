@@ -241,7 +241,7 @@
   <div id="scroll-progress" class="scroll-progress" aria-hidden="true"></div>
 
   <!-- ── MOBILE NAV ── -->
-  <header class="mobile-header" id="mobile-header">
+  <header class="mobile-header" id="mobile-header" aria-hidden="true" inert>
     <a href="#hero" class="mobile-logo">Business Intelligence &amp; Interface Architect</a>
     <div class="mobile-actions">
       <button type="button" class="theme-toggle" data-theme-toggle role="switch" aria-checked="false" aria-label="Switch to dark mode">
@@ -252,7 +252,7 @@
         <span></span><span></span>
       </button>
     </div>
-    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile" aria-hidden="true" inert>
       <div class="mobile-nav__inner">
         <ol>
           <li><a href="#about"><span>01.</span> About</a></li>
@@ -335,12 +335,8 @@
           <a href="https://www.linkedin.com/in/robin0607saha" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-icon">
             <svg class="ph-icon" aria-hidden="true"><use href="#ph-linkedin-logo"></use></svg>
           </a>
-          <!-- WhatsApp -->
-          <a href="https://wa.me/917031584487" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="social-icon">
-            <svg class="ph-icon" aria-hidden="true"><use href="#ph-whatsapp-logo"></use></svg>
-          </a>
           <!-- Email -->
-          <a href="#" data-email="robinsaha434" data-domain="gmail.com" aria-label="Email" class="social-icon email-link">
+          <a href="mailto:robinsaha434@gmail.com" data-email="robinsaha434" data-domain="gmail.com" aria-label="Email" class="social-icon email-link">
             <svg class="ph-icon" aria-hidden="true"><use href="#ph-envelope-simple"></use></svg>
           </a>
           <button type="button" class="theme-toggle theme-toggle--panel" data-theme-toggle role="switch" aria-checked="false" aria-label="Switch to dark mode">
@@ -359,7 +355,7 @@
     <main class="right-panel" id="content">
 
       <!-- ── HERO (mobile only full-screen, desktop hidden) ── -->
-      <section class="section hero-section" id="hero">
+      <section class="section hero-section" id="hero" aria-hidden="true" inert>
         <p class="hero-name fade-up" style="--delay:100ms">Arabinda Saha</p>
         <h2 class="hero-sub fade-up" style="--delay:200ms">I build business intelligence systems, dashboard workflows, and clean web products for teams that need clearer decisions.</h2>
         <div class="hero-actions fade-up" style="--delay:300ms">
@@ -468,7 +464,7 @@
                 <li>Turning fragmented inputs into clearer tracking, comparison, metric logic, and performance-review workflows.</li>
                 <li>Supporting review discussions with structured dashboard views and careful metric logic.</li>
               </ul>
-              <p class="exp-note">Described at a functional level, focused on dashboard structure and metric logic.</p>
+              <p class="exp-note">Functional view only; internal data protected.</p>
             </div>
 
             <div class="tab-panel" id="tab-edudigm-ph" role="tabpanel" aria-labelledby="tab-btn-edudigm-ph">
@@ -577,7 +573,7 @@
                 <p><strong>Problem:</strong> Internal performance, revenue, and matter/case data need clearer dashboard views and consistent metric logic.</p>
                 <p><strong>Work:</strong> Building dashboard views for matter/case performance, revenue indicators, lawyer-level performance tracking, and leadership review.</p>
                 <p><strong>Tools:</strong> Work uses Python, Pandas, Plotly, Excel, Google Sheets, and Power BI.</p>
-                <p class="fp-note">Described at a functional level, focused on dashboard structure and metric logic.</p>
+                <p class="fp-note">Functional view only; internal data protected.</p>
               </div>
               <ul class="fp-tech">
                 <li>Internal Dashboards</li>
@@ -657,24 +653,27 @@
             <div class="project-media project-media--governance" aria-hidden="true"><span></span></div>
             <h3 class="project-title">School Program Command Centre — Active Prototype</h3>
             <p class="project-tag">Web Product · Active Prototype · Education BI</p>
-            <p class="project-desc">A dashboard-led prototype for tracking school programs, assessment summaries, evidence status, documentation, teacher ownership, and program health. Uses synthetic/sample school-program data and has not yet been piloted.</p>
+            <p class="project-desc"><strong>Problem:</strong> School-program evidence, ownership, and health indicators can become scattered across tools. <strong>Work:</strong> Built a dashboard-led prototype for program tracking, assessment summaries, documentation, and teacher ownership. <strong>Status:</strong> Uses synthetic/sample school-program data and has not yet been piloted.</p>
             <ul class="project-tech"><li>Synthetic Data</li><li>React</li><li>Node.js</li><li>Program Health Views</li><li>Not Yet Piloted</li></ul>
+            <a href="https://project-t2dax.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-link">View project <span aria-hidden="true">↗</span></a>
           </div>
 
           <div class="project-card fade-up">
             <div class="project-media project-media--assessment" aria-hidden="true"><span></span></div>
             <h3 class="project-title">Reflections: Focused Workspace</h3>
             <p class="project-tag">Web Product · Creative Workspace · Focused Web App</p>
-            <p class="project-desc">A calm storytelling workspace with precise hierarchy, atmospheric texture, Supabase-backed structure, and an integrated focus-oriented audio environment.</p>
+            <p class="project-desc"><strong>Problem:</strong> Writing and reflection tools can feel noisy when the goal is sustained focus. <strong>Work:</strong> Shaped a calm storytelling workspace with precise hierarchy, atmospheric texture, Supabase-backed structure, and focus-oriented audio. <strong>Status:</strong> Deployed as a focused web product.</p>
             <ul class="project-tech"><li>React</li><li>Tailwind CSS</li><li>Supabase</li><li>Web Audio API</li></ul>
+            <a href="https://www.reflections-sanctuary.space/" target="_blank" rel="noopener noreferrer" class="project-link">Open project <span aria-hidden="true">↗</span></a>
           </div>
 
           <div class="project-card fade-up">
             <div class="project-media project-media--program" aria-hidden="true"><span></span></div>
             <h3 class="project-title">Parichay: Story-driven Brand Storefront</h3>
             <p class="project-tag">Web Product · Personal Brand · Conversion Page</p>
-            <p class="project-desc">A narrative-led digital storefront for modern professionals, shaped around fast loading, clean reading hierarchy, and direct call-to-action pathways.</p>
+            <p class="project-desc"><strong>Problem:</strong> Personal-brand pages often lose the story before the visitor reaches the CTA. <strong>Work:</strong> Built a narrative-led storefront with fast loading, clean reading hierarchy, and direct action pathways. <strong>Status:</strong> Deployed as a story-driven brand page.</p>
             <ul class="project-tech"><li>Vercel Deployment</li><li>Frontend Engineering</li><li>Performance Optimization</li><li>CTA Pathways</li></ul>
+            <a href="https://parichay-your-story.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-link">Visit project <span aria-hidden="true">↗</span></a>
           </div>
 
         </div>
@@ -751,7 +750,7 @@
           <h3 class="skill-group-title">Selected Certifications</h3>
           <div class="cert-list">
             <a href="https://www.coursera.org/account/accomplishments/professional-cert/certificate/1BHIJ775TO8Y" target="_blank" rel="noopener noreferrer" class="cert-item cert-item--link fade-up">
-              <span class="cert-dot">▹</span>
+              <span class="cert-dot" aria-hidden="true">▹</span>
               <span class="cert-body">
                 <span class="cert-org">Google</span>
                 <span class="cert-name">AI Essentials</span>
@@ -759,7 +758,7 @@
               <span class="cert-arrow" aria-hidden="true">↗</span>
             </a>
             <a href="https://www.coursera.org/account/accomplishments/specialization/certificate/URC391V1C53R" target="_blank" rel="noopener noreferrer" class="cert-item cert-item--link fade-up">
-              <span class="cert-dot">▹</span>
+              <span class="cert-dot" aria-hidden="true">▹</span>
               <span class="cert-body">
                 <span class="cert-org">IBM</span>
                 <span class="cert-name">Data Science Fundamentals with Python and SQL</span>
@@ -767,7 +766,7 @@
               <span class="cert-arrow" aria-hidden="true">↗</span>
             </a>
             <a href="https://www.linkedin.com/learning/certificates/8bf61b77d1be82f5eb88ced6a68d51c7deb6b348b060c7fdffefba19f94bd9df?trk=share_certificate" target="_blank" rel="noopener noreferrer" class="cert-item cert-item--link fade-up">
-              <span class="cert-dot">▹</span>
+              <span class="cert-dot" aria-hidden="true">▹</span>
               <span class="cert-body">
                 <span class="cert-org">Microsoft &amp; LinkedIn</span>
                 <span class="cert-name">Career Essentials in Data Analysis</span>
@@ -775,7 +774,7 @@
               <span class="cert-arrow" aria-hidden="true">↗</span>
             </a>
             <a href="https://www.linkedin.com/learning/certificates/3f6541de52a71cf9689ff979be6565321361622358d5345bd5a9c02d0125ca5f?trk=share_certificate" target="_blank" rel="noopener noreferrer" class="cert-item cert-item--link fade-up">
-              <span class="cert-dot">▹</span>
+              <span class="cert-dot" aria-hidden="true">▹</span>
               <span class="cert-body">
                 <span class="cert-org">Microsoft &amp; LinkedIn</span>
                 <span class="cert-name">Career Essentials in Project Management</span>
@@ -783,7 +782,7 @@
               <span class="cert-arrow" aria-hidden="true">↗</span>
             </a>
             <a href="https://www.linkedin.com/learning/certificates/2e0a3b2943d3703cd794244445587ba04721c6c57fb1c7ca364a7a1219abdfdf" target="_blank" rel="noopener noreferrer" class="cert-item cert-item--link fade-up">
-              <span class="cert-dot">▹</span>
+              <span class="cert-dot" aria-hidden="true">▹</span>
               <span class="cert-body">
                 <span class="cert-org">Microsoft &amp; LinkedIn</span>
                 <span class="cert-name">Career Essentials in System Administration</span>
@@ -798,14 +797,14 @@
           <h3 class="skill-group-title">Selected Speaking</h3>
           <div class="cert-list">
             <div class="cert-item seminar-item fade-up">
-              <span class="cert-dot">▹</span>
+              <span class="cert-dot" aria-hidden="true">▹</span>
               <div>
                 <p class="seminar-title">Experiential Learning and INSPIRE MANAK Programme</p>
                 <p class="seminar-org">Vivekananda Vijnan Mission · INSPIRE MANAK · IEM–UEM · <span class="seminar-year">2025</span></p>
               </div>
             </div>
             <div class="cert-item seminar-item fade-up">
-              <span class="cert-dot">▹</span>
+              <span class="cert-dot" aria-hidden="true">▹</span>
               <div>
                 <p class="seminar-title">Powering the Future of Business through Digital Transformation with Analytics, ML, GenAI, and Agentic AI</p>
                 <p class="seminar-org">IIT Kharagpur Research Park · <span class="seminar-year">2025</span></p>
@@ -852,16 +851,16 @@
               <legend class="form-label">I want to discuss</legend>
               <div class="intent-options">
                 <label class="intent-option">
-                  <input type="radio" name="collaboration_intent" value="Full-time BI, analytics, or operations role" required />
-                  <span>Full-time BI, analytics, or operations role</span>
+                  <input type="radio" name="collaboration_intent" value="BI, analytics, dashboards, or operations support" required />
+                  <span>BI, analytics, dashboards, or operations support</span>
                 </label>
                 <label class="intent-option">
                   <input type="radio" name="collaboration_intent" value="Custom landing page, portfolio, or UI/UX project" required />
                   <span>Custom landing page, portfolio, or UI/UX project</span>
                 </label>
                 <label class="intent-option">
-                  <input type="radio" name="collaboration_intent" value="Analytics, dashboards, or workflow support" required />
-                  <span>Analytics, dashboards, or workflow support</span>
+                  <input type="radio" name="collaboration_intent" value="Academic or research collaboration" required />
+                  <span>Academic or research collaboration</span>
                 </label>
                 <label class="intent-option">
                   <input type="radio" name="collaboration_intent" value="Something else entirely" required />
@@ -888,6 +887,9 @@
               <p class="form-status" id="form-status" aria-live="polite"></p>
             </div>
           </form>
+          <div class="contact-direct contact-direct--form">
+            <a href="https://wa.me/917031584487" target="_blank" rel="noopener noreferrer" class="contact-direct-link">Message on WhatsApp <span aria-hidden="true">↗</span></a>
+          </div>
         </div>
 
       </section>
@@ -900,10 +902,7 @@
           <a href="https://www.linkedin.com/in/robin0607saha" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="footer__social">
             <svg class="ph-icon ph-icon--footer" aria-hidden="true"><use href="#ph-linkedin-logo"></use></svg>
           </a>
-          <a href="https://wa.me/917031584487" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="footer__social">
-            <svg class="ph-icon ph-icon--footer" aria-hidden="true"><use href="#ph-whatsapp-logo"></use></svg>
-          </a>
-          <a href="#" data-email="robinsaha434" data-domain="gmail.com" aria-label="Email" class="footer__social email-link">
+          <a href="mailto:robinsaha434@gmail.com" data-email="robinsaha434" data-domain="gmail.com" aria-label="Email" class="footer__social email-link">
             <svg class="ph-icon ph-icon--footer" aria-hidden="true"><use href="#ph-envelope-simple"></use></svg>
           </a>
         </div>
@@ -919,7 +918,7 @@
   <aside class="side-rail side-rail--right" aria-label="Email contact">
     <div class="side-rail__spacer" aria-hidden="true"></div>
     <div class="side-rail__line" aria-hidden="true"></div>
-    <a href="#" data-email="robinsaha434" data-domain="gmail.com" class="side-rail__email email-link">robinsaha434&#64;gmail.com</a>
+    <a href="mailto:robinsaha434@gmail.com" data-email="robinsaha434" data-domain="gmail.com" class="side-rail__email email-link">robinsaha434&#64;gmail.com</a>
   </aside>
 
   <script id="emailjs-sdk" async src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
@@ -1195,16 +1194,40 @@
       const mobileNav = document.getElementById('mobile-nav');
       const overlay = document.getElementById('mobile-nav-overlay');
       const mobileHeader = document.getElementById('mobile-header');
+      const leftPanel = document.querySelector('.left-panel');
+      const heroSection = document.querySelector('.hero-section');
+      const mobileBreakpoint = window.matchMedia('(max-width: 900px)');
+
+      function suppressForA11y(el, suppressed) {
+        if (!el) return;
+        if (suppressed) {
+          el.setAttribute('aria-hidden', 'true');
+          el.inert = true;
+        } else {
+          el.removeAttribute('aria-hidden');
+          el.inert = false;
+        }
+      }
+
+      function syncResponsiveA11y() {
+        const isMobile = mobileBreakpoint.matches;
+        suppressForA11y(mobileHeader, !isMobile);
+        suppressForA11y(leftPanel, isMobile);
+        suppressForA11y(heroSection, !isMobile);
+        setMobileNavOpen(isMobile && mobileNav && mobileNav.classList.contains('is-open'));
+      }
 
       function setMobileNavOpen(open) {
         if (!mobileNav || !hamburger || !overlay) return;
-        mobileNav.classList.toggle('is-open', open);
-        hamburger.classList.toggle('is-open', open);
-        overlay.classList.toggle('is-open', open);
-        overlay.setAttribute('aria-hidden', open ? 'false' : 'true');
-        hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
-        hamburger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-        document.body.style.overflow = open ? 'hidden' : '';
+        const shouldOpen = Boolean(open && mobileBreakpoint.matches);
+        mobileNav.classList.toggle('is-open', shouldOpen);
+        hamburger.classList.toggle('is-open', shouldOpen);
+        overlay.classList.toggle('is-open', shouldOpen);
+        overlay.setAttribute('aria-hidden', shouldOpen ? 'false' : 'true');
+        hamburger.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+        hamburger.setAttribute('aria-label', shouldOpen ? 'Close menu' : 'Open menu');
+        suppressForA11y(mobileNav, !shouldOpen);
+        document.body.style.overflow = shouldOpen ? 'hidden' : '';
       }
 
       function closeMobileNav() { setMobileNavOpen(false); }
@@ -1225,6 +1248,13 @@
           if (hamburger) hamburger.focus();
         }
       });
+
+      syncResponsiveA11y();
+      if (typeof mobileBreakpoint.addEventListener === 'function') {
+        mobileBreakpoint.addEventListener('change', syncResponsiveA11y);
+      } else if (typeof mobileBreakpoint.addListener === 'function') {
+        mobileBreakpoint.addListener(syncResponsiveA11y);
+      }
 
       // ── Contact form (EmailJS when available, local validation always) ──
       const contactForm = document.getElementById('contact-form');
@@ -1315,10 +1345,9 @@
 
       // Mobile header scroll shadow is handled in the unified onScroll handler above.
 
-      // ── Email links — built at runtime to prevent Cloudflare obfuscation ──
-      // Cloudflare scans HTML for raw email addresses and rewrites them.
-      // Storing the address split across data attributes means the HTML file
-      // contains no recognisable email pattern. JS joins them on page load.
+      // ── Email links ──
+      // Keep a real mailto fallback in HTML, then rebuild the address from
+      // data attributes so visible contact text stays consistent.
       document.querySelectorAll('a.email-link[data-email][data-domain]').forEach(function (el) {
         const addr = el.dataset.email + '@' + el.dataset.domain;
         el.href = 'mailto:' + addr;
