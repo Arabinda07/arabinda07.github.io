@@ -587,9 +587,21 @@ test('contact polish keeps dark-mode selectors and compact mobile density', asyn
   const textareaMinHeight = await page.locator('.form-textarea').evaluate((element) =>
     Number.parseFloat(window.getComputedStyle(element).minHeight)
   );
+  const statusDisplay = await page.locator('#form-status').evaluate((element) =>
+    window.getComputedStyle(element).display
+  );
+  const submitBox = await page.locator('#form-submit').boundingBox();
+  const whatsappBox = await page.locator('.contact-direct-link').boundingBox();
 
   expect(intentMinHeight).toBeLessThanOrEqual(54);
   expect(textareaMinHeight).toBeLessThanOrEqual(104);
+  expect(statusDisplay).toBe('none');
+  expect(submitBox.height).toBeGreaterThanOrEqual(44);
+  expect(whatsappBox.height).toBeGreaterThanOrEqual(44);
+  expect(submitBox.width).toBeGreaterThanOrEqual(300);
+  expect(whatsappBox.width).toBeGreaterThanOrEqual(300);
+  expect(Math.abs(submitBox.width - whatsappBox.width)).toBeLessThanOrEqual(4);
+  expect(whatsappBox.y - (submitBox.y + submitBox.height)).toBeLessThanOrEqual(24);
 });
 
 test('capabilities section is tool first and market aligned', async ({ page }) => {

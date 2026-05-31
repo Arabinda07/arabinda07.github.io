@@ -2750,6 +2750,17 @@ html[data-theme="dark"] .form-input::placeholder {
   .form-footer {
     align-items: flex-start;
     flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .form-submit,
+  .contact-direct--form .contact-direct-link {
+    width: min(100%, 20rem);
+    justify-content: center;
+  }
+
+  .contact-direct--form {
+    margin-top: 0.62rem;
   }
 }
 
@@ -3020,6 +3031,11 @@ html[data-theme="dark"] .form-input::placeholder {
   .contact-direct,
   .contact-direct-link {
     width: 100%;
+  }
+
+  .form-submit {
+    width: 100%;
+    justify-content: center;
   }
 
   .contact-direct-link {
