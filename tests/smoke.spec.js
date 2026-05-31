@@ -65,6 +65,48 @@ function readPngColorType(filePath) {
   return fs.readFileSync(filePath)[25];
 }
 
+function readJpegSize(filePath) {
+  const buffer = fs.readFileSync(filePath);
+  let offset = 2;
+  while (offset < buffer.length) {
+    if (buffer[offset] !== 0xff) throw new Error(`Invalid JPEG marker in ${filePath}`);
+    const marker = buffer[offset + 1];
+    const length = buffer.readUInt16BE(offset + 2);
+    if (marker >= 0xc0 && marker <= 0xc3) {
+      return {
+        width: buffer.readUInt16BE(offset + 7),
+        height: buffer.readUInt16BE(offset + 5),
+      };
+    }
+    offset += 2 + length;
+  }
+  throw new Error(`Could not read JPEG size for ${filePath}`);
+}
+
+function readWebpSize(filePath) {
+  const buffer = fs.readFileSync(filePath);
+  if (buffer.toString('ascii', 0, 4) !== 'RIFF' || buffer.toString('ascii', 8, 12) !== 'WEBP') {
+    throw new Error(`Expected WebP file, got ${filePath}`);
+  }
+
+  const chunk = buffer.toString('ascii', 12, 16);
+  if (chunk === 'VP8X') {
+    return {
+      width: buffer.readUIntLE(24, 3) + 1,
+      height: buffer.readUIntLE(27, 3) + 1,
+    };
+  }
+
+  if (chunk === 'VP8 ') {
+    return {
+      width: buffer.readUInt16LE(26) & 0x3fff,
+      height: buffer.readUInt16LE(28) & 0x3fff,
+    };
+  }
+
+  throw new Error(`Unsupported WebP chunk ${chunk} in ${filePath}`);
+}
+
 test('invalid email shows validation error', async ({ page }) => {
   await page.goto(pageUrl);
   await page.fill('#from_name', 'Test User');
@@ -241,6 +283,19 @@ test('tab indicator motion is transform based', async () => {
 
   expect(tabIndicatorBlock).toContain('transform:');
   expect(tabIndicatorBlock).not.toMatch(/transition:[^;]*(\btop\b|\bheight\b)/);
+  expect(css).not.toMatch(/\.tab-btn\s*\{[^}]*border-left:\s*2px/s);
+  expect(css).not.toMatch(/\.tab-btn\.active\s*\{[^}]*border-left-color/s);
+});
+
+test('skip link motion stays transform based', async () => {
+  const css = fs.readFileSync(path.join(rootDir, 'styles.css'), 'utf8');
+  const skipLinkBlock = css.match(/\.skip-link\s*\{[^}]+\}/)?.[0] || '';
+  const skipLinkFocusBlock = css.match(/\.skip-link:focus\s*\{[^}]+\}/)?.[0] || '';
+
+  expect(skipLinkBlock).toContain('transform:');
+  expect(skipLinkBlock).toContain('transition: transform');
+  expect(skipLinkBlock).not.toMatch(/transition:[^;]*\btop\b/);
+  expect(skipLinkFocusBlock).toContain('transform: translateY(0)');
 });
 
 test('contact router uses modern local JavaScript patterns', async () => {
@@ -480,7 +535,8 @@ test('work section prioritizes analytics proof and keeps web showcases distinct'
   expect(visibleText).toContain('Writing Insights');
   await expect(page.locator('img[alt="Arabinda Saha"][loading="eager"]')).toHaveCount(1);
   await expect(page.locator('img[alt="Arabinda Saha"][fetchpriority="high"]')).toHaveCount(1);
-  await expect(page.locator('img[alt="Arabinda Saha"]').first()).toHaveAttribute('src', /assets\/Profile%20picture\.png/);
+  await expect(page.locator('img[alt="Arabinda Saha"]').first()).toHaveAttribute('src', 'assets/profile-540.webp');
+  await expect(page.locator('img[alt="Arabinda Saha"]').first()).toHaveAttribute('srcset', /assets\/profile-1080\.webp/);
   await expect(page.locator('.featured-project .fp-image-placeholder')).toHaveCount(0);
   expect(visibleText).not.toContain('reducing cloud infrastructure compute overhead by an estimated 20%');
   expect(visibleText).not.toContain('Eliminated reporting discrepancies across business units');
@@ -664,6 +720,8 @@ test('about section keeps photo with intro and removes metric strip', async ({ p
   await expect(about.locator('.about-photo-mobile')).toHaveCount(0);
   await expect(about.locator('.about-photo--desktop img[alt="Arabinda Saha"]')).toBeVisible();
   await expect(about.locator('.about-photo--mobile img[alt="Arabinda Saha"]')).toHaveCount(1);
+  await expect(about.locator('.about-photo--desktop img[alt="Arabinda Saha"]')).toHaveAttribute('src', 'assets/profile-540.webp');
+  await expect(about.locator('.about-photo--desktop img[alt="Arabinda Saha"]')).toHaveAttribute('srcset', /profile-1080\.webp/);
   await expect(about).toContainText('My Philosophy');
   await expect(about).toContainText('The problem');
   await expect(about).toContainText('The method');
@@ -771,10 +829,10 @@ test('head exposes canonical, social cards, manifest, and parseable structured d
   await expect(page.locator('link[rel="preload"][as="style"][href*="fonts.googleapis"]')).toHaveCount(1);
   await expect(page.locator('link[media="print"][onload*="this.media"]')).toHaveCount(0);
   await expect(page.locator('meta[property="og:url"]')).toHaveAttribute('content', 'https://arabinda07.github.io/');
-  await expect(page.locator('meta[property="og:image"]')).toHaveAttribute('content', 'https://arabinda07.github.io/assets/og-image.png');
+  await expect(page.locator('meta[property="og:image"]')).toHaveAttribute('content', 'https://arabinda07.github.io/assets/og-image.jpg');
   await expect(page.locator('meta[property="og:image:alt"]')).toHaveAttribute('content', /Arabinda Saha portfolio preview/);
   await expect(page.locator('meta[property="og:image:alt"]')).toHaveAttribute('content', /user-provided illustrated portrait artwork/);
-  await expect(page.locator('meta[name="twitter:image"]')).toHaveAttribute('content', 'https://arabinda07.github.io/assets/twitter-image.png');
+  await expect(page.locator('meta[name="twitter:image"]')).toHaveAttribute('content', 'https://arabinda07.github.io/assets/twitter-image.jpg');
   await expect(page.locator('meta[name="twitter:image:alt"]')).toHaveAttribute('content', /Arabinda Saha portfolio preview/);
   await expect(page.locator('meta[name="twitter:image:alt"]')).toHaveAttribute('content', /user-provided illustrated portrait artwork/);
   await expect(page.locator('meta[property="og:image:alt"]')).not.toHaveAttribute('content', /AS monogram|BI & Data Analyst|decision-lattice/i);
@@ -862,8 +920,12 @@ test('planned web assets and SEO files exist', async () => {
     'assets/photos/ChatGPT Image May 31, 2026, 12_53_27 PM (8).png',
     'assets/photos/ChatGPT Image May 31, 2026, 12_53_29 PM (9).png',
     'assets/Profile picture.png',
+    'assets/profile-540.webp',
+    'assets/profile-1080.webp',
     'assets/og-image.png',
+    'assets/og-image.jpg',
     'assets/twitter-image.png',
+    'assets/twitter-image.jpg',
   ];
 
   for (const file of expectedFiles) {
@@ -908,6 +970,14 @@ test('planned web assets and SEO files exist', async () => {
   }
 
   expect(readPngColorType(path.join(rootDir, 'assets/Profile picture.png'))).toBe(6);
+  expect(readWebpSize(path.join(rootDir, 'assets/profile-540.webp'))).toEqual({ width: 540, height: 540 });
+  expect(readWebpSize(path.join(rootDir, 'assets/profile-1080.webp'))).toEqual({ width: 1080, height: 1080 });
+  expect(readJpegSize(path.join(rootDir, 'assets/og-image.jpg'))).toEqual({ width: 1200, height: 630 });
+  expect(readJpegSize(path.join(rootDir, 'assets/twitter-image.jpg'))).toEqual({ width: 1200, height: 675 });
+  expect(fs.statSync(path.join(rootDir, 'assets/profile-540.webp')).size).toBeLessThan(40 * 1024);
+  expect(fs.statSync(path.join(rootDir, 'assets/profile-1080.webp')).size).toBeLessThan(90 * 1024);
+  expect(fs.statSync(path.join(rootDir, 'assets/og-image.jpg')).size).toBeLessThan(140 * 1024);
+  expect(fs.statSync(path.join(rootDir, 'assets/twitter-image.jpg')).size).toBeLessThan(140 * 1024);
 });
 
 test('rendered images load successfully', async ({ page }) => {

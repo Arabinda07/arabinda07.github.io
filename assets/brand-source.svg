@@ -13,6 +13,7 @@
   <text x="88" y="420" fill="#fff4df" font-family="Arial, sans-serif" font-size="18">(5) square: android-chrome-512x512.png</text>
   <text x="88" y="450" fill="#fff4df" font-family="Arial, sans-serif" font-size="18">(6) square: android-chrome-192x192.png</text>
   <text x="88" y="480" fill="#fff4df" font-family="Arial, sans-serif" font-size="18">(7) square: apple-touch-icon.png</text>
-  <text x="88" y="510" fill="#fff4df" font-family="Arial, sans-serif" font-size="18">(8) wide: og-image.png</text>
-  <text x="88" y="540" fill="#fff4df" font-family="Arial, sans-serif" font-size="18">(9) wide: twitter-image.png with soft padding</text>
+  <text x="88" y="510" fill="#fff4df" font-family="Arial, sans-serif" font-size="18">(8) wide: og-image.png and og-image.jpg</text>
+  <text x="88" y="540" fill="#fff4df" font-family="Arial, sans-serif" font-size="18">(9) wide: twitter-image.png and twitter-image.jpg with soft padding</text>
+  <text x="88" y="570" fill="#fff4df" font-family="Arial, sans-serif" font-size="18">Profile picture.png: profile-540.webp and profile-1080.webp</text>
 </svg>

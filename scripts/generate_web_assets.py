@@ -137,8 +137,9 @@ def write_brand_source_note():
                 "(5) square: android-chrome-512x512.png",
                 "(6) square: android-chrome-192x192.png",
                 "(7) square: apple-touch-icon.png",
-                "(8) wide: og-image.png",
-                "(9) wide: twitter-image.png with soft padding",
+                "(8) wide: og-image.png and og-image.jpg",
+                "(9) wide: twitter-image.png and twitter-image.jpg with soft padding",
+                "Profile picture.png: profile-540.webp and profile-1080.webp",
             ]
         )
     )
@@ -156,15 +157,38 @@ def write_brand_source_note():
     (ASSETS / "brand-source.svg").write_text(note, encoding="utf-8")
 
 
+def save_profile_variants():
+    profile_path = ASSETS / "Profile picture.png"
+    if not profile_path.exists():
+        raise FileNotFoundError(f"Missing profile asset: {profile_path}")
+
+    profile = Image.open(profile_path).convert("RGBA")
+    for size in (540, 1080):
+        profile.resize((size, size), Image.Resampling.LANCZOS).save(
+            ASSETS / f"profile-{size}.webp",
+            "WEBP",
+            quality=82,
+            method=6,
+        )
+
+
+def save_social_cards():
+    og = cover(load_rgb("og"), (1200, 630))
+    twitter = contain_with_soft_padding(load_rgb("twitter"), (1200, 675))
+
+    og.save(ASSETS / "og-image.png", optimize=True)
+    og.save(ASSETS / "og-image.jpg", "JPEG", quality=82, optimize=True, progressive=True)
+
+    twitter.save(ASSETS / "twitter-image.png", optimize=True)
+    twitter.save(ASSETS / "twitter-image.jpg", "JPEG", quality=82, optimize=True, progressive=True)
+
+
 def main():
     ASSETS.mkdir(exist_ok=True)
 
     save_icon_set()
-    cover(load_rgb("og"), (1200, 630)).save(ASSETS / "og-image.png", optimize=True)
-    contain_with_soft_padding(load_rgb("twitter"), (1200, 675)).save(
-        ASSETS / "twitter-image.png",
-        optimize=True,
-    )
+    save_profile_variants()
+    save_social_cards()
     write_brand_source_note()
 
 

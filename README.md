@@ -1,150 +1,171 @@
-# Arabinda Saha — Personal Portfolio
+# Arabinda Saha Portfolio
 
-Personal portfolio site for Arabinda Saha, Built with plain HTML and CSS — no frameworks, no build step.
+Personal portfolio for Arabinda Saha, a Business Intelligence and Interface Architect in India.
 
-**Live site → [arabinda07.github.io](https://arabinda07.github.io)**
-
----
+Live site: [arabinda07.github.io](https://arabinda07.github.io)
 
 ## Overview
 
-A single-page portfolio inspired by [Brittany Chiang's v4](https://brittanychiang.com), adapted for a background spanning mathematics, education systems, and governance-oriented data work. Designed to communicate depth and range without a traditional tech-only portfolio format.
+This is a static, single-page portfolio built with plain HTML, CSS, and small local JavaScript. Vite is used only for local serving, and Playwright covers the smoke-test contract.
 
----
+The site positions Arabinda around business intelligence consulting, dashboard workflows, education analytics, program operations, and selected web products. Verified BI and education/program proof stays primary. Web/product showcases are included separately with clear live or prototype status.
 
-## Structure
+## Current Site Architecture
 
-```
+```text
 /
-├── index.html          # Single-page application — all content
-├── styles.css          # All styles — no preprocessor
+├── index.html          # Main single-page portfolio
+├── styles.css          # Design tokens, layout, responsive states, motion
+├── sitemap.xml         # Canonical public URLs for crawlers
+├── robots.txt          # Allows crawling and references sitemap.xml
+├── llms.txt            # AI-readable positioning and proof summary
+├── profile.md          # Machine-readable profile
+├── PRODUCT.md          # Product, audience, positioning, SEO policy
+├── DESIGN.md           # Decision Studio design system
+├── site.webmanifest    # App metadata and icons
+├── tests/
+│   └── smoke.spec.js   # Playwright smoke and contract tests
+├── scripts/
+│   └── generate_web_assets.py
 └── assets/
-    ├── Profile picture.png # Transparent profile portrait
-    └── resume.pdf      # Downloadable résumé
+    ├── profile-540.webp
+    ├── profile-1080.webp
+    ├── Profile picture.png       # Source / fallback profile image
+    ├── og-image.jpg / .png
+    ├── twitter-image.jpg / .png
+    ├── work photos/optimized/    # Published WebP work evidence
+    └── photos/                   # Source web asset imagery
 ```
-
-Two files. No dependencies to install, no build command to run.
-
----
 
 ## Sections
 
-| # | Section | Notes |
-|---|---------|-------|
-| 01 | **About** | Bio, transparent portrait, career narrative |
-| 02 | **Experience** | Tabbed: LKS · Edudigm (PH) · Edudigm (SME) |
-| 03 | **Projects** | 3 featured (Problem / Execution / Outcome) + 3 cards |
-| 04 | **Capabilities** | Skill groups, certifications, selected speaking |
-| 05 | **Contact** | EmailJS-powered form |
-
----
+| # | Section | Purpose |
+|---|---------|---------|
+| 01 | About | Career narrative, portrait, philosophy, BI/interface positioning |
+| 02 | Experience | Tabbed work history for LKS and Edudigm roles |
+| 03 | Work | BI and analytics proof first, then selected web/product showcases |
+| 04 | Capabilities | BI, data analysis, workflows, databases, web/product build, certifications, speaking |
+| 05 | Contact | Conversation router, EmailJS form, direct contact links |
 
 ## Design System
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| `--navy` | `#0a192f` | Page background |
-| `--teal` | `#64ffda` | Accent — links, highlights, active states |
-| `--slate-light` | `#ccd6f6` | Headings, section intros, emphasis |
-| `--slate` | `#8892b0` | Body text |
-| `--slate-dark` | `#495670` | Dividers, decorative elements |
-| `--white` | `#e6f1ff` | Brightest text — name, role emphasis |
-| `--navy-light` | `#112240` | Cards, tab panels |
+The current visual system is documented in `DESIGN.md`.
 
-**Fonts:** Inter (body + display) · Fira Code (mono) — loaded from Google Fonts.
+Core direction:
 
----
+- Warm "Decision Studio" atmosphere
+- OKLCH color tokens
+- Cabinet Grotesk display type
+- Supreme body type
+- JetBrains Mono for short labels and metadata
+- Warm canvas, paper surfaces, amber-brown field accent, muted green support color
+- Restrained motion with `prefers-reduced-motion` support
 
-## Features
+Avoid reintroducing older navy/teal, Inter/Fira Code, glassy SaaS, fake metrics, or decorative dashboard motifs.
 
-- Fixed left panel (desktop) with name, tagline, nav, and socials
-- Scroll-driven active navigation highlighting
-- Tabbed experience section with animated indicator
-- Alternating featured project layout with dot-grid image placeholders
-- Page loader with animated hex logo
-- Cursor radial spotlight (desktop only)
-- Scroll progress bar
-- Teal callout treatment on experience and project notes
-- Film-grain texture overlay (CSS-only SVG)
-- EmailJS contact form with client-side validation
-- Right-side email rail (desktop, `>1080px`)
-- Fully responsive — mobile nav drawer with hamburger
-- `prefers-reduced-motion` support throughout
-- Keyboard accessible — focus-visible states on all interactive elements
-- `aria-label`, `role`, and `aria-selected` on tab components
+## SEO And AI-Readable Files
 
----
+The SEO and machine-readable content contract is spread across:
 
-## Deployment
+- `index.html` head metadata and JSON-LD
+- `sitemap.xml`
+- `robots.txt`
+- `llms.txt`
+- `profile.md`
+- `site.webmanifest`
+- smoke tests in `tests/smoke.spec.js`
 
-Hosted on **GitHub Pages** from the `master` branch. Push to `master` → live within ~1 minute.
+When updating public positioning, update these together. Keep verified BI/dashboard/education analytics proof primary, and keep selected web products clearly status-labeled.
+
+## Assets
+
+Profile display images use production WebP variants:
+
+- `assets/profile-540.webp`
+- `assets/profile-1080.webp`
+
+Social cards use smaller JPG files in metadata:
+
+- `assets/og-image.jpg`
+- `assets/twitter-image.jpg`
+
+PNG source/output files remain in the repo for compatibility and regeneration. Published work evidence images live under `assets/work photos/optimized/` and should stay WebP-only.
+
+To regenerate the web assets after replacing source imagery:
 
 ```bash
-git add .
-git commit -m "your message"
-git push origin master
+python scripts/generate_web_assets.py
 ```
-
-No build step. No CI needed.
-
----
-
-## EmailJS Configuration
-
-The contact form uses [EmailJS](https://www.emailjs.com/) for serverless email delivery. Credentials are set directly in `index.html`:
-
-```js
-emailjs.init('D3gJkKMx_DbElRpth');                          // Public key
-emailjs.sendForm('service_2q1jfj9', 'template_j5q4hjj', …)  // Service + template
-```
-
-To use your own EmailJS account, replace those three values with your own from the EmailJS dashboard. The template expects three variables: `from_name`, `reply_to`, `message`.
-
----
 
 ## Local Development
 
-Install dependencies once, then start the Vite static server:
+Install dependencies once:
 
 ```bash
 npm install
+```
+
+Start the local Vite server:
+
+```bash
 npm run dev
 ```
 
-Vite serves the site at `http://127.0.0.1:5173/`. The site remains plain HTML and CSS; Vite is only used for local hosting.
+Vite serves the site at `http://127.0.0.1:5173/`.
 
-Note: EmailJS requires an active internet connection to send messages. Form validation runs entirely client-side.
+Run the smoke suite:
 
----
+```bash
+npm run test:smoke
+```
+
+## EmailJS
+
+The contact form loads EmailJS from its CDN and uses client-side validation. If EmailJS is unavailable, the form shows a direct email fallback.
+
+Credentials are currently configured in `index.html`:
+
+```js
+emailjs.init('D3gJkKMx_DbElRpth');
+emailjs.sendForm('service_2q1jfj9', 'template_j5q4hjj', contactForm);
+```
 
 ## Updating Content
 
-All content lives in `index.html`. Key locations:
+Most visible content lives in `index.html`.
 
-| Content | Where to find it |
-|---------|-----------------|
-| Name, tagline, bio | `.lp-top` in the left panel (`<aside class="left-panel">`) |
+| Content | Location |
+|---|---|
+| Hero and left-panel copy | `.left-panel` and `.hero-section` |
 | Experience bullets | `#tab-lks`, `#tab-edudigm-ph`, `#tab-edudigm-sme` |
-| Featured projects | `.featured-projects` — each `.featured-project` block |
-| Small project cards | `.projects-grid` |
-| Skill tags | `.skills-section` — four `.skill-group` blocks |
-| Certifications | `.certs-section` |
-| Speaking | `.seminars-section` |
-| Contact copy | `.contact-body` in `#contact` |
-| Resume file | Replace `assets/resume.pdf` — filename referenced in 3 places |
-| Profile photo | Replace `assets/Profile picture.png` — referenced in 2 `<img>` tags and JSON-LD |
+| Work proof and showcases | `#work` |
+| Capability groups | `#skills` |
+| Certifications and speaking | `.certs-section`, `.seminars-section` |
+| Contact copy and form routing | `#contact` |
+| SEO and structured data | `<head>` JSON-LD and metadata |
 
----
+After any content, SEO, asset, or layout change, run:
 
-## Credits & Inspiration
+```bash
+npm run test:smoke
+```
 
-Design language inspired by [Brittany Chiang's v4 portfolio](https://github.com/bchiang7/v4) — colour palette, fixed left-panel layout, and nav interaction pattern.
+## Deployment
 
-All code written from scratch. No templates, libraries, or CSS frameworks used.
+Hosted on GitHub Pages from the `master` branch.
 
----
+```bash
+git add .
+git commit -m "update portfolio"
+git push origin master
+```
+
+GitHub Pages usually publishes within a minute or two.
 
 ## Contact
 
-**Arabinda Saha**
-[linkedin.com/in/robin0607saha](https://www.linkedin.com/in/robin0607saha) · [github.com/Arabinda07](https://github.com/Arabinda07)
+Arabinda Saha
+
+- Website: [arabinda07.github.io](https://arabinda07.github.io)
+- LinkedIn: [linkedin.com/in/robin0607saha](https://www.linkedin.com/in/robin0607saha)
+- GitHub: [github.com/Arabinda07](https://github.com/Arabinda07)

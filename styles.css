@@ -193,7 +193,7 @@ section[id] {
 
 .skip-link {
   position: absolute;
-  top: -100px;
+  top: 1rem;
   left: 1rem;
   z-index: var(--z-skip-link);
   padding: 0.7rem 1rem;
@@ -202,11 +202,12 @@ section[id] {
   border-radius: 6px;
   font-family: var(--font-mono);
   font-size: 0.78rem;
-  transition: top 0.2s ease;
+  transform: translateY(calc(-100% - 2rem));
+  transition: transform 0.2s var(--ease);
 }
 
 .skip-link:focus {
-  top: 1rem;
+  transform: translateY(0);
 }
 
 .scroll-progress {
@@ -828,7 +829,6 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   color: var(--color-text-muted);
   background: transparent;
   border: 0;
-  border-left: 2px solid transparent;
   cursor: pointer;
   font-family: var(--font-mono);
   font-size: 0.78rem;
@@ -3097,13 +3097,11 @@ html[data-theme="dark"] .form-input::placeholder {
     min-width: 0;
     padding: 0.72rem 0.85rem;
     border-bottom: 0;
-    border-left: 2px solid transparent;
     white-space: normal;
   }
 
-  .tab-btn.active {
-    border-bottom-color: transparent;
-    border-left-color: var(--color-accent);
+  .tab-indicator {
+    display: block;
   }
 }
 
