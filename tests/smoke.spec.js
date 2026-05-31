@@ -379,7 +379,7 @@ test('hero copy supports consultant and interface architect positioning without 
   await page.waitForFunction(() => !document.body.classList.contains('is-loading'));
   await expect(page.locator('.lp-name')).toHaveText('Arabinda Saha');
   await expect(page.locator('.left-panel .lp-title')).toHaveCount(0);
-  const corePromise = 'I build business intelligence systems, dashboard workflows, and useful web products for teams that need clearer decisions.';
+  const corePromise = 'I build business intelligence systems, dashboard workflows, and web products that make the work, numbers, and next step easier to see.';
   await expect(page.locator('.lp-bio')).toHaveText(corePromise);
   await expect(page.locator('.left-panel')).toContainText('Start a conversation');
   await expect(page.locator('.left-panel .lp-social-row')).toHaveCount(1);
@@ -405,7 +405,7 @@ test('hero copy supports consultant and interface architect positioning without 
   expect(visibleText).not.toContain('Verified outcomes stay separate from target-stack positioning');
   expect(visibleText).not.toContain('Tools and models I am positioning around');
   expect(visibleText).not.toContain('This matrix separates');
-  expect(visibleText).toContain('Business intelligence systems, dashboard workflows, education analytics, program operations, and selected web work.');
+  expect(visibleText).toContain('Business intelligence and education analytics work first, with program operations and selected web/product showcases kept in their own lane.');
   expect(visibleText).not.toMatch(/Product Ops Stack/i);
   expect(visibleText).not.toContain('Target Product Ops Stack');
   expect(visibleText).not.toContain('Product Operations & Data Consultant');
@@ -477,7 +477,7 @@ test('work section prioritizes analytics proof and keeps web showcases distinct'
   expect(visibleText).not.toContain('Anonymized summary');
   expect(visibleText).not.toContain('Verified proof');
   expect(visibleText).toContain('School Program Command Centre — Active Prototype');
-  expect(visibleText).toContain('synthetic/sample school-program data and has not yet been piloted');
+  expect(visibleText).toContain('It uses synthetic/sample school-program data and has not been piloted yet.');
   expect(visibleText).toContain('Reflections');
   expect(visibleText).toContain('Parichay');
   expect(visibleText).toMatch(/view project/i);
@@ -820,7 +820,7 @@ test('head exposes canonical, social cards, manifest, and parseable structured d
   expect(metaDescription).toMatch(/data models/);
   expect(metaDescription).toMatch(/dashboards/);
   expect(metaDescription).toMatch(/education analytics/);
-  expect(metaDescription).toMatch(/web products/);
+  expect(metaDescription).toMatch(/web\/product showcases/);
   expect(metaDescription.length).toBeGreaterThanOrEqual(140);
   expect(metaDescription.length).toBeLessThanOrEqual(165);
   await expect(page.locator('link[rel="manifest"]')).toHaveAttribute('href', 'site.webmanifest');
@@ -842,9 +842,9 @@ test('head exposes canonical, social cards, manifest, and parseable structured d
   await expect(page.locator('meta[property="og:description"]')).not.toHaveAttribute('content', /data systems/i);
   await expect(page.locator('meta[name="twitter:description"]')).not.toHaveAttribute('content', /data systems/i);
   await expect(page.locator('meta[property="og:description"]')).toHaveAttribute('content', /program operations/);
-  await expect(page.locator('meta[property="og:description"]')).toHaveAttribute('content', /selected web products/);
+  await expect(page.locator('meta[property="og:description"]')).toHaveAttribute('content', /selected web\/product showcases/);
   await expect(page.locator('meta[name="twitter:description"]')).toHaveAttribute('content', /program operations/);
-  await expect(page.locator('meta[name="twitter:description"]')).toHaveAttribute('content', /selected web products/);
+  await expect(page.locator('meta[name="twitter:description"]')).toHaveAttribute('content', /selected web\/product showcases/);
 
   const jsonLd = await page.locator('script[type="application/ld+json"]').allTextContents();
   expect(jsonLd.length).toBeGreaterThan(0);
@@ -942,7 +942,7 @@ test('planned web assets and SEO files exist', async () => {
     ])
   );
   expect(manifest.description).toContain('Business Intelligence and Interface Architect in India');
-  expect(manifest.description).toContain('selected web products');
+  expect(manifest.description).toContain('selected web/product showcases');
 
   const expectedDimensions = {
     'assets/favicon-16x16.png': [16, 16],
@@ -1027,6 +1027,23 @@ test('published work assets only include optimized webp images', async () => {
 });
 
 test('AI-readable and sitemap files match current SEO positioning', async () => {
+  const publicContentFiles = [
+    'index.html',
+    'sitemap.xml',
+    'sitemap.xsl',
+    'llms.txt',
+    'profile.md',
+    'PRODUCT.md',
+    'DESIGN.md',
+    'README.md',
+    'site.webmanifest',
+    'robots.txt',
+  ];
+  for (const file of publicContentFiles) {
+    const fileText = fs.readFileSync(path.join(rootDir, file), 'utf8');
+    expect(fileText, `${file} should not use the stale sitemap title`).not.toContain('Data Systems Consultant');
+  }
+
   const llmsText = fs.readFileSync(path.join(rootDir, 'llms.txt'), 'utf8');
   expect(llmsText).toContain('Business Intelligence & Interface Architect');
   expect(llmsText).toContain('Best-fit opportunities');
@@ -1068,6 +1085,7 @@ test('AI-readable and sitemap files match current SEO positioning', async () => 
   expect(profileText).not.toContain('Eliminated reporting discrepancies across business units');
 
   const sitemap = fs.readFileSync(path.join(rootDir, 'sitemap.xml'), 'utf8');
+  const sitemapXsl = fs.readFileSync(path.join(rootDir, 'sitemap.xsl'), 'utf8');
   expect(sitemap).toContain('<lastmod>2026-05-31</lastmod>');
   expect(sitemap).not.toContain('<lastmod>2026-05-24</lastmod>');
   expect((sitemap.match(/<url>/g) || []).length).toBe(3);
@@ -1077,6 +1095,8 @@ test('AI-readable and sitemap files match current SEO positioning', async () => 
   expect(sitemap).not.toContain('project-t2dax.vercel.app');
   expect(sitemap).not.toContain('reflections-sanctuary.space');
   expect(sitemap).not.toContain('parichay-your-story.vercel.app');
+  expect(sitemapXsl).toContain('Arabinda Saha — Business Intelligence &amp; Interface Architect');
+  expect(sitemapXsl).not.toContain('Data Systems Consultant');
 });
 
 test('warm accent system has no retired blue or legacy alias CSS tokens', async () => {
@@ -1128,7 +1148,7 @@ test('product context document exists for design work', async () => {
   expect(productDoc).toContain('## Brand Personality');
   expect(productDoc).toContain('## Anti-References');
   expect(productDoc).toContain('verified business intelligence');
-  expect(productDoc).toContain('status-labeled');
+  expect(productDoc).toContain('marked by status');
   expect(productDoc).toContain('Reflections and Parichay');
   expect(productDoc).not.toMatch(/freelance/i);
 });

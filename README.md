@@ -8,7 +8,7 @@ Live site: [arabinda07.github.io](https://arabinda07.github.io)
 
 This is a static, single-page portfolio built with plain HTML, CSS, and small local JavaScript. Vite is used only for local serving, and Playwright covers the smoke-test contract.
 
-The site positions Arabinda around business intelligence consulting, dashboard workflows, education analytics, program operations, and selected web products. Verified BI and education/program proof stays primary. Web/product showcases are included separately with clear live or prototype status.
+The site positions Arabinda around business intelligence consulting, dashboard workflows, education analytics, program operations, and selected web/product showcases. Verified BI and education/program proof stays primary. Web/product work is separated from verified proof and marked as live or prototype.
 
 ## Current Site Architecture
 
@@ -75,7 +75,7 @@ The SEO and machine-readable content contract is spread across:
 - `site.webmanifest`
 - smoke tests in `tests/smoke.spec.js`
 
-When updating public positioning, update these together. Keep verified BI/dashboard/education analytics proof primary, and keep selected web products clearly status-labeled.
+When updating public positioning, update these together. Keep verified BI/dashboard/education analytics proof primary, and keep web/product showcases clearly marked by status.
 
 ## Assets
 

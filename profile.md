@@ -1,7 +1,7 @@
 # Arabinda Saha - Machine-Readable Profile
 
 ## What does Arabinda Saha do?
-Arabinda Saha is a Business Intelligence & Interface Architect in India. He builds business intelligence systems, dashboard workflows, and useful web products for teams that need clearer decisions.
+Arabinda Saha is a Business Intelligence & Interface Architect in India. He builds business intelligence systems, dashboard workflows, and web products that make work, numbers, and next steps easier to see.
 
 ## What roles is this profile best suited for?
 - Business Intelligence Consultant

@@ -1,6 +1,6 @@
 ---
 name: Arabinda Saha Portfolio
-description: A warm decision-studio portfolio for BI consulting, dashboards, analytics workflows, and selected web products.
+description: A warm decision-studio portfolio for BI consulting, dashboards, analytics workflows, and selected web/product showcases.
 colors:
   canvas: "oklch(0.965 0.018 82)"
   canvas-soft: "oklch(0.935 0.021 78)"
@@ -90,7 +90,7 @@ components:
 
 **Creative North Star: "Decision Studio"**
 
-This portfolio should feel like a calm room where messy work becomes legible. The visitor should understand that Arabinda works with dashboards, assessment data, program evidence, institutional operations, and selected web products, but the experience should not feel clerical or like a generic analyst-course portfolio.
+This portfolio should feel like a calm room where messy work becomes legible. The visitor should understand that Arabinda works with dashboards, assessment data, program evidence, institutional operations, and selected web/product showcases, but the experience should not feel clerical or like a generic analyst-course portfolio.
 
 The visual system is warm, analytical, structured, and human. It uses a restrained canvas, precise type, quiet borders, small data-like labels, and enough asymmetry to feel designed. It should become more distinctive over time through proof-led visuals, stronger work artifacts, and project-specific evidence, not by adding decorative spectacle.
 
@@ -212,13 +212,13 @@ The system uses a hybrid of tonal layering, borders, and soft shadows. Surfaces 
 
 - **Favicons and App Icons:** Use the clean AS monogram with one amber-brown border, warm surface fill, and generous padding. Avoid nested frames, corner nodes, tiny dots, and diagram details that collapse at small sizes.
 - **Social Cards:** Lead with "Portfolio of Arabinda Saha", then the Business Intelligence & Interface Architect role and concrete work nouns. Use one subtle dashboard/proof motif only.
-- **Rule:** Social cards can carry positioning, but avoid metric clutter and old "data systems" wording.
+- **Rule:** Social cards can carry positioning, but avoid metric clutter and old systems-consultant wording.
 
 ## Do's and Don'ts
 
 ### Do:
 
-- **Do** keep the first screen immediately clear: Business Intelligence & Interface Architect, dashboards, analytics workflows, program work, tools, and selected web products.
+- **Do** keep the first screen immediately clear: Business Intelligence & Interface Architect, dashboards, analytics workflows, program work, tools, and selected web/product showcases.
 - **Do** use the warm OKLCH palette from the current CSS tokens as the source of truth.
 - **Do** keep Competitive Edge and LKS dashboard work visually strong in the Work section.
 - **Do** preserve employer-work boundaries for LKS and avoid invented performance metrics.

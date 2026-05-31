@@ -1,7 +1,7 @@
 ---
 name: Arabinda Saha Portfolio
 register: brand
-description: Portfolio for business intelligence consulting, dashboard systems, education analytics, analytics workflows, and selected web products.
+description: Portfolio for business intelligence consulting, dashboard systems, education analytics, analytics workflows, and selected web/product showcases.
 ---
 
 # Product Context: Arabinda Saha Portfolio
@@ -14,7 +14,7 @@ They are usually scanning for proof of judgment: what kind of work he does, what
 
 ## Product Purpose
 
-The portfolio should position Arabinda as a Business Intelligence and Interface Architect who turns scattered program, business, assessment, and operational data into dashboards, analytics workflows, trackers, and useful web products.
+The portfolio should position Arabinda as a Business Intelligence and Interface Architect who turns scattered program, business, assessment, and operational data into dashboards, analytics workflows, trackers, and focused web products.
 
 The site should make the work legible without exposing confidential employer details or overstating prototype status. It may include market-relevant tools beyond public case studies, as long as the site does not claim those tools were used in employer work without evidence.
 
@@ -22,7 +22,7 @@ The site should make the work legible without exposing confidential employer det
 
 The machine-readable layer includes `llms.txt`, `profile.md`, JSON-LD in `index.html`, and `sitemap.xml`. These files should repeat the same content contract: verified business intelligence, dashboard, education analytics, and program operations work is the primary proof layer.
 
-Selected web and product showcases may appear in machine-readable files when they are clearly separated from verified proof and status-labeled. School Program Command Centre must be described as an active prototype using synthetic/sample data and not yet piloted. Reflections and Parichay may be described as live web products, but not as employer work or proof of business intelligence outcomes.
+Selected web/product showcases may appear in machine-readable files when they are clearly separated from verified proof and marked by status. School Program Command Centre must be described as an active prototype using synthetic/sample data and not yet piloted. Reflections and Parichay may be described as live web products, but not as employer work or proof of business intelligence outcomes.
 
 Do not add separate sitemap URLs for third-party showcase apps from this portfolio sitemap. Link to them from the site and structured data when useful, while keeping the portfolio sitemap limited to canonical public pages owned by this site.
 
