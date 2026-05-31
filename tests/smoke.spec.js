@@ -61,6 +61,10 @@ function readPngSize(filePath) {
   };
 }
 
+function readPngColorType(filePath) {
+  return fs.readFileSync(filePath)[25];
+}
+
 test('invalid email shows validation error', async ({ page }) => {
   await page.goto(pageUrl);
   await page.fill('#from_name', 'Test User');
@@ -438,9 +442,10 @@ test('work section prioritizes analytics proof and keeps web showcases distinct'
   expect(visibleText).not.toContain('Amplitude');
   expect(visibleText).not.toContain('Mixpanel');
   expect(visibleText).not.toContain('Snowflake SQL');
-  await expect(page.locator('.work-media[aria-label="Competitive Edge assessment program photos"] img')).toHaveCount(3);
-  await expect(page.locator('.work-media[aria-label="Career assessment pilot photos"] img')).toHaveCount(3);
+  await expect(page.locator('.work-media[aria-label="Competitive Edge assessment program photos"] img')).toHaveCount(2);
+  await expect(page.locator('.work-media[aria-label="Career assessment pilot photos"] img')).toHaveCount(2);
   await expect(page.locator('.work-media[aria-label="Stellar Space Quiz event photos"] [data-gallery-next]')).toHaveCount(1);
+  await expect(page.locator('.work-media[aria-label="School programs and STEM photos"] img')).toHaveCount(2);
   await expect(page.locator('.work-media[aria-label="School programs and STEM photos"] [data-gallery-prev]')).toHaveCount(1);
   const galleryArrowSizes = await page.locator('.work-media__arrow').evaluateAll((buttons) =>
     buttons.map((button) => {
@@ -475,6 +480,7 @@ test('work section prioritizes analytics proof and keeps web showcases distinct'
   expect(visibleText).toContain('Writing Insights');
   await expect(page.locator('img[alt="Arabinda Saha"][loading="eager"]')).toHaveCount(1);
   await expect(page.locator('img[alt="Arabinda Saha"][fetchpriority="high"]')).toHaveCount(1);
+  await expect(page.locator('img[alt="Arabinda Saha"]').first()).toHaveAttribute('src', /assets\/Profile%20picture\.png/);
   await expect(page.locator('.featured-project .fp-image-placeholder')).toHaveCount(0);
   expect(visibleText).not.toContain('reducing cloud infrastructure compute overhead by an estimated 20%');
   expect(visibleText).not.toContain('Eliminated reporting discrepancies across business units');
@@ -765,9 +771,13 @@ test('head exposes canonical, social cards, manifest, and parseable structured d
   await expect(page.locator('link[media="print"][onload*="this.media"]')).toHaveCount(0);
   await expect(page.locator('meta[property="og:url"]')).toHaveAttribute('content', 'https://arabinda07.github.io/');
   await expect(page.locator('meta[property="og:image"]')).toHaveAttribute('content', 'https://arabinda07.github.io/assets/og-image.png');
-  await expect(page.locator('meta[property="og:image:alt"]')).toHaveAttribute('content', /Portfolio of Arabinda Saha/);
+  await expect(page.locator('meta[property="og:image:alt"]')).toHaveAttribute('content', /Arabinda Saha portfolio preview/);
+  await expect(page.locator('meta[property="og:image:alt"]')).toHaveAttribute('content', /user-provided illustrated portrait artwork/);
   await expect(page.locator('meta[name="twitter:image"]')).toHaveAttribute('content', 'https://arabinda07.github.io/assets/twitter-image.png');
-  await expect(page.locator('meta[name="twitter:image:alt"]')).toHaveAttribute('content', /Portfolio of Arabinda Saha/);
+  await expect(page.locator('meta[name="twitter:image:alt"]')).toHaveAttribute('content', /Arabinda Saha portfolio preview/);
+  await expect(page.locator('meta[name="twitter:image:alt"]')).toHaveAttribute('content', /user-provided illustrated portrait artwork/);
+  await expect(page.locator('meta[property="og:image:alt"]')).not.toHaveAttribute('content', /AS monogram|BI & Data Analyst|decision-lattice/i);
+  await expect(page.locator('meta[name="twitter:image:alt"]')).not.toHaveAttribute('content', /AS monogram|BI & Data Analyst|decision-lattice/i);
   await expect(page.locator('meta[property="og:image:alt"]')).not.toHaveAttribute('content', /business intelligence focus|data systems/i);
   await expect(page.locator('meta[name="twitter:image:alt"]')).not.toHaveAttribute('content', /business intelligence focus|data systems/i);
   await expect(page.locator('meta[property="og:description"]')).not.toHaveAttribute('content', /data systems/i);
@@ -787,6 +797,7 @@ test('head exposes canonical, social cards, manifest, and parseable structured d
   expect(person.hasOccupation).toEqual(expect.objectContaining({
     name: 'Business Intelligence & Interface Architect',
   }));
+  expect(person.image).toBe('https://arabinda07.github.io/assets/Profile%20picture.png');
   expect(person.knowsAbout).toEqual(expect.arrayContaining(['Plotly', 'Google Sheets', 'Dashboard workflows', 'Business intelligence consulting', 'Tableau', 'Power Query', 'React']));
   expect(graph['@graph'].some((item) => item['@type'] === 'WebSite' && item.url === 'https://arabinda07.github.io/')).toBe(true);
   expect(graph['@graph'].some((item) => item['@type'] === 'ProfilePage' && item.mainEntity && item.mainEntity['@id'] === 'https://arabinda07.github.io/#person')).toBe(true);
@@ -827,10 +838,18 @@ test('planned web assets and SEO files exist', async () => {
     'assets/apple-touch-icon.png',
     'assets/android-chrome-192x192.png',
     'assets/android-chrome-512x512.png',
-    'assets/photo-320.webp',
-    'assets/photo-480.webp',
+    'assets/brand-source.svg',
+    'assets/photos/ChatGPT Image May 31, 2026, 12_53_20 PM (1).png',
+    'assets/photos/ChatGPT Image May 31, 2026, 12_53_20 PM (2).png',
+    'assets/photos/ChatGPT Image May 31, 2026, 12_53_20 PM (3).png',
+    'assets/photos/ChatGPT Image May 31, 2026, 12_53_22 PM (4).png',
+    'assets/photos/ChatGPT Image May 31, 2026, 12_53_23 PM (5).png',
+    'assets/photos/ChatGPT Image May 31, 2026, 12_53_25 PM (6).png',
+    'assets/photos/ChatGPT Image May 31, 2026, 12_53_26 PM (7).png',
+    'assets/photos/ChatGPT Image May 31, 2026, 12_53_27 PM (8).png',
+    'assets/photos/ChatGPT Image May 31, 2026, 12_53_29 PM (9).png',
+    'assets/Profile picture.png',
     'assets/og-image.png',
-    'assets/og-square.png',
     'assets/twitter-image.png',
   ];
 
@@ -856,14 +875,46 @@ test('planned web assets and SEO files exist', async () => {
     'assets/apple-touch-icon.png': [180, 180],
     'assets/android-chrome-192x192.png': [192, 192],
     'assets/android-chrome-512x512.png': [512, 512],
+    'assets/Profile picture.png': [1080, 1080],
+    'assets/photos/ChatGPT Image May 31, 2026, 12_53_20 PM (1).png': [1254, 1254],
+    'assets/photos/ChatGPT Image May 31, 2026, 12_53_20 PM (2).png': [1254, 1254],
+    'assets/photos/ChatGPT Image May 31, 2026, 12_53_20 PM (3).png': [1254, 1254],
+    'assets/photos/ChatGPT Image May 31, 2026, 12_53_22 PM (4).png': [1254, 1254],
+    'assets/photos/ChatGPT Image May 31, 2026, 12_53_23 PM (5).png': [1254, 1254],
+    'assets/photos/ChatGPT Image May 31, 2026, 12_53_25 PM (6).png': [1254, 1254],
+    'assets/photos/ChatGPT Image May 31, 2026, 12_53_26 PM (7).png': [1254, 1254],
+    'assets/photos/ChatGPT Image May 31, 2026, 12_53_27 PM (8).png': [1731, 909],
+    'assets/photos/ChatGPT Image May 31, 2026, 12_53_29 PM (9).png': [1734, 907],
     'assets/og-image.png': [1200, 630],
     'assets/twitter-image.png': [1200, 675],
-    'assets/og-square.png': [1200, 1200],
   };
 
   for (const [file, [width, height]] of Object.entries(expectedDimensions)) {
     expect(readPngSize(path.join(rootDir, file))).toEqual({ width, height });
   }
+
+  expect(readPngColorType(path.join(rootDir, 'assets/Profile picture.png'))).toBe(6);
+});
+
+test('rendered images load successfully', async ({ page }) => {
+  await page.goto(pageUrl);
+  await page.waitForLoadState('load');
+
+  const failedImages = await page.evaluate(() =>
+    Array.from(document.images)
+      .filter((image) => image.currentSrc && (!image.complete || image.naturalWidth === 0 || image.naturalHeight === 0))
+      .map((image) => image.currentSrc)
+  );
+
+  expect(failedImages).toEqual([]);
+});
+
+test('web assets retire the old AS monogram language', async () => {
+  const html = fs.readFileSync(path.join(rootDir, 'index.html'), 'utf8');
+  const brandSource = fs.readFileSync(path.join(rootDir, 'assets', 'brand-source.svg'), 'utf8');
+
+  expect(html).not.toMatch(/AS monogram|BI & Data Analyst|decision-lattice/i);
+  expect(brandSource).not.toMatch(/>AS<|AS monogram|BI & Data Analyst|decision-lattice/i);
 });
 
 test('published work assets only include optimized webp images', async () => {

@@ -19,7 +19,7 @@ A single-page portfolio inspired by [Brittany Chiang's v4](https://brittanychian
 ├── index.html          # Single-page application — all content
 ├── styles.css          # All styles — no preprocessor
 └── assets/
-    ├── photo.png       # Profile photo
+    ├── Profile picture.png # Transparent profile portrait
     └── resume.pdf      # Downloadable résumé
 ```
 
@@ -31,7 +31,7 @@ Two files. No dependencies to install, no build command to run.
 
 | # | Section | Notes |
 |---|---------|-------|
-| 01 | **About** | Bio, photo with teal overlay, career narrative |
+| 01 | **About** | Bio, transparent portrait, career narrative |
 | 02 | **Experience** | Tabbed: LKS · Edudigm (PH) · Edudigm (SME) |
 | 03 | **Projects** | 3 featured (Problem / Execution / Outcome) + 3 cards |
 | 04 | **Capabilities** | Skill groups, certifications, selected speaking |
@@ -132,7 +132,7 @@ All content lives in `index.html`. Key locations:
 | Speaking | `.seminars-section` |
 | Contact copy | `.contact-body` in `#contact` |
 | Resume file | Replace `assets/resume.pdf` — filename referenced in 3 places |
-| Profile photo | Replace `assets/photo.png` — referenced in 2 `<img>` tags |
+| Profile photo | Replace `assets/Profile picture.png` — referenced in 2 `<img>` tags and JSON-LD |
 
 ---
 
