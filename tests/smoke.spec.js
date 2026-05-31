@@ -761,6 +761,7 @@ test('head exposes canonical, social cards, manifest, and parseable structured d
   expect(metaDescription).toMatch(/dashboard workflows/);
   expect(metaDescription).toMatch(/data models/);
   expect(metaDescription).toMatch(/dashboards/);
+  expect(metaDescription).toMatch(/education analytics/);
   expect(metaDescription).toMatch(/web products/);
   expect(metaDescription.length).toBeGreaterThanOrEqual(140);
   expect(metaDescription.length).toBeLessThanOrEqual(165);
@@ -782,6 +783,10 @@ test('head exposes canonical, social cards, manifest, and parseable structured d
   await expect(page.locator('meta[name="twitter:image:alt"]')).not.toHaveAttribute('content', /business intelligence focus|data systems/i);
   await expect(page.locator('meta[property="og:description"]')).not.toHaveAttribute('content', /data systems/i);
   await expect(page.locator('meta[name="twitter:description"]')).not.toHaveAttribute('content', /data systems/i);
+  await expect(page.locator('meta[property="og:description"]')).toHaveAttribute('content', /program operations/);
+  await expect(page.locator('meta[property="og:description"]')).toHaveAttribute('content', /selected web products/);
+  await expect(page.locator('meta[name="twitter:description"]')).toHaveAttribute('content', /program operations/);
+  await expect(page.locator('meta[name="twitter:description"]')).toHaveAttribute('content', /selected web products/);
 
   const jsonLd = await page.locator('script[type="application/ld+json"]').allTextContents();
   expect(jsonLd.length).toBeGreaterThan(0);
@@ -807,7 +812,15 @@ test('head exposes canonical, social cards, manifest, and parseable structured d
     'Competitive Edge - Diagnostic Assessment Analytics',
     'LKS Internal Performance Dashboard Work',
     'Career Assessment Tool',
+    'Stellar Space Quiz',
+    'School Programs, STEM & LMS Work',
+    'School Program Command Centre - Active Prototype',
+    'Reflections: Private Writing Journal',
+    'Parichay: Private Intro Page Studio',
   ]));
+  expect(workExamples.itemListElement.find((item) => item.name === 'School Program Command Centre - Active Prototype').description).toContain('Not yet piloted');
+  expect(workExamples.itemListElement.find((item) => item.name === 'Reflections: Private Writing Journal').description).toContain('Live');
+  expect(workExamples.itemListElement.find((item) => item.name === 'Parichay: Private Intro Page Studio').description).toContain('Live');
 });
 
 test('page exposes one semantic h1 and no blocking loader', async ({ page }) => {
@@ -867,6 +880,7 @@ test('planned web assets and SEO files exist', async () => {
     ])
   );
   expect(manifest.description).toContain('Business Intelligence and Interface Architect in India');
+  expect(manifest.description).toContain('selected web products');
 
   const expectedDimensions = {
     'assets/favicon-16x16.png': [16, 16],
@@ -953,9 +967,14 @@ test('AI-readable and sitemap files match current SEO positioning', async () => 
   expect(llmsText).toContain('Interface Architect');
   expect(llmsText).toContain('Kolkata, Bengaluru, Hyderabad, Gurugram, Pune, Mumbai, and remote India');
   expect(llmsText).toContain('LKS Internal Performance Dashboard Work');
+  expect(llmsText).toContain('Selected web and product showcases');
+  expect(llmsText).toContain('School Program Command Centre - Active Prototype');
+  expect(llmsText).toContain('Reflections: Private Writing Journal');
+  expect(llmsText).toContain('Parichay: Private Intro Page Studio');
+  expect(llmsText).toContain('Interpretation guardrails');
+  expect(llmsText).toContain('primary proof layer');
+  expect(llmsText).toContain('not yet piloted');
   expect(llmsText).toContain('Fine Arts');
-  expect(llmsText).not.toContain('confidential');
-  expect(llmsText).not.toContain('Confidential');
   expect(llmsText).not.toContain('LKS Internal Dashboard Work - Confidential / Anonymized');
   expect(llmsText).not.toContain('LKS Internal Dashboard Work — Confidential / Anonymized');
   expect(llmsText).not.toContain('Product Operations & Data Consultant');
@@ -970,12 +989,24 @@ test('AI-readable and sitemap files match current SEO positioning', async () => 
   expect(profileText).toContain('Dashboard Analyst');
   expect(profileText).toContain('verified proof');
   expect(profileText).toContain('Bloom');
+  expect(profileText).toContain('What selected web and product showcases are public?');
+  expect(profileText).toContain('School Program Command Centre');
+  expect(profileText).toContain('Reflections');
+  expect(profileText).toContain('Parichay');
+  expect(profileText).toContain('primary proof layer');
   expect(profileText).not.toContain('reducing cloud infrastructure compute overhead by an estimated 20%');
   expect(profileText).not.toContain('Eliminated reporting discrepancies across business units');
 
   const sitemap = fs.readFileSync(path.join(rootDir, 'sitemap.xml'), 'utf8');
-  expect(sitemap).toContain('<lastmod>2026-05-24</lastmod>');
+  expect(sitemap).toContain('<lastmod>2026-05-31</lastmod>');
+  expect(sitemap).not.toContain('<lastmod>2026-05-24</lastmod>');
+  expect((sitemap.match(/<url>/g) || []).length).toBe(3);
+  expect(sitemap).toContain('<loc>https://arabinda07.github.io/</loc>');
+  expect(sitemap).toContain('<loc>https://arabinda07.github.io/llms.txt</loc>');
   expect(sitemap).toContain('<loc>https://arabinda07.github.io/profile.md</loc>');
+  expect(sitemap).not.toContain('project-t2dax.vercel.app');
+  expect(sitemap).not.toContain('reflections-sanctuary.space');
+  expect(sitemap).not.toContain('parichay-your-story.vercel.app');
 });
 
 test('warm accent system has no retired blue or legacy alias CSS tokens', async () => {
@@ -996,6 +1027,8 @@ test('design system document exists with required sections', async () => {
   expect(designDoc).toContain('name: Arabinda Saha Portfolio');
   expect(designDoc).toContain('Creative North Star: "Decision Studio"');
   expect(designDoc).toContain('44px icon controls');
+  expect(designDoc).toContain('Optimized real/photo evidence galleries');
+  expect(designDoc).toContain('restrained text-only cards');
 
   const requiredHeadings = [
     '## Overview',
@@ -1021,8 +1054,12 @@ test('product context document exists for design work', async () => {
   expect(productDoc).toContain('register: brand');
   expect(productDoc).toContain('## Users');
   expect(productDoc).toContain('## Product Purpose');
+  expect(productDoc).toContain('## Machine-Readable SEO Policy');
   expect(productDoc).toContain('## Brand Personality');
   expect(productDoc).toContain('## Anti-References');
+  expect(productDoc).toContain('verified business intelligence');
+  expect(productDoc).toContain('status-labeled');
+  expect(productDoc).toContain('Reflections and Parichay');
   expect(productDoc).not.toMatch(/freelance/i);
 });
 

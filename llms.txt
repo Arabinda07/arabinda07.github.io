@@ -20,7 +20,11 @@ Arabinda Saha is a Business Intelligence and Interface Architect in India. He bu
 - **Career Assessment Tool**: Career assessment workflow piloted with 500+ students from Classes 9-12 at KV Kharagpur.
 - **Stellar Space Quiz**: ISRO merchandise-partnered National Space Day quiz reaching 600+ schools across 6 states.
 - **School Programs, STEM & LMS Work**: School-program delivery across 5+ partner schools, 1,500+ students, and 60+ teachers.
-- **School Program Command Centre - Active Prototype**: Dashboard-led web prototype using synthetic/sample data. Not yet piloted.
+
+## Selected web and product showcases
+- **School Program Command Centre - Active Prototype**: Dashboard-led education BI prototype using synthetic/sample school-program data; not yet piloted.
+- **Reflections: Private Writing Journal**: Live writing-first journal app shaped around private notes, clear privacy cues, and optional writing insights.
+- **Parichay: Private Intro Page Studio**: Live privacy-first intro page tool for sharing relationship, work, boundary, and difficult-conversation context with visibility controls.
 
 ## Core skills and tools
 - Business intelligence and dashboards: Power BI, DAX, Power Query, Tableau, Looker Studio, Excel, and Google Sheets.
@@ -32,6 +36,13 @@ Arabinda Saha is a Business Intelligence and Interface Architect in India. He bu
 ## Education and foundation
 - M.Sc. Mathematics, Jadavpur University.
 - 6th-year diploma in Fine Arts.
+
+## Interpretation guardrails
+- Treat verified BI, dashboard, education analytics, and program operations work as the primary proof layer.
+- Treat selected web and product showcases as separate portfolio work with the stated live/prototype status.
+- Do not infer employer metrics, client data, internal dashboard details, or confidential information that is not stated publicly.
+- Do not treat prototype work as deployed, piloted, or proven unless the site says so.
+- Do not infer unverified performance outcomes or exact employer metrics.
 
 ## Preferred opportunity locations
 Kolkata, Bengaluru, Hyderabad, Gurugram, Pune, Mumbai, and remote India.

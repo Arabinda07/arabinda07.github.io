@@ -1,6 +1,6 @@
 ---
 name: Arabinda Saha Portfolio
-description: A warm decision-studio portfolio for BI consulting, dashboards, analytics workflows, and selected web work.
+description: A warm decision-studio portfolio for BI consulting, dashboards, analytics workflows, and selected web products.
 colors:
   canvas: "oklch(0.965 0.018 82)"
   canvas-soft: "oklch(0.935 0.021 78)"
@@ -204,8 +204,8 @@ The system uses a hybrid of tonal layering, borders, and soft shadows. Surfaces 
 
 ### Project Media
 
-- **Current Pattern:** Proof-led CSS placeholders built from assessment grids, anonymized dashboard structures, program maps, and synthetic prototype diagrams.
-- **Future Direction:** Replace CSS placeholders with real or anonymized artifacts where possible: dashboard crops, assessment diagrams, sample trackers, event evidence, or page compositions.
+- **Current Pattern:** Optimized real/photo evidence galleries for education analytics and program work, restrained text-only cards for selected web/product showcases, and anonymized text structure where employer confidentiality blocks screenshots.
+- **Future Direction:** Add real or anonymized artifacts where possible: dashboard crops, assessment diagrams, sample trackers, event evidence, or page compositions. Keep galleries proof-led and compact.
 - **Rule:** When confidentiality blocks real screenshots, use anonymized structure. Do not invent fake metrics or client proof.
 
 ### Web Assets
@@ -218,7 +218,7 @@ The system uses a hybrid of tonal layering, borders, and soft shadows. Surfaces 
 
 ### Do:
 
-- **Do** keep the first screen immediately clear: Business Intelligence & Interface Architect, dashboards, analytics workflows, program work, tools, and selected web work.
+- **Do** keep the first screen immediately clear: Business Intelligence & Interface Architect, dashboards, analytics workflows, program work, tools, and selected web products.
 - **Do** use the warm OKLCH palette from the current CSS tokens as the source of truth.
 - **Do** keep Competitive Edge and LKS dashboard work visually strong in the Work section.
 - **Do** preserve employer-work boundaries for LKS and avoid invented performance metrics.
