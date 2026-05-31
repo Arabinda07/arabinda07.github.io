@@ -320,7 +320,7 @@ test('hero copy supports consultant and interface architect positioning without 
   await page.waitForFunction(() => !document.body.classList.contains('is-loading'));
   await expect(page.locator('.lp-name')).toHaveText('Arabinda Saha');
   await expect(page.locator('.left-panel .lp-title')).toHaveCount(0);
-  const corePromise = 'I build business intelligence systems, dashboard workflows, and clean web products for teams that need clearer decisions.';
+  const corePromise = 'I build business intelligence systems, dashboard workflows, and useful web products for teams that need clearer decisions.';
   await expect(page.locator('.lp-bio')).toHaveText(corePromise);
   await expect(page.locator('.left-panel')).toContainText('Start a conversation');
   await expect(page.locator('.left-panel .lp-social-row')).toHaveCount(1);
@@ -422,12 +422,17 @@ test('work section prioritizes analytics proof and keeps web showcases distinct'
   expect(visibleText).toContain('Reflections');
   expect(visibleText).toContain('Parichay');
   expect(visibleText).toMatch(/view project/i);
-  expect(visibleText).toMatch(/open project/i);
-  expect(visibleText).toMatch(/visit project/i);
+  expect(visibleText).not.toMatch(/open project/i);
+  expect(visibleText).not.toMatch(/visit project/i);
   expect(visibleText).not.toContain('View live');
   await expect(page.locator('a[href="https://project-t2dax.vercel.app/"]')).toContainText('View project');
-  await expect(page.locator('a[href="https://www.reflections-sanctuary.space/"]')).toContainText('Open project');
-  await expect(page.locator('a[href="https://parichay-your-story.vercel.app/"]')).toContainText('Visit project');
+  await expect(page.locator('a[href="https://www.reflections-sanctuary.space/"]')).toContainText('View project');
+  await expect(page.locator('a[href="https://parichay-your-story.vercel.app/"]')).toContainText('View project');
+  await expect(page.locator('#creative-track + .projects-grid .project-link')).toHaveText([
+    /View project/,
+    /View project/,
+    /View project/,
+  ]);
   expect(visibleText).toContain('Web & Product Showcases');
   expect(visibleText).not.toMatch(/\breporting\b/i);
   expect(visibleText).not.toContain('Amplitude');
@@ -454,8 +459,20 @@ test('work section prioritizes analytics proof and keeps web showcases distinct'
   await expect(page.locator('#creative-track + .projects-grid .project-card--text-only')).toHaveCount(3);
   await expect(page.locator('#creative-track + .projects-grid .project-status')).toHaveCount(3);
   await expect(page.locator('#creative-track + .projects-grid')).toContainText('Active prototype · synthetic data');
-  await expect(page.locator('#creative-track + .projects-grid')).toContainText('Focused workspace · live web app');
-  await expect(page.locator('#creative-track + .projects-grid')).toContainText('Storefront · story-led page');
+  await expect(page.locator('#creative-track + .projects-grid')).toContainText('Writing-first journal · live app');
+  await expect(page.locator('#creative-track + .projects-grid')).toContainText('Intro-page studio · live app');
+  await expect(page.locator('#creative-track + .projects-grid')).toContainText('Reflections: Private Writing Journal');
+  await expect(page.locator('#creative-track + .projects-grid')).toContainText('Parichay: Private Intro Page Studio');
+  expect(visibleText).not.toContain('Focused workspace · live web app');
+  expect(visibleText).not.toContain('Storefront · story-led page');
+  expect(visibleText).not.toContain('concrete privacy cues');
+  expect(visibleText).not.toContain('hard-conversation context');
+  expect(visibleText).not.toContain('Optional Insights');
+  expect(visibleText).not.toContain('optional pattern-noticing support');
+  expect(visibleText).toContain('optional writing insights');
+  expect(visibleText).toContain('clear privacy cues');
+  expect(visibleText).toContain('difficult-conversation context');
+  expect(visibleText).toContain('Writing Insights');
   await expect(page.locator('img[alt="Arabinda Saha"][loading="eager"]')).toHaveCount(1);
   await expect(page.locator('img[alt="Arabinda Saha"][fetchpriority="high"]')).toHaveCount(1);
   await expect(page.locator('.featured-project .fp-image-placeholder')).toHaveCount(0);
@@ -508,7 +525,7 @@ test('visible contact copy keeps the conversation router direct', async ({ page 
   expect(visibleText).toContain('Academic or research collaboration');
   expect(visibleText).toContain('Something else entirely');
   expect(visibleText).toMatch(/message on whatsapp/i);
-  expect(visibleText).toMatch(/what challenge should we tackle\?/i);
+  expect(visibleText).toMatch(/what would you like to discuss\?/i);
   expect(visibleText).toMatch(/start a conversation/i);
   expect(visibleText).toContain('One clear note is enough: what you are trying to understand, build, or improve.');
   expect(visibleText).not.toMatch(/no polished brief needed\./i);

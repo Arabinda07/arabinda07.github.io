@@ -1845,7 +1845,7 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
 }
 
 .contact-direct--form {
-  margin-top: 1rem;
+  margin-top: 0.72rem;
 }
 
 .contact-direct-link {
@@ -2045,8 +2045,8 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
 }
 
 .form-status {
-  display: inline-flex;
-  min-height: 1.4rem;
+  display: none;
+  min-height: 0;
   align-items: center;
   gap: 0.45rem;
   color: var(--color-text-muted);
@@ -2058,6 +2058,8 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
 }
 
 .form-status:not(:empty) {
+  display: inline-flex;
+  min-height: 1.4rem;
   opacity: 1;
   transform: translateY(0);
 }
