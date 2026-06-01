@@ -46,6 +46,7 @@
       if (theme !== 'light' && theme !== 'dark') {
         theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       }
+      document.documentElement.classList.add('js');
       document.documentElement.setAttribute('data-theme', theme);
       document.documentElement.style.colorScheme = theme;
     }());
@@ -242,12 +243,12 @@
 
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="preload" href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,800&f[]=supreme@700,600,500,400&display=swap" as="style" />
-  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,800&f[]=supreme@700,600,500,400&display=swap" />
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,800&f[]=supreme@700,600,500,400&display=swap" media="print" onload="this.media='all'" />
   <noscript><link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,800&f[]=supreme@700,600,500,400&display=swap" /></noscript>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" as="style" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'" />
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" /></noscript>
 </head>
 <body>
@@ -454,7 +455,8 @@
                   class="photo-img"
                   width="300"
                   height="300"
-                  loading="lazy"
+                  loading="eager"
+                  fetchpriority="high"
                   decoding="async"
                 />
               </div>
@@ -575,10 +577,28 @@
               <div class="work-media work-media--featured" data-gallery aria-label="Competitive Edge assessment program photos">
                 <div class="work-media__track">
                   <figure class="work-media__slide is-active">
-                    <img src="assets/work%20photos/optimized/competitive-edge/01-competitive-edge-dbsk-june.webp" alt="Competitive Edge diagnostic assessment presentation" loading="lazy" decoding="async" />
+                    <img
+                      src="assets/work-photos/optimized/competitive-edge/01-competitive-edge-dbsk-june-768w.webp"
+                      srcset="assets/work-photos/optimized/competitive-edge/01-competitive-edge-dbsk-june-480w.webp 480w, assets/work-photos/optimized/competitive-edge/01-competitive-edge-dbsk-june-768w.webp 768w, assets/work-photos/optimized/competitive-edge/01-competitive-edge-dbsk-june.webp 1599w"
+                      sizes="(max-width: 900px) calc(100vw - 2.5rem), (max-width: 1200px) 52vw, 620px"
+                      alt="Competitive Edge diagnostic assessment presentation"
+                      width="1599"
+                      height="899"
+                      loading="lazy"
+                      decoding="async"
+                    />
                   </figure>
                   <figure class="work-media__slide">
-                    <img src="assets/work%20photos/optimized/competitive-edge/03-grade-6a.webp" alt="Classroom assessment session for Competitive Edge" loading="lazy" decoding="async" />
+                    <img
+                      src="assets/work-photos/optimized/competitive-edge/03-grade-6a-768w.webp"
+                      srcset="assets/work-photos/optimized/competitive-edge/03-grade-6a-480w.webp 480w, assets/work-photos/optimized/competitive-edge/03-grade-6a-768w.webp 768w, assets/work-photos/optimized/competitive-edge/03-grade-6a.webp 1600w"
+                      sizes="(max-width: 900px) calc(100vw - 2.5rem), (max-width: 1200px) 52vw, 620px"
+                      alt="Classroom assessment session for Competitive Edge"
+                      width="1600"
+                      height="1200"
+                      loading="lazy"
+                      decoding="async"
+                    />
                   </figure>
                 </div>
                 <div class="work-media__controls" aria-label="Competitive Edge photo controls">
@@ -612,10 +632,28 @@
               <div class="work-media work-media--featured" data-gallery aria-label="Career assessment pilot photos">
                 <div class="work-media__track">
                   <figure class="work-media__slide is-active">
-                    <img src="assets/work%20photos/optimized/career-assessment/01-img-20250917-wa0023.webp" alt="Career assessment pilot session with students" loading="lazy" decoding="async" />
+                    <img
+                      src="assets/work-photos/optimized/career-assessment/01-img-20250917-wa0023-768w.webp"
+                      srcset="assets/work-photos/optimized/career-assessment/01-img-20250917-wa0023-480w.webp 480w, assets/work-photos/optimized/career-assessment/01-img-20250917-wa0023-768w.webp 768w, assets/work-photos/optimized/career-assessment/01-img-20250917-wa0023.webp 1280w"
+                      sizes="(max-width: 900px) calc(100vw - 2.5rem), (max-width: 1200px) 52vw, 620px"
+                      alt="Career assessment pilot session with students"
+                      width="1280"
+                      height="960"
+                      loading="lazy"
+                      decoding="async"
+                    />
                   </figure>
                   <figure class="work-media__slide">
-                    <img src="assets/work%20photos/optimized/career-assessment/02-img-20250917-wa0025.webp" alt="Students during career assessment workflow pilot" loading="lazy" decoding="async" />
+                    <img
+                      src="assets/work-photos/optimized/career-assessment/02-img-20250917-wa0025-768w.webp"
+                      srcset="assets/work-photos/optimized/career-assessment/02-img-20250917-wa0025-480w.webp 480w, assets/work-photos/optimized/career-assessment/02-img-20250917-wa0025-768w.webp 768w, assets/work-photos/optimized/career-assessment/02-img-20250917-wa0025.webp 1280w"
+                      sizes="(max-width: 900px) calc(100vw - 2.5rem), (max-width: 1200px) 52vw, 620px"
+                      alt="Students during career assessment workflow pilot"
+                      width="1280"
+                      height="960"
+                      loading="lazy"
+                      decoding="async"
+                    />
                   </figure>
                 </div>
                 <div class="work-media__controls" aria-label="Career assessment photo controls">
@@ -650,10 +688,28 @@
             <div class="work-media work-media--card" data-gallery aria-label="Stellar Space Quiz event photos">
               <div class="work-media__track">
                 <figure class="work-media__slide is-active">
-                  <img src="assets/work%20photos/optimized/stellar-space-quiz/01-img-5139.webp" alt="Stellar Space Quiz event audience and stage" loading="lazy" decoding="async" />
+                  <img
+                    src="assets/work-photos/optimized/stellar-space-quiz/01-img-5139-480w.webp"
+                    srcset="assets/work-photos/optimized/stellar-space-quiz/01-img-5139-480w.webp 480w, assets/work-photos/optimized/stellar-space-quiz/01-img-5139-768w.webp 768w, assets/work-photos/optimized/stellar-space-quiz/01-img-5139.webp 1600w"
+                    sizes="(max-width: 900px) calc(100vw - 2.5rem), 360px"
+                    alt="Stellar Space Quiz event audience and stage"
+                    width="1600"
+                    height="1067"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </figure>
                 <figure class="work-media__slide">
-                  <img src="assets/work%20photos/optimized/stellar-space-quiz/02-p1000676.webp" alt="Stellar Space Quiz finals venue activity" loading="lazy" decoding="async" />
+                  <img
+                    src="assets/work-photos/optimized/stellar-space-quiz/02-p1000676-480w.webp"
+                    srcset="assets/work-photos/optimized/stellar-space-quiz/02-p1000676-480w.webp 480w, assets/work-photos/optimized/stellar-space-quiz/02-p1000676-768w.webp 768w, assets/work-photos/optimized/stellar-space-quiz/02-p1000676.webp 1600w"
+                    sizes="(max-width: 900px) calc(100vw - 2.5rem), 360px"
+                    alt="Stellar Space Quiz finals venue activity"
+                    width="1600"
+                    height="1201"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </figure>
               </div>
               <div class="work-media__controls" aria-label="Stellar Space Quiz photo controls">
@@ -672,10 +728,28 @@
             <div class="work-media work-media--card" data-gallery aria-label="School programs and STEM photos">
               <div class="work-media__track">
                 <figure class="work-media__slide is-active">
-                  <img src="assets/work%20photos/optimized/school-programs-stem/01-img20251121094430.webp" alt="School program classroom activity" loading="lazy" decoding="async" />
+                  <img
+                    src="assets/work-photos/optimized/school-programs-stem/01-img20251121094430-480w.webp"
+                    srcset="assets/work-photos/optimized/school-programs-stem/01-img20251121094430-480w.webp 480w, assets/work-photos/optimized/school-programs-stem/01-img20251121094430-768w.webp 768w, assets/work-photos/optimized/school-programs-stem/01-img20251121094430.webp 1600w"
+                    sizes="(max-width: 900px) calc(100vw - 2.5rem), 360px"
+                    alt="School program classroom activity"
+                    width="1600"
+                    height="716"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </figure>
                 <figure class="work-media__slide">
-                  <img src="assets/work%20photos/optimized/school-programs-stem/04-worksheet-distribution-and-quiz-class-for-class-10-a-1.webp" alt="Worksheet distribution and quiz class activity" loading="lazy" decoding="async" />
+                  <img
+                    src="assets/work-photos/optimized/school-programs-stem/04-worksheet-distribution-and-quiz-class-for-class-10-a-1-480w.webp"
+                    srcset="assets/work-photos/optimized/school-programs-stem/04-worksheet-distribution-and-quiz-class-for-class-10-a-1-480w.webp 480w, assets/work-photos/optimized/school-programs-stem/04-worksheet-distribution-and-quiz-class-for-class-10-a-1-768w.webp 768w, assets/work-photos/optimized/school-programs-stem/04-worksheet-distribution-and-quiz-class-for-class-10-a-1.webp 1600w"
+                    sizes="(max-width: 900px) calc(100vw - 2.5rem), 360px"
+                    alt="Worksheet distribution and quiz class activity"
+                    width="1600"
+                    height="1200"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </figure>
               </div>
               <div class="work-media__controls" aria-label="School programs photo controls">

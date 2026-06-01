@@ -3107,18 +3107,18 @@ html[data-theme="dark"] .form-input::placeholder {
 
 /* Entrance animations */
 .fade-up {
-  opacity: 0;
-  transform: translate3d(0, 22px, 0);
-  transition: opacity 0.78s var(--ease), transform 0.78s var(--ease);
-  transition-delay: var(--delay, 0ms);
-  will-change: opacity, transform;
-}
-
-/* LCP element must be visible immediately — no render-delay from JS */
-.hero-name.fade-up,
-.lp-name.fade-up {
   opacity: 1;
   transform: none;
+  transition: opacity 0.78s var(--ease), transform 0.78s var(--ease);
+  transition-delay: var(--delay, 0ms);
+}
+
+.js .right-panel > .section.fade-up:not(#hero):not(#about),
+.js .right-panel .project-card.fade-up,
+.js .right-panel .cert-item.fade-up {
+  opacity: 0;
+  transform: translate3d(0, 22px, 0);
+  will-change: opacity, transform;
 }
 
 .fade-up.is-visible {

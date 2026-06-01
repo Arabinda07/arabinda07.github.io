@@ -511,7 +511,10 @@ test('work section prioritizes analytics proof and keeps web showcases distinct'
   expect(galleryArrowSizes.every((size) => size.width >= 44 && size.height >= 44)).toBeTruthy();
   await expect(page.locator('.featured-project--text-only .fp-title')).toContainText('LKS Internal Performance Dashboard Work');
   await expect(page.locator('.featured-project--text-only .fp-image')).toHaveCount(0);
-  await expect(page.locator('.work-media img').first()).toHaveAttribute('src', /assets\/work%20photos\/optimized\/competitive-edge\/01-competitive-edge-dbsk-june\.webp/);
+  await expect(page.locator('.work-media img').first()).toHaveAttribute('src', /assets\/work-photos\/optimized\/competitive-edge\/01-competitive-edge-dbsk-june-768w\.webp/);
+  await expect(page.locator('.work-media img').first()).toHaveAttribute('srcset', /01-competitive-edge-dbsk-june-480w\.webp 480w/);
+  await expect(page.locator('.work-media img').first()).toHaveAttribute('srcset', /01-competitive-edge-dbsk-june-768w\.webp 768w/);
+  await expect(page.locator('.work-media img').first()).toHaveAttribute('srcset', /01-competitive-edge-dbsk-june\.webp 1599w/);
   await expect(page.locator('#creative-track + .projects-grid .showcase-media')).toHaveCount(0);
   await expect(page.locator('#creative-track + .projects-grid img')).toHaveCount(0);
   await expect(page.locator('#creative-track + .projects-grid [data-gallery-next]')).toHaveCount(0);
@@ -533,8 +536,8 @@ test('work section prioritizes analytics proof and keeps web showcases distinct'
   expect(visibleText).toContain('clear privacy cues');
   expect(visibleText).toContain('difficult-conversation context');
   expect(visibleText).toContain('Writing Insights');
-  await expect(page.locator('img[alt="Arabinda Saha"][loading="eager"]')).toHaveCount(1);
-  await expect(page.locator('img[alt="Arabinda Saha"][fetchpriority="high"]')).toHaveCount(1);
+  await expect(page.locator('.about-photo--mobile img[alt="Arabinda Saha"][loading="eager"][fetchpriority="high"]')).toHaveCount(1);
+  await expect(page.locator('.about-photo--desktop img[alt="Arabinda Saha"][loading="eager"][fetchpriority="high"]')).toHaveCount(1);
   await expect(page.locator('img[alt="Arabinda Saha"]').first()).toHaveAttribute('src', 'assets/profile-540.webp');
   await expect(page.locator('img[alt="Arabinda Saha"]').first()).toHaveAttribute('srcset', /assets\/profile-1080\.webp/);
   await expect(page.locator('.featured-project .fp-image-placeholder')).toHaveCount(0);
@@ -825,9 +828,9 @@ test('head exposes canonical, social cards, manifest, and parseable structured d
   expect(metaDescription.length).toBeLessThanOrEqual(165);
   await expect(page.locator('link[rel="manifest"]')).toHaveAttribute('href', 'site.webmanifest');
   await expect(page.locator('link[rel="apple-touch-icon"]')).toHaveAttribute('href', 'assets/apple-touch-icon.png');
-  await expect(page.locator('link[rel="preload"][as="style"][href*="fontshare"]')).toHaveCount(1);
-  await expect(page.locator('link[rel="preload"][as="style"][href*="fonts.googleapis"]')).toHaveCount(1);
-  await expect(page.locator('link[media="print"][onload*="this.media"]')).toHaveCount(0);
+  await expect(page.locator('link[rel="preload"][as="style"][href*="fontshare"]')).toHaveCount(0);
+  await expect(page.locator('link[rel="preload"][as="style"][href*="fonts.googleapis"]')).toHaveCount(0);
+  await expect(page.locator('link[media="print"][onload*="this.media"]')).toHaveCount(2);
   await expect(page.locator('meta[property="og:url"]')).toHaveAttribute('content', 'https://arabinda07.github.io/');
   await expect(page.locator('meta[property="og:image"]')).toHaveAttribute('content', 'https://arabinda07.github.io/assets/og-image.jpg');
   await expect(page.locator('meta[property="og:image:alt"]')).toHaveAttribute('content', /Arabinda Saha portfolio preview/);
