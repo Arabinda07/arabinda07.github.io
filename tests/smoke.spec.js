@@ -828,6 +828,8 @@ test('head exposes canonical, social cards, manifest, and parseable structured d
   expect(metaDescription.length).toBeLessThanOrEqual(165);
   await expect(page.locator('link[rel="manifest"]')).toHaveAttribute('href', 'site.webmanifest');
   await expect(page.locator('link[rel="apple-touch-icon"]')).toHaveAttribute('href', 'assets/apple-touch-icon.png');
+  await expect(page.locator('link[rel="stylesheet"][href="styles.css"]')).toHaveCount(1);
+  await expect(page.locator('link[rel="preload"][as="image"][href="assets/profile-540.webp"]')).toHaveAttribute('fetchpriority', 'high');
   await expect(page.locator('link[rel="preload"][as="style"][href*="fontshare"]')).toHaveCount(0);
   await expect(page.locator('link[rel="preload"][as="style"][href*="fonts.googleapis"]')).toHaveCount(0);
   await expect(page.locator('link[media="print"][onload*="this.media"]')).toHaveCount(2);
@@ -882,6 +884,16 @@ test('head exposes canonical, social cards, manifest, and parseable structured d
   expect(workExamples.itemListElement.find((item) => item.name === 'School Program Command Centre - Active Prototype').description).toContain('Not yet piloted');
   expect(workExamples.itemListElement.find((item) => item.name === 'Reflections: Private Writing Journal').description).toContain('Live');
   expect(workExamples.itemListElement.find((item) => item.name === 'Parichay: Private Intro Page Studio').description).toContain('Live');
+});
+
+test('main stylesheet is discovered before structured data', async () => {
+  const html = fs.readFileSync(path.join(rootDir, 'index.html'), 'utf8');
+  const stylesheetIndex = html.indexOf('<link rel="stylesheet" href="styles.css" />');
+  const structuredDataIndex = html.indexOf('<script type="application/ld+json">');
+
+  expect(stylesheetIndex).toBeGreaterThanOrEqual(0);
+  expect(structuredDataIndex).toBeGreaterThanOrEqual(0);
+  expect(stylesheetIndex).toBeLessThan(structuredDataIndex);
 });
 
 test('page exposes one semantic h1 and no blocking loader', async ({ page }) => {
@@ -1161,6 +1173,7 @@ for (const viewport of [
   { name: 'mobile', width: 390, height: 844 },
   { name: 'tablet', width: 900, height: 1100 },
   { name: 'desktop', width: 1440, height: 980 },
+  { name: 'wide desktop', width: 1920, height: 1080 },
 ]) {
   test(`layout has no horizontal overflow at ${viewport.name}`, async ({ page }) => {
     await page.setViewportSize({ width: viewport.width, height: viewport.height });
@@ -1174,6 +1187,47 @@ for (const viewport of [
     expect(width.scrollWidth).toBeLessThanOrEqual(width.clientWidth + 1);
   });
 }
+
+for (const viewport of [
+  { name: 'small mobile', width: 320, height: 740 },
+  { name: 'mobile', width: 390, height: 844 },
+  { name: 'tablet', width: 900, height: 1100 },
+  { name: 'desktop', width: 1440, height: 980 },
+  { name: 'wide desktop', width: 1920, height: 1080 },
+]) {
+  test(`core sections remain visible after scrolling on ${viewport.name}`, async ({ page }) => {
+    await page.setViewportSize({ width: viewport.width, height: viewport.height });
+    await page.goto(pageUrl);
+
+    for (const sectionId of ['experience', 'work', 'skills', 'contact']) {
+      const section = page.locator(`#${sectionId}`);
+      await section.scrollIntoViewIfNeeded();
+      await expect(section).toBeVisible();
+
+      const visibility = await section.evaluate((el) => {
+        const rect = el.getBoundingClientRect();
+        const style = getComputedStyle(el);
+        return {
+          opacity: Number(style.opacity),
+          height: rect.height,
+          visibleText: el.innerText.trim().length,
+        };
+      });
+
+      expect(visibility.opacity).toBeGreaterThan(0.95);
+      expect(visibility.height).toBeGreaterThan(100);
+      expect(visibility.visibleText).toBeGreaterThan(20);
+    }
+  });
+}
+
+test('core content is not hidden behind JavaScript reveal classes', async () => {
+  const styles = fs.readFileSync(path.join(rootDir, 'styles.css'), 'utf8');
+
+  expect(styles).not.toContain('.js .right-panel > .section.fade-up:not(#hero):not(#about)');
+  expect(styles).not.toMatch(/\.js\s+\.right-panel\s+\.project-card\.fade-up\s*\{[^}]*opacity:\s*0/s);
+  expect(styles).not.toMatch(/\.js\s+\.right-panel\s+\.cert-item\.fade-up\s*\{[^}]*opacity:\s*0/s);
+});
 
 test('experience tabs stay inside the narrowest supported mobile viewport', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 740 });
