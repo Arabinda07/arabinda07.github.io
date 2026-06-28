@@ -50,6 +50,7 @@ Based in Durgapur, India. Open to roles across India's metro cities — Delhi, B
 ## Contact and links
 - Website: https://arabinda07.github.io/
 - Machine-readable profile: https://arabinda07.github.io/profile.md
+- OKF knowledge bundle: https://arabinda07.github.io/okf/index.md
 - Email: robinsaha434@gmail.com
 - GitHub: https://github.com/Arabinda07
 - LinkedIn: https://www.linkedin.com/in/robin0607saha
