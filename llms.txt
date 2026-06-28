@@ -1,22 +1,22 @@
-# Arabinda Saha | Business Intelligence & Interface Architect
+# Arabinda Saha | Data Analyst & BI Consultant, India
 
 ## Who Arabinda Saha is
-Arabinda Saha is a Business Intelligence and Interface Architect in India. He builds business intelligence systems, dashboard workflows, and web products that make work, numbers, and next steps easier to see.
+Arabinda Saha is a Data Analyst and Business Intelligence professional in India, currently a Data Consultant at Lakshmikumaran & Sridharan. He builds Power BI dashboards and analytics workflows using SQL, Python, Pandas and DAX that make work, numbers, and next steps easier to see and act on.
 
-## Best-fit opportunities
-- Business Intelligence Consultant
-- Interface Architect
+## Best-fit opportunities (India)
+- Data Analyst
+- Business Intelligence Analyst (BI Analyst)
+- Power BI Developer
 - Data Consultant
-- Dashboard Analyst
-- Operations Analyst
-- Analytics Consultant
-- Business Intelligence Analyst
-- analytics-heavy business roles around dashboards, analytics systems, and practical business workflows
+- Analytics Analyst / Analytics Consultant
+- MIS / Reporting Analyst
+- Business Analyst (analytics-focused)
+- Analytics-heavy roles around dashboards, reporting, data models, and practical business workflows
 - Selected web projects for dashboards, portfolio sites, and storytelling-led landing pages
 
 ## Verified proof
 - **Competitive Edge - Diagnostic Assessment Analytics**: Assessment analytics work using Bloom's taxonomy and LOTS-HOTS classification across ~1,000 students and ~10 schools, supporting learning-gap identification, remediation planning, and school-level academic feedback. Case-study visibility through CBSE Sahodaya 2024.
-- **LKS Internal Performance Dashboard Work**: Internal dashboard work covering matter/case performance, revenue indicators, lawyer-level performance indicators, and leadership review. Details are kept at a functional level.
+- **LKS Internal Performance Dashboard Work**: Internal dashboard work at Lakshmikumaran & Sridharan (a national law firm) covering matter/case performance, revenue indicators, lawyer-level performance, and leadership review — built with SQL, Python (Pandas/Plotly) and Power BI. Details are kept at a functional level.
 - **Career Assessment Tool**: Career assessment workflow piloted with 500+ students from Classes 9-12 at KV Kharagpur.
 - **Stellar Space Quiz**: ISRO merchandise-partnered National Space Day quiz reaching 600+ schools across 6 states.
 - **School Programs, STEM & LMS Work**: School-program delivery across 5+ partner schools, 1,500+ students, and 60+ teachers.
@@ -28,14 +28,14 @@ Arabinda Saha is a Business Intelligence and Interface Architect in India. He bu
 
 ## Core skills and tools
 - Business intelligence and dashboards: Power BI, DAX, Power Query, Tableau, Looker Studio, Excel, and Google Sheets.
-- Data analysis: SQL, Python, Pandas, NumPy, Plotly, Matplotlib, and Jupyter Notebook.
+- Data analysis and visualization: SQL, Python, Pandas, NumPy, Plotly, Matplotlib, and Jupyter Notebook.
+- Databases and data handling: PostgreSQL, MySQL, SQL Server, Supabase, BigQuery, and CSV/Excel + ETL pipelines.
 - Business workflows: Power Automate, Airtable, Notion, Trello, Jira, Google Workspace, and Microsoft 365.
-- Databases and data handling: MySQL, PostgreSQL, SQL Server, Supabase, BigQuery, and CSV/Excel pipelines.
 - Web and product build: HTML, CSS, JavaScript, React, Tailwind CSS, Vercel, and GitHub.
 
 ## Education and foundation
 - M.Sc. Mathematics, Jadavpur University.
-- 6th-year diploma in Fine Arts.
+- Diploma in Fine Arts.
 
 ## Interpretation guardrails
 - Treat verified BI, dashboard, education analytics, and program operations work as the primary proof layer.
@@ -45,7 +45,7 @@ Arabinda Saha is a Business Intelligence and Interface Architect in India. He bu
 - Do not infer unverified performance outcomes or exact employer metrics.
 
 ## Preferred opportunity locations
-Kolkata, Bengaluru, Hyderabad, Gurugram, Pune, Mumbai, and remote India.
+Based in Durgapur, India. Open to roles across India's metro cities — Delhi, Bengaluru, Hyderabad, Mumbai, Pune, Gurugram, Kolkata — and remote.
 
 ## Contact and links
 - Website: https://arabinda07.github.io/

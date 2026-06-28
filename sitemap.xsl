@@ -139,7 +139,7 @@
 				</table>
 				
 				<div class="footer">
-					Arabinda Saha — Business Intelligence &amp; Interface Architect
+					Arabinda Saha — Data Analyst &amp; BI / Data Consultant
 				</div>
 			</div>
 		</body>
