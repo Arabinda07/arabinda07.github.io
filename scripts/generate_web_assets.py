@@ -168,7 +168,7 @@ def save_profile_variants():
         profile.resize((size, size), Image.Resampling.LANCZOS).save(
             ASSETS / f"profile-{size}.webp",
             "WEBP",
-            quality=82,
+            quality=75,
             method=6,
         )
 
@@ -178,10 +178,10 @@ def save_social_cards():
     twitter = contain_with_soft_padding(load_rgb("twitter"), (1200, 675))
 
     og.save(ASSETS / "og-image.png", optimize=True)
-    og.save(ASSETS / "og-image.jpg", "JPEG", quality=82, optimize=True, progressive=True)
+    og.save(ASSETS / "og-image.jpg", "JPEG", quality=75, optimize=True, progressive=True)
 
     twitter.save(ASSETS / "twitter-image.png", optimize=True)
-    twitter.save(ASSETS / "twitter-image.jpg", "JPEG", quality=82, optimize=True, progressive=True)
+    twitter.save(ASSETS / "twitter-image.jpg", "JPEG", quality=75, optimize=True, progressive=True)
 
 
 def minify_css():
