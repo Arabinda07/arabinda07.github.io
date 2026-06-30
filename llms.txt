@@ -1,4 +1,6 @@
-# Arabinda Saha | Data Analyst & BI Consultant, India
+# Arabinda Saha
+
+> Data Analyst & BI Consultant in India. Builds Power BI dashboards, SQL/Python analytics, education analytics, and independent web products.
 
 ## Who Arabinda Saha is
 Arabinda Saha is a Data Analyst and Business Intelligence professional in India, currently a Data Consultant at Lakshmikumaran & Sridharan. He builds Power BI dashboards and analytics workflows using SQL, Python, Pandas and DAX that make work, numbers, and next steps easier to see and act on.
@@ -48,9 +50,9 @@ Arabinda Saha is a Data Analyst and Business Intelligence professional in India,
 Based in Durgapur, India. Open to roles across India's metro cities — Delhi, Bengaluru, Hyderabad, Mumbai, Pune, Gurugram, Kolkata — and remote.
 
 ## Contact and links
-- Website: https://arabinda07.github.io/
-- Machine-readable profile: https://arabinda07.github.io/profile.md
-- OKF knowledge bundle: https://arabinda07.github.io/okf/index.md
-- Email: robinsaha434@gmail.com
-- GitHub: https://github.com/Arabinda07
-- LinkedIn: https://www.linkedin.com/in/robin0607saha
+- [Website](https://arabinda07.github.io/): Main portfolio site
+- [Machine-readable profile](https://arabinda07.github.io/profile.md): Comprehensive machine-readable professional profile
+- [OKF knowledge bundle](https://arabinda07.github.io/okf/index.md): Open Knowledge Format bundle for AI agents
+- [Email](mailto:robinsaha434@gmail.com): Direct contact email
+- [GitHub](https://github.com/Arabinda07): Public repositories and project work
+- [LinkedIn](https://www.linkedin.com/in/robin0607saha): Professional networking profile

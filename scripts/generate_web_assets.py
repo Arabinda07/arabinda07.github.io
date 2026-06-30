@@ -1,5 +1,6 @@
 from io import BytesIO
 from pathlib import Path
+import re
 import struct
 
 from PIL import Image, ImageFilter
@@ -163,7 +164,7 @@ def save_profile_variants():
         raise FileNotFoundError(f"Missing profile asset: {profile_path}")
 
     profile = Image.open(profile_path).convert("RGBA")
-    for size in (540, 1080):
+    for size in (360, 540, 1080):
         profile.resize((size, size), Image.Resampling.LANCZOS).save(
             ASSETS / f"profile-{size}.webp",
             "WEBP",
@@ -183,6 +184,20 @@ def save_social_cards():
     twitter.save(ASSETS / "twitter-image.jpg", "JPEG", quality=82, optimize=True, progressive=True)
 
 
+def minify_css():
+    src_path = ROOT / "styles.src.css"
+    dest_path = ROOT / "styles.css"
+    if not src_path.exists():
+        raise FileNotFoundError(f"Missing source stylesheet: {src_path}")
+
+    css = src_path.read_text(encoding="utf-8")
+    css = re.sub(r'/\*.*?\*/', '', css, flags=re.DOTALL)
+    css = re.sub(r'\s+', ' ', css)
+    css = re.sub(r'\s*([\{\}:;\,])\s*', r'\1', css)
+    css = re.sub(r';\}', '}', css)
+    dest_path.write_text(css.strip(), encoding="utf-8")
+
+
 def main():
     ASSETS.mkdir(exist_ok=True)
 
@@ -190,6 +205,7 @@ def main():
     save_profile_variants()
     save_social_cards()
     write_brand_source_note()
+    minify_css()
 
 
 if __name__ == "__main__":

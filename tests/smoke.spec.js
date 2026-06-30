@@ -284,9 +284,9 @@ test('skip link motion stays transform based', async () => {
   const skipLinkFocusBlock = css.match(/\.skip-link:focus\s*\{[^}]+\}/)?.[0] || '';
 
   expect(skipLinkBlock).toContain('transform:');
-  expect(skipLinkBlock).toContain('transition: transform');
+  expect(skipLinkBlock).toMatch(/transition:\s*transform/);
   expect(skipLinkBlock).not.toMatch(/transition:[^;]*\btop\b/);
-  expect(skipLinkFocusBlock).toContain('transform: translateY(0)');
+  expect(skipLinkFocusBlock).toMatch(/transform:\s*translateY\(0\)/);
 });
 
 test('contact router uses modern local JavaScript patterns', async () => {
@@ -1013,12 +1013,13 @@ test('AI-readable and sitemap files match current SEO positioning', async () => 
 
   const sitemap = fs.readFileSync(path.join(rootDir, 'sitemap.xml'), 'utf8');
   const sitemapXsl = fs.readFileSync(path.join(rootDir, 'sitemap.xsl'), 'utf8');
-  expect(sitemap).toContain('<lastmod>2026-06-27</lastmod>');
+  expect(sitemap).toContain('<lastmod>2026-06-28</lastmod>');
   expect(sitemap).not.toContain('<lastmod>2026-05-24</lastmod>');
-  expect((sitemap.match(/<url>/g) || []).length).toBe(3);
+  expect((sitemap.match(/<url>/g) || []).length).toBe(4);
   expect(sitemap).toContain('<loc>https://arabinda07.github.io/</loc>');
   expect(sitemap).toContain('<loc>https://arabinda07.github.io/llms.txt</loc>');
   expect(sitemap).toContain('<loc>https://arabinda07.github.io/profile.md</loc>');
+  expect(sitemap).toContain('<loc>https://arabinda07.github.io/okf/index.md</loc>');
   expect(sitemap).not.toContain('project-t2dax.vercel.app');
   expect(sitemap).not.toContain('reflections-sanctuary.space');
   expect(sitemap).not.toContain('parichay-your-story.vercel.app');
