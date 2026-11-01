@@ -367,7 +367,7 @@ test('hero copy supports consultant and interface architect positioning without 
   await page.waitForFunction(() => !document.body.classList.contains('is-loading'));
   await expect(page.locator('.lp-name')).toHaveText('Arabinda Saha');
   await expect(page.locator('.left-panel .lp-title')).toHaveCount(0);
-  const corePromise = "Data Analyst & BI Consultant. I turn scattered data into the dashboards leadership runs on.";
+  const corePromise = "Data Analyst & BI Consultant. I turn scattered data into the dashboards leadership runs on";
   await expect(page.locator('.lp-bio')).toHaveText(corePromise);
   await expect(page.locator('.left-panel')).toContainText('Say hello');
   await expect(page.locator('.left-panel .lp-social-row')).toHaveCount(1);

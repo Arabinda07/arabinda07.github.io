@@ -65,8 +65,8 @@
   <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin="anonymous" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,800&f[]=supreme@700,600,500,400&display=swap" media="print" onload="this.media='all'" />
-  <noscript><link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,800&f[]=supreme@700,600,500,400&display=swap" /></noscript>
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@500,700,800&f[]=supreme@700,600,500,400&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@500,700,800&f[]=supreme@700,600,500,400&display=swap" /></noscript>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'" />
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" /></noscript>
 
@@ -357,7 +357,6 @@
   </header>
 
   <!-- ── CURSOR SPOTLIGHT ── -->
-  <div id="spotlight" class="spotlight" aria-hidden="true"></div>
 
   <!-- ── LAYOUT WRAPPER ── -->
   <div class="layout">
@@ -369,7 +368,7 @@
         <!-- Top: identity -->
         <div class="lp-top">
           <h1 class="lp-name" style="--delay:100ms">Arabinda Saha</h1>
-          <p class="lp-bio" style="--delay:200ms">Data Analyst &amp; BI Consultant. I turn scattered data into the dashboards leadership runs on.</p>
+          <p class="lp-bio" style="--delay:200ms">Data Analyst &amp; BI Consultant. I turn scattered data into the dashboards leadership runs on</p>
 
           <!-- Nav -->
           <nav class="lp-nav" style="--delay:300ms" aria-label="Main navigation">
@@ -446,7 +445,7 @@
       <!-- ── HERO (mobile only full-screen, desktop hidden) ── -->
       <section class="section hero-section" id="hero" aria-hidden="true" inert>
         <p class="hero-name" style="--delay:100ms">Arabinda Saha</p>
-        <h2 class="hero-sub" style="--delay:200ms">Data Analyst &amp; BI Consultant. I turn scattered data into the dashboards leadership runs on.</h2>
+        <h2 class="hero-sub" style="--delay:200ms">Data Analyst &amp; BI Consultant. I turn scattered data into the dashboards leadership runs on</h2>
         <div class="hero-actions" style="--delay:300ms">
           <a href="#contact" class="btn-primary">Say hello</a>
           <a href="assets/resume.pdf" download="Arabinda_Saha_Resume.pdf" target="_blank" rel="noopener noreferrer" class="lp-resume-btn">Download Resume</a>
@@ -1406,14 +1405,6 @@
         }
       });
 
-      // ── Cursor spotlight (desktop / pointer devices only) ──
-      const spot = document.getElementById('spotlight');
-      if (spot && window.matchMedia('(hover: hover) and (min-width: 901px)').matches) {
-        document.addEventListener('mousemove', function (e) {
-          spot.style.setProperty('--spot-x', e.clientX + 'px');
-          spot.style.setProperty('--spot-y', e.clientY + 'px');
-        }, { passive: true });
-      }
 
     }());
   </script>

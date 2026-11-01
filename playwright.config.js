@@ -2,9 +2,14 @@
 const fs = require('fs');
 const { defineConfig } = require('@playwright/test');
 
-const localChromePath = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
-const launchOptions = fs.existsSync(localChromePath)
-  ? { executablePath: localChromePath }
+const chromeCandidates = [
+  'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+  '/usr/bin/google-chrome',
+  '/usr/bin/google-chrome-stable',
+];
+const chromePath = chromeCandidates.find((p) => fs.existsSync(p));
+const launchOptions = chromePath
+  ? { executablePath: chromePath }
   : undefined;
 
 module.exports = defineConfig({

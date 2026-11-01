@@ -118,7 +118,6 @@ html {
 body {
   min-height: 100dvh;
   background:
-    radial-gradient(circle at 12% 10%, var(--color-accent-tint), transparent 28rem),
     linear-gradient(135deg, var(--color-canvas), var(--color-canvas-soft));
   color: var(--color-text-secondary);
   font-family: var(--font-sans);
@@ -221,7 +220,7 @@ section[id] {
   z-index: var(--z-progress);
   width: 100%;
   height: 3px;
-  background: linear-gradient(90deg, var(--color-accent), var(--color-secondary));
+  background: var(--color-accent);
   pointer-events: none;
   transform: scaleX(0);
   transform-origin: left center;
@@ -229,19 +228,6 @@ section[id] {
   contain: layout style;
 }
 
-.spotlight {
-  position: fixed;
-  inset: 0;
-  z-index: var(--z-base);
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.35s ease;
-  background: radial-gradient(
-    620px circle at var(--spot-x, 50%) var(--spot-y, 50%),
-    var(--color-secondary-tint),
-    transparent 62%
-  );
-}
 
 .layout {
   position: relative;
@@ -260,9 +246,8 @@ section[id] {
   color: var(--color-accent-strong);
   font-family: var(--font-mono);
   font-size: 0.72rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.04em;
   margin-bottom: 0.85rem;
-  text-transform: uppercase;
 }
 
 .left-panel {
@@ -315,8 +300,7 @@ section[id] {
   color: var(--color-accent-strong);
   font-size: 0.76rem;
   font-weight: 500;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
+  letter-spacing: 0.04em;
   font-family: var(--font-sans);
 }
 
@@ -324,12 +308,12 @@ section[id] {
 .hero-name {
   color: var(--color-text-primary);
   font-family: var(--font-display);
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0;
 }
 
 .lp-name {
-  margin-bottom: 1.05rem;
+  margin-bottom: 1.3rem;
   font-size: clamp(2.9rem, 4.9vw, 4.6rem);
   line-height: 0.95;
   overflow-wrap: break-word;
@@ -369,8 +353,7 @@ section[id] {
   color: var(--color-text-muted);
   font-family: var(--font-mono);
   font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  letter-spacing: 0.04em;
   transform: translateX(0);
   transition: var(--transition);
 }
@@ -532,12 +515,11 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   min-width: max-content;
   min-height: 44px;
   flex-shrink: 0;
-  border-radius: 999px;
+  border-radius: 10px;
   font-family: var(--font-sans);
   font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 0.04em;
   white-space: nowrap;
   transition: var(--transition);
   will-change: transform;
@@ -606,7 +588,7 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   color: var(--color-text-primary);
   font-family: var(--font-display);
   font-size: clamp(1.55rem, 3vw, 2.1rem);
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1.1;
   letter-spacing: 0;
 }
@@ -691,7 +673,6 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   z-index: 1;
   overflow: hidden;
   background:
-    radial-gradient(circle at 50% 16%, color-mix(in oklch, var(--color-accent-tint) 42%, transparent), transparent 46%),
     linear-gradient(180deg, color-mix(in oklch, var(--color-surface-raised) 92%, transparent), color-mix(in oklch, var(--color-surface) 96%, transparent));
   border: 1px solid var(--color-border);
   border-radius: inherit;
@@ -1038,7 +1019,6 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   isolation: isolate;
   contain: layout paint;
   background:
-    radial-gradient(circle at 18% 12%, color-mix(in oklch, var(--color-accent-tint) 48%, transparent), transparent 34%),
     linear-gradient(135deg, color-mix(in oklch, var(--color-surface-media) 94%, var(--color-secondary-tint)), var(--color-surface-media));
   border: 1px solid var(--color-border);
   border-radius: 8px;
@@ -1119,10 +1099,10 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
   border: 1px solid color-mix(in oklch, var(--color-accent) 42%, var(--color-border));
-  border-radius: 999px;
+  border-radius: 10px;
   font-family: var(--font-display);
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1;
   cursor: pointer;
   transition: transform var(--duration-base) var(--ease), border-color var(--duration-base) ease, background-color var(--duration-base) ease;
@@ -1183,9 +1163,8 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   color: var(--color-text-primary);
   font-family: var(--font-mono);
   font-size: clamp(0.62rem, 1.3vw, 0.68rem);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.04em;
   line-height: 1.45;
-  text-transform: uppercase;
 }
 
 .artifact-bar span {
@@ -1248,7 +1227,6 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   font-family: var(--font-mono);
   font-size: 0.64rem;
   line-height: 1.35;
-  text-transform: uppercase;
   overflow-wrap: anywhere;
   word-break: normal;
 }
@@ -1279,7 +1257,7 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   display: block;
   height: 0.5rem;
   background: color-mix(in oklch, var(--color-secondary) 28%, transparent);
-  border-radius: 999px;
+  border-radius: 3px;
 }
 
 .artifact-line {
@@ -1504,12 +1482,11 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   color: var(--color-text-primary);
   background: transparent;
   border: 1px solid color-mix(in oklch, var(--color-accent) 62%, var(--color-border));
-  border-radius: 999px;
+  border-radius: 10px;
   font-family: var(--font-mono);
   font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 0.04em;
   cursor: pointer;
   transition: background-color var(--duration-base) ease, border-color var(--duration-base) ease, transform var(--duration-base) var(--ease);
 }
@@ -1538,7 +1515,6 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   border: 1px solid color-mix(in oklch, var(--color-border) 86%, transparent);
   border-radius: 8px;
   background:
-    linear-gradient(135deg, var(--color-accent-tint), transparent 64%),
     var(--color-surface-raised);
   transition: transform var(--duration-slow) var(--ease), border-color var(--duration-base) ease, filter var(--duration-base) ease, background-position var(--duration-slow) var(--ease-out-quart);
 }
@@ -1547,14 +1523,12 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   background:
     linear-gradient(90deg, color-mix(in oklch, var(--color-accent) 30%, transparent) 0 1px, transparent 1px 100%),
     linear-gradient(180deg, color-mix(in oklch, var(--color-secondary) 24%, transparent) 0 1px, transparent 1px 100%),
-    linear-gradient(135deg, var(--color-accent-tint), transparent 64%),
     var(--color-surface-raised);
   background-size: 25% 100%, 100% 33%, auto, auto;
 }
 
 .project-media--program {
   background:
-    radial-gradient(circle at 50% 46%, var(--color-accent-tint) 0 22%, transparent 23%),
     linear-gradient(135deg, color-mix(in oklch, var(--color-secondary-tint) 68%, transparent), transparent 60%),
     var(--color-surface-raised);
 }
@@ -1648,9 +1622,8 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   color: var(--color-accent-strong);
   font-family: var(--font-mono);
   font-size: 0.66rem;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.04em;
   line-height: 1.45;
-  text-transform: uppercase;
 }
 
 .project-tag {
@@ -1679,8 +1652,7 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   color: var(--color-accent-strong);
   font-family: var(--font-mono);
   font-size: 0.74rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .project-link:hover,
@@ -1733,9 +1705,8 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   color: var(--color-accent-strong);
   font-family: var(--font-mono);
   font-size: 0.72rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.04em;
   line-height: 1.45;
-  text-transform: uppercase;
 }
 
 .contact-body {
@@ -1744,7 +1715,7 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   color: var(--color-text-primary);
   font-family: var(--font-display);
   font-size: clamp(1.65rem, 4vw, 2.45rem);
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1.04;
   letter-spacing: 0;
 }
@@ -1795,7 +1766,7 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   color: var(--color-text-primary);
   font-family: var(--font-display);
   font-size: clamp(1.05rem, 2vw, 1.2rem);
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1.2;
   letter-spacing: 0;
 }
@@ -1827,8 +1798,7 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
 .form-label {
   color: var(--color-text-muted);
   font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .form-input {
@@ -1994,12 +1964,6 @@ html[data-theme="dark"] .form-input::placeholder {
 
 .side-rail {
   display: none;
-}
-
-@media (hover: hover) and (min-width: 901px) {
-  .spotlight {
-    opacity: 1;
-  }
 }
 
 @media (min-width: 1081px) {
@@ -2182,7 +2146,7 @@ html[data-theme="dark"] .form-input::placeholder {
     color: var(--color-text-primary);
     font-family: var(--font-display);
     font-size: clamp(0.72rem, 3.3vw, 0.95rem);
-    font-weight: 700;
+    font-weight: 500;
     line-height: 1.05;
     white-space: nowrap;
     overflow: hidden;
@@ -2330,7 +2294,7 @@ html[data-theme="dark"] .form-input::placeholder {
     color: var(--color-text-primary);
     font-family: var(--font-sans);
     font-size: 0.98rem;
-    font-weight: 700;
+    font-weight: 500;
     transform: translateX(0);
     transition: color var(--duration-base) ease, transform var(--duration-base) var(--ease);
   }
@@ -2357,10 +2321,9 @@ html[data-theme="dark"] .form-input::placeholder {
     color: var(--color-surface);
     background: var(--color-text-primary);
     border: 1px solid var(--color-text-primary);
-    border-radius: 999px;
+    border-radius: 10px;
     font-size: 0.78rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    letter-spacing: 0.04em;
   }
 
   .mobile-nav .btn-primary:hover,
@@ -2436,7 +2399,7 @@ html[data-theme="dark"] .form-input::placeholder {
     min-height: auto;
     justify-content: flex-start;
     padding-top: clamp(1.4rem, 4svh, 2.6rem);
-    padding-bottom: clamp(1.8rem, 5svh, 3rem);
+    padding-bottom: clamp(1.2rem, 3svh, 2rem);
   }
 
   .hero-name {
@@ -2706,7 +2669,7 @@ html[data-theme="dark"] .form-input::placeholder {
 
   .artifact-bar {
     font-size: 0.62rem;
-    letter-spacing: 0.055em;
+    letter-spacing: 0.04em;
   }
 
   .artifact-grid {
@@ -2854,7 +2817,6 @@ html.js .fade-up:not(.is-visible) {
   }
 
   .scroll-progress,
-  .spotlight,
   body::after {
     display: none;
   }
