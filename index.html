@@ -361,14 +361,14 @@
   <!-- ── LAYOUT WRAPPER ── -->
   <div class="layout">
 
-    <!-- ════ LEFT PANEL ════ -->
-    <aside class="left-panel">
+    <!-- ════ HEADER / LEFT PANEL ════ -->
+    <header class="left-panel site-header" id="hero">
       <div class="left-panel__inner">
 
         <!-- Top: identity -->
         <div class="lp-top">
-          <h1 class="lp-name" style="--delay:100ms">Arabinda Saha</h1>
-          <p class="lp-bio" style="--delay:200ms">Data Analyst &amp; BI Consultant. I turn scattered data into the dashboards leadership runs on</p>
+          <h1 class="lp-name hero-name" style="--delay:100ms">Arabinda Saha</h1>
+          <p class="lp-bio hero-sub" style="--delay:200ms">Data Analyst &amp; BI Consultant. I turn scattered data into the dashboards leadership runs on</p>
 
           <!-- Nav -->
           <nav class="lp-nav" style="--delay:300ms" aria-label="Main navigation">
@@ -430,27 +430,17 @@
             </button>
           </div>
 
-          <div class="lp-action-row">
+          <div class="lp-action-row hero-actions">
             <a href="#contact" class="btn-primary">Say hello</a>
             <a href="assets/resume.pdf" download="Arabinda_Saha_Resume.pdf" target="_blank" rel="noopener noreferrer" class="lp-resume-btn">Download Resume <span aria-hidden="true">↗</span></a>
           </div>
         </div>
 
       </div>
-    </aside>
+    </header>
 
     <!-- ════ RIGHT PANEL ════ -->
     <main class="right-panel" id="content">
-
-      <!-- ── HERO (mobile only full-screen, desktop hidden) ── -->
-      <section class="section hero-section" id="hero" aria-hidden="true" inert>
-        <p class="hero-name" style="--delay:100ms">Arabinda Saha</p>
-        <h2 class="hero-sub" style="--delay:200ms">Data Analyst &amp; BI Consultant. I turn scattered data into the dashboards leadership runs on</h2>
-        <div class="hero-actions" style="--delay:300ms">
-          <a href="#contact" class="btn-primary">Say hello</a>
-          <a href="assets/resume.pdf" download="Arabinda_Saha_Resume.pdf" target="_blank" rel="noopener noreferrer" class="lp-resume-btn">Download Resume</a>
-        </div>
-      </section>
 
       <!-- ── 01 ABOUT ── -->
       <section class="section fade-up" id="about">
@@ -540,9 +530,8 @@
         <div class="exp-tabs">
           <div class="tab-list" role="tablist" aria-label="Work history">
             <div class="tab-indicator" id="tab-indicator" aria-hidden="true"></div>
-            <button type="button" class="tab-btn active" id="tab-btn-lks" data-tab="lks" role="tab" aria-selected="true" aria-controls="tab-lks">LKS</button>
-            <button type="button" class="tab-btn" id="tab-btn-edudigm-ph" data-tab="edudigm-ph" role="tab" aria-selected="false" aria-controls="tab-edudigm-ph">Edudigm (PH)</button>
-            <button type="button" class="tab-btn" id="tab-btn-edudigm-sme" data-tab="edudigm-sme" role="tab" aria-selected="false" aria-controls="tab-edudigm-sme">Edudigm (SME)</button>
+            <button type="button" class="tab-btn active" id="tab-btn-lks" data-tab="lks" role="tab" aria-selected="true" aria-controls="tab-lks">Lakshmikumaran &amp; Sridharan</button>
+            <button type="button" class="tab-btn" id="tab-btn-edudigm" data-tab="edudigm" role="tab" aria-selected="false" aria-controls="tab-edudigm">Edudigm</button>
           </div>
 
           <div class="tab-panels" role="presentation">
@@ -551,35 +540,39 @@
               <h3 class="exp-role">Data Consultant <span class="exp-company">@ <a href="https://lkslaw.com" target="_blank" rel="noopener noreferrer">Lakshmikumaran &amp; Sridharan</a></span></h3>
               <p class="exp-period">Feb 2026 – Present</p>
               <ul class="exp-bullets">
-                <li>Redefined what the firm measures about its own people: performance review moved from revenue alone to contribution at every level — partner, associate, firm-wide.</li>
-                <li>Wrote SQL queries against PostgreSQL operational tables, built the analysis pipeline in Python with Pandas and Plotly, and designed the Power BI dashboards now used in review cycles.</li>
-                <li>Pulled together data on cases, revenue, and individual lawyers into views that changed what leadership actually talks about in review meetings.</li>
+                <li>Shifted annual evaluation from a revenue-only metric to a multi-tiered contribution framework spanning partners, associates, and practice groups.</li>
+                <li>Partnered directly with firm leadership to translate informal performance discussions into standardized KPI definitions and governance benchmarks.</li>
+                <li>Automated quarterly reporting cadences, eliminating manual reconciliation across billing, case management, and attorney allocations.</li>
               </ul>
               <p class="exp-note">Functional view only; internal data protected.</p>
             </div>
 
-            <div class="tab-panel" id="tab-edudigm-ph" role="tabpanel" aria-labelledby="tab-btn-edudigm-ph">
-              <h3 class="exp-role">Program Head – School Programs <span class="exp-company">@ Edudigm</span></h3>
-              <p class="exp-period">Dec 2023 – Jan 2026</p>
-              <ul class="exp-bullets">
-                <li>Ran programs across 5+ partner schools — 1,500+ students, 60+ teachers. Built the operational systems that kept delivery consistent across all of them.</li>
-                <li>Built and scaled Competitive Edge, a diagnostic assessment analytics framework using Bloom's taxonomy and LOTS-HOTS, across ~1,000 students and ~10 schools.</li>
-                <li>Piloted a career assessment workflow for 500+ students from Classes 9-12 at KV Kharagpur.</li>
-                <li>Scaled Stellar Space Quiz to 600+ schools across 6 states, with finals at Gyan Manch and IIT Kharagpur Research Park.</li>
-                <li>Kept the operational side running — STEM, robotics, government schemes, LMS — and built the documentation that gave each school a clear picture of its own progress.</li>
-              </ul>
-              <p class="exp-note">Where I learned that scale without structure mostly just creates more problems.</p>
-            </div>
+            <div class="tab-panel" id="tab-edudigm" role="tabpanel" aria-labelledby="tab-btn-edudigm">
+              <div class="exp-timeline">
+                <div class="exp-item">
+                  <div class="exp-item__header">
+                    <h3 class="exp-role">Program Head – School Programs <span class="exp-company">@ Edudigm</span></h3>
+                    <p class="exp-period">Dec 2023 – Jan 2026 · <span class="exp-promotion">Promotion</span></p>
+                  </div>
+                  <ul class="exp-bullets">
+                    <li>Promoted to lead academic operations and program delivery across 5+ partner institutions, directing 60+ educators and 1,500+ students.</li>
+                    <li>Standardized institutional reporting pipelines across government initiatives (PM SHRI), STEM labs, and digital LMS adoption.</li>
+                    <li>Directed multi-state academic campaigns and institutional partnerships, steering execution from outreach to final-stage presentations.</li>
+                  </ul>
+                </div>
 
-            <div class="tab-panel" id="tab-edudigm-sme" role="tabpanel" aria-labelledby="tab-btn-edudigm-sme">
-              <h3 class="exp-role">Subject Matter Expert – Mathematics <span class="exp-company">@ Edudigm</span></h3>
-              <p class="exp-period">Jun 2022 – Nov 2023</p>
-              <ul class="exp-bullets">
-                <li>Delivered CBSE Boards and JEE-oriented Mathematics content for Classes 9-12.</li>
-                <li>Designed chapter-wise assessments, revision modules, and practice sets.</li>
-                <li>Contributed to early curriculum and assessment systems later used in school-program delivery.</li>
-              </ul>
-              <p class="exp-note">Kept brief: the analytical and assessment work from this period fed directly into the frameworks built during the Program Head role.</p>
+                <div class="exp-item exp-item--previous">
+                  <div class="exp-item__header">
+                    <h3 class="exp-role">Subject Matter Expert – Mathematics <span class="exp-company">@ Edudigm</span></h3>
+                    <p class="exp-period">Jun 2022 – Nov 2023</p>
+                  </div>
+                  <ul class="exp-bullets">
+                    <li>Developed diagnostic assessment rubrics and advanced STEM curricula for secondary and senior secondary cohorts.</li>
+                    <li>Researched student error patterns and misconception clusters, creating the taxonomy later automated across school-wide diagnostics.</li>
+                  </ul>
+                </div>
+              </div>
+              <p class="exp-note">Where I learned that scale without structure mostly just creates more problems.</p>
             </div>
 
           </div>
@@ -599,8 +592,9 @@
               <p class="fp-overline">Internal Dashboards · Performance Analytics · Leadership Views</p>
               <h3 class="fp-title">LKS Internal Performance Dashboard Work</h3>
               <div class="fp-desc-box">
-                <p>Defined the metric framework for partner, associate, and firm-level annual reviews. Wrote SQL queries against PostgreSQL operational tables, built the analysis pipeline in Python and Pandas, and designed the Power BI dashboards now used in review cycles.</p>
-                <p>The work covered matter and case performance, revenue indicators, and lawyer-level contribution: views that hadn't existed in structured form before.</p>
+                <p>Designed an end-to-end performance analytics suite integrating PostgreSQL operational tables with custom Python/Pandas extraction and cleaning pipelines.</p>
+                <p>Engineered dynamic Power BI data models with complex DAX measures covering matter realization rates, utilization, and tenure-adjusted performance curves.</p>
+                <p>Built executive-level drill-through views enabling practice leaders to audit matter aging and lawyer utilization in real-time.</p>
                 <p class="fp-note">Functional view only; internal data protected.</p>
               </div>
             </div>
@@ -1234,8 +1228,6 @@
       const mobileNav = document.getElementById('mobile-nav');
       const overlay = document.getElementById('mobile-nav-overlay');
       const mobileHeader = document.getElementById('mobile-header');
-      const leftPanel = document.querySelector('.left-panel');
-      const heroSection = document.querySelector('.hero-section');
       const mobileBreakpoint = window.matchMedia('(max-width: 900px)');
 
       function suppressForA11y(el, suppressed) {
@@ -1252,8 +1244,6 @@
       function syncResponsiveA11y() {
         const isMobile = mobileBreakpoint.matches;
         suppressForA11y(mobileHeader, !isMobile);
-        suppressForA11y(leftPanel, isMobile);
-        suppressForA11y(heroSection, !isMobile);
         setMobileNavOpen(isMobile && mobileNav && mobileNav.classList.contains('is-open'));
       }
 

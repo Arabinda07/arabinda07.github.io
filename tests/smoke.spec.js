@@ -126,9 +126,9 @@ test('contact form requires name, email, and message', async ({ page }) => {
 
 test('tab switch updates selected button and active panel', async ({ page }) => {
   await page.goto(pageUrl);
-  await page.click('#tab-btn-edudigm-ph');
-  await expect(page.locator('#tab-btn-edudigm-ph')).toHaveAttribute('aria-selected', 'true');
-  await expect(page.locator('#tab-edudigm-ph')).toHaveClass(/active/);
+  await page.click('#tab-btn-edudigm');
+  await expect(page.locator('#tab-btn-edudigm')).toHaveAttribute('aria-selected', 'true');
+  await expect(page.locator('#tab-edudigm')).toHaveClass(/active/);
 });
 
 test('experience tabs support keyboard navigation', async ({ page }) => {
@@ -136,20 +136,20 @@ test('experience tabs support keyboard navigation', async ({ page }) => {
   await page.waitForFunction(() => !document.body.classList.contains('is-loading'));
   await page.locator('#tab-btn-lks').focus();
   await page.keyboard.press('ArrowRight');
-  await expect(page.locator('#tab-btn-edudigm-ph')).toHaveAttribute('aria-selected', 'true');
-  await expect(page.locator('#tab-edudigm-ph')).toHaveClass(/active/);
+  await expect(page.locator('#tab-btn-edudigm')).toHaveAttribute('aria-selected', 'true');
+  await expect(page.locator('#tab-edudigm')).toHaveClass(/active/);
 
   await page.keyboard.press('End');
-  await expect(page.locator('#tab-btn-edudigm-sme')).toHaveAttribute('aria-selected', 'true');
-  await expect(page.locator('#tab-edudigm-sme')).toHaveClass(/active/);
+  await expect(page.locator('#tab-btn-edudigm')).toHaveAttribute('aria-selected', 'true');
+  await expect(page.locator('#tab-edudigm')).toHaveClass(/active/);
 
   await page.keyboard.press('Home');
   await expect(page.locator('#tab-btn-lks')).toHaveAttribute('aria-selected', 'true');
   await expect(page.locator('#tab-lks')).toHaveClass(/active/);
 
-  await page.locator('#tab-btn-edudigm-ph').focus();
+  await page.locator('#tab-btn-edudigm').focus();
   await page.keyboard.press('Enter');
-  await expect(page.locator('#tab-btn-edudigm-ph')).toHaveAttribute('aria-selected', 'true');
+  await expect(page.locator('#tab-btn-edudigm')).toHaveAttribute('aria-selected', 'true');
 });
 
 test('mobile nav toggles aria-expanded correctly', async ({ page }) => {
@@ -163,8 +163,7 @@ test('mobile nav toggles aria-expanded correctly', async ({ page }) => {
   await expect(page.locator('.mobile-nav .lp-social-row')).toBeVisible();
   await expect(page.locator('.mobile-nav .social-icon[aria-label="WhatsApp"]')).toBeVisible();
   await expect(page.locator('#mobile-header')).not.toHaveAttribute('aria-hidden', 'true');
-  await expect(page.locator('.left-panel')).toHaveAttribute('aria-hidden', 'true');
-  await expect(page.locator('.hero-section')).not.toHaveAttribute('aria-hidden', 'true');
+  await expect(page.locator('.left-panel')).not.toHaveAttribute('aria-hidden', 'true');
   await expect(page.locator('#mobile-nav')).not.toHaveAttribute('aria-hidden', 'true');
   await hamburger.click();
   await expect(hamburger).toHaveAttribute('aria-expanded', 'false');
@@ -177,14 +176,12 @@ test('desktop and mobile layout regions expose only the active navigation surfac
   await expect(page.locator('#mobile-header')).toHaveAttribute('aria-hidden', 'true');
   await expect(page.locator('#mobile-nav')).toHaveAttribute('aria-hidden', 'true');
   await expect(page.locator('.left-panel')).not.toHaveAttribute('aria-hidden', 'true');
-  await expect(page.locator('.hero-section')).toHaveAttribute('aria-hidden', 'true');
 
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(pageUrl);
   await expect(page.locator('#mobile-header')).not.toHaveAttribute('aria-hidden', 'true');
   await expect(page.locator('#mobile-nav')).toHaveAttribute('aria-hidden', 'true');
-  await expect(page.locator('.left-panel')).toHaveAttribute('aria-hidden', 'true');
-  await expect(page.locator('.hero-section')).not.toHaveAttribute('aria-hidden', 'true');
+  await expect(page.locator('.left-panel')).not.toHaveAttribute('aria-hidden', 'true');
 });
 
 test('mobile icon controls meet touch target size', async ({ page }) => {
@@ -820,7 +817,7 @@ test('page exposes one semantic h1 and no blocking loader', async ({ page }) => 
   await page.goto(pageUrl);
   await expect(page.locator('h1')).toHaveCount(1);
   await expect(page.locator('.hero-name')).toHaveText('Arabinda Saha');
-  await expect(page.locator('.hero-name')).toHaveJSProperty('tagName', 'P');
+  await expect(page.locator('.hero-name')).toHaveJSProperty('tagName', 'H1');
 });
 
 test('planned web assets and SEO files exist', async () => {

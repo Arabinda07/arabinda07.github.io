@@ -571,10 +571,6 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   line-height: 1.62;
 }
 
-.hero-section {
-  display: none;
-}
-
 .about-header {
   align-items: center;
   display: flex;
@@ -823,6 +819,36 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   color: var(--color-text-muted);
   margin-bottom: 1rem;
   font-size: .78rem;
+}
+
+.exp-timeline {
+  gap: 1.6rem;
+  display: grid;
+}
+
+.exp-item {
+  gap: .5rem;
+  display: grid;
+}
+
+.exp-item--previous {
+  border-top: 1px dashed color-mix(in oklch, var(--color-border) 72%, transparent);
+  padding-top: 1.25rem;
+}
+
+.exp-promotion {
+  color: var(--color-accent-strong);
+  background: var(--color-accent-tint);
+  border: 1px solid color-mix(in oklch, var(--color-accent) 40%, transparent);
+  font-family: var(--font-mono);
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  align-items: center;
+  padding: .12rem .5rem;
+  font-size: .68rem;
+  font-weight: 500;
+  display: inline-flex;
 }
 
 .exp-bullets {
@@ -2279,23 +2305,46 @@ html[data-theme="dark"] .form-input::placeholder {
     pointer-events: auto;
   }
 
+  .layout {
+    flex-direction: column;
+  }
+
   .left-panel {
+    width: 100%;
+    height: auto;
+    min-height: auto;
+    padding: var(--mobile-header-h) max(1.25rem, env(safe-area-inset-right)) 0 max(1.25rem, env(safe-area-inset-left));
+    display: flex;
+    position: static;
+  }
+
+  .left-panel__inner {
+    justify-content: flex-start;
+    gap: 1.25rem;
+    width: 100%;
+    height: auto;
+    padding: clamp(1.4rem, 4svh, 2.6rem) 0 clamp(1.8rem, 5svh, 3rem);
+    overflow-y: visible;
+  }
+
+  .left-panel .lp-nav, .left-panel .lp-social-row {
     display: none;
+  }
+
+  .left-panel .lp-socials {
+    border-top: 0;
+    padding-top: 0;
+  }
+
+  .hero-actions {
+    margin-top: .35rem;
   }
 
   .right-panel {
     width: 100%;
     max-width: 100%;
-    padding: var(--mobile-header-h) max(1.25rem, env(safe-area-inset-right)) 0 max(1.25rem, env(safe-area-inset-left));
+    padding: 0 max(1.25rem, env(safe-area-inset-right)) 0 max(1.25rem, env(safe-area-inset-left));
     margin-left: 0;
-  }
-
-  .hero-section {
-    justify-content: flex-start;
-    min-height: auto;
-    padding-top: clamp(1.4rem, 4svh, 2.6rem);
-    padding-bottom: clamp(1.2rem, 3svh, 2rem);
-    display: flex;
   }
 
   .hero-name {
@@ -2421,12 +2470,12 @@ html[data-theme="dark"] .form-input::placeholder {
 }
 
 @media (width >= 700px) and (width <= 900px) {
-  .right-panel > .section, .right-panel > .footer {
+  .right-panel > .section, .right-panel > .footer, .left-panel > .left-panel__inner {
     width: min(100%, 760px);
     margin-inline: auto;
   }
 
-  .hero-section {
+  .left-panel {
     min-height: 24rem;
   }
 
