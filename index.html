@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="google-site-verification" content="vZChsD691B-huti0mCaQbMqS_Oi82pMg3w2XV2MCcsA" />
   <title>Arabinda Saha | Data Analyst &amp; BI Consultant, India</title>
+  <meta name="color-scheme" content="light dark" />
   <meta name="theme-color" content="#f5f0e8" data-theme-color-light="#f5f0e8" data-theme-color-dark="#171412" />
   <meta name="description" content="Data Analyst &amp; Business Intelligence Consultant in India, Data Consultant at LKS. I build the Power BI dashboards and SQL analytics behind leadership reviews." />
   <meta name="author" content="Arabinda Saha" />
@@ -838,7 +839,10 @@
                   placeholder="Your name"
                   required
                   autocomplete="name"
+                  aria-invalid="false"
+                  data-error="from_name-error"
                 />
+                <span id="from_name-error" class="form-error">Please enter your name.</span>
               </div>
               <div class="form-group">
                 <label for="reply_to" class="form-label">Email <span class="form-req" aria-hidden="true">*</span></label>
@@ -850,7 +854,11 @@
                   placeholder="your@email.com"
                   required
                   autocomplete="email"
+                  pattern="[^\s@]+@[^\s@]+\.[^\s@]+"
+                  aria-invalid="false"
+                  data-error="reply_to-error"
                 />
+                <span id="reply_to-error" class="form-error">Please enter a valid email address.</span>
               </div>
             </div>
             <div class="form-group">
@@ -862,7 +870,10 @@
                 placeholder="Whatever's on your mind."
                 rows="4"
                 required
+                aria-invalid="false"
+                data-error="message-error"
               ></textarea>
+              <span id="message-error" class="form-error">Please add a short message.</span>
             </div>
             <div class="form-footer">
               <button type="submit" class="btn-primary form-submit" id="form-submit">
@@ -946,6 +957,15 @@
         }
       }
 
+      function hasSavedTheme() {
+        try {
+          const saved = window.localStorage.getItem(THEME_KEY);
+          return saved === 'light' || saved === 'dark';
+        } catch (error) {
+          return false;
+        }
+      }
+
       function initThemeControls() {
         applyTheme(getPreferredTheme(), false);
         document.querySelectorAll('[data-theme-toggle]').forEach(function (toggle) {
@@ -954,6 +974,19 @@
             applyTheme(current === 'dark' ? 'light' : 'dark', true);
           });
         });
+
+        // Follow live OS theme changes until the visitor picks a theme explicitly.
+        if (window.matchMedia) {
+          const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+          const onSystemThemeChange = function (event) {
+            if (!hasSavedTheme()) applyTheme(event.matches ? 'dark' : 'light', false);
+          };
+          if (typeof darkQuery.addEventListener === 'function') {
+            darkQuery.addEventListener('change', onSystemThemeChange);
+          } else if (typeof darkQuery.addListener === 'function') {
+            darkQuery.addListener(onSystemThemeChange);
+          }
+        }
       }
 
       initThemeControls();
@@ -1149,7 +1182,10 @@
       });
 
       // ── Scroll progress + active nav (combined, rAF-throttled) ──
-      const progressBar = document.getElementById('scroll-progress');
+      // Native CSS handles both when supported (animation-timeline: scroll() and
+      // scroll-target-group/:target-current); the JS paths below are fallbacks.
+      const supportsScrollTimeline = window.CSS && CSS.supports('animation-timeline', 'scroll()');
+      const progressBar = supportsScrollTimeline ? null : document.getElementById('scroll-progress');
       const sections = document.querySelectorAll('section[id]');
       const navItems = document.querySelectorAll('.nav-item');
       let scrollRafPending = false;
@@ -1169,6 +1205,8 @@
         });
       }
 
+      // CSS :target-current handles visual highlighting as progressive enhancement;
+      // IntersectionObserver always drives aria-current + .active for accessibility.
       if ('IntersectionObserver' in window && sections.length) {
         const visibleSections = [];
         const activeSectionObserver = new IntersectionObserver(function (entries) {
@@ -1308,35 +1346,116 @@
         formStatus.className = type ? 'form-status form-status--' + type : 'form-status';
       }
 
-      function flagInvalid(field, message) {
-        field.setAttribute('aria-invalid', 'true');
-        showFormStatus(message, 'error');
-        field.focus();
-        return false;
+      function matchesUserInvalid(field) {
+        try {
+          return field.matches(':user-invalid');
+        } catch (error) {
+          return false;
+        }
+      }
+
+      // Required text that's only whitespace passes native validation, so check it too.
+      function isFieldInvalid(field) {
+        return !field.validity.valid || !field.value.trim();
+      }
+
+      // List the field's error (id in data-error) in aria-describedby only while it's
+      // shown: text that aria-describedby references is announced even when hidden.
+      function linkFieldError(field, shown) {
+        const errorId = field.dataset.error;
+        if (!errorId) return;
+        const ids = (field.getAttribute('aria-describedby') || '').split(/\s+/).filter(function (id) {
+          return id && id !== errorId;
+        });
+        if (shown) ids.push(errorId);
+        if (ids.length) field.setAttribute('aria-describedby', ids.join(' '));
+        else field.removeAttribute('aria-describedby');
+      }
+
+      // One polite live region announces an error that appears when a field is left.
+      const fieldAnnouncer = document.createElement('div');
+      fieldAnnouncer.className = 'visually-hidden';
+      fieldAnnouncer.setAttribute('aria-live', 'polite');
+      document.body.append(fieldAnnouncer);
+      const announcedFields = new WeakSet();
+      let announceTimer = null;
+      let announcedField = null;
+
+      function announceFieldError(field) {
+        const error = document.getElementById(field.dataset.error);
+        if (!error) return;
+        const label = field.labels && field.labels[0]
+          ? field.labels[0].textContent.replace('*', '').replace(/\s+/g, ' ').trim() + ': '
+          : '';
+        clearTimeout(announceTimer);
+        fieldAnnouncer.textContent = '';
+        announcedField = field;
+        // Wait until the screen reader has announced the next focused control.
+        announceTimer = setTimeout(function () {
+          fieldAnnouncer.textContent = label + error.textContent.trim();
+        }, 500);
+      }
+
+      function setFieldInvalid(field, invalid) {
+        field.setAttribute('aria-invalid', invalid ? 'true' : 'false');
+        linkFieldError(field, invalid);
+        if (!invalid) {
+          announcedFields.delete(field);
+          if (announcedField === field) {
+            clearTimeout(announceTimer);
+            fieldAnnouncer.textContent = '';
+          }
+        }
+      }
+
+      // Mirror the visual :user-invalid state into ARIA. A field flagged by a submit
+      // attempt stays flagged until its value is actually fixed.
+      function syncFieldValidity(field, announce) {
+        if (!field || !field.matches || !field.matches('.contact-form .form-input')) return;
+        const invalid = matchesUserInvalid(field) ||
+          (field.getAttribute('aria-invalid') === 'true' && isFieldInvalid(field));
+        if (invalid && announce && !announcedFields.has(field)) {
+          announceFieldError(field);
+          announcedFields.add(field);
+        }
+        setFieldInvalid(field, invalid);
+      }
+
+      function getContactFields() {
+        return [contactForm.from_name, contactForm.reply_to, contactForm.message];
       }
 
       function validateContactForm() {
-        const fields = [contactForm.from_name, contactForm.reply_to, contactForm.message];
-        fields.forEach(function (f) { f.removeAttribute('aria-invalid'); });
+        const fields = getContactFields();
+        let firstInvalid = null;
+
+        // Named trimmed values — used for the semantic empty-vs-invalid check below.
         const name = contactForm.from_name.value.trim();
         const email = contactForm.reply_to.value.trim();
         const message = contactForm.message.value.trim();
-        if (!name || !email || !message) {
-          const firstEmpty = !name ? contactForm.from_name : !email ? contactForm.reply_to : contactForm.message;
-          return flagInvalid(firstEmpty, 'Please fill in all fields to start the conversation.');
-        }
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-          return flagInvalid(contactForm.reply_to, 'Please enter a valid email address.');
-        }
-        return true;
+
+        fields.forEach(function (field) {
+          const invalid = isFieldInvalid(field);
+          setFieldInvalid(field, invalid);
+          // Focus moving to the field reads its error, so don't announce it again.
+          if (invalid) announcedFields.add(field);
+          if (invalid && !firstInvalid) firstInvalid = field;
+        });
+        if (!firstInvalid) return true;
+
+        showFormStatus(!name || !email || !message
+          ? 'Please fill in all fields to start the conversation.'
+          : 'Please enter a valid email address.', 'error');
+        firstInvalid.focus();
+        return false;
       }
 
       function attachContactFormHandler() {
         if (!contactForm || contactHandlerAttached) return;
         contactHandlerAttached = true;
-        contactForm.addEventListener('input', function (e) {
-          if (e.target.hasAttribute('aria-invalid')) e.target.removeAttribute('aria-invalid');
-        });
+        contactForm.addEventListener('blur', function (e) { syncFieldValidity(e.target, true); }, true);
+        contactForm.addEventListener('change', function (e) { syncFieldValidity(e.target, true); });
+        contactForm.addEventListener('input', function (e) { syncFieldValidity(e.target, false); });
         contactForm.addEventListener('submit', function (e) {
           e.preventDefault();
           if (!validateContactForm()) return;
@@ -1352,8 +1471,10 @@
             .then(function () {
               showFormStatus("Message sent. I'll get back to you soon.", 'success');
               contactForm.reset();
-              [contactForm.from_name, contactForm.reply_to, contactForm.message]
-                .forEach(function (f) { f.removeAttribute('aria-invalid'); });
+              // reset() clears :user-invalid after this task, so resync afterwards.
+              setTimeout(function () {
+                getContactFields().forEach(function (f) { setFieldInvalid(f, false); });
+              });
             })
             .catch(function (err) {
               console.error('EmailJS error:', err);

@@ -77,6 +77,13 @@ html[data-theme="light"] {
   --z-skip-link: 80;
 }
 
+/* Browser UI follows the active theme tokens (redeclared per theme on html). */
+html {
+  accent-color: var(--color-accent);
+  /* Muted text on canvas keeps the thumb at >=3:1 against the track in both themes. */
+  scrollbar-color: var(--color-text-muted) var(--color-canvas);
+}
+
 html[data-theme="dark"] {
   color-scheme: dark;
 
@@ -190,6 +197,33 @@ strong,
   font-weight: 600;
 }
 
+/* Typography: balanced short headings, orphan-free body copy (ignored where unsupported). */
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+}
+
+p,
+li,
+blockquote {
+  text-wrap: pretty;
+}
+
+/* Hides content visually but keeps it in the accessibility tree */
+.visually-hidden:where(:not(:focus-within, :active)) {
+  position: absolute !important;
+  clip-path: inset(50%) !important;
+  overflow: hidden !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  white-space: nowrap !important;
+}
+
 section[id] {
   scroll-margin-top: 3rem;
 }
@@ -226,6 +260,25 @@ section[id] {
   transform-origin: left center;
   will-change: transform;
   contain: layout style;
+}
+
+/* Native scroll-driven progress; the inline script only drives it where unsupported. */
+@supports (animation-timeline: scroll()) {
+  @keyframes grow-progress {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+
+  .scroll-progress {
+    will-change: auto;
+    animation: grow-progress auto linear;
+  }
+
+  /* Separate, higher-specificity rule so it comes after the shorthand (which would
+     reset it) and so the CSS minifier can't fold it into the animation shorthand. */
+  body .scroll-progress {
+    animation-timeline: scroll(root block);
+  }
 }
 
 
@@ -344,6 +397,11 @@ section[id] {
   gap: 0.16rem;
 }
 
+/* Native scrollspy: links whose target is in view match :target-current. */
+.lp-nav {
+  scroll-target-group: auto;
+}
+
 .nav-item a {
   display: grid;
   grid-template-columns: 2.85rem 2.2rem minmax(0, 1fr);
@@ -375,13 +433,14 @@ section[id] {
   white-space: nowrap;
 }
 
-.nav-item a:hover,
+/* :is() is forgiving: an unsupported :target-current won't drop the whole rule. */
+.nav-item a:is(:hover, :target-current),
 .nav-item.active a {
   color: var(--color-text-primary);
   transform: translateX(3px);
 }
 
-.nav-item a:hover .nav-line,
+.nav-item a:is(:hover, :target-current) .nav-line,
 .nav-item.active a .nav-line {
   background: var(--color-accent);
   transform: scaleX(1);
@@ -1853,8 +1912,21 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   font-size: 0.8rem;
 }
 
-.form-input[aria-invalid="true"] {
+.contact-form .form-input:is(:user-invalid, [aria-invalid="true"]) {
   border-color: var(--color-error);
+}
+
+.form-error {
+  display: none;
+  margin-top: 0.4rem;
+  color: var(--color-error);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  line-height: 1.4;
+}
+
+.form-input:is(:user-invalid, [aria-invalid="true"]) ~ .form-error {
+  display: block;
 }
 
 .form-input:hover {
@@ -2905,6 +2977,11 @@ html.js .fade-up:not(.is-visible) {
   .photo-wrapper::after,
   .photo-wrapper:hover .photo-viewport,
   .photo-wrapper:focus-within .photo-viewport {
+    transform: none;
+  }
+
+  /* Kept separate: unsupported :target-current would void a shared selector list. */
+  .nav-item a:target-current {
     transform: none;
   }
 }
