@@ -2,22 +2,22 @@
 name: Arabinda Saha Portfolio
 description: A warm decision-studio portfolio for BI consulting, dashboards, analytics workflows, and selected web/product showcases.
 colors:
-  canvas: "oklch(0.965 0.018 82)"
-  canvas-soft: "oklch(0.935 0.021 78)"
-  surface: "oklch(0.992 0.009 82)"
-  surface-raised: "oklch(0.982 0.012 78)"
-  text-primary: "oklch(0.205 0.024 68)"
-  text-secondary: "oklch(0.43 0.028 66)"
-  text-muted: "oklch(0.535 0.026 70)"
-  border: "oklch(0.82 0.028 76)"
-  border-strong: "oklch(0.66 0.046 70)"
-  accent: "oklch(0.54 0.105 62)"
-  accent-strong: "oklch(0.42 0.105 56)"
-  accent-tint: "oklch(0.86 0.065 66 / 0.42)"
-  secondary: "oklch(0.47 0.045 118)"
-  secondary-tint: "oklch(0.88 0.035 118 / 0.42)"
-  success: "oklch(0.48 0.1 155)"
-  error: "oklch(0.52 0.16 27)"
+  canvas: "oklch(0.990 0.016 95.2)"
+  canvas-soft: "oklch(0.954 0.015 98.3)"
+  surface: "oklch(0.994 0.009 93.6)"
+  surface-raised: "oklch(0.954 0.015 98.3)"
+  text-primary: "oklch(0.170 0.002 0.0)"
+  text-secondary: "oklch(0.453 0.005 91.5)"
+  text-muted: "oklch(0.515 0.008 97.4)"
+  border: "oklch(0.846 0.014 102.1)"
+  border-strong: "oklch(0.696 0.010 93.6)"
+  accent: "oklch(0.567 0.152 45.0)"
+  accent-strong: "oklch(0.495 0.133 44.8)"
+  accent-tint: "oklch(0.895 0.068 61.7 / 0.5)"
+  secondary: "oklch(0.559 0.134 122.9)"
+  secondary-tint: "oklch(0.897 0.063 112.5 / 0.5)"
+  success: "oklch(0.485 0.116 123.0)"
+  error: "oklch(0.504 0.165 27.8)"
 typography:
   display:
     fontFamily: "Cabinet Grotesk, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
@@ -102,7 +102,7 @@ The visual system is warm, analytical, structured, and human. It uses a restrain
 
 ## Colors
 
-The palette is a warm analytical system: softened institutional neutrals, one amber-brown accent, and a muted green secondary used sparingly for tags and diagram-like surfaces.
+The palette is a warm analytical system built on Flexoki tones: a paper-cream canvas, ink-black text, one Flexoki orange accent, and a Flexoki green secondary used sparingly for tags and diagram-like surfaces. A faint seigaiha (wave arc) pattern sits behind the page at low opacity.
 
 ### Primary
 
