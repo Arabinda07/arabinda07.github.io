@@ -18,25 +18,25 @@
 
 :root, html[data-theme="light"] {
   color-scheme: light;
-  --color-canvas: oklch(0.99 .016 95.2);
-  --color-canvas-soft: oklch(0.9540000000000001 .015 98.3);
-  --color-surface: oklch(0.9940000000000001 .009 93.6);
-  --color-surface-raised: oklch(0.9540000000000001 .015 98.3);
-  --color-surface-media: oklch(0.917 .015 98.3);
-  --color-text-primary: oklch(0.17 .002 0);
-  --color-text-secondary: oklch(0.45299999999999996 .005 91.5);
-  --color-text-muted: oklch(0.515 .008 97.4);
-  --color-border: oklch(0.846 .014 102.1);
-  --color-border-strong: oklch(0.696 .01 93.6);
-  --color-accent: oklch(0.5670000000000001 .152 45);
-  --color-accent-strong: oklch(0.495 .133 44.8);
-  --color-accent-tint: oklch(0.895 .068 61.7 / .5);
-  --color-secondary: oklch(0.5589999999999999 .134 122.9);
-  --color-secondary-tint: oklch(0.897 .063 112.5 / .5);
-  --color-success: oklch(0.485 .116 123);
-  --color-error: oklch(0.504 .165 27.8);
-  --shadow-soft: 0 18px 55px oklch(0.34 .04 70 / .12);
-  --shadow-tight: 0 10px 30px oklch(0.34 .04 70 / .1);
+  --color-canvas: oklch(0.986 .008 175);
+  --color-canvas-soft: oklch(0.955 .01 175);
+  --color-surface: oklch(0.9940000000000001 .005 175);
+  --color-surface-raised: oklch(0.955 .01 175);
+  --color-surface-media: oklch(0.92 .012 175);
+  --color-text-primary: oklch(0.185 .014 180);
+  --color-text-secondary: oklch(0.415 .012 180);
+  --color-text-muted: oklch(0.485 .01 180);
+  --color-border: oklch(0.855 .012 178);
+  --color-border-strong: oklch(0.695 .014 178);
+  --color-accent: oklch(0.585 .105 196);
+  --color-accent-strong: oklch(0.465 .092 196);
+  --color-accent-tint: oklch(0.905 .038 192 / .55);
+  --color-secondary: oklch(0.69 .085 81);
+  --color-secondary-tint: oklch(0.915 .042 84 / .55);
+  --color-success: oklch(0.48 .11 160);
+  --color-error: oklch(0.505 .165 25);
+  --shadow-soft: 0 18px 55px oklch(0.24 .025 180 / .12);
+  --shadow-tight: 0 10px 30px oklch(0.24 .025 180 / .1);
   --font-sans: "Supreme", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-display: "Cabinet Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
@@ -78,25 +78,25 @@ html {
 
 html[data-theme="dark"] {
   color-scheme: dark;
-  --color-canvas: oklch(0.223 .002 67.7);
-  --color-canvas-soft: oklch(0.273 .002 67.7);
-  --color-surface: oklch(0.273 .002 67.7);
-  --color-surface-raised: oklch(0.321 .004 84.6);
-  --color-surface-media: oklch(0.365 .004 67.7);
-  --color-text-primary: oklch(0.9540000000000001 .015 98.3);
-  --color-text-secondary: oklch(0.846 .014 102.1);
-  --color-text-muted: oklch(0.617 .008 88.7);
-  --color-border: oklch(0.365 .004 67.7);
-  --color-border-strong: oklch(0.45299999999999996 .005 91.5);
-  --color-accent: oklch(0.6579999999999999 .154 49.3);
-  --color-accent-strong: oklch(0.728 .143 52.7);
-  --color-accent-tint: oklch(0.397 .101 46.5 / .5);
-  --color-secondary: oklch(0.6509999999999999 .124 119.4);
-  --color-secondary-tint: oklch(0.39 .09 122.1 / .5);
-  --color-success: oklch(0.723 .118 117.2);
-  --color-error: oklch(0.597 .169 28.4);
-  --shadow-soft: 0 20px 65px oklch(0.06 .01 60 / .46);
-  --shadow-tight: 0 12px 38px oklch(0.06 .01 60 / .34);
+  --color-canvas: oklch(0.22 .024 176);
+  --color-canvas-soft: oklch(0.265 .028 176);
+  --color-surface: oklch(0.265 .028 176);
+  --color-surface-raised: oklch(0.312 .03 176);
+  --color-surface-media: oklch(0.35200000000000004 .03 176);
+  --color-text-primary: oklch(0.95 .01 175);
+  --color-text-secondary: oklch(0.84 .012 175);
+  --color-text-muted: oklch(0.68 .014 176);
+  --color-border: oklch(0.365 .026 176);
+  --color-border-strong: oklch(0.465 .026 176);
+  --color-accent: oklch(0.685 .11 194);
+  --color-accent-strong: oklch(0.755 .105 192);
+  --color-accent-tint: oklch(0.38 .07 194 / .5);
+  --color-secondary: oklch(0.745 .085 82);
+  --color-secondary-tint: oklch(0.39 .055 82 / .5);
+  --color-success: oklch(0.72 .115 160);
+  --color-error: oklch(0.65 .165 25);
+  --shadow-soft: 0 20px 65px oklch(0.08 .015 176 / .46);
+  --shadow-tight: 0 12px 38px oklch(0.08 .015 176 / .34);
 }
 
 *, :before, :after {
@@ -163,7 +163,9 @@ a {
 }
 
 a:hover {
-  color: var(--color-accent);
+  color: var(--color-accent-strong);
+  text-underline-offset: .2em;
+  text-decoration: underline;
 }
 
 a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
@@ -462,7 +464,7 @@ section[id] {
 }
 
 .social-icon:hover, .footer__social:hover {
-  color: var(--color-accent);
+  color: var(--color-accent-strong);
   border-color: var(--color-border);
   transform: translateY(-2px);
 }
@@ -695,7 +697,7 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   border-color: color-mix(in oklch, var(--color-accent) 68%, var(--color-border));
   filter: saturate(1.02) contrast(1.02);
   transform: translate(var(--photo-lift-x), var(--photo-lift-y));
-  box-shadow: 0 22px 44px oklch(0.18 .03 70 / .18);
+  box-shadow: 0 22px 44px oklch(0.18 .025 178 / .18);
 }
 
 .photo-img {
@@ -2369,7 +2371,7 @@ html[data-theme="dark"] .form-input::placeholder {
     backdrop-filter: blur(2px);
     opacity: 0;
     pointer-events: none;
-    background: oklch(0.18 .02 65 / .28);
+    background: oklch(0.18 .02 176 / .28);
     transition: opacity .25s;
     position: fixed;
   }

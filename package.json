@@ -7,6 +7,7 @@
     "dev": "vite --host 127.0.0.1 --port 5173",
     "preview": "vite --host 127.0.0.1 --port 4173",
     "build:css": "node scripts/build-css.mjs",
+    "ds:audit": "node scripts/audit-ds.mjs",
     "test:smoke": "playwright test"
   },
   "devDependencies": {

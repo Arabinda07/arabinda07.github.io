@@ -2,22 +2,41 @@
 name: Arabinda Saha Portfolio
 description: A warm decision-studio portfolio for BI consulting, dashboards, analytics workflows, and selected web/product showcases.
 colors:
-  canvas: "oklch(0.990 0.016 95.2)"
-  canvas-soft: "oklch(0.954 0.015 98.3)"
-  surface: "oklch(0.994 0.009 93.6)"
-  surface-raised: "oklch(0.954 0.015 98.3)"
-  text-primary: "oklch(0.170 0.002 0.0)"
-  text-secondary: "oklch(0.453 0.005 91.5)"
-  text-muted: "oklch(0.515 0.008 97.4)"
-  border: "oklch(0.846 0.014 102.1)"
-  border-strong: "oklch(0.696 0.010 93.6)"
-  accent: "oklch(0.567 0.152 45.0)"
-  accent-strong: "oklch(0.495 0.133 44.8)"
-  accent-tint: "oklch(0.895 0.068 61.7 / 0.5)"
-  secondary: "oklch(0.559 0.134 122.9)"
-  secondary-tint: "oklch(0.897 0.063 112.5 / 0.5)"
-  success: "oklch(0.485 0.116 123.0)"
-  error: "oklch(0.504 0.165 27.8)"
+  canvas: "oklch(0.986 0.008 175.0)"
+  canvas-soft: "oklch(0.955 0.010 175.0)"
+  surface: "oklch(0.994 0.005 175.0)"
+  surface-raised: "oklch(0.955 0.010 175.0)"
+  surface-media: "oklch(0.920 0.012 175.0)"
+  text-primary: "oklch(0.185 0.014 180.0)"
+  text-secondary: "oklch(0.415 0.012 180.0)"
+  text-muted: "oklch(0.485 0.010 180.0)"
+  border: "oklch(0.855 0.012 178.0)"
+  border-strong: "oklch(0.695 0.014 178.0)"
+  accent: "oklch(0.585 0.105 196.0)"
+  accent-strong: "oklch(0.465 0.092 196.0)"
+  accent-tint: "oklch(0.905 0.038 192.0 / 0.55)"
+  secondary: "oklch(0.690 0.085 81.0)"
+  secondary-tint: "oklch(0.915 0.042 84.0 / 0.55)"
+  success: "oklch(0.480 0.110 160.0)"
+  error: "oklch(0.505 0.165 25.0)"
+colors-dark:
+  canvas: "oklch(0.220 0.024 176.0)"
+  canvas-soft: "oklch(0.265 0.028 176.0)"
+  surface: "oklch(0.265 0.028 176.0)"
+  surface-raised: "oklch(0.312 0.030 176.0)"
+  surface-media: "oklch(0.352 0.030 176.0)"
+  text-primary: "oklch(0.950 0.010 175.0)"
+  text-secondary: "oklch(0.840 0.012 175.0)"
+  text-muted: "oklch(0.680 0.014 176.0)"
+  border: "oklch(0.365 0.026 176.0)"
+  border-strong: "oklch(0.465 0.026 176.0)"
+  accent: "oklch(0.685 0.110 194.0)"
+  accent-strong: "oklch(0.755 0.105 192.0)"
+  accent-tint: "oklch(0.380 0.070 194.0 / 0.5)"
+  secondary: "oklch(0.745 0.085 82.0)"
+  secondary-tint: "oklch(0.390 0.055 82.0 / 0.5)"
+  success: "oklch(0.720 0.115 160.0)"
+  error: "oklch(0.650 0.165 25.0)"
 typography:
   display:
     fontFamily: "Cabinet Grotesk, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
@@ -102,17 +121,17 @@ The visual system is warm, analytical, structured, and human. It uses a restrain
 
 ## Colors
 
-The palette is a warm analytical system built on Flexoki tones: a paper-cream canvas, ink-black text, one Flexoki orange accent, and a Flexoki green secondary used sparingly for tags and diagram-like surfaces. A faint seigaiha (wave arc) pattern sits behind the page at low opacity.
+The palette is a mineral-botanical analytical system inspired by Sanzo Wada's Combination #12 (Green Blue and Isabella Color) alongside Deep Slate Green, paired with a Cloud Dancer-inspired airy off-white canvas in light mode and hue-tinted neutrals (`Hue ~176`). A faint seigaiha (wave arc) pattern sits behind the page at low opacity.
 
 ### Primary
 
-- **Warm Canvas**: The main page background. Use it to keep the site softer than a white dashboard and more personal than a corporate deck.
-- **Paper Surface**: The raised content surface. Use it for cards, inputs, buttons, and panels that need quiet separation.
-- **Field Accent**: The primary action and focus color. Use it for CTAs, section numbers, focus rings, active states, and small proof markers.
+- **Mineral Canvas**: The main page background (`canvas` / `canvas-soft`). Airy off-white in light mode, deep slate-green (`#0e1e1a`) in dark mode.
+- **Paper / Slate Surface**: The raised content surface (`surface` / `surface-raised`). Use it for cards, inputs, buttons, and panels that need quiet separation.
+- **Green Blue Accent**: The primary action and focus color (`accent` for borders, focus rings, and non-text markers; `accent-strong` mandatory for all text, links, and mono labels to maintain WCAG AA >= 4.5:1 contrast).
 
 ### Secondary
 
-- **Institutional Green**: A supporting system color for chips, visual placeholders, and diagram accents. It should never compete with the Field Accent.
+- **Isabella Gold**: A muted ochre-gold supporting color (`secondary`) for subtle diagram accents and chips. It should never compete with the Green Blue Accent.
 
 ### Neutral
 
