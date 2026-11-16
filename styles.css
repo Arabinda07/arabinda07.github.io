@@ -357,7 +357,7 @@ section[id] {
   color: var(--color-text-secondary);
   max-width: 22rem;
   margin-bottom: clamp(1.35rem, 2.9vh, 2rem);
-  font-size: clamp(1rem, 1.2vw, 1.08rem);
+  font-size: clamp(1.02rem, 1.25vw, 1.12rem);
   font-weight: 500;
   line-height: 1.58;
 }
@@ -384,13 +384,14 @@ section[id] {
 .nav-item a {
   color: var(--color-text-muted);
   font-family: var(--font-sans);
-  letter-spacing: .04em;
+  letter-spacing: .015em;
   transition: var(--transition);
-  grid-template-columns: 2.85rem 2.2rem minmax(0, 1fr);
+  grid-template-columns: 2.85rem minmax(0, 1fr);
   align-items: center;
   column-gap: .62rem;
   padding: .5rem 0;
-  font-size: .72rem;
+  font-size: 1rem;
+  font-weight: 500;
   display: grid;
   transform: translateX(0);
 }
@@ -543,7 +544,7 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   min-width: max-content;
   min-height: 44px;
   font-family: var(--font-sans);
-  letter-spacing: .04em;
+  letter-spacing: .015em;
   white-space: nowrap;
   touch-action: manipulation;
   user-select: none;
@@ -552,7 +553,7 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   flex-shrink: 0;
   align-items: center;
   gap: .65rem;
-  font-size: .78rem;
+  font-size: .9375rem;
   font-weight: 500;
   display: inline-flex;
 }
@@ -2160,7 +2161,7 @@ html[data-theme="dark"] .form-input::placeholder {
     flex: auto;
     justify-content: flex-start;
     align-items: center;
-    font-size: clamp(.72rem, 3.3vw, .95rem);
+    font-size: clamp(.875rem, 3.8vw, 1rem);
     font-weight: 500;
     line-height: 1.05;
     display: inline-flex;
@@ -2500,7 +2501,7 @@ html[data-theme="dark"] .form-input::placeholder {
   }
 
   .about-photo--mobile {
-    justify-content: center;
+    justify-content: flex-start;
     margin: 0 0 1.75rem;
     display: flex;
   }

@@ -389,7 +389,7 @@ section[id] {
 
 .lp-bio {
   color: var(--color-text-secondary);
-  font-size: clamp(1rem, 1.2vw, 1.08rem);
+  font-size: clamp(1.02rem, 1.25vw, 1.12rem);
   font-weight: 500;
   line-height: 1.58;
   max-width: 22rem;
@@ -419,14 +419,15 @@ section[id] {
 
 .nav-item a {
   display: grid;
-  grid-template-columns: 2.85rem 2.2rem minmax(0, 1fr);
+  grid-template-columns: 2.85rem minmax(0, 1fr);
   align-items: center;
   column-gap: 0.62rem;
   padding: 0.5rem 0;
   color: var(--color-text-muted);
   font-family: var(--font-sans);
-  font-size: 0.72rem;
-  letter-spacing: 0.04em;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.015em;
   transform: translateX(0);
   transition: var(--transition);
 }
@@ -594,9 +595,9 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   flex-shrink: 0;
   border-radius: 8px;
   font-family: var(--font-sans);
-  font-size: 0.78rem;
+  font-size: 0.9375rem;
   font-weight: 500;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.015em;
   white-space: nowrap;
   touch-action: manipulation;
   user-select: none;
@@ -2279,7 +2280,7 @@ html[data-theme="dark"] .form-input::placeholder {
     justify-content: flex-start;
     color: var(--color-text-primary);
     font-family: var(--font-display);
-    font-size: clamp(0.72rem, 3.3vw, 0.95rem);
+    font-size: clamp(0.875rem, 3.8vw, 1rem);
     font-weight: 500;
     line-height: 1.05;
     white-space: nowrap;
@@ -2608,7 +2609,7 @@ html[data-theme="dark"] .form-input::placeholder {
 
   .about-photo--mobile {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     margin: 0 0 1.75rem;
   }
 
