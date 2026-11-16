@@ -234,9 +234,9 @@ test('philosophy block and left panel use editorial spacing contracts', async ({
     };
   });
 
-  expect(focusCardStyle.backgroundColor).toMatch(/rgba\(0,\s*0,\s*0,\s*0\)|transparent/);
+  expect(focusCardStyle.backgroundColor).not.toMatch(/rgba\(0,\s*0,\s*0,\s*0\)|transparent/);
   expect(focusCardStyle.borderLeftWidth).toBe(0);
-  expect(focusCardStyle.borderBottomWidth).toBeGreaterThanOrEqual(1);
+  expect(focusCardStyle.borderBottomWidth).toBe(0);
   expect(focusCardStyle.paragraphWidth).toBeGreaterThanOrEqual(340);
 
   await page.locator('#work').scrollIntoViewIfNeeded();
@@ -523,7 +523,6 @@ test('visible contact copy keeps the conversation router direct', async ({ page 
   await page.waitForFunction(() => !document.body.classList.contains('is-loading'));
   const visibleText = await page.locator('body').innerText();
 
-  expect(visibleText).toMatch(/my philosophy/i);
   expect(visibleText).toContain('Make the work easier to see.');
   expect(visibleText).toContain("Let's talk about the problem");
   expect(visibleText).toContain("A line or two about what you're working on is plenty.");
@@ -639,7 +638,7 @@ test('about section keeps photo with intro and removes metric strip', async ({ p
   await expect(about.locator('.about-photo--mobile img[alt="Arabinda Saha"]')).toHaveCount(1);
   await expect(about.locator('.about-photo--desktop img[alt="Arabinda Saha"]')).toHaveAttribute('src', 'assets/profile-540.webp');
   await expect(about.locator('.about-photo--desktop img[alt="Arabinda Saha"]')).toHaveAttribute('srcset', /profile-1080\.webp/);
-  await expect(about).toContainText('My Philosophy');
+  await expect(about).toContainText('Make the work easier to see.');
   await expect(about).toContainText('The problem');
   await expect(about).toContainText('The method');
   await expect(about).toContainText('The result');
@@ -745,7 +744,7 @@ test('head exposes canonical, social cards, manifest, and parseable structured d
   await expect(page.locator('link[rel="preload"][as="image"][href="assets/profile-540.webp"]')).toHaveAttribute('fetchpriority', 'high');
   await expect(page.locator('link[rel="preload"][as="style"][href*="fontshare"]')).toHaveCount(0);
   await expect(page.locator('link[rel="preload"][as="style"][href*="fonts.googleapis"]')).toHaveCount(0);
-  await expect(page.locator('link[onload*="this.media"]')).toHaveCount(2);
+  await expect(page.locator('link[onload*="this.media"]')).toHaveCount(1);
   await expect(page.locator('meta[property="og:url"]')).toHaveAttribute('content', 'https://arabinda07.github.io/');
   await expect(page.locator('meta[property="og:image"]')).toHaveAttribute('content', 'https://arabinda07.github.io/assets/og-image.jpg');
   await expect(page.locator('meta[property="og:image:alt"]')).toHaveAttribute('content', /Arabinda Saha portfolio preview/);

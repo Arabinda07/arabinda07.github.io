@@ -57,11 +57,11 @@ typography:
     lineHeight: 1.7
     letterSpacing: "0"
   label:
-    fontFamily: "JetBrains Mono, SFMono-Regular, Consolas, monospace"
-    fontSize: "0.72rem"
-    fontWeight: 400
+    fontFamily: "Supreme, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
+    fontSize: "0.8125rem"
+    fontWeight: 500
     lineHeight: 1.4
-    letterSpacing: "0.12em"
+    letterSpacing: "0.02em"
 rounded:
   xs: "4px"
   sm: "6px"
@@ -148,11 +148,9 @@ The palette is a mineral-botanical analytical system inspired by Sanzo Wada's Co
 
 **Display Font:** Cabinet Grotesk, with system sans fallback.
 
-**Body Font:** Supreme, with system sans fallback.
+**Body & Label Font:** Supreme, with system sans fallback.
 
-**Label and Metadata Font:** JetBrains Mono, with SFMono and Consolas fallback.
-
-The type system should feel precise without becoming mechanical. Display type gives confidence. Body type keeps the page conversational. Mono labels are reserved for numbers, navigation indices, dates, tags, and small system cues.
+The type system uses a clean two-font editorial hierarchy. Display type gives confidence. Body type keeps the page conversational, while labels, dates, and tags rely on weight, size, and spacing in Supreme rather than monospace or numeric prefixes.
 
 ### Hierarchy
 
@@ -168,7 +166,7 @@ The type system should feel precise without becoming mechanical. Display type gi
 
 ## Elevation
 
-The system uses a hybrid of tonal layering, borders, and soft shadows. Surfaces are mostly flat at rest. Shadows should be ambient and restrained, never glossy. Depth should help users distinguish panels, project cards, portraits, mobile navigation, and hovered states.
+The system uses flat OKLCH tonal surface stepping (`canvas`, `surface`, `surface-raised`, `surface-media`) and vertical spacing rather than decorative borders, hairline dividers, surface gradients, or resting shadows. Shadows are reserved strictly for floating overlays such as mobile navigation drawers.
 
 ### Shadow Vocabulary
 
