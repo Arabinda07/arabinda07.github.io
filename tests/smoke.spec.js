@@ -483,9 +483,11 @@ test('work section prioritizes analytics proof and keeps web showcases distinct'
   await expect(body).toContainText('Parichay');
   await expect(page.locator('.project-card--text-only .project-link')).toHaveText([
     /View project/,
-    /View project/,
+    /Google Play/,
+    /Web app/,
     /View project/,
   ]);
+  await expect(page.locator('.project-card--text-only a[href="https://play.google.com/store/apps/details?id=com.arabinda.reflections"]')).toHaveCount(1);
   await expect(page.locator('.about-photo--mobile img[alt="Arabinda Saha"][loading="eager"][fetchpriority="high"]')).toHaveCount(1);
   await expect(page.locator('.about-photo--desktop img[alt="Arabinda Saha"][loading="eager"][fetchpriority="high"]')).toHaveCount(1);
   await expect(page.locator('img[alt="Arabinda Saha"]').first()).toHaveAttribute('src', 'assets/profile-540.webp');

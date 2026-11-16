@@ -25,7 +25,7 @@ Arabinda Saha is a Data Analyst and Business Intelligence professional in India,
 
 ## Selected web and product showcases
 - **School Program Command Centre - Active Prototype**: Dashboard-led education BI prototype using synthetic/sample school-program data; not yet piloted.
-- **Reflections: Private Writing Journal**: Live writing-first journal app shaped around private notes, clear privacy cues, and optional writing insights.
+- **Reflections: Private Writing Journal**: Live writing-first journal app on Web and Google Play (`com.arabinda.reflections`), featuring client-side AES-256 encryption, offline-first sync, and on-device vector search.
 - **Parichay: Private Intro Page Studio**: Live privacy-first intro page tool for sharing relationship, work, boundary, and difficult-conversation context with visibility controls.
 
 ## Core skills and tools

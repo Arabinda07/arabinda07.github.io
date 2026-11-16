@@ -24,7 +24,7 @@ Core data and BI stack: Power BI, SQL, Python, DAX, Power Query, Tableau, Looker
 
 ## What selected web and product showcases are public?
 - School Program Command Centre is an active dashboard-led education BI prototype using synthetic/sample school-program data. It has not yet been piloted.
-- Reflections is a live private writing journal app focused on private notes, privacy cues, and optional writing insights.
+- Reflections is a live private writing journal app on Web and Google Play (`com.arabinda.reflections`) with client-side AES-256 encryption, offline-first sync, and on-device vector search.
 - Parichay is a live private intro page studio for sharing relationship, work, boundary, and difficult-conversation context with visibility controls.
 
 ## Where is Arabinda Saha based and open to work?

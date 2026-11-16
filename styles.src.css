@@ -1491,8 +1491,8 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   border: 0;
   border-radius: 0;
   font-family: var(--font-mono);
-  font-size: 0.7rem;
-  line-height: 1.35;
+  font-size: 0.8125rem;
+  line-height: 1.4;
 }
 
 .fp-tech li::after,
@@ -1574,10 +1574,11 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
 .projects-grid--showcases .project-card--text-only .project-tech li {
   min-height: 30px;
   padding: 0.16rem 0;
-  font-size: 0.66rem;
+  font-size: 0.8125rem;
 }
 
-.projects-grid--showcases .project-card--text-only .project-link {
+.projects-grid--showcases .project-card--text-only .project-link,
+.projects-grid--showcases .project-card--text-only .project-links {
   margin-top: auto;
 }
 
@@ -1758,7 +1759,7 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   order: -1;
   color: var(--color-accent-strong);
   font-family: var(--font-mono);
-  font-size: 0.66rem;
+  font-size: 0.8125rem;
   letter-spacing: 0.04em;
   line-height: 1.45;
 }
@@ -1766,7 +1767,7 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
 .project-tag {
   margin-bottom: 0.55rem;
   color: var(--color-text-muted);
-  font-size: 0.7rem;
+  font-size: 0.8125rem;
   line-height: 1.55;
 }
 
@@ -1776,6 +1777,18 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   font-size: 0.87rem;
   line-height: 1.52;
   max-width: 48ch;
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 1.1rem;
+  margin-top: auto;
+}
+
+.project-links .project-link {
+  margin-top: 0;
 }
 
 .project-link {
@@ -1788,7 +1801,7 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   padding-top: 0.45rem;
   color: var(--color-accent-strong);
   font-family: var(--font-mono);
-  font-size: 0.74rem;
+  font-size: 0.8125rem;
   letter-spacing: 0.04em;
 }
 
@@ -2924,7 +2937,7 @@ html[data-theme="dark"] .form-input::placeholder {
   .project-tech li {
     min-height: 0;
     padding: 0.16rem 0;
-    font-size: 0.66rem;
+    font-size: 0.8125rem;
   }
 
   .project-card,
