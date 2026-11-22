@@ -481,13 +481,20 @@ test('work section prioritizes analytics proof and keeps web showcases distinct'
   await expect(body).toContainText('Synthetic data throughout');
   await expect(body).toContainText('Reflections');
   await expect(body).toContainText('Parichay');
-  await expect(page.locator('.project-card--text-only .project-link')).toHaveText([
+  const reflectionsCover = page.locator('.work-media[aria-label="Reflections journal cover preview"] img');
+  await expect(reflectionsCover).toHaveCount(1);
+  await expect(reflectionsCover).toHaveAttribute('src', /assets\/work-photos\/optimized\/reflections\/01-reflections-cover-768w\.webp/);
+  await expect(reflectionsCover).toHaveAttribute('srcset', /01-reflections-cover-480w\.webp 480w/);
+  await expect(reflectionsCover).toHaveAttribute('srcset', /01-reflections-cover-768w\.webp 768w/);
+  await expect(reflectionsCover).toHaveAttribute('srcset', /01-reflections-cover\.webp 1024w/);
+  await expect(page.locator('.work-media[aria-label="Reflections journal cover preview"] [data-gallery-toggle]')).toHaveCount(0);
+  await expect(page.locator('.project-card .project-link')).toHaveText([
     /View project/,
     /Google Play/,
     /Web app/,
     /View project/,
   ]);
-  await expect(page.locator('.project-card--text-only a[href="https://play.google.com/store/apps/details?id=com.arabinda.reflections"]')).toHaveCount(1);
+  await expect(page.locator('.project-card a[href="https://play.google.com/store/apps/details?id=com.arabinda.reflections"]')).toHaveCount(1);
   await expect(page.locator('.about-photo--mobile img[alt="Arabinda Saha"][loading="eager"][fetchpriority="high"]')).toHaveCount(1);
   await expect(page.locator('.about-photo--desktop img[alt="Arabinda Saha"][loading="eager"][fetchpriority="high"]')).toHaveCount(1);
   await expect(page.locator('img[alt="Arabinda Saha"]').first()).toHaveAttribute('src', 'assets/profile-540.webp');

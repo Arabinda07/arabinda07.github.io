@@ -1053,6 +1053,11 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   margin-bottom: 1rem;
 }
 
+.work-media--cover {
+  aspect-ratio: 16 / 9;
+  height: auto;
+}
+
 .work-media__track {
   width: 100%;
   height: 100%;
@@ -1625,9 +1630,12 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   color: var(--color-accent-strong);
   font-family: var(--font-sans);
   letter-spacing: .04em;
-  order: -1;
   font-size: .8125rem;
   line-height: 1.45;
+}
+
+.project-card:not(.project-card--text-only) .project-status {
+  margin-bottom: .35rem;
 }
 
 .project-tag {
@@ -1651,6 +1659,10 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   gap: .4rem 1.1rem;
   margin-top: auto;
   display: flex;
+}
+
+.project-card:not(.project-card--text-only) .project-links {
+  padding-top: .45rem;
 }
 
 .project-links .project-link {
@@ -2668,8 +2680,16 @@ html[data-theme="dark"] .form-input::placeholder {
     height: clamp(13rem, 66vw, 17rem);
   }
 
+  .work-media--cover {
+    height: auto;
+  }
+
   .work-media__slide {
     padding: .55rem;
+  }
+
+  .work-media--cover .work-media__slide {
+    padding: 0;
   }
 
   .projects-grid--showcases .project-card--text-only {
