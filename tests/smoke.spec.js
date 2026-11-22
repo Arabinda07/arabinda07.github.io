@@ -121,7 +121,7 @@ test('contact form requires name, email, and message', async ({ page }) => {
   await page.fill('#from_name', 'Test User');
   await page.fill('#reply_to', 'test@example.com');
   await page.click('#form-submit');
-  await expect(page.locator('#form-status')).toContainText('Please fill in all fields to start the conversation.');
+  await expect(page.locator('#form-status')).toContainText('Please fill in all fields.');
 });
 
 test('tab switch updates selected button and active panel', async ({ page }) => {
@@ -390,7 +390,7 @@ test('hero copy supports consultant and interface architect positioning without 
   expect(visibleText).not.toContain('Verified outcomes stay separate from target-stack positioning');
   expect(visibleText).not.toContain('Tools and models I am positioning around');
   expect(visibleText).not.toContain('This matrix separates');
-  expect(visibleText).toContain("These days I'm interested in the gap between data and decision.");
+  expect(visibleText).toContain("Math gives me the structure, while design training keeps me focused on the person who has to read the output.");
   expect(visibleText).not.toMatch(/Product Ops Stack/i);
   expect(visibleText).not.toContain('Target Product Ops Stack');
   expect(visibleText).not.toContain('Product Operations & Data Consultant');
@@ -449,7 +449,7 @@ test('work section prioritizes analytics proof and keeps web showcases distinct'
   await page.waitForFunction(() => !document.body.classList.contains('is-loading'));
 
   const body = page.locator('body');
-  await expect(body).toContainText('LKS Internal Performance Dashboard Work');
+  await expect(body).toContainText('LKS Internal Performance Dashboards');
   await expect(body).toContainText('Competitive Edge');
   await expect(body).toContainText('Career Assessment Tool');
   await expect(body).toContainText('CBSE Sahodaya 2024');
@@ -469,7 +469,7 @@ test('work section prioritizes analytics proof and keeps web showcases distinct'
     })
   );
   expect(galleryArrowSizes.every((size) => size.width >= 44 && size.height >= 44)).toBeTruthy();
-  await expect(page.locator('.featured-project--text-only .fp-title')).toContainText('LKS Internal Performance Dashboard Work');
+  await expect(page.locator('.featured-project--text-only .fp-title')).toContainText('LKS Internal Performance Dashboards');
   await expect(page.locator('.featured-project--text-only .fp-image')).toHaveCount(0);
   await expect(page.locator('.work-media img').first()).toHaveAttribute('src', /assets\/work-photos\/optimized\/competitive-edge\/01-competitive-edge-dbsk-june-768w\.webp/);
   await expect(page.locator('.work-media img').first()).toHaveAttribute('srcset', /01-competitive-edge-dbsk-june-480w\.webp 480w/);
@@ -478,7 +478,7 @@ test('work section prioritizes analytics proof and keeps web showcases distinct'
 
   await page.locator('[data-work-toggle]').click();
   await expect(body).toContainText('School Program Command Centre');
-  await expect(body).toContainText('Synthetic data throughout');
+  await expect(body).toContainText('synthetic data throughout');
   await expect(body).toContainText('Reflections');
   await expect(body).toContainText('Parichay');
   const reflectionsCover = page.locator('.work-media[aria-label="Reflections journal cover preview"] img');
@@ -507,11 +507,11 @@ test('work section prioritizes analytics proof and keeps web showcases distinct'
   const order = await page.evaluate(() => {
     const text = document.body.innerText;
     return {
-      lks: text.indexOf('LKS Internal Performance Dashboard Work'),
+      lks: text.indexOf('LKS Internal Performance Dashboards'),
       competitiveEdge: text.indexOf('Competitive Edge'),
       careerAssessment: text.indexOf('Career Assessment Tool'),
       stellarSpace: text.indexOf('Stellar Space Quiz'),
-      schoolPrograms: text.indexOf('School Programs, STEM & LMS Work'),
+      schoolPrograms: text.indexOf('School Programs, STEM & LMS'),
       commandCentre: text.indexOf('School Program Command Centre'),
     };
   });
@@ -531,10 +531,11 @@ test('visible contact copy keeps the conversation router direct', async ({ page 
   const visibleText = await page.locator('body').innerText();
 
   expect(visibleText).toContain('Make the work easier to see.');
-  expect(visibleText).toContain("Let's talk about the problem");
+  expect(visibleText).toContain('Get in touch');
   expect(visibleText).toContain("A line or two about what you're working on is plenty.");
   expect(visibleText).toMatch(/what would you like to discuss\?/i);
   expect(visibleText).toMatch(/say hello/i);
+  expect(visibleText).toMatch(/send message/i);
   expect(visibleText).not.toMatch(/i want to discuss/i);
   expect(visibleText).not.toContain('BI, analytics, dashboards, or operations support');
   expect(visibleText).not.toContain('Custom landing page, portfolio, or UI/UX project');
