@@ -2180,6 +2180,10 @@ html[data-theme="dark"] .form-input::placeholder {
     overflow: hidden;
   }
 
+  .lp-role {
+    display: none;
+  }
+
   .mobile-actions {
     align-items: center;
     gap: .5rem;
