@@ -23,9 +23,10 @@ Arabinda Saha is a Data Analyst and Business Intelligence professional in India,
 Core data and BI stack: Power BI, SQL, Python, DAX, Power Query, Tableau, Looker Studio, Pandas, NumPy, Plotly, Matplotlib, Jupyter Notebook, Excel, and Google Sheets. Databases: PostgreSQL, MySQL, SQL Server, Supabase, and BigQuery. Workflow and automation: Power Automate, Airtable, Notion, Trello, Jira, Google Workspace, and Microsoft 365. Web and product build: HTML, CSS, JavaScript, React, Tailwind CSS, Vercel, and GitHub. Focus areas: data analysis, data visualization, dashboard development, business intelligence, and ETL/reporting workflows.
 
 ## What selected web and product showcases are public?
-- School Program Command Centre is an active dashboard-led education BI prototype using synthetic/sample school-program data. It has not yet been piloted.
+- Shubho Biye is a live collaborative Bengali wedding planner for families, covering ritual timelines, checklists, vendor budgets with GST tracking, QR guest passes, RSVP links, and a shagun ledger.
 - Reflections is a live private writing journal app on Web and Google Play (`com.arabinda.reflections`) with client-side AES-256 encryption, offline-first sync, and on-device vector search.
 - Parichay is a live private intro page studio for sharing relationship, work, boundary, and difficult-conversation context with visibility controls.
+- Study App is a live private web app for guided online Maths and Science tuition, combining weekly class plans, structured study notes, doubts and syllabus tracking, and 30-mark ICSE assessments with misconception diagnostics.
 
 ## Where is Arabinda Saha based and open to work?
 Based in Durgapur, India. Open to Data Analyst, Business Intelligence, and analytics roles across India's metro cities — Delhi, Bengaluru, Hyderabad, Mumbai, Pune, Gurugram, Kolkata — and remote across India.

@@ -479,10 +479,18 @@ test('work section prioritizes analytics proof and keeps web showcases distinct'
   await expect(page.locator('.work-media img').first()).toHaveAttribute('srcset', /01-competitive-edge-dbsk-june\.webp 1599w/);
 
   await page.locator('[data-work-toggle]').click();
-  await expect(body).toContainText('School Program Command Centre');
-  await expect(body).toContainText('synthetic data throughout');
+  await expect(body).toContainText('Shubho Biye');
+  await expect(body).toContainText('shagun ledger');
   await expect(body).toContainText('Reflections');
   await expect(body).toContainText('Parichay');
+  const shubhoBiyeCover = page.locator('.work-media[aria-label="Shubho Biye Bengali wedding planner cover preview"] img');
+  await expect(shubhoBiyeCover).toHaveCount(1);
+  await expect(shubhoBiyeCover).toHaveAttribute('src', /assets\/work-photos\/optimized\/shubho-biye\/01-shubho-biye-cover-768w\.webp/);
+  await expect(shubhoBiyeCover).toHaveAttribute('srcset', /01-shubho-biye-cover-480w\.webp 480w/);
+  await expect(shubhoBiyeCover).toHaveAttribute('srcset', /01-shubho-biye-cover-768w\.webp 768w/);
+  await expect(shubhoBiyeCover).toHaveAttribute('srcset', /01-shubho-biye-cover\.webp 1024w/);
+  await expect(page.locator('.work-media[aria-label="Shubho Biye Bengali wedding planner cover preview"] [data-gallery-toggle]')).toHaveCount(0);
+  await expect(page.locator('.project-card a[href="https://dulhan-dream-desk.vercel.app/"]')).toHaveCount(1);
   const reflectionsCover = page.locator('.work-media[aria-label="Reflections journal cover preview"] img');
   await expect(reflectionsCover).toHaveCount(1);
   await expect(reflectionsCover).toHaveAttribute('src', /assets\/work-photos\/optimized\/reflections\/01-reflections-cover-768w\.webp/);
@@ -490,13 +498,23 @@ test('work section prioritizes analytics proof and keeps web showcases distinct'
   await expect(reflectionsCover).toHaveAttribute('srcset', /01-reflections-cover-768w\.webp 768w/);
   await expect(reflectionsCover).toHaveAttribute('srcset', /01-reflections-cover\.webp 1024w/);
   await expect(page.locator('.work-media[aria-label="Reflections journal cover preview"] [data-gallery-toggle]')).toHaveCount(0);
+  await expect(body).toContainText('Study App');
+  const studyAppCover = page.locator('.work-media[aria-label="Study App tuition platform cover preview"] img');
+  await expect(studyAppCover).toHaveCount(1);
+  await expect(studyAppCover).toHaveAttribute('src', /assets\/work-photos\/optimized\/study-app\/01-study-app-cover-768w\.webp/);
+  await expect(studyAppCover).toHaveAttribute('srcset', /01-study-app-cover-480w\.webp 480w/);
+  await expect(studyAppCover).toHaveAttribute('srcset', /01-study-app-cover-768w\.webp 768w/);
+  await expect(studyAppCover).toHaveAttribute('srcset', /01-study-app-cover\.webp 1024w/);
+  await expect(page.locator('.work-media[aria-label="Study App tuition platform cover preview"] [data-gallery-toggle]')).toHaveCount(0);
   await expect(page.locator('.project-card .project-link')).toHaveText([
     /View project/,
     /Google Play/,
     /Web app/,
+    /Web app/,
     /View project/,
   ]);
   await expect(page.locator('.project-card a[href="https://play.google.com/store/apps/details?id=com.arabinda.reflections"]')).toHaveCount(1);
+  await expect(page.locator('.project-card a[href="https://stem-classes.vercel.app/"]')).toHaveCount(1);
   await expect(page.locator('.about-photo--mobile img[alt="Arabinda Saha"][loading="eager"][fetchpriority="high"]')).toHaveCount(1);
   await expect(page.locator('.about-photo--desktop img[alt="Arabinda Saha"][loading="eager"][fetchpriority="high"]')).toHaveCount(1);
   await expect(page.locator('img[alt="Arabinda Saha"]').first()).toHaveAttribute('src', 'assets/profile-540.webp');
@@ -514,7 +532,7 @@ test('work section prioritizes analytics proof and keeps web showcases distinct'
       careerAssessment: text.indexOf('Career Assessment Tool'),
       stellarSpace: text.indexOf('Stellar Space Quiz'),
       schoolPrograms: text.indexOf('School Programs, STEM & LMS'),
-      commandCentre: text.indexOf('School Program Command Centre'),
+      shubhoBiye: text.indexOf('Shubho Biye'),
     };
   });
 
@@ -524,7 +542,7 @@ test('work section prioritizes analytics proof and keeps web showcases distinct'
   expect(order.careerAssessment).toBeGreaterThan(order.competitiveEdge);
   expect(order.stellarSpace).toBeGreaterThan(order.careerAssessment);
   expect(order.schoolPrograms).toBeGreaterThan(order.stellarSpace);
-  expect(order.commandCentre).toBeGreaterThan(order.competitiveEdge);
+  expect(order.shubhoBiye).toBeGreaterThan(order.competitiveEdge);
 });
 
 test('visible contact copy keeps the conversation router direct', async ({ page }) => {
@@ -626,8 +644,8 @@ test('tool signals stay in work proof instead of a separate skills section', asy
     'Python',
     'Pandas',
     'React',
-    'Dashboard Design',
-    'Education BI',
+    'TypeScript',
+    'Supabase',
   ]) {
     await expect(work).toContainText(tool);
   }
@@ -797,13 +815,15 @@ test('head exposes canonical, social cards, manifest, and parseable structured d
     'Career Assessment Tool',
     'Stellar Space Quiz',
     'School Programs, STEM & LMS Work',
-    'School Program Command Centre - Active Prototype',
+    'Shubho Biye: Bengali Wedding Planner',
     'Reflections: Private Writing Journal',
     'Parichay: Private Intro Page Studio',
+    'Study App: Guided Online Tuition Platform',
   ]));
-  expect(workExamples.itemListElement.find((item) => item.name === 'School Program Command Centre - Active Prototype').description).toContain('Not yet piloted');
+  expect(workExamples.itemListElement.find((item) => item.name === 'Shubho Biye: Bengali Wedding Planner').description).toContain('Live');
   expect(workExamples.itemListElement.find((item) => item.name === 'Reflections: Private Writing Journal').description).toContain('Live');
   expect(workExamples.itemListElement.find((item) => item.name === 'Parichay: Private Intro Page Studio').description).toContain('Live');
+  expect(workExamples.itemListElement.find((item) => item.name === 'Study App: Guided Online Tuition Platform').description).toContain('Live');
 });
 
 test('main stylesheet is discovered before structured data', async () => {
@@ -990,12 +1010,12 @@ test('AI-readable and sitemap files match current SEO positioning', async () => 
   expect(llmsText).toContain('Delhi, Bengaluru, Hyderabad, Mumbai, Pune, Gurugram, Kolkata');
   expect(llmsText).toContain('LKS Internal Performance Dashboard Work');
   expect(llmsText).toContain('Selected web and product showcases');
-  expect(llmsText).toContain('School Program Command Centre - Active Prototype');
+  expect(llmsText).toContain('Shubho Biye: Bengali Wedding Planner');
   expect(llmsText).toContain('Reflections: Private Writing Journal');
   expect(llmsText).toContain('Parichay: Private Intro Page Studio');
+  expect(llmsText).toContain('Study App: Guided Online Tuition Platform');
   expect(llmsText).toContain('Interpretation guardrails');
   expect(llmsText).toContain('primary proof layer');
-  expect(llmsText).toContain('not yet piloted');
   expect(llmsText).toContain('Fine Arts');
   expect(llmsText).not.toContain('LKS Internal Dashboard Work - Confidential / Anonymized');
   expect(llmsText).not.toContain('LKS Internal Dashboard Work — Confidential / Anonymized');
@@ -1012,9 +1032,10 @@ test('AI-readable and sitemap files match current SEO positioning', async () => 
   expect(profileText).toContain('verified proof');
   expect(profileText).toContain('Bloom');
   expect(profileText).toContain('What selected web and product showcases are public?');
-  expect(profileText).toContain('School Program Command Centre');
+  expect(profileText).toContain('Shubho Biye');
   expect(profileText).toContain('Reflections');
   expect(profileText).toContain('Parichay');
+  expect(profileText).toContain('Study App');
   expect(profileText).toContain('primary proof layer');
   expect(profileText).not.toContain('reducing cloud infrastructure compute overhead by an estimated 20%');
   expect(profileText).not.toContain('Eliminated reporting discrepancies across business units');
@@ -1028,7 +1049,7 @@ test('AI-readable and sitemap files match current SEO positioning', async () => 
   expect(sitemap).toContain('<loc>https://arabinda07.github.io/llms.txt</loc>');
   expect(sitemap).toContain('<loc>https://arabinda07.github.io/profile.md</loc>');
   expect(sitemap).toContain('<loc>https://arabinda07.github.io/okf/index.md</loc>');
-  expect(sitemap).not.toContain('project-t2dax.vercel.app');
+  expect(sitemap).not.toContain('dulhan-dream-desk.vercel.app');
   expect(sitemap).not.toContain('reflections-sanctuary.space');
   expect(sitemap).not.toContain('parichay-your-story.vercel.app');
   expect(sitemapXsl).toContain('Arabinda Saha — Data Analyst &amp; BI / Data Consultant');

@@ -24,9 +24,10 @@ Arabinda Saha is a Data Analyst and Business Intelligence professional in India,
 - **School Programs, STEM & LMS Work**: School-program delivery across 5+ partner schools, 1,500+ students, and 60+ teachers.
 
 ## Selected web and product showcases
-- **School Program Command Centre - Active Prototype**: Dashboard-led education BI prototype using synthetic/sample school-program data; not yet piloted.
+- **Shubho Biye: Bengali Wedding Planner**: Live collaborative Bengali wedding planner for families, covering ritual timelines, checklists, vendor budgets with GST tracking, QR guest passes, RSVP links, and a shagun ledger.
 - **Reflections: Private Writing Journal**: Live writing-first journal app on Web and Google Play (`com.arabinda.reflections`), featuring client-side AES-256 encryption, offline-first sync, and on-device vector search.
 - **Parichay: Private Intro Page Studio**: Live privacy-first intro page tool for sharing relationship, work, boundary, and difficult-conversation context with visibility controls.
+- **Study App: Guided Online Tuition Platform**: Live private web app for guided online Maths and Science tuition, combining weekly class plans, structured study notes, doubts and syllabus tracking, and 30-mark ICSE assessments with misconception diagnostics.
 
 ## Core skills and tools
 - Business intelligence and dashboards: Power BI, DAX, Power Query, Tableau, Looker Studio, Excel, and Google Sheets.
